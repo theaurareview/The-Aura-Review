@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>FAQ | The Aura Review – Magazine, Leaders, Companies & Editorial Features</title>
-  <meta name="description" content="Find answers about The Aura Review, digital magazine editions, leadership profiles, company features, editorial processes, submissions, publishing, pricing, content rights and more.">
-  <meta name="keywords" content="The Aura Review FAQ, business magazine FAQ, leadership magazine FAQ, digital magazine FAQ, business publication, magazine features, leadership profiles, company features, digital magazine editions, how to get featured in a business magazine, how business magazine features work, how to read digital business magazines, how to submit a company to a business magazine, how to submit a leader for a magazine feature, business magazine editorial process, digital magazine publication process, CEO magazine feature, entrepreneur magazine feature">
+  <meta name="description" content="Find answers about The Aura Review, digital magazine editions, leadership profiles, company features, editorial processes, submissions, publishing, pricing, content rights and more[cite: 8].">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,11 +108,6 @@
       max-width: 1240px;
       margin: 0 auto;
       padding: 0 2rem;
-    }
-
-    .section-spacing {
-      padding: 4.5rem 0;
-      position: relative;
     }
 
     .section-tag {
@@ -316,7 +310,7 @@
 
     .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* 01 — HERO */
+    /* HERO */
     .faq-hero {
       padding-top: 110px;
       padding-bottom: 3.5rem;
@@ -359,7 +353,7 @@
       color: var(--maroon-accent);
     }
 
-    /* 02 — QUICK CATEGORIES (STICKY SCROLL BAR) */
+    /* STICKY CATEGORIES */
     .faq-categories-sticky {
       background: #FFFFFF;
       padding: 1rem 0;
@@ -398,7 +392,7 @@
       border-color: var(--maroon-primary);
     }
 
-    /* ACCORDION DESIGN */
+    /* ACCORDION */
     .faq-group-section {
       padding: 3rem 0;
       border-bottom: 1px solid var(--border-light);
@@ -448,9 +442,7 @@
       transition: background 0.2s;
     }
 
-    .accordion-header:hover {
-      background: var(--bg-secondary);
-    }
+    .accordion-header:hover { background: var(--bg-secondary); }
 
     .accordion-question {
       font-family: var(--font-serif);
@@ -468,9 +460,7 @@
       flex-shrink: 0;
     }
 
-    .accordion-item.active .accordion-icon {
-      transform: rotate(180deg);
-    }
+    .accordion-item.active .accordion-icon { transform: rotate(180deg); }
 
     .accordion-body {
       max-height: 0;
@@ -485,37 +475,9 @@
       padding-top: 1.2rem;
     }
 
-    .accordion-content p {
-      margin-bottom: 0.8rem;
-    }
-
-    .accordion-content ul, .accordion-content ol {
-      padding-left: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--text-muted);
-    }
-
-    .accordion-content li {
-      margin-bottom: 0.4rem;
-      font-size: 1rem;
-    }
-
-    .process-step-list {
-      list-style: none;
-      padding: 0 !important;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin: 1rem 0;
-    }
-
-    .process-step-item {
-      background: var(--bg-secondary);
-      padding: 0.8rem 1.2rem;
-      border-radius: 4px;
-      border-left: 3px solid var(--maroon-primary);
-      font-size: 0.95rem;
-    }
+    .accordion-content p { margin-bottom: 0.8rem; }
+    .process-step-list { list-style: none; padding: 0 !important; display: flex; flex-direction: column; gap: 0.8rem; margin: 1rem 0; }
+    .process-step-item { background: var(--bg-secondary); padding: 0.8rem 1.2rem; border-radius: 4px; border-left: 3px solid var(--maroon-primary); font-size: 0.95rem; }
 
     /* Footer */
     .footer {
@@ -624,13 +586,13 @@
   </div>
 
   <main>
-    <!-- 01 — HERO SECTION -->
+    <!-- HERO SECTION -->
     <section class="faq-hero">
       <div class="container">
         <span class="section-tag">Knowledge & Transparency</span>
         <h1 class="section-heading">Frequently Asked Questions</h1>
         <p style="max-width: 780px; margin: 0 auto; font-size: 1.05rem;">
-          Everything you need to know about The Aura Review, our editorial features, digital magazine editions, leadership profiles, company stories, and editorial process.
+          Everything you need to know about The Aura Review[cite: 8], our editorial features, digital magazine editions[cite: 8], leadership profiles, company stories[cite: 8], and editorial process[cite: 8].
         </p>
 
         <!-- Live Instant Search Bar -->
@@ -638,15 +600,10 @@
           <i class="ri-search-line faq-search-icon"></i>
           <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="Type a keyword to find answers (e.g. pricing, digital reader, profile)...">
         </div>
-
-        <div style="display: flex; justify-content: center; gap: 1.2rem; margin-top: 2rem; flex-wrap: wrap;">
-          <a href="#sec-general" class="btn btn-maroon">Browse Questions</a>
-          <a href="#sec-contact" class="btn btn-outline">Contact Us</a>
-        </div>
       </div>
     </section>
 
-    <!-- 02 — QUICK FAQ CATEGORIES (STICKY SCROLL ROW) -->
+    <!-- STICKY SCROLL CATEGORIES -->
     <div class="faq-categories-sticky">
       <div class="container">
         <div class="categories-scroll-row">
@@ -655,19 +612,15 @@
           <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-leaders', this)">Leaders</button>
           <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-companies', this)">Companies</button>
           <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-process', this)">Editorial Features</button>
-          <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-materials', this)">Photographs & Materials</button>
           <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-pricing', this)">Pricing & Investment</button>
           <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-reader', this)">Digital Editions</button>
-          <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-publishing', this)">Publishing & Visibility</button>
-          <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-rights', this)">Content & Rights</button>
-          <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-privacy', this)">Privacy & Security</button>
           <button class="faq-cat-pill" onclick="scrollToFaqSection('sec-contact', this)">Contact</button>
         </div>
       </div>
     </div>
 
-    <!-- FAQ ACCORDION SECTIONS -->
-    <div class="container" style="padding-top: 2rem; padding-bottom: 5rem;" id="faqContentContainer">
+    <!-- FAQ ACCORDIONS -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 5rem;">
 
       <!-- GENERAL -->
       <section class="faq-group-section" id="sec-general">
@@ -681,44 +634,6 @@
             <div class="accordion-body">
               <div class="accordion-content">
                 <p>The Aura Review is a business and leadership publication focused on the people, companies, ideas, innovations, and stories shaping the future of business.</p>
-                <p>The publication features leadership profiles, company stories, executive perspectives, industry insights, interviews, and digital magazine editions.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">What topics does The Aura Review cover?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>The Aura Review covers business leadership, entrepreneurship, innovation, companies, executive leadership, business transformation, industry developments, and emerging ideas across 24 global sectors.</p>
-                <p>Our coverage includes technology, healthcare, finance, real estate, education, aviation, consulting, manufacturing, clean energy, retail, and emerging markets.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">Who is The Aura Review for?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>The publication is designed for CEOs, founders, entrepreneurs, executives, business owners, consultants, corporate organizations, and professionals seeking verified leadership intelligence.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">Is The Aura Review a digital magazine?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>Yes. The Aura Review publishes high-resolution digital editorial editions designed for interactive desktop and mobile reading.</p>
               </div>
             </div>
           </div>
@@ -736,32 +651,8 @@
             </div>
             <div class="accordion-body">
               <div class="accordion-content">
-                <p>You can explore available editions through the Magazine section of the website. Select an edition and use the <strong>Read Digital</strong> option to access the digital reader.</p>
+                <p>You can explore available editions through the Magazine section of the website. Select an edition to access the digital reader.</p>
                 <a href="magazine.html" class="btn-link">Explore Magazine &rarr;</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">What is included in a digital edition?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>A digital edition includes front covers, mastheads, in-depth profiles, corporate case studies, executive Q&As, and bespoke layout photography.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">Can I read the magazine on mobile?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>Yes. The digital reading experience is responsive and optimized for mobile, tablet, and desktop viewports.</p>
               </div>
             </div>
           </div>
@@ -779,20 +670,7 @@
             </div>
             <div class="accordion-body">
               <div class="accordion-content">
-                <p>Potential subjects include CEOs, founders, entrepreneurs, executives, consultants, innovators, and industry experts. Selection depends on verified track records and editorial relevance.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">Can leaders submit their own stories?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>Yes. Leaders or company representatives can submit background details and achievements for editorial review.</p>
-                <a href="about.html" class="btn-link">Submit Your Story &rarr;</a>
+                <p>Potential subjects include CEOs, founders, entrepreneurs, executives, consultants, innovators, and industry experts.</p>
               </div>
             </div>
           </div>
@@ -810,14 +688,14 @@
             </div>
             <div class="accordion-body">
               <div class="accordion-content">
-                <p>The Aura Review features enterprises across Artificial Intelligence, Healthcare, Finance, Clean Energy, Real Estate, Aerospace, Logistics, and emerging technology sectors.</p>
+                <p>The Aura Review features enterprises across Artificial Intelligence, Healthcare, Finance, Clean Energy, Real Estate, and more.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- EDITORIAL PROCESS -->
+      <!-- PROCESS -->
       <section class="faq-group-section" id="sec-process">
         <h2 class="faq-group-title"><i class="ri-edit-2-line"></i> Editorial Features & Process</h2>
         <div class="accordion-container">
@@ -829,12 +707,9 @@
             <div class="accordion-body">
               <div class="accordion-content">
                 <div class="process-step-list">
-                  <div class="process-step-item"><strong>01 — Consultation:</strong> Aligning on the leader, organization, and narrative thesis.</div>
-                  <div class="process-step-item"><strong>02 — Questionnaire:</strong> Gathering executive milestones, data, and perspectives.</div>
-                  <div class="process-step-item"><strong>03 — Development:</strong> Structuring the story into an analytical narrative.</div>
-                  <div class="process-step-item"><strong>04 — Review:</strong> Fact-checking and review with the featured client.</div>
-                  <div class="process-step-item"><strong>05 — Design:</strong> Formatting into magazine spreads with bespoke typography.</div>
-                  <div class="process-step-item"><strong>06 — Publication:</strong> Publishing digitally across indexed archives.</div>
+                  <div class="process-step-item"><strong>01 — Consultation:</strong> Aligning on narrative thesis.</div>
+                  <div class="process-step-item"><strong>02 — Development:</strong> Structuring the executive story.</div>
+                  <div class="process-step-item"><strong>03 — Publication:</strong> Publishing digitally across indexed archives.</div>
                 </div>
               </div>
             </div>
@@ -842,7 +717,7 @@
         </div>
       </section>
 
-      <!-- PRICING & INVESTMENT -->
+      <!-- PRICING -->
       <section class="faq-group-section" id="sec-pricing">
         <h2 class="faq-group-title"><i class="ri-money-dollar-circle-line"></i> Pricing & Investment</h2>
         <div class="accordion-container">
@@ -853,7 +728,7 @@
             </div>
             <div class="accordion-body">
               <div class="accordion-content">
-                <p>Opportunities vary based on edition format, custom research, and editorial production. Commercial terms and deliverables are communicated prior to project initiation.</p>
+                <p>Opportunities vary based on edition format, custom research, and editorial production terms.</p>
               </div>
             </div>
           </div>
@@ -871,57 +746,23 @@
             </div>
             <div class="accordion-body">
               <div class="accordion-content">
-                <p>The digital reader features smooth page-turning animations, 360° pan/drag, zoom controls, table of contents navigation, and high-resolution PDF download options.</p>
+                <p>Smooth page-turning animations, 360° pan/drag, zoom controls, and high-resolution PDF download options.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- RIGHTS & CONTACT -->
-      <section class="faq-group-section" id="sec-rights">
-        <h2 class="faq-group-title"><i class="ri-shield-check-line"></i> Content & Rights</h2>
-        <div class="accordion-container">
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <div class="accordion-question">Can I share my feature on LinkedIn and marketing channels?</div>
-              <i class="ri-arrow-down-s-line accordion-icon"></i>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                <p>Yes. Contributor agreements grant full rights to share published magazine covers, verified digital links, and article excerpts for executive branding and corporate PR.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <!-- CONTACT -->
       <section class="faq-group-section" id="sec-contact" style="border-bottom: none;">
         <div style="background: var(--bg-secondary); border: 1px solid var(--maroon-border); border-radius: 8px; padding: 3rem 2.5rem; text-align: center;">
           <span class="section-tag">Direct Support</span>
           <h2 style="font-size: 2.2rem; color: var(--maroon-deep); margin-bottom: 0.8rem;">Still Have Questions?</h2>
-          <p style="max-width: 600px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;">
-            For specific editorial queries, publication schedules, or corporate partnerships, reach out directly to our team.
-          </p>
           <a href="about.html" class="btn btn-maroon">Contact The Aura Review &rarr;</a>
         </div>
       </section>
 
     </div>
-
-    <!-- FINAL CTA -->
-    <section class="section-spacing" style="background: linear-gradient(180deg, #FAF7F6 0%, #F3ECE9 100%); text-align: center; border-top: 1px solid var(--border-light);">
-      <div class="container">
-        <span class="section-tag">The Aura Review</span>
-        <h2 class="section-heading" style="margin-bottom: 1rem;">Explore The Aura Review</h2>
-        <p style="margin-bottom: 2.2rem; font-size: 1.1rem;">Discover leaders. Explore companies. Read verified business stories.</p>
-        <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
-          <a href="magazine.html" class="btn btn-maroon">Explore Magazine</a>
-          <a href="leaders.html" class="btn btn-outline">Featured Leaders</a>
-          <a href="companies.html" class="btn btn-outline">Discover Companies</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- FOOTER -->
@@ -930,63 +771,27 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">The Aura Review</div>
-          <p class="footer-desc">
-            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
-          </p>
-          <div class="social-row">
-            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
-            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
-            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
-          </div>
+          <p class="footer-desc">A premium global business and leadership magazine shaping tomorrow.</p>
         </div>
-
         <div>
           <h4 class="footer-heading">Navigation</h4>
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="magazine.html" class="footer-link">Magazine</a></li>
-            <li><a href="leaders.html" class="footer-link">Leaders</a></li>
             <li><a href="companies.html" class="footer-link">Companies</a></li>
-            <li><a href="news.html" class="footer-link">News</a></li>
-            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
-            <li><a href="faq.html" class="footer-link">FAQ</a></li>
-            <li><a href="about.html" class="footer-link">About</a></li>
           </ul>
         </div>
-
         <div>
-          <h4 class="footer-heading">Editorial Sectors</h4>
-          <ul class="footer-links">
-            <li><a href="magazine.html" class="footer-link">Technology & AI</a></li>
-            <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
-            <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
-            <li><a href="magazine.html" class="footer-link">Real Estate & Development</a></li>
-            <li><a href="magazine.html" class="footer-link">Clean Energy & Sustainability</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Contact & Inquiries</h4>
-          <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial submissions, magazine features, and publication collaborations:
-          </p>
-          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
+          <h4 class="footer-heading">Contact</h4>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
       </div>
-
       <div class="footer-bottom">
         <div>&copy; 2026 The Aura Review. All rights reserved.</div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="privacy.html" class="footer-link">Privacy Policy</a>
-          <a href="terms.html" class="footer-link">Terms & Conditions</a>
-          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
-        </div>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const header = document.getElementById('header');
@@ -1010,7 +815,6 @@
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
-      // Live Instant Search Filter
       const searchInput = document.getElementById('faqSearchInput');
       searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
@@ -1022,23 +826,11 @@
           
           if (!query || qText.includes(query) || aText.includes(query)) {
             item.style.display = 'block';
-            if (query.length > 2) {
-              openAccordionItem(item);
-            }
+            if (query.length > 2) openAccordionItem(item);
           } else {
             item.style.display = 'none';
           }
         });
-      });
-
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) return;
-        const ripple = document.createElement('span');
-        ripple.classList.add('click-ripple');
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 650);
       });
     });
 
