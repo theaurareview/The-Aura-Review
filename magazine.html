@@ -620,8 +620,8 @@
 
       container.innerHTML = filtered.map(mag => {
         const isLiked = likedMap[mag.id] || false;
-        const currentLikes = (mag.likes || 12) + (isLiked ? 1 : 0);
-        const currentViews = (mag.views || 1) + (viewedMap[mag.id] ? 1 : 0);
+        const currentLikes = (isLiked ? 1 : 0);
+        const currentViews = (viewedMap[mag.id] ? 1 : 0);
 
         return `
           <div class="mag-card-wrap">
