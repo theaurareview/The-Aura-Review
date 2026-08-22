@@ -634,27 +634,6 @@
       cursor: pointer;
     }
 
-    .tri-columns-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .tri-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-light);
-      padding: 2.2rem;
-      border-radius: 6px;
-      transition: var(--transition-smooth);
-    }
-
-    .tri-card:hover {
-      background: #FFFFFF;
-      box-shadow: var(--shadow-md);
-      border-color: var(--maroon-border);
-    }
-
     /* Footer */
     .footer {
       background-color: var(--maroon-deep);
@@ -774,7 +753,7 @@
         <span class="section-tag">Authentic Perspectives</span>
         <h1 class="section-heading">What Our Leaders Say About The Aura Review</h1>
         <p style="max-width: 760px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;">
-          Real experiences from the leaders, founders, executives, entrepreneurs, and organizations featured by The Aura Review across 24 global sectors.
+          Real experiences from the leaders, founders, executives, entrepreneurs, and organizations featured by The Aura Review across 24 global sectors[cite: 9].
         </p>
         <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
           <a href="#feedbacksArchiveSection" class="btn btn-maroon">Read Feedbacks</a>
@@ -802,7 +781,7 @@
               Featured in: The Aura Review — The Most Innovative Technology Companies to Watch in 2026
             </div>
             <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
-              <a href="digital-issue.html" class="btn btn-maroon">Read Digital Feature &rarr;</a>
+              <a href="magazine.html" class="btn btn-maroon">Read Digital Feature &rarr;</a>
               <a href="leaders.html" class="btn btn-outline">View Leader Profile</a>
             </div>
           </div>
@@ -816,7 +795,7 @@
         <div style="max-width: 720px;">
           <span class="section-tag">Community Perspectives</span>
           <h2 class="section-heading">Voices From Our Community</h2>
-          <p>Explore authentic feedback from featured executives across 24 specialized industries and international markets.</p>
+          <p>Explore authentic feedback from featured executives across specialized industries and international markets.</p>
         </div>
 
         <!-- Filter Box -->
@@ -824,33 +803,17 @@
           <div class="search-inputs-grid">
             <input type="text" class="search-input" id="feedbackSearch" placeholder="Search by name, company, country or industry...">
             <select class="filter-select" id="feedbackIndustryFilter">
-              <option value="all">Industry: All 24 Industries</option>
-              <option value="Food & Beverage (F&B)">Food & Beverage (F&B)</option>
+              <option value="all">Industry: All Sectors</option>
               <option value="Technology & Software">Technology & Software</option>
-              <option value="Artificial Intelligence">Artificial Intelligence & Tech</option>
               <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
-              <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
               <option value="Finance & Banking">Finance & Banking</option>
-              <option value="Private Equity & VC">Private Equity & VC</option>
               <option value="Real Estate & Architecture">Real Estate & Architecture</option>
-              <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
-              <option value="Aviation & Aerospace">Aviation & Aerospace</option>
-              <option value="Space Exploration">Space Exploration</option>
-              <option value="Automotive & EV">Automotive & EV Mobility</option>
               <option value="Logistics & Supply Chain">Logistics & Supply Chain</option>
-              <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
-              <option value="Cybersecurity & Defense">Cybersecurity & Defense</option>
-              <option value="Consulting & Advisory">Consulting & Advisory</option>
-              <option value="Education & EdTech">Education & EdTech</option>
-              <option value="Retail & Consumer Brands">Retail & Consumer Brands</option>
-              <option value="Hospitality & Travel">Hospitality & Travel</option>
-              <option value="Media & Marketing">Media & Marketing</option>
             </select>
             <select class="filter-select" id="feedbackRoleFilter">
               <option value="all">Role: All</option>
               <option value="CEO">CEO</option>
               <option value="Founder">Founder</option>
-              <option value="Executive">Executive</option>
               <option value="Managing Partner">Managing Partner</option>
             </select>
             <select class="filter-select" id="feedbackYearFilter">
@@ -866,13 +829,13 @@
       </div>
     </section>
 
-    <!-- SUBMIT FEEDBACK FORM (WITH LIVE PHOTO ADJUSTER) -->
+    <!-- SUBMIT FEEDBACK FORM -->
     <section class="section-spacing" id="submitFeedbackSection">
       <div class="container">
         <div class="submit-feedback-box">
           <span class="section-tag" style="text-align: center; display: block;">Share Your Perspective</span>
           <h2 style="font-size: 2.2rem; text-align: center; color: var(--maroon-deep); margin-bottom: 0.8rem;">Have You Been Featured by The Aura Review?</h2>
-          <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Share your experience. Your feedback will be published immediately on this page with verified status.</p>
+          <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Share your experience. Your feedback will be published immediately on this page.</p>
 
           <form id="feedbackSubmissionForm" onsubmit="handleLiveFeedbackSubmit(event)">
             <div class="form-row-grid">
@@ -885,19 +848,10 @@
               <select class="form-input" id="fbIndustry" required style="cursor: pointer;">
                 <option value="" disabled selected>Select Industry *</option>
                 <option value="Technology & Software">Technology & Software</option>
-                <option value="Artificial Intelligence">Artificial Intelligence & Automation</option>
                 <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
-                <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
                 <option value="Finance & Banking">Finance & Banking</option>
-                <option value="Private Equity & VC">Private Equity & VC</option>
                 <option value="Real Estate & Architecture">Real Estate & Architecture</option>
-                <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
-                <option value="Aviation & Aerospace">Aviation & Aerospace</option>
                 <option value="Logistics & Supply Chain">Logistics & Supply Chain</option>
-                <option value="Food & Beverage (F&B)">Food & Beverage (F&B)</option>
-                <option value="Consulting & Advisory">Consulting & Advisory</option>
-                <option value="Hospitality & Travel">Hospitality & Travel</option>
-                <option value="Retail & Consumer Brands">Retail & Consumer Brands</option>
               </select>
             </div>
 
@@ -990,122 +944,62 @@
             <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
             <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
             <li><a href="magazine.html" class="footer-link">Real Estate & Construction</a></li>
-            <li><a href="magazine.html" class="footer-link">Clean Energy & Sustainability</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-heading">Contact & Inquiries</h4>
-          <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial nominations, feedback inquiries, and digital publication collaborations:
-          </p>
-          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>&copy; 2026 The Aura Review. All rights reserved.</div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="privacy.html" class="footer-link">Privacy Policy</a>
-          <a href="terms.html" class="footer-link">Terms & Conditions</a>
-          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
-        </div>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT: PERSISTENCE & ADMIN DELETION CONTROLS -->
+  <!-- SCRIPT -->
   <script>
     const INITIAL_FEEDBACKS = [
       {
         id: "fb-1",
-        name: "Chef Marco Rossi",
-        role: "Founder & Executive Chef",
-        company: "Artisan Culinary Labs",
-        industry: "Food & Beverage (F&B)",
-        leadershipType: "Founder",
-        year: "2026",
-        location: "United States",
-        edition: "Global Culinary Visionaries • Vol. XVI",
-        avatar: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=300&q=80",
-        avatarPos: "50%",
-        avatarZoom: "1",
-        quote: "The Aura Review captured our culinary research and sustainable supply chain philosophy with profound depth. Our restaurant group received exceptional recognition."
-      },
-      {
-        id: "fb-2",
         name: "Dr. Aris Thorne",
         role: "Founder & CEO",
         company: "GeneMatrix Health",
         industry: "Healthcare & Life Sciences",
-        leadershipType: "CEO",
         year: "2026",
         location: "United States",
-        edition: "The Most Visionary Healthcare Companies in 2026",
         avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80",
         avatarPos: "50%",
         avatarZoom: "1",
-        quote: "The Aura Review went far beyond standard interview questions. Their editorial team took the time to truly grasp our clinical thesis and delivered an honest narrative."
+        quote: "The Aura Review went far beyond standard interview questions. Their editorial team took the time to truly grasp our clinical thesis."
       },
       {
-        id: "fb-3",
+        id: "fb-2",
         name: "Marcus Sterling",
         role: "Managing Partner",
         company: "Aurelius Capital",
         industry: "Finance & Banking",
-        leadershipType: "Founder",
         year: "2026",
         location: "United Kingdom",
-        edition: "The Architecture of Capital • Vol. XII",
         avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80",
         avatarPos: "50%",
         avatarZoom: "1",
-        quote: "The visual presentation and editorial integrity set a standard that few modern publications meet. It accurately articulated our cross-border private equity frameworks."
+        quote: "The visual presentation and editorial integrity set a standard that few modern publications meet."
       },
       {
-        id: "fb-4",
-        name: "Jerome Hairston",
-        role: "CEO & Managing Broker",
-        company: "Hairston Investment Properties",
-        industry: "Real Estate & Architecture",
-        leadershipType: "CEO",
-        year: "2026",
-        location: "United States",
-        edition: "The Most Dynamic Real Estate Entrepreneurs in 2026",
-        avatar: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=300&q=80",
-        avatarPos: "50%",
-        avatarZoom: "1",
-        quote: "Working with the editorial board was seamless from questionnaire to layout approvals. The digital magazine edition provided significant visibility with institutional stakeholders."
-      },
-      {
-        id: "fb-5",
-        name: "Claire Montgomery",
-        role: "Managing Director",
-        company: "Horizon Global Logistics",
-        industry: "Logistics & Supply Chain",
-        leadershipType: "Executive",
-        year: "2025",
-        location: "Canada",
-        edition: "Strategy & Operations • Vol. XI",
-        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
-        avatarPos: "50%",
-        avatarZoom: "1",
-        quote: "The Aura Review gave us an opportunity to communicate our company's logistical vision and journey in a way that went beyond a traditional corporate press release."
-      },
-      {
-        id: "fb-6",
+        id: "fb-3",
         name: "Elena Vance",
         role: "Chief Executive Officer",
         company: "Synapse Global",
         industry: "Technology & Software",
-        leadershipType: "CEO",
         year: "2026",
         location: "United States",
-        edition: "The Most Innovative Technology Companies in 2026",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
         avatarPos: "50%",
         avatarZoom: "1",
-        quote: "The entire process was thoughtful, communicative, and executed with rigorous editorial precision. An exemplary publication for visionary leaders."
+        quote: "The entire process was thoughtful, communicative, and executed with rigorous editorial precision."
       }
     ];
 
@@ -1124,20 +1018,17 @@
 
       renderFeedbackCards();
 
-      // Header Scroll
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 30) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
       });
 
-      // Filter Events
       document.getElementById('feedbackSearch').addEventListener('input', renderFeedbackCards);
       document.getElementById('feedbackIndustryFilter').addEventListener('change', renderFeedbackCards);
       document.getElementById('feedbackRoleFilter').addEventListener('change', renderFeedbackCards);
       document.getElementById('feedbackYearFilter').addEventListener('change', renderFeedbackCards);
 
-      // Mobile Menu
       const mobileToggle = document.getElementById('mobileToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       const menuClose = document.getElementById('menuClose');
@@ -1152,16 +1043,6 @@
       mobileToggle.addEventListener('click', () => toggleMenu(true));
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
-
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('textarea')) return;
-        const ripple = document.createElement('span');
-        ripple.classList.add('click-ripple');
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 650);
-      });
     });
 
     function handlePhotoUpload(event) {
@@ -1200,10 +1081,8 @@
         role: document.getElementById('fbDesignation').value.trim(),
         company: document.getElementById('fbCompanyName').value.trim(),
         industry: document.getElementById('fbIndustry').value,
-        leadershipType: "Executive",
         year: "2026",
         location: "Global",
-        edition: document.getElementById('fbEdition').value.trim() || "2026 Edition",
         avatar: uploadedPhotoBase64,
         avatarPos: `${document.getElementById('verticalPosSlider').value}%`,
         avatarZoom: document.getElementById('zoomScaleSlider').value,
@@ -1225,7 +1104,7 @@
     function toggleAdminAccess() {
       if (!isAdminLoggedIn) {
         const pass = prompt("Enter Admin Password to enable deletion mode:");
-        if (pass === "aura2026" || pass === "admin") {
+        if (pass === "Akashop@000" || pass === "admin") {
           isAdminLoggedIn = true;
           document.body.classList.add('admin-authenticated');
           document.getElementById('adminAuthBtn').innerHTML = `<i class="ri-delete-bin-line"></i> Admin Delete Mode: ACTIVE`;
@@ -1297,7 +1176,7 @@
 
             <div class="feedback-card-links">
               <a href="leaders.html" class="btn-link">Leader Profile &rarr;</a>
-              <a href="digital-issue.html" class="btn-link" style="color: var(--maroon-accent);">Read Digital &rarr;</a>
+              <a href="magazine.html" class="btn-link" style="color: var(--maroon-accent);">Read Digital &rarr;</a>
             </div>
           </div>
         </div>
