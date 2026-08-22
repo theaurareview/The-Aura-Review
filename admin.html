@@ -14,6 +14,10 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Firebase SDKs (Compat v9 CDN) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <style>
     :root {
       --bg-primary: #FFFFFF;
@@ -52,6 +56,7 @@
       min-height: 100vh;
     }
 
+    /* AUTHENTICATION OVERLAY */
     #authOverlay {
       position: fixed; inset: 0;
       background: linear-gradient(135deg, #180205 0%, #3B0810 100%);
@@ -80,6 +85,7 @@
       margin-bottom: 0.2rem;
     }
 
+    /* APP LAYOUT */
     #adminApp {
       display: none;
       min-height: 100vh;
@@ -197,12 +203,11 @@
     /* DIRECT WORD PASTE CANVAS */
     .word-editor-container { border: 1px solid var(--maroon-border); border-radius: 6px; overflow: hidden; background: #FFFFFF; margin-top: 0.5rem; }
     .word-toolbar-ribbon { background: #F8F4F3; border-bottom: 1px solid var(--maroon-border); padding: 0.6rem 0.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
-    .word-canvas-sheet { min-height: 400px; max-height: 650px; overflow-y: auto; padding: 2.5rem 3rem; outline: none; font-size: 1.05rem; line-height: 1.85; color: var(--text-main); background: #FFFFFF; }
+    .word-canvas-sheet { min-height: 380px; max-height: 600px; overflow-y: auto; padding: 2.2rem 2.5rem; outline: none; font-size: 1.05rem; line-height: 1.85; color: var(--text-main); background: #FFFFFF; }
     .word-canvas-sheet:focus { background: #FCFAFA; }
     .word-canvas-sheet h2 { font-size: 2rem; color: var(--maroon-deep); margin: 1.5rem 0 0.8rem 0; font-family: var(--font-serif); }
     .word-canvas-sheet h3 { font-size: 1.5rem; color: var(--maroon-deep); margin: 1.2rem 0 0.6rem 0; font-family: var(--font-serif); }
     .word-canvas-sheet p { margin-bottom: 1rem; color: var(--text-muted); }
-    .word-canvas-sheet blockquote { border-left: 3px solid var(--maroon-accent); padding: 1rem 1.5rem; font-family: var(--font-serif); font-size: 1.3rem; font-style: italic; color: var(--maroon-deep); background: var(--bg-secondary); margin: 1.5rem 0; }
 
     /* UPLOAD DROP ZONES */
     .file-drop-card {
@@ -250,9 +255,9 @@
   <!-- AUTHENTICATION OVERLAY -->
   <div id="authOverlay">
     <div class="auth-card">
-      <span style="font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700;">Secure Central Workspace</span>
+      <span style="font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700;">Secure Cloud Workspace</span>
       <div class="auth-logo">The Aura Review</div>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem;">Enter administrator master password to manage content.</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem;">Enter administrator master password (`Akashop@000`) to manage content.</p>
 
       <form id="adminLoginForm" onsubmit="verifyPassword(event)">
         <div class="field-group" style="margin-bottom: 1.5rem; text-align: left;">
@@ -274,7 +279,7 @@
       <div>
         <div class="sidebar-header">
           <div class="auth-logo" style="color: #FFFFFF; font-size: 1.5rem;">The Aura Review</div>
-          <span style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #E2B6BC; font-weight: 600;">Control Console</span>
+          <span style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #E2B6BC; font-weight: 600;">Cloud Firestore Console</span>
         </div>
 
         <ul class="nav-list">
@@ -311,7 +316,7 @@
         <div class="panel-header">
           <div>
             <span class="section-tag">Digital Publications</span>
-            <h2>Magazine Edition Publisher</h2>
+            <h2>Magazine Edition Publisher (Cloud Sync)</h2>
           </div>
         </div>
 
@@ -427,22 +432,22 @@
               <div class="word-editor-container">
                 <div class="word-toolbar-ribbon">
                   <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); padding-left: 0.4rem;">
-                    <i class="ri-file-word-line"></i> Paste directly from MS Word (Formatting will be preserved automatically)
+                    <i class="ri-file-word-line"></i> Paste directly from MS Word (Formatting preserved)
                   </span>
                 </div>
-                <div id="magEditorBody" class="word-canvas-sheet" contenteditable="true" placeholder="Paste your article directly here...">
+                <div id="magEditorBody" class="word-canvas-sheet" contenteditable="true">
                   <h2>The Architecture of Enterprise Resilience</h2>
-                  <p>In an era defined by rapid macroeconomic fluctuations and institutional capital reallocation...</p>
+                  <p>In an era defined by rapid macroeconomic fluctuations...</p>
                 </div>
               </div>
             </div>
 
-            <div style="margin-top: 2rem;"><button type="submit" class="btn-action"><i class="ri-upload-cloud-fill"></i> Deploy Magazine Issue</button></div>
+            <div style="margin-top: 2rem;"><button type="submit" class="btn-action"><i class="ri-upload-cloud-fill"></i> Deploy to Cloud Firestore</button></div>
           </form>
         </div>
 
         <div class="card-panel">
-          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Published Magazines Archive</h3>
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Cloud Magazines Archive</h3>
           <div class="data-table-container">
             <table class="admin-table">
               <thead><tr><th>Cover</th><th>Edition Title</th><th>Industry</th><th>Country</th><th>Source</th><th>Action</th></tr></thead>
@@ -457,7 +462,7 @@
         <div class="panel-header">
           <div>
             <span class="section-tag">Corporate Ecosystems</span>
-            <h2>Company Profile & Brochure Publisher</h2>
+            <h2>Company Profile & Brochure Publisher (Cloud Sync)</h2>
           </div>
         </div>
 
@@ -563,7 +568,7 @@
         </div>
 
         <div class="card-panel">
-          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Active Companies Roster</h3>
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Cloud Companies Roster</h3>
           <div class="data-table-container">
             <table class="admin-table">
               <thead><tr><th>Photo</th><th>Company Name</th><th>Industry</th><th>Location</th><th>Source</th><th>Action</th></tr></thead>
@@ -578,7 +583,7 @@
         <div class="panel-header">
           <div>
             <span class="section-tag">Executive Profiles</span>
-            <h2>Business Leader & Executive Publisher</h2>
+            <h2>Business Leader & Executive Publisher (Cloud Sync)</h2>
           </div>
         </div>
 
@@ -703,7 +708,7 @@
         </div>
 
         <div class="card-panel">
-          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Active Leaders Roster</h3>
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Cloud Leaders Roster</h3>
           <div class="data-table-container">
             <table class="admin-table">
               <thead><tr><th>Portrait</th><th>Leader Name</th><th>Company & Title</th><th>Sector</th><th>Optional Links</th><th>Action</th></tr></thead>
@@ -718,8 +723,20 @@
 
   <div id="toast" class="toast-popup">Notification</div>
 
-  <!-- CONTROLLER SCRIPT -->
+  <!-- FIREBASE CLOUD CONTROLLER -->
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
+      authDomain: "the-aura-review.firebaseapp.com",
+      projectId: "the-aura-review",
+      storageBucket: "the-aura-review.appspot.com",
+      messagingSenderId: "66650540249",
+      appId: "1:66650540249:web:7f80cbd1c9302f32cd56c8",
+      measurementId: "G-9MK9DDBJJV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     const MASTER_PASS = "Akashop@000";
     let tempCoverBase64 = "";
     let tempPdfName = "";
@@ -727,18 +744,22 @@
     function verifyPassword(e) {
       e.preventDefault();
       if (document.getElementById('adminPass').value === MASTER_PASS) {
-        sessionStorage.setItem('AURA_ADMIN_AUTHENTICATED', 'true');
-        document.getElementById('authOverlay').style.display = 'none';
-        document.getElementById('adminApp').style.display = 'flex';
-        renderTables();
-        showToast("Authenticated as Super Admin");
+        sessionStorage.setItem('AURA_CLOUD_AUTH', 'true');
+        initAdmin();
       } else {
         alert("Incorrect master password.");
       }
     }
 
+    function initAdmin() {
+      document.getElementById('authOverlay').style.display = 'none';
+      document.getElementById('adminApp').style.display = 'flex';
+      renderCloudTables();
+      showToast("Connected to Firebase Cloud Firestore");
+    }
+
     function adminSignOut() {
-      sessionStorage.removeItem('AURA_ADMIN_AUTHENTICATED');
+      sessionStorage.removeItem('AURA_CLOUD_AUTH');
       location.reload();
     }
 
@@ -771,12 +792,10 @@
       }
     }
 
-    /* PUBLISHERS */
-    function handleMagazinePublish(e) {
+    /* CLOUD PUBLISHERS */
+    async function handleMagazinePublish(e) {
       e.preventDefault();
-      const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
-      mags.unshift({
-        id: "mag-" + Date.now(),
+      const magData = {
         title: document.getElementById('magTitle').value.trim(),
         editionTag: document.getElementById('magTag').value.trim(),
         category: document.getElementById('magCategory').value,
@@ -787,21 +806,25 @@
         coverImage: tempCoverBase64 || "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
         pdfSource: tempPdfName || "magazine.pdf",
         articleHtml: document.getElementById('magEditorBody').innerHTML,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         views: 1, likes: 0
-      });
-      localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(mags));
-      document.getElementById('magazineUploadForm').reset();
-      document.getElementById('magPreviewImg').style.display = 'none';
-      tempCoverBase64 = ""; tempPdfName = "";
-      renderTables();
-      showToast("Magazine deployed successfully!");
+      };
+
+      try {
+        await db.collection("magazines").add(magData);
+        document.getElementById('magazineUploadForm').reset();
+        document.getElementById('magPreviewImg').style.display = 'none';
+        document.getElementById('magPdfStatus').innerText = 'No PDF Selected';
+        tempCoverBase64 = ""; tempPdfName = "";
+        renderCloudTables();
+        showToast("Magazine deployed to Cloud Firestore!");
+      } catch(err) { alert("Error: " + err.message); }
     }
 
-    function handleCompanyPublish(e) {
+    async function handleCompanyPublish(e) {
       e.preventDefault();
-      const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
       const name = document.getElementById('compName').value.trim();
-      comps.unshift({
+      const compData = {
         slug: name.toLowerCase().replace(/\s+/g, '-'),
         name,
         tagline: document.getElementById('compTagline').value.trim(),
@@ -811,22 +834,25 @@
         founded: "2020",
         coverImage: tempCoverBase64 || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
         pdfSource: tempPdfName || "company.pdf",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         views: 1, likes: 0
-      });
-      localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(comps));
-      document.getElementById('companyUploadForm').reset();
-      document.getElementById('compPreviewImg').style.display = 'none';
-      tempCoverBase64 = ""; tempPdfName = "";
-      renderTables();
-      showToast("Company profile saved!");
+      };
+
+      try {
+        await db.collection("companies").add(compData);
+        document.getElementById('companyUploadForm').reset();
+        document.getElementById('compPreviewImg').style.display = 'none';
+        document.getElementById('compPdfStatus').innerText = 'No PDF Selected';
+        tempCoverBase64 = ""; tempPdfName = "";
+        renderCloudTables();
+        showToast("Company saved to Cloud!");
+      } catch(err) { alert("Error: " + err.message); }
     }
 
-    function handleLeaderPublish(e) {
+    async function handleLeaderPublish(e) {
       e.preventDefault();
       const name = document.getElementById('ldrName').value.trim();
-      const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
-      
-      leaders.unshift({
+      const leaderData = {
         slug: name.toLowerCase().replace(/\s+/g, '-'),
         name,
         designation: document.getElementById('ldrRole').value.trim(),
@@ -840,68 +866,85 @@
         companyPage: document.getElementById('ldrCompanyPage').value.trim() || "",
         companyWeb: document.getElementById('ldrCompanyWeb').value.trim() || "",
         socialLink: document.getElementById('ldrSocial').value.trim() || "",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         views: 1, likes: 0
-      });
+      };
 
-      localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(leaders));
-      document.getElementById('leaderUploadForm').reset();
-      document.getElementById('ldrPreviewImg').style.display = 'none';
-      tempCoverBase64 = "";
-
-      renderTables();
-      showToast("Leader profile deployed with links!");
+      try {
+        await db.collection("leaders").add(leaderData);
+        document.getElementById('leaderUploadForm').reset();
+        document.getElementById('ldrPreviewImg').style.display = 'none';
+        tempCoverBase64 = "";
+        renderCloudTables();
+        showToast("Leader profile deployed to Cloud!");
+      } catch(err) { alert("Error: " + err.message); }
     }
 
-    function renderTables() {
-      const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
-      document.getElementById('magazinesTableBody').innerHTML = mags.length ? mags.map((m, i) => `
-        <tr>
-          <td><div class="table-thumb-box"><img src="${m.coverImage}"></div></td>
-          <td><strong>${m.title}</strong><br><small>${m.editionTag}</small></td>
-          <td>${m.industry}</td><td>${m.country}</td><td>${m.pdfSource}</td>
-          <td><button class="btn-del" onclick="deleteItem('M', ${i})">Delete</button></td>
-        </tr>
-      `).join('') : `<tr><td colspan="6" style="text-align:center;">No custom magazines.</td></tr>`;
+    async function renderCloudTables() {
+      // 1. Magazines
+      const magTbody = document.getElementById('magazinesTableBody');
+      try {
+        const snap = await db.collection("magazines").orderBy("createdAt", "desc").get();
+        magTbody.innerHTML = snap.empty ? `<tr><td colspan="6" style="text-align:center;">No cloud magazines.</td></tr>` : '';
+        snap.forEach(doc => {
+          const m = doc.data();
+          magTbody.innerHTML += `
+            <tr>
+              <td><div class="table-thumb-box"><img src="${m.coverImage}"></div></td>
+              <td><strong>${m.title}</strong><br><small>${m.editionTag}</small></td>
+              <td>${m.industry}</td><td>${m.country}</td><td>${m.pdfSource}</td>
+              <td><button class="btn-del" onclick="deleteCloudItem('magazines', '${doc.id}')">Delete</button></td>
+            </tr>`;
+        });
+      } catch(e) { console.error(e); }
 
-      const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
-      document.getElementById('companiesTableBody').innerHTML = comps.length ? comps.map((c, i) => `
-        <tr>
-          <td><div class="table-thumb-box"><img src="${c.coverImage}"></div></td>
-          <td><strong>${c.name}</strong></td>
-          <td>${c.industry}</td><td>${c.location}</td><td>${c.pdfSource}</td>
-          <td><button class="btn-del" onclick="deleteItem('C', ${i})">Delete</button></td>
-        </tr>
-      `).join('') : `<tr><td colspan="6" style="text-align:center;">No companies.</td></tr>`;
+      // 2. Companies
+      const compTbody = document.getElementById('companiesTableBody');
+      try {
+        const snap = await db.collection("companies").orderBy("createdAt", "desc").get();
+        compTbody.innerHTML = snap.empty ? `<tr><td colspan="6" style="text-align:center;">No cloud companies.</td></tr>` : '';
+        snap.forEach(doc => {
+          const c = doc.data();
+          compTbody.innerHTML += `
+            <tr>
+              <td><div class="table-thumb-box"><img src="${c.coverImage}"></div></td>
+              <td><strong>${c.name}</strong></td>
+              <td>${c.industry}</td><td>${c.location}</td><td>${c.pdfSource}</td>
+              <td><button class="btn-del" onclick="deleteCloudItem('companies', '${doc.id}')">Delete</button></td>
+            </tr>`;
+        });
+      } catch(e) { console.error(e); }
 
-      const ldr = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
-      document.getElementById('leadersTableBody').innerHTML = ldr.length ? ldr.map((l, i) => `
-        <tr>
-          <td><div class="table-thumb-box"><img src="${l.photo}"></div></td>
-          <td><strong>${l.name}</strong></td>
-          <td>${l.designation}, ${l.company}</td>
-          <td>${l.industry}</td>
-          <td>
-            ${l.linkedin ? '<i class="ri-linkedin-box-fill" style="color:#0A66C2;" title="LinkedIn"></i> ' : ''}
-            ${l.companyPage ? '<i class="ri-building-line" title="Company Page"></i> ' : ''}
-            ${l.companyWeb ? '<i class="ri-global-line" title="Website"></i> ' : ''}
-            ${l.socialLink ? '<i class="ri-share-line" title="Social"></i>' : (!l.linkedin && !l.companyPage && !l.companyWeb && !l.socialLink ? '<span style="color:var(--text-light); font-size:0.75rem;">None</span>' : '')}
-          </td>
-          <td><button class="btn-del" onclick="deleteItem('L', ${i})">Delete</button></td>
-        </tr>
-      `).join('') : `<tr><td colspan="6" style="text-align:center;">No leaders added.</td></tr>`;
+      // 3. Leaders
+      const ldrTbody = document.getElementById('leadersTableBody');
+      try {
+        const snap = await db.collection("leaders").orderBy("createdAt", "desc").get();
+        ldrTbody.innerHTML = snap.empty ? `<tr><td colspan="6" style="text-align:center;">No cloud leaders.</td></tr>` : '';
+        snap.forEach(doc => {
+          const l = doc.data();
+          ldrTbody.innerHTML += `
+            <tr>
+              <td><div class="table-thumb-box"><img src="${l.photo}"></div></td>
+              <td><strong>${l.name}</strong></td>
+              <td>${l.designation}, ${l.company}</td>
+              <td>${l.industry}</td>
+              <td>
+                ${l.linkedin ? '<i class="ri-linkedin-box-fill" style="color:#0A66C2;" title="LinkedIn"></i> ' : ''}
+                ${l.companyPage ? '<i class="ri-building-line" title="Company Page"></i> ' : ''}
+                ${l.companyWeb ? '<i class="ri-global-line" title="Website"></i> ' : ''}
+                ${l.socialLink ? '<i class="ri-share-line" title="Social"></i>' : (!l.linkedin && !l.companyPage && !l.companyWeb && !l.socialLink ? '<span style="color:var(--text-light); font-size:0.75rem;">None</span>' : '')}
+              </td>
+              <td><button class="btn-del" onclick="deleteCloudItem('leaders', '${doc.id}')">Delete</button></td>
+            </tr>`;
+        });
+      } catch(e) { console.error(e); }
     }
 
-    function deleteItem(type, idx) {
-      if (confirm("Permanently delete this entry?")) {
-        if (type === 'M') {
-          const d = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS')); d.splice(idx, 1); localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(d));
-        } else if (type === 'C') {
-          const d = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES')); d.splice(idx, 1); localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(d));
-        } else if (type === 'L') {
-          const d = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS')); d.splice(idx, 1); localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(d));
-        }
-        renderTables();
-        showToast("Entry deleted successfully.");
+    async function deleteCloudItem(coll, docId) {
+      if (confirm("Permanently delete from Cloud Firestore?")) {
+        await db.collection(coll).doc(docId).delete();
+        renderCloudTables();
+        showToast("Deleted from cloud.");
       }
     }
 
@@ -912,10 +955,10 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('AURA_ADMIN_AUTHENTICATED') === 'true') {
+      if (sessionStorage.getItem('AURA_CLOUD_AUTH') === 'true') {
         document.getElementById('authOverlay').style.display = 'none';
         document.getElementById('adminApp').style.display = 'flex';
-        renderTables();
+        renderCloudTables();
       }
     });
   </script>
