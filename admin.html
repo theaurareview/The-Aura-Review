@@ -241,7 +241,7 @@
       box-shadow: 0 0 0 3px var(--maroon-soft);
     }
 
-    /* MICROSOFT WORD STYLE FULL RICH TEXT TOOLBAR */
+    /* WORD EDITOR RIBBON */
     .word-editor-container {
       border: 1px solid var(--maroon-border);
       border-radius: 6px;
@@ -312,9 +312,7 @@
       background: #FFFFFF;
     }
 
-    .word-canvas-sheet:focus {
-      background: #FCFAFA;
-    }
+    .word-canvas-sheet:focus { background: #FCFAFA; }
 
     .word-canvas-sheet blockquote {
       border-left: 3px solid var(--maroon-accent);
@@ -327,7 +325,7 @@
       margin: 1.5rem 0;
     }
 
-    /* UPLOAD / DROP ZONES */
+    /* UPLOAD DROP ZONES */
     .file-drop-card {
       background: var(--bg-secondary);
       border: 2px dashed var(--maroon-border);
@@ -368,7 +366,7 @@
       transform: translateY(-2px);
     }
 
-    /* INVENTORY TABLES */
+    /* TABLES */
     .data-table-container {
       width: 100%;
       overflow-x: auto;
@@ -405,9 +403,7 @@
       background: #151515;
     }
 
-    .table-thumb-box img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
+    .table-thumb-box img { width: 100%; height: 100%; object-fit: cover; }
 
     .btn-del {
       background: rgba(220, 38, 38, 0.1);
@@ -421,9 +417,7 @@
       transition: 0.2s;
     }
 
-    .btn-del:hover {
-      background: #DC2626; color: #FFFFFF;
-    }
+    .btn-del:hover { background: #DC2626; color: #FFFFFF; }
 
     .toast-popup {
       position: fixed; bottom: 2rem; right: 2rem;
@@ -444,7 +438,7 @@
 </head>
 <body>
 
-  <!-- AUTHENTICATION OVERLAY (Akashop@000) -->
+  <!-- AUTHENTICATION OVERLAY -->
   <div id="authOverlay">
     <div class="auth-card">
       <span style="font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700;">Secure Central Workspace</span>
@@ -466,7 +460,7 @@
   <!-- MAIN ADMIN APP -->
   <div id="adminApp">
     
-    <!-- LEFT NAVIGATION SIDEBAR -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div>
         <div class="sidebar-header">
@@ -500,12 +494,10 @@
       </div>
     </aside>
 
-    <!-- WORKSPACE PANELS -->
+    <!-- WORKSPACE -->
     <main class="main-workspace">
 
-      <!-- =========================================================================
-           1. MAGAZINES & FLIPBOOK MANAGER
-           ========================================================================= -->
+      <!-- 1. MAGAZINES PANEL -->
       <section id="panel-magazines" class="view-panel active">
         <div class="panel-header">
           <div>
@@ -516,11 +508,10 @@
 
         <div class="card-panel">
           <form id="magazineUploadForm" onsubmit="handleMagazinePublish(event)">
-            
             <div class="form-grid-2">
               <div class="field-group">
                 <label for="magTitle">Magazine Edition Title *</label>
-                <input type="text" id="magTitle" class="field-input" placeholder="e.g. The Most Dynamic Real Estate Entrepreneurs to Watch in 2026" required>
+                <input type="text" id="magTitle" class="field-input" placeholder="e.g. The Most Dynamic Real Estate Entrepreneurs" required>
               </div>
               <div class="field-group">
                 <label for="magTag">Edition Volume Tag *</label>
@@ -539,32 +530,14 @@
               </div>
 
               <div class="field-group">
-                <label for="magIndustry">Target Industry (24 Sectors) *</label>
+                <label for="magIndustry">Target Industry *</label>
                 <select id="magIndustry" class="field-select" required>
                   <option value="Technology & Software">Technology & Software</option>
-                  <option value="Artificial Intelligence">Artificial Intelligence & Automation</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence</option>
                   <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
-                  <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
                   <option value="Finance & Banking">Finance & Banking</option>
-                  <option value="Private Equity & VC">Private Equity & Venture Capital</option>
                   <option value="Real Estate & Development">Real Estate & Development</option>
                   <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
-                  <option value="Aviation & Aerospace">Aviation & Aerospace</option>
-                  <option value="Space Exploration">Space Exploration & Satellites</option>
-                  <option value="Automotive & EV">Automotive & EV Mobility</option>
-                  <option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
-                  <option value="Manufacturing & Robotics">Manufacturing & Robotics</option>
-                  <option value="Cybersecurity & Defense">Cybersecurity & Defense</option>
-                  <option value="Consulting & Advisory">Consulting & Professional Services</option>
-                  <option value="Education & EdTech">Education & EdTech</option>
-                  <option value="Retail & E-Commerce">Retail & E-Commerce</option>
-                  <option value="Media & Entertainment">Media & Entertainment</option>
-                  <option value="Hospitality & Luxury Travel">Hospitality & Luxury Travel</option>
-                  <option value="Agritech & Sustainable Food">Agritech & Sustainable Food</option>
-                  <option value="Telecommunications & 6G">Telecommunications & 6G</option>
-                  <option value="Next-Gen Materials">Next-Gen Materials & Polymers</option>
-                  <option value="Critical Minerals & Metals">Critical Minerals & Metals</option>
-                  <option value="Marketing & PR">Marketing & Strategic PR</option>
                 </select>
               </div>
 
@@ -574,16 +547,6 @@
                   <option value="United States">United States</option>
                   <option value="United Kingdom">United Kingdom</option>
                   <option value="India">India</option>
-                  <option value="Germany">Germany</option>
-                  <option value="United Arab Emirates">United Arab Emirates (UAE)</option>
-                  <option value="Singapore">Singapore</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Japan">Japan</option>
-                  <option value="Australia">Australia</option>
-                  <option value="France">France</option>
-                  <option value="Switzerland">Switzerland</option>
-                  <option value="Sweden">Sweden</option>
-                  <option value="Saudi Arabia">Saudi Arabia</option>
                   <option value="Global">Global / Multi-Market</option>
                 </select>
               </div>
@@ -592,23 +555,22 @@
             <div class="form-grid-2">
               <div class="field-group">
                 <label for="magLeaderName">Featured Leader Name & Role *</label>
-                <input type="text" id="magLeaderName" class="field-input" placeholder="e.g. Jerome Hairston (CEO & Realtor, Hairston Properties)" required>
+                <input type="text" id="magLeaderName" class="field-input" placeholder="e.g. Jerome Hairston (CEO, Hairston Properties)" required>
               </div>
               <div class="field-group">
                 <label for="magHighlights">Key Editorial Bullet Points (Comma Separated)</label>
-                <input type="text" id="magHighlights" class="field-input" placeholder="e.g. 15+ Commercial Profiles, Capital Flow Projections, LEED Frameworks">
+                <input type="text" id="magHighlights" class="field-input" placeholder="e.g. Commercial Profiles, Capital Flow, LEED Frameworks">
               </div>
             </div>
 
-            <!-- DIGITAL FLIPBOOK PDF & COVER MEDIA UPLOAD -->
             <div class="form-grid-2" style="margin: 1.5rem 0;">
               <div class="field-group">
                 <label>Front Cover Poster Photo *</label>
                 <div class="file-drop-card" onclick="document.getElementById('magCoverFileInput').click()">
                   <i class="ri-image-add-line" style="font-size: 2.2rem; color: var(--maroon-primary);"></i>
-                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Select Cover Image (JPG / PNG)</p>
+                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Select Cover Image</p>
                   <input type="file" id="magCoverFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(event, 'magPreviewImg')">
-                  <img id="magPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px; border:1px solid var(--maroon-border);" alt="Cover Preview">
+                  <img id="magPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px;" alt="Cover Preview">
                 </div>
               </div>
 
@@ -623,66 +585,28 @@
               </div>
             </div>
 
-            <!-- MICROSOFT WORD RICH TEXT ARTICLE CANVAS -->
             <div class="field-group" style="margin-top: 2rem;">
               <label>Comprehensive Editorial Article Body (Word Editor)</label>
-              
               <div class="word-editor-container">
                 <div class="word-toolbar-ribbon">
-                  <!-- Block Formats -->
                   <select class="ribbon-select" onchange="runWordCmd('formatBlock', this.value); this.selectedIndex=0;">
                     <option value="" selected disabled>Format / Heading</option>
-                    <option value="h2">Heading 2 (Section Title)</option>
-                    <option value="h3">Heading 3 (Sub-header)</option>
-                    <option value="h4">Heading 4 (Minor Title)</option>
-                    <option value="p">Paragraph Body</option>
+                    <option value="h2">Heading 2</option>
+                    <option value="h3">Heading 3</option>
+                    <option value="p">Paragraph</option>
                   </select>
-
-                  <select class="ribbon-select" onchange="runWordCmd('fontSize', this.value); this.selectedIndex=0;">
-                    <option value="" selected disabled>Font Size</option>
-                    <option value="3">Small (14px)</option>
-                    <option value="4">Normal (16px)</option>
-                    <option value="5">Medium (18px)</option>
-                    <option value="6">Large (24px)</option>
-                  </select>
-
-                  <div class="ribbon-divider"></div>
-
-                  <!-- Styling Buttons -->
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')" title="Bold"><i class="ri-bold"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')" title="Italic"><i class="ri-italic"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('underline')" title="Underline"><i class="ri-underline"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('strikeThrough')" title="Strikethrough"><i class="ri-strikethrough"></i></button>
-
-                  <div class="ribbon-divider"></div>
-
-                  <!-- Alignment & Lists -->
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyLeft')" title="Align Left"><i class="ri-align-left"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyCenter')" title="Align Center"><i class="ri-align-center"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyRight')" title="Align Right"><i class="ri-align-right"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertUnorderedList')" title="Bullet List"><i class="ri-list-unordered"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertOrderedList')" title="Numbered List"><i class="ri-list-ordered"></i></button>
-
-                  <div class="ribbon-divider"></div>
-
-                  <!-- Inserts -->
-                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('magEditorBody')" title="Executive Quote Block"><i class="ri-double-quotes-l"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="addLinkPrompt()" title="Insert Hyperlink"><i class="ri-link"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('removeFormat')" title="Clear Formatting"><i class="ri-format-clear"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')"><i class="ri-bold"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')"><i class="ri-italic"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('magEditorBody')"><i class="ri-double-quotes-l"></i></button>
                 </div>
-
                 <div id="magEditorBody" class="word-canvas-sheet" contenteditable="true">
                   <h2>The Architecture of Enterprise Resilience</h2>
-                  <p>In an era defined by rapid macroeconomic fluctuations and institutional capital reallocation, executive leadership in commercial real estate demands far more than traditional portfolio oversight...</p>
+                  <p>In an era defined by rapid macroeconomic fluctuations...</p>
                 </div>
               </div>
             </div>
 
-            <div style="margin-top: 2rem;">
-              <button type="submit" class="btn-action">
-                <i class="ri-upload-cloud-fill"></i> Deploy Magazine Issue
-              </button>
-            </div>
+            <div style="margin-top: 2rem;"><button type="submit" class="btn-action"><i class="ri-upload-cloud-fill"></i> Deploy Magazine Issue</button></div>
           </form>
         </div>
 
@@ -690,25 +614,14 @@
           <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Published Magazines Archive</h3>
           <div class="data-table-container">
             <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>Cover</th>
-                  <th>Edition Title</th>
-                  <th>Industry</th>
-                  <th>Target Country</th>
-                  <th>Flipbook Source</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Cover</th><th>Edition Title</th><th>Industry</th><th>Country</th><th>Source</th><th>Action</th></tr></thead>
               <tbody id="magazinesTableBody"></tbody>
             </table>
           </div>
         </div>
       </section>
 
-      <!-- =========================================================================
-           2. COMPANIES & DIGITAL EDITIONS MANAGER
-           ========================================================================= -->
+      <!-- 2. COMPANIES PANEL -->
       <section id="panel-companies" class="view-panel">
         <div class="panel-header">
           <div>
@@ -719,14 +632,13 @@
 
         <div class="card-panel">
           <form id="companyUploadForm" onsubmit="handleCompanyPublish(event)">
-            
             <div class="form-grid-2">
               <div class="field-group">
                 <label for="compName">Company Name *</label>
                 <input type="text" id="compName" class="field-input" placeholder="e.g. Synapse Global" required>
               </div>
               <div class="field-group">
-                <label for="compTagline">Corporate Tagline / Value Proposition *</label>
+                <label for="compTagline">Corporate Tagline *</label>
                 <input type="text" id="compTagline" class="field-input" placeholder="e.g. Architecting Resilient Enterprise Intelligence" required>
               </div>
             </div>
@@ -738,66 +650,28 @@
                   <option value="featured">Featured Companies</option>
                   <option value="emerging">Emerging Companies</option>
                   <option value="leaders">Industry Leaders</option>
-                  <option value="special">Special Corporate Edition</option>
                 </select>
               </div>
-
               <div class="field-group">
-                <label for="compIndustry">Sector (24 Industries) *</label>
+                <label for="compIndustry">Sector *</label>
                 <select id="compIndustry" class="field-select" required>
                   <option value="Technology & Software">Technology & Software</option>
-                  <option value="Artificial Intelligence">Artificial Intelligence & Automation</option>
                   <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
-                  <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
                   <option value="Finance & Banking">Finance & Banking</option>
-                  <option value="Private Equity & VC">Private Equity & VC</option>
-                  <option value="Real Estate & Development">Real Estate & Development</option>
-                  <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
-                  <option value="Aviation & Aerospace">Aviation & Aerospace</option>
-                  <option value="Space Exploration">Space Exploration</option>
-                  <option value="Automotive & EV">Automotive & EV Mobility</option>
-                  <option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
-                  <option value="Manufacturing & Robotics">Manufacturing & Robotics</option>
-                  <option value="Cybersecurity & Defense">Cybersecurity & Defense</option>
-                  <option value="Consulting & Advisory">Consulting & Advisory</option>
-                  <option value="Education & EdTech">Education & EdTech</option>
+                  <option value="Real Estate">Real Estate</option>
                 </select>
               </div>
-
               <div class="field-group">
-                <label for="compCountry">Headquarters / Country *</label>
+                <label for="compCountry">Headquarters *</label>
                 <select id="compCountry" class="field-select" required>
-                  <option value="United States">United States (New York / SF)</option>
-                  <option value="United Kingdom">United Kingdom (London)</option>
-                  <option value="India">India (Bengaluru / Mumbai)</option>
-                  <option value="Germany">Germany (Berlin / Munich)</option>
-                  <option value="United Arab Emirates">UAE (Dubai / Abu Dhabi)</option>
-                  <option value="Singapore">Singapore</option>
-                  <option value="Canada">Canada (Toronto)</option>
-                  <option value="Switzerland">Switzerland (Zurich)</option>
-                  <option value="Sweden">Sweden (Stockholm)</option>
-                  <option value="Japan">Japan (Tokyo)</option>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="India">India</option>
                   <option value="Global">Global Enterprise</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-grid-3">
-              <div class="field-group">
-                <label for="compLeaderName">CEO / Founder Name *</label>
-                <input type="text" id="compLeaderName" class="field-input" placeholder="e.g. Elena Vance" required>
-              </div>
-              <div class="field-group">
-                <label for="compLeaderRole">Executive Title *</label>
-                <input type="text" id="compLeaderRole" class="field-input" placeholder="e.g. Chief Executive Officer" required>
-              </div>
-              <div class="field-group">
-                <label for="compFoundedYear">Founded Year</label>
-                <input type="text" id="compFoundedYear" class="field-input" placeholder="e.g. 2018">
-              </div>
-            </div>
-
-            <!-- DIGITAL BROCHURE FLIPBOOK PDF & LOGO MEDIA -->
             <div class="form-grid-2" style="margin: 1.5rem 0;">
               <div class="field-group">
                 <label>Company Cover / HQ Photo *</label>
@@ -805,56 +679,22 @@
                   <i class="ri-building-4-line" style="font-size: 2.2rem; color: var(--maroon-primary);"></i>
                   <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Upload HQ / Edition Photo</p>
                   <input type="file" id="compCoverFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(event, 'compPreviewImg')">
-                  <img id="compPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px;" alt="Company Preview">
+                  <img id="compPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none;" alt="Preview">
                 </div>
               </div>
 
               <div class="field-group">
-                <label>Company Digital Edition (PDF Flipbook) *</label>
+                <label>Company Digital Edition (PDF) *</label>
                 <div class="file-drop-card" onclick="document.getElementById('compPdfFileInput').click()">
                   <i class="ri-file-pdf-line" style="font-size: 2.2rem; color: #DC2626;"></i>
                   <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Select Company Report PDF</p>
-                  <p id="compPdfStatus" style="font-size: 0.8rem; color: var(--maroon-accent); font-weight: 700; margin-top: 0.3rem;">No PDF Selected</p>
+                  <p id="compPdfStatus" style="font-size: 0.8rem; color: var(--maroon-accent); font-weight: 700;">No PDF Selected</p>
                   <input type="file" id="compPdfFileInput" accept="application/pdf" style="display:none;" onchange="handlePdfSelect(event, 'compPdfStatus')">
                 </div>
               </div>
             </div>
 
-            <!-- WORD RICH TEXT FOR COMPANY CASE STUDY -->
-            <div class="field-group" style="margin-top: 2rem;">
-              <label>Corporate Analysis & Case Study (Word Editor)</label>
-              
-              <div class="word-editor-container">
-                <div class="word-toolbar-ribbon">
-                  <select class="ribbon-select" onchange="runWordCmd('formatBlock', this.value); this.selectedIndex=0;">
-                    <option value="" selected disabled>Heading Block</option>
-                    <option value="h2">Heading 2</option>
-                    <option value="h3">Heading 3</option>
-                    <option value="p">Paragraph</option>
-                  </select>
-
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')"><i class="ri-bold"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')"><i class="ri-italic"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('underline')"><i class="ri-underline"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyLeft')"><i class="ri-align-left"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyCenter')"><i class="ri-align-center"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertUnorderedList')"><i class="ri-list-unordered"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('compEditorBody')"><i class="ri-double-quotes-l"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="addLinkPrompt()"><i class="ri-link"></i></button>
-                </div>
-
-                <div id="compEditorBody" class="word-canvas-sheet" contenteditable="true">
-                  <h2>Architecting Resilient Enterprise Intelligence</h2>
-                  <p>In an economic landscape reshaped by high-frequency cognitive automation, enterprise architecture cannot afford opacity...</p>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 2rem;">
-              <button type="submit" class="btn-action">
-                <i class="ri-building-line"></i> Save Company Profile
-              </button>
-            </div>
+            <div style="margin-top: 2rem;"><button type="submit" class="btn-action"><i class="ri-building-line"></i> Save Company Profile</button></div>
           </form>
         </div>
 
@@ -862,25 +702,14 @@
           <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Active Companies Roster</h3>
           <div class="data-table-container">
             <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>Photo</th>
-                  <th>Company Name</th>
-                  <th>Industry</th>
-                  <th>Location</th>
-                  <th>Flipbook Source</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Photo</th><th>Company Name</th><th>Industry</th><th>Location</th><th>Source</th><th>Action</th></tr></thead>
               <tbody id="companiesTableBody"></tbody>
             </table>
           </div>
         </div>
       </section>
 
-      <!-- =========================================================================
-           3. FEATURED LEADERS MANAGER
-           ========================================================================= -->
+      <!-- 3. FEATURED LEADERS PANEL (WITH NON-COMPULSORY SOCIAL & PROFILE LINKS) -->
       <section id="panel-leaders" class="view-panel">
         <div class="panel-header">
           <div>
@@ -909,21 +738,12 @@
 
             <div class="form-grid-3">
               <div class="field-group">
-                <label for="ldrIndustry">Sector (24 Industries) *</label>
+                <label for="ldrIndustry">Sector *</label>
                 <select id="ldrIndustry" class="field-select" required>
                   <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
-                  <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
                   <option value="Technology & Software">Technology & Software</option>
-                  <option value="Artificial Intelligence">Artificial Intelligence & Tech</option>
                   <option value="Finance & Banking">Finance & Banking</option>
-                  <option value="Private Equity & VC">Private Equity & VC</option>
-                  <option value="Real Estate & Development">Real Estate & Development</option>
-                  <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
-                  <option value="Aviation & Aerospace">Aviation & Aerospace</option>
-                  <option value="Space Exploration">Space Exploration</option>
-                  <option value="Automotive & EV">Automotive & EV Mobility</option>
-                  <option value="Consulting & Advisory">Consulting & Advisory</option>
-                  <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
+                  <option value="Real Estate">Real Estate</option>
                 </select>
               </div>
 
@@ -933,72 +753,58 @@
                   <option value="United States">United States</option>
                   <option value="United Kingdom">United Kingdom</option>
                   <option value="India">India</option>
-                  <option value="Germany">Germany</option>
-                  <option value="United Arab Emirates">United Arab Emirates</option>
-                  <option value="Singapore">Singapore</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Sweden">Sweden</option>
-                  <option value="Japan">Japan</option>
-                  <option value="Switzerland">Switzerland</option>
-                  <option value="France">France</option>
+                  <option value="Global">Global</option>
                 </select>
               </div>
 
               <div class="field-group">
-                <label for="ldrLinkedin">LinkedIn Profile URL</label>
-                <input type="url" id="ldrLinkedin" class="field-input" placeholder="https://linkedin.com/in/username">
+                <label for="ldrQuote">Executive Philosophy Quote *</label>
+                <input type="text" id="ldrQuote" class="field-input" placeholder='e.g. "True innovation is measured by accessibility."' required>
+              </div>
+            </div>
+
+            <!-- NON-COMPULSORY SOCIAL & PROFILE LINKS -->
+            <div style="background: var(--bg-secondary); border: 1px solid var(--maroon-border); padding: 1.5rem; border-radius: 6px; margin: 1.5rem 0;">
+              <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--maroon-deep); display: block; margin-bottom: 1rem;">
+                <i class="ri-link"></i> External & Social Links (Optional / Non-Compulsory)
+              </span>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="ldrLinkedin">Leader LinkedIn Profile Link</label>
+                  <input type="url" id="ldrLinkedin" class="field-input" placeholder="https://linkedin.com/in/username">
+                </div>
+                <div class="field-group">
+                  <label for="ldrCompanyPage">Company Page / Portal Link</label>
+                  <input type="url" id="ldrCompanyPage" class="field-input" placeholder="https://linkedin.com/company/name or internal page">
+                </div>
+              </div>
+
+              <div class="form-grid-2" style="margin-top: 1rem;">
+                <div class="field-group">
+                  <label for="ldrCompanyWeb">Official Company Website URL</label>
+                  <input type="url" id="ldrCompanyWeb" class="field-input" placeholder="https://company.com">
+                </div>
+                <div class="field-group">
+                  <label for="ldrSocial">Other Social Media Link (Twitter/X, Insta, etc.)</label>
+                  <input type="url" id="ldrSocial" class="field-input" placeholder="https://twitter.com/username">
+                </div>
               </div>
             </div>
 
             <div class="form-grid-2" style="margin: 1.5rem 0;">
-              <div class="field-group">
-                <label for="ldrQuote">Executive Philosophy Quote *</label>
-                <input type="text" id="ldrQuote" class="field-input" placeholder='e.g. "True innovation is measured by tangible clinical availability."' required>
-              </div>
               <div class="field-group">
                 <label>Portrait Headshot Photo *</label>
                 <div class="file-drop-card" onclick="document.getElementById('ldrPhotoFileInput').click()">
                   <i class="ri-user-add-line" style="font-size: 2.2rem; color: var(--maroon-primary);"></i>
                   <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Upload Uncut Headshot</p>
                   <input type="file" id="ldrPhotoFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(event, 'ldrPreviewImg')">
-                  <img id="ldrPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px;" alt="Leader Preview">
+                  <img id="ldrPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none;" alt="Preview">
                 </div>
               </div>
             </div>
 
-            <!-- WORD RICH TEXT FOR LEADER INTERVIEW -->
-            <div class="field-group" style="margin-top: 1rem;">
-              <label>In-Depth Editorial Biography & Q&A (Word Editor)</label>
-              
-              <div class="word-editor-container">
-                <div class="word-toolbar-ribbon">
-                  <select class="ribbon-select" onchange="runWordCmd('formatBlock', this.value); this.selectedIndex=0;">
-                    <option value="" selected disabled>Heading Block</option>
-                    <option value="h2">Heading 2</option>
-                    <option value="h3">Heading 3</option>
-                    <option value="p">Paragraph</option>
-                  </select>
-
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')"><i class="ri-bold"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')"><i class="ri-italic"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('underline')"><i class="ri-underline"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyLeft')"><i class="ri-align-left"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertUnorderedList')"><i class="ri-list-unordered"></i></button>
-                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('ldrEditorBody')"><i class="ri-double-quotes-l"></i></button>
-                </div>
-
-                <div id="ldrEditorBody" class="word-canvas-sheet" contenteditable="true">
-                  <h2>Pioneering Precision Cellular Oncology</h2>
-                  <p>Dr. Aris Thorne has spent over fifteen years leading translational oncology research and commercial biotechnology initiatives across North America and Europe...</p>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 2rem;">
-              <button type="submit" class="btn-action">
-                <i class="ri-user-star-fill"></i> Save Executive Profile
-              </button>
-            </div>
+            <div style="margin-top: 2rem;"><button type="submit" class="btn-action"><i class="ri-user-star-fill"></i> Save Executive Profile</button></div>
           </form>
         </div>
 
@@ -1006,16 +812,7 @@
           <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Active Leaders Roster</h3>
           <div class="data-table-container">
             <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>Portrait</th>
-                  <th>Leader Name</th>
-                  <th>Company & Title</th>
-                  <th>Industry</th>
-                  <th>Country</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Portrait</th><th>Leader Name</th><th>Company & Title</th><th>Sector</th><th>Optional Links</th><th>Action</th></tr></thead>
               <tbody id="leadersTableBody"></tbody>
             </table>
           </div>
@@ -1027,24 +824,22 @@
 
   <div id="toast" class="toast-popup">Notification</div>
 
-  <!-- JAVASCRIPT CONTROLLERS -->
+  <!-- CONTROLLER SCRIPT -->
   <script>
     const MASTER_PASS = "Akashop@000";
-
     let tempCoverBase64 = "";
     let tempPdfName = "";
 
     function verifyPassword(e) {
       e.preventDefault();
-      const input = document.getElementById('adminPass').value;
-      if (input === MASTER_PASS) {
+      if (document.getElementById('adminPass').value === MASTER_PASS) {
         sessionStorage.setItem('AURA_ADMIN_AUTHENTICATED', 'true');
         document.getElementById('authOverlay').style.display = 'none';
         document.getElementById('adminApp').style.display = 'flex';
         renderTables();
         showToast("Authenticated as Super Admin");
       } else {
-        alert("Incorrect password. Access denied.");
+        alert("Incorrect master password.");
       }
     }
 
@@ -1060,23 +855,12 @@
       btn.classList.add('active');
     }
 
-    /* WORD COMMAND EXECUTION */
-    function runWordCmd(command, value = null) {
-      document.execCommand(command, false, value);
-    }
-
+    function runWordCmd(command, value = null) { document.execCommand(command, false, value); }
     function addQuoteBlock(editorId) {
-      const quoteHtml = `<blockquote>"Insert executive insight here..." — Leadership Team</blockquote><p></p>`;
       document.getElementById(editorId).focus();
-      document.execCommand('insertHTML', false, quoteHtml);
+      document.execCommand('insertHTML', false, `<blockquote>"Insert quote..."</blockquote><p></p>`);
     }
 
-    function addLinkPrompt() {
-      const url = prompt("Enter hyperlink URL (e.g. https://company.com):");
-      if (url) runWordCmd('createLink', url);
-    }
-
-    /* FILE HANDLERS */
     function handleImageFile(e, imgElemId) {
       const file = e.target.files[0];
       if (file) {
@@ -1095,120 +879,81 @@
       const file = e.target.files[0];
       if (file) {
         tempPdfName = file.name;
-        document.getElementById(statusElemId).innerText = `PDF Loaded: ${file.name} (${(file.size / (1024*1024)).toFixed(2)} MB)`;
+        document.getElementById(statusElemId).innerText = `PDF: ${file.name}`;
       }
     }
 
-    /* 1. PUBLISH MAGAZINE */
+    /* PUBLISHERS */
     function handleMagazinePublish(e) {
       e.preventDefault();
-      const title = document.getElementById('magTitle').value.trim();
-      const tag = document.getElementById('magTag').value.trim();
-      const category = document.getElementById('magCategory').value;
-      const industry = document.getElementById('magIndustry').value;
-      const country = document.getElementById('magCountry').value;
-      const leader = document.getElementById('magLeaderName').value.trim();
-      const highlights = document.getElementById('magHighlights').value.split(',').map(s => s.trim()).filter(Boolean);
-      const content = document.getElementById('magEditorBody').innerHTML;
-
       const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
       mags.unshift({
         id: "mag-" + Date.now(),
-        title,
-        editionTag: tag,
-        category,
-        industry,
-        country,
-        featuredLeader: leader,
-        highlights,
+        title: document.getElementById('magTitle').value.trim(),
+        editionTag: document.getElementById('magTag').value.trim(),
+        category: document.getElementById('magCategory').value,
+        industry: document.getElementById('magIndustry').value,
+        country: document.getElementById('magCountry').value,
+        featuredLeader: document.getElementById('magLeaderName').value.trim(),
+        highlights: document.getElementById('magHighlights').value.split(',').map(s => s.trim()).filter(Boolean),
         coverImage: tempCoverBase64 || "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-        pdfSource: tempPdfName || "magazine_flipbook.pdf",
-        articleHtml: content,
-        views: 1,
-        likes: 0,
-        comments: []
+        pdfSource: tempPdfName || "magazine.pdf",
+        articleHtml: document.getElementById('magEditorBody').innerHTML,
+        views: 1, likes: 0
       });
-
       localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(mags));
       document.getElementById('magazineUploadForm').reset();
       document.getElementById('magPreviewImg').style.display = 'none';
-      document.getElementById('magPdfStatus').innerText = 'No PDF Selected';
-      tempCoverBase64 = "";
-      tempPdfName = "";
-
+      tempCoverBase64 = ""; tempPdfName = "";
       renderTables();
-      showToast("Magazine Edition published to live catalog!");
+      showToast("Magazine deployed successfully!");
     }
 
-    /* 2. PUBLISH COMPANY */
     function handleCompanyPublish(e) {
       e.preventDefault();
-      const name = document.getElementById('compName').value.trim();
-      const tagline = document.getElementById('compTagline').value.trim();
-      const category = document.getElementById('compCategoryFilter').value;
-      const industry = document.getElementById('compIndustry').value;
-      const location = document.getElementById('compCountry').value;
-      const leaderName = document.getElementById('compLeaderName').value.trim();
-      const leaderRole = document.getElementById('compLeaderRole').value.trim();
-      const founded = document.getElementById('compFoundedYear').value.trim() || "2020";
-      const content = document.getElementById('compEditorBody').innerHTML;
-
       const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
+      const name = document.getElementById('compName').value.trim();
       comps.unshift({
         slug: name.toLowerCase().replace(/\s+/g, '-'),
         name,
-        tagline,
-        category,
-        industry,
-        location,
-        founded,
-        leader: { name: leaderName, role: leaderRole },
+        tagline: document.getElementById('compTagline').value.trim(),
+        category: document.getElementById('compCategoryFilter').value,
+        industry: document.getElementById('compIndustry').value,
+        location: document.getElementById('compCountry').value,
+        founded: "2020",
         coverImage: tempCoverBase64 || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-        pdfSource: tempPdfName || "company_brochure.pdf",
-        bio: content,
-        views: 1,
-        likes: 0,
-        comments: []
+        pdfSource: tempPdfName || "company.pdf",
+        views: 1, likes: 0
       });
-
       localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(comps));
       document.getElementById('companyUploadForm').reset();
       document.getElementById('compPreviewImg').style.display = 'none';
-      document.getElementById('compPdfStatus').innerText = 'No PDF Selected';
-      tempCoverBase64 = "";
-      tempPdfName = "";
-
+      tempCoverBase64 = ""; tempPdfName = "";
       renderTables();
-      showToast("Company Edition published!");
+      showToast("Company profile saved!");
     }
 
-    /* 3. PUBLISH LEADER */
     function handleLeaderPublish(e) {
       e.preventDefault();
       const name = document.getElementById('ldrName').value.trim();
-      const role = document.getElementById('ldrRole').value.trim();
-      const company = document.getElementById('ldrCompany').value.trim();
-      const industry = document.getElementById('ldrIndustry').value;
-      const country = document.getElementById('ldrCountry').value;
-      const linkedin = document.getElementById('ldrLinkedin').value.trim();
-      const quote = document.getElementById('ldrQuote').value.trim();
-      const bio = document.getElementById('ldrEditorBody').innerHTML;
-
       const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
+      
       leaders.unshift({
         slug: name.toLowerCase().replace(/\s+/g, '-'),
         name,
-        designation: role,
-        company,
-        industry,
-        location: country,
-        linkedin,
-        quote,
-        bio,
+        designation: document.getElementById('ldrRole').value.trim(),
+        company: document.getElementById('ldrCompany').value.trim(),
+        industry: document.getElementById('ldrIndustry').value,
+        location: document.getElementById('ldrCountry').value,
+        quote: document.getElementById('ldrQuote').value.trim(),
+        bio: document.getElementById('ldrEditorBody').innerHTML,
         photo: tempCoverBase64 || "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
-        views: 1,
-        likes: 0,
-        comments: []
+        // Optional links stored safely
+        linkedin: document.getElementById('ldrLinkedin').value.trim() || "",
+        companyPage: document.getElementById('ldrCompanyPage').value.trim() || "",
+        companyWeb: document.getElementById('ldrCompanyWeb').value.trim() || "",
+        socialLink: document.getElementById('ldrSocial').value.trim() || "",
+        views: 1, likes: 0
       });
 
       localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(leaders));
@@ -1217,104 +962,71 @@
       tempCoverBase64 = "";
 
       renderTables();
-      showToast("Leader Profile deployed to Global Directory!");
+      showToast("Leader profile deployed with links!");
     }
 
-    /* RENDER TABLES */
     function renderTables() {
-      // 1. Magazines
+      // Magazines
       const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
-      const magTbody = document.getElementById('magazinesTableBody');
-      if (!mags.length) {
-        magTbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No custom magazines uploaded yet.</td></tr>`;
-      } else {
-        magTbody.innerHTML = mags.map((m, idx) => `
-          <tr>
-            <td><div class="table-thumb-box"><img src="${m.coverImage}"></div></td>
-            <td><strong>${m.title}</strong><br><small style="color:var(--text-light);">${m.editionTag}</small></td>
-            <td>${m.industry}</td>
-            <td>${m.country}</td>
-            <td><span style="color:#DC2626; font-weight:700;"><i class="ri-file-pdf-fill"></i> ${m.pdfSource}</span></td>
-            <td><button class="btn-del" onclick="deleteMag(${idx})">Delete</button></td>
-          </tr>
-        `).join('');
-      }
+      document.getElementById('magazinesTableBody').innerHTML = mags.length ? mags.map((m, i) => `
+        <tr>
+          <td><div class="table-thumb-box"><img src="${m.coverImage}"></div></td>
+          <td><strong>${m.title}</strong><br><small>${m.editionTag}</small></td>
+          <td>${m.industry}</td><td>${m.country}</td><td>${m.pdfSource}</td>
+          <td><button class="btn-del" onclick="deleteItem('M', ${i})">Delete</button></td>
+        </tr>
+      `).join('') : `<tr><td colspan="6" style="text-align:center;">No custom magazines.</td></tr>`;
 
-      // 2. Companies
+      // Companies
       const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
-      const compTbody = document.getElementById('companiesTableBody');
-      if (!comps.length) {
-        compTbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No companies deployed yet.</td></tr>`;
-      } else {
-        compTbody.innerHTML = comps.map((c, idx) => `
-          <tr>
-            <td><div class="table-thumb-box"><img src="${c.coverImage}"></div></td>
-            <td><strong>${c.name}</strong><br><small style="color:var(--text-light);">${c.leader.name} (${c.leader.role})</small></td>
-            <td>${c.industry}</td>
-            <td>${c.location}</td>
-            <td><span style="color:#DC2626; font-weight:700;"><i class="ri-file-pdf-fill"></i> ${c.pdfSource}</span></td>
-            <td><button class="btn-del" onclick="deleteComp(${idx})">Delete</button></td>
-          </tr>
-        `).join('');
-      }
+      document.getElementById('companiesTableBody').innerHTML = comps.length ? comps.map((c, i) => `
+        <tr>
+          <td><div class="table-thumb-box"><img src="${c.coverImage}"></div></td>
+          <td><strong>${c.name}</strong></td>
+          <td>${c.industry}</td><td>${c.location}</td><td>${c.pdfSource}</td>
+          <td><button class="btn-del" onclick="deleteItem('C', ${i})">Delete</button></td>
+        </tr>
+      `).join('') : `<tr><td colspan="6" style="text-align:center;">No companies.</td></tr>`;
 
-      // 3. Leaders
-      const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
-      const ldrTbody = document.getElementById('leadersTableBody');
-      if (!leaders.length) {
-        ldrTbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No leaders added yet.</td></tr>`;
-      } else {
-        ldrTbody.innerHTML = leaders.map((l, idx) => `
-          <tr>
-            <td><div class="table-thumb-box"><img src="${l.photo}"></div></td>
-            <td><strong>${l.name}</strong></td>
-            <td>${l.designation}, ${l.company}</td>
-            <td>${l.industry}</td>
-            <td>${l.location}</td>
-            <td><button class="btn-del" onclick="deleteLdr(${idx})">Delete</button></td>
-          </tr>
-        `).join('');
-      }
+      // Leaders
+      const ldr = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
+      document.getElementById('leadersTableBody').innerHTML = ldr.length ? ldr.map((l, i) => `
+        <tr>
+          <td><div class="table-thumb-box"><img src="${l.photo}"></div></td>
+          <td><strong>${l.name}</strong></td>
+          <td>${l.designation}, ${l.company}</td>
+          <td>${l.industry}</td>
+          <td>
+            ${l.linkedin ? '<i class="ri-linkedin-box-fill" style="color:#0A66C2;" title="LinkedIn"></i> ' : ''}
+            ${l.companyPage ? '<i class="ri-building-line" title="Company Page"></i> ' : ''}
+            ${l.companyWeb ? '<i class="ri-global-line" title="Website"></i> ' : ''}
+            ${l.socialLink ? '<i class="ri-share-line" title="Social"></i>' : (!l.linkedin && !l.companyPage && !l.companyWeb && !l.socialLink ? '<span style="color:var(--text-light); font-size:0.75rem;">None</span>' : '')}
+          </td>
+          <td><button class="btn-del" onclick="deleteItem('L', ${i})">Delete</button></td>
+        </tr>
+      `).join('') : `<tr><td colspan="6" style="text-align:center;">No leaders added.</td></tr>`;
     }
 
-    function deleteMag(idx) {
-      if (confirm("Delete this magazine edition permanently?")) {
-        const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
-        mags.splice(idx, 1);
-        localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(mags));
+    function deleteItem(type, idx) {
+      if (confirm("Permanently delete this entry?")) {
+        if (type === 'M') {
+          const d = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS')); d.splice(idx, 1); localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(d));
+        } else if (type === 'C') {
+          const d = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES')); d.splice(idx, 1); localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(d));
+        } else if (type === 'L') {
+          const d = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS')); d.splice(idx, 1); localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(d));
+        }
         renderTables();
-        showToast("Magazine removed.");
-      }
-    }
-
-    function deleteComp(idx) {
-      if (confirm("Delete this company feature?")) {
-        const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
-        comps.splice(idx, 1);
-        localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(comps));
-        renderTables();
-        showToast("Company removed.");
-      }
-    }
-
-    function deleteLdr(idx) {
-      if (confirm("Delete this leader profile?")) {
-        const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
-        leaders.splice(idx, 1);
-        localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(leaders));
-        renderTables();
-        showToast("Leader profile removed.");
+        showToast("Entry deleted successfully.");
       }
     }
 
     function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.innerText = msg;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      const t = document.getElementById('toast');
+      t.innerText = msg; t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3000);
     }
 
-    // Auto-check authenticated session
     window.addEventListener('DOMContentLoaded', () => {
       if (sessionStorage.getItem('AURA_ADMIN_AUTHENTICATED') === 'true') {
         document.getElementById('authOverlay').style.display = 'none';
