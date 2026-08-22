@@ -348,13 +348,13 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
       font-family: var(--font-sans);
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--text-muted);
       transition: var(--transition-smooth);
-      padding: 0.3rem 0.45rem;
+      padding: 0.3rem 0.4rem;
       border-radius: 4px;
     }
 
@@ -368,8 +368,8 @@
     .view-stat-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      font-size: 0.82rem;
+      gap: 0.3rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--maroon-accent);
     }
@@ -382,24 +382,35 @@
     }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
     .modal-box {
-      background: #FFFFFF; border-radius: 8px; max-width: 920px; width: 100%; max-height: 90vh;
+      background: #FFFFFF; border-radius: 8px; max-width: 960px; width: 100%; max-height: 90vh;
       overflow-y: auto; position: relative; display: grid; grid-template-columns: 0.85fr 1.15fr; box-shadow: var(--shadow-lg);
     }
     .modal-close-btn {
       position: absolute; top: 1.2rem; right: 1.2rem; background: #FFFFFF; border: 1px solid var(--border-light);
       width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;
     }
-    .modal-image-col { background-size: cover; background-position: center top; min-height: 420px; }
+    /* Auto adjustment image fit */
+    .modal-image-col {
+      background-color: #1a1a1c;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 440px;
+    }
     .modal-content-col { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
 
     /* COMMENTS SECTION */
-    .comments-section { margin-top: 1.8rem; border-top: 1px solid var(--border-light); padding-top: 1.2rem; }
-    .comment-box { background: var(--bg-secondary); padding: 0.7rem 0.9rem; border-radius: 6px; margin-bottom: 0.7rem; font-size: 0.85rem; }
-    .comment-author { font-weight: 700; color: var(--maroon-deep); margin-bottom: 0.15rem; }
-    .reply-box { margin-left: 1.2rem; margin-top: 0.4rem; border-left: 2px solid var(--maroon-accent); padding-left: 0.7rem; background: #FFFFFF; }
-    .comment-input-row { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
-    .comment-input { flex: 1; padding: 0.55rem 0.8rem; border: 1px solid var(--border-light); border-radius: 4px; outline: none; font-size: 0.82rem; }
-    .comment-send-btn { background: var(--maroon-primary); color: #FFF; border: none; padding: 0 0.9rem; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.8rem; }
+    .comments-section { margin-top: 1.5rem; border-top: 1px solid var(--border-light); padding-top: 1rem; }
+    .comment-box { background: var(--bg-secondary); padding: 0.6rem 0.8rem; border-radius: 6px; margin-bottom: 0.6rem; font-size: 0.84rem; }
+    .comment-author-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.15rem; }
+    .comment-author { font-weight: 700; color: var(--maroon-deep); }
+    .comment-linkedin { font-size: 0.75rem; color: #0A66C2; font-weight: 600; display: inline-flex; align-items: center; gap: 0.2rem; text-decoration: none; }
+    .comment-linkedin:hover { text-decoration: underline; }
+    .reply-box { margin-left: 1.2rem; margin-top: 0.35rem; border-left: 2px solid var(--maroon-accent); padding-left: 0.6rem; background: #FFFFFF; }
+    .comment-input-row { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.8rem; }
+    .comment-input-group { display: flex; gap: 0.4rem; }
+    .comment-input { flex: 1; padding: 0.5rem 0.7rem; border: 1px solid var(--border-light); border-radius: 4px; outline: none; font-size: 0.8rem; }
+    .comment-send-btn { background: var(--maroon-primary); color: #FFF; border: none; padding: 0 0.8rem; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.78rem; }
 
     .btn-maroon {
       display: inline-block; background: var(--maroon-primary); color: #FFFFFF; padding: 0.8rem 1.5rem; border-radius: 4px; text-align: center; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; text-decoration: none; margin-top: 1.2rem;
@@ -423,7 +434,7 @@
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
       .mag-covers-grid { grid-template-columns: repeat(2, 1fr); }
       .modal-box { grid-template-columns: 1fr; max-height: 85vh; }
-      .modal-image-col { height: 240px; min-height: 240px; }
+      .modal-image-col { height: 280px; min-height: 280px; }
     }
     @media (max-width: 768px) {
       .nav-menu { display: none; }
@@ -504,18 +515,25 @@
       <div class="modal-content-col">
         <div>
           <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--maroon-accent); font-weight: 600;" id="modalCategory">Editorial Edition</span>
-          <h2 style="font-size: 1.7rem; line-height: 1.2; color: var(--maroon-deep); margin: 0.3rem 0;" id="modalTitle">Edition Title</h2>
-          <div style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.8rem; font-weight: 500;" id="modalSubtitle">Executive Subtitle</div>
-          <div style="font-size: 0.88rem; line-height: 1.6; color: var(--text-muted); max-height: 110px; overflow-y: auto;" id="modalBio">Editorial profile description...</div>
+          <h2 style="font-size: 1.6rem; line-height: 1.2; color: var(--maroon-deep); margin: 0.3rem 0;" id="modalTitle">Edition Title</h2>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.6rem; font-weight: 500;" id="modalSubtitle">Executive Subtitle</div>
+          <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); max-height: 95px; overflow-y: auto;" id="modalBio">Editorial profile description...</div>
         </div>
 
         <!-- COMMENTS & REPLIES SECTION -->
         <div class="comments-section">
-          <h4 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--maroon-deep);">Discussion & Comments</h4>
-          <div id="commentsList" style="max-height: 130px; overflow-y: auto;"></div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--maroon-deep);">Discussion & Comments</h4>
+          <div id="commentsList" style="max-height: 110px; overflow-y: auto;"></div>
+          
           <div class="comment-input-row">
-            <input type="text" id="commentInput" class="comment-input" placeholder="Write a comment...">
-            <button class="comment-send-btn" onclick="postComment()">Post</button>
+            <div style="display:flex; gap:0.4rem;">
+              <input type="text" id="commentAuthor" class="comment-input" placeholder="Your Name" style="flex:1;">
+              <input type="url" id="commentLinkedin" class="comment-input" placeholder="LinkedIn URL" style="flex:1;">
+            </div>
+            <div class="comment-input-group">
+              <input type="text" id="commentInput" class="comment-input" placeholder="Write a comment...">
+              <button class="comment-send-btn" onclick="postComment()">Post</button>
+            </div>
           </div>
         </div>
 
@@ -608,6 +626,7 @@
       const container = document.getElementById('magazinesContainer');
       const likedMap = JSON.parse(localStorage.getItem('aura_liked_map') || '{}');
       const viewedMap = JSON.parse(localStorage.getItem('aura_viewed_map') || '{}');
+      const commentsStore = JSON.parse(localStorage.getItem('aura_comments') || '{}');
 
       const filtered = category === 'all'
         ? magazineDatabase
@@ -622,6 +641,7 @@
         const isLiked = likedMap[mag.id] || false;
         const currentLikes = (isLiked ? 1 : 0);
         const currentViews = (viewedMap[mag.id] ? 1 : 0);
+        const commentsCount = (commentsStore[mag.id] || []).length;
 
         return `
           <div class="mag-card-wrap">
@@ -643,9 +663,14 @@
                   <span>${currentLikes}</span>
                 </button>
 
-                <button class="interact-btn" onclick="openMagazineEdition('${mag.id}')" title="Read">
-                  <i class="ri-book-open-line"></i>
-                  <span>Read</span>
+                <button class="interact-btn" onclick="openMagazineEdition('${mag.id}')" title="Comments">
+                  <i class="ri-chat-3-line"></i>
+                  <span>${commentsCount}</span>
+                </button>
+
+                <button class="interact-btn" onclick="shareEdition('${mag.id}')" title="Share Edition Link">
+                  <i class="ri-share-forward-line"></i>
+                  <span>Share</span>
                 </button>
 
                 <div class="view-stat-pill" title="Unique Views">
@@ -665,6 +690,15 @@
       localStorage.setItem('aura_liked_map', JSON.stringify(likedMap));
       showToast(likedMap[magId] ? "Liked successfully!" : "Like removed");
       renderMagazines(currentTabCategory);
+    }
+
+    function shareEdition(magId) {
+      const shareUrl = window.location.origin + window.location.pathname + '?id=' + magId;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showToast("Edition link copied to clipboard!");
+      }).catch(() => {
+        showToast("Failed to copy link.");
+      });
     }
 
     function openMagazineEdition(magId) {
@@ -701,34 +735,62 @@
 
       list.innerHTML = magComments.map((c, idx) => `
         <div class="comment-box">
-          <div class="comment-author">${c.author}</div>
+          <div class="comment-author-row">
+            <span class="comment-author">${c.author}</span>
+            ${c.linkedin ? `<a href="${c.linkedin}" target="_blank" class="comment-linkedin"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>` : ''}
+          </div>
           <div>${c.text}</div>
-          <div style="font-size:0.72rem; margin-top:0.25rem; color:var(--maroon-accent); cursor:pointer; font-weight:600;" onclick="showReplyInput(${idx})">Reply</div>
+          <div style="font-size:0.7rem; margin-top:0.2rem; color:var(--maroon-accent); cursor:pointer; font-weight:600;" onclick="showReplyInput(${idx})">Reply</div>
           
           <div id="replyList_${idx}" style="margin-top:0.3rem;">
-            ${(c.replies || []).map(r => `<div class="reply-box"><div style="font-weight:700; font-size:0.75rem;">${r.author}</div><div style="font-size:0.8rem;">${r.text}</div></div>`).join('')}
+            ${(c.replies || []).map(r => `
+              <div class="reply-box">
+                <div class="comment-author-row">
+                  <span style="font-weight:700; font-size:0.75rem; color:var(--maroon-deep);">${r.author}</span>
+                  ${r.linkedin ? `<a href="${r.linkedin}" target="_blank" class="comment-linkedin" style="font-size:0.7rem;"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>` : ''}
+                </div>
+                <div style="font-size:0.78rem;">${r.text}</div>
+              </div>
+            `).join('')}
           </div>
 
-          <div id="replyRow_${idx}" style="display:none; gap:0.4rem; margin-top:0.4rem;">
-            <input type="text" id="replyInput_${idx}" class="comment-input" placeholder="Write a reply...">
-            <button class="comment-send-btn" onclick="postReply(${idx})">Send</button>
+          <div id="replyRow_${idx}" style="display:none; flex-direction:column; gap:0.3rem; margin-top:0.4rem;">
+            <div style="display:flex; gap:0.3rem;">
+              <input type="text" id="replyAuthor_${idx}" class="comment-input" placeholder="Your Name" style="flex:1; font-size:0.75rem;">
+              <input type="url" id="replyLinkedin_${idx}" class="comment-input" placeholder="LinkedIn URL" style="flex:1; font-size:0.75rem;">
+            </div>
+            <div style="display:flex; gap:0.3rem;">
+              <input type="text" id="replyInput_${idx}" class="comment-input" placeholder="Write a reply..." style="flex:1; font-size:0.75rem;">
+              <button class="comment-send-btn" onclick="postReply(${idx})" style="font-size:0.75rem; padding:0 0.6rem;">Send</button>
+            </div>
           </div>
         </div>
       `).join('');
     }
 
     function postComment() {
-      const input = document.getElementById('commentInput');
-      const text = input.value.trim();
+      const authorInput = document.getElementById('commentAuthor');
+      const linkedinInput = document.getElementById('commentLinkedin');
+      const textInput = document.getElementById('commentInput');
+
+      const author = authorInput.value.trim() || "Reader";
+      let linkedin = linkedinInput.value.trim();
+      const text = textInput.value.trim();
+
       if (!text) return;
+      if (linkedin && !linkedin.startsWith('http://') && !linkedin.startsWith('https://')) {
+        linkedin = 'https://' + linkedin;
+      }
 
       const commentsStore = JSON.parse(localStorage.getItem('aura_comments') || '{}');
       if (!commentsStore[activeMagId]) commentsStore[activeMagId] = [];
 
-      commentsStore[activeMagId].push({ author: "Verified Reader", text, replies: [] });
+      commentsStore[activeMagId].push({ author, linkedin, text, replies: [] });
       localStorage.setItem('aura_comments', JSON.stringify(commentsStore));
-      input.value = '';
+      
+      textInput.value = '';
       renderComments();
+      renderMagazines(currentTabCategory);
       showToast("Comment posted!");
     }
 
@@ -738,13 +800,23 @@
     }
 
     function postReply(idx) {
-      const input = document.getElementById(`replyInput_${idx}`);
-      const text = input.value.trim();
+      const authorInput = document.getElementById(`replyAuthor_${idx}`);
+      const linkedinInput = document.getElementById(`replyLinkedin_${idx}`);
+      const textInput = document.getElementById(`replyInput_${idx}`);
+
+      const author = authorInput.value.trim() || "Reader";
+      let linkedin = linkedinInput.value.trim();
+      const text = textInput.value.trim();
+
       if (!text) return;
+      if (linkedin && !linkedin.startsWith('http://') && !linkedin.startsWith('https://')) {
+        linkedin = 'https://' + linkedin;
+      }
 
       const commentsStore = JSON.parse(localStorage.getItem('aura_comments') || '{}');
-      commentsStore[activeMagId][idx].replies.push({ author: "Verified Reader", text });
+      commentsStore[activeMagId][idx].replies.push({ author, linkedin, text });
       localStorage.setItem('aura_comments', JSON.stringify(commentsStore));
+      
       renderComments();
       showToast("Reply posted!");
     }
