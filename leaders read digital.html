@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Digital Edition Reader | The Aura Review</title>
-  <meta name="description" content="Read interactive digital magazine issues, high-res PDF flipbook with zoom and drag, comprehensive executive interviews, and suggested issues on The Aura Review.">
+  <meta name="description" content="Read interactive digital magazine issues, high-res PDF flipbook with zoom and drag, comprehensive executive interviews, and suggested issues on The Aura Review[cite: 2].">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- StPageFlip Engine (Untouched) -->
+  <!-- StPageFlip Engine -->
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
   <style>
@@ -217,9 +217,7 @@
     .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
     .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* ==========================================================================
-       FLIPBOOK READER STAGE & EXACT TOOLBAR (UNTOUCHED LOGIC & CONTROLS)
-       ========================================================================== */
+    /* FLIPBOOK READER STAGE & EXACT TOOLBAR */
     .flipbook-reader-section {
       padding-top: 110px;
       padding-bottom: 4rem;
@@ -401,9 +399,7 @@
       display: none; z-index: 999999;
     }
 
-    /* ==========================================================================
-       EDITORIAL METADATA & LEADER HIGHLIGHT CARD
-       ========================================================================== */
+    /* EDITORIAL METADATA & ARTICLE SECTION */
     .article-body-section {
       padding: 5.5rem 0;
       background: #FFFFFF;
@@ -478,7 +474,6 @@
       transform: translateY(-2px);
     }
 
-    /* Executive Highlight Quote Box */
     .executive-quote-card {
       background: var(--bg-tinted);
       border-left: 4px solid var(--maroon-primary);
@@ -511,9 +506,7 @@
       color: var(--maroon-deep);
     }
 
-    /* ==========================================================================
-       SUGGESTED ISSUES SECTION
-       ========================================================================== */
+    /* SUGGESTED ISSUES SECTION */
     .suggestions-section {
       padding: 5.5rem 0 6.5rem 0;
       background-color: var(--bg-secondary);
@@ -634,7 +627,6 @@
 
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .flipbook-stage-wrapper { height: 480px; }
       .suggestions-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -691,9 +683,7 @@
   </div>
 
   <main>
-    <!-- ==========================================================================
-         3D PDF FLIPBOOK READER & EXACT TOOLBAR (UNTOUCHED ENGINE & LOGIC)
-         ========================================================================== -->
+    <!-- 3D PDF FLIPBOOK READER & EXACT TOOLBAR -->
     <section class="flipbook-reader-section">
       <div class="container">
         
@@ -781,9 +771,7 @@
     <!-- Toast Notification -->
     <div class="toast-msg" id="toastMsg">Issue Link Copied to Clipboard!</div>
 
-    <!-- ==========================================================================
-         COMPREHENSIVE EDITORIAL ARTICLE SECTION
-         ========================================================================== -->
+    <!-- COMPREHENSIVE EDITORIAL ARTICLE SECTION -->
     <section class="article-body-section">
       <div class="container article-wrap">
         
@@ -839,9 +827,7 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SUGGESTED ISSUES & ARTICLES
-         ========================================================================== -->
+    <!-- SUGGESTED ISSUES & ARTICLES -->
     <section class="suggestions-section">
       <div class="container">
         <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
@@ -849,9 +835,7 @@
           <h2 style="font-size: 2.4rem; color: var(--maroon-deep);">Explore More Suggested Issues</h2>
         </div>
 
-        <div class="suggestions-grid" id="suggestedGrid">
-          <!-- Dynamically populated suggested issues -->
-        </div>
+        <div class="suggestions-grid" id="suggestedGrid"></div>
       </div>
     </section>
   </main>
@@ -863,7 +847,7 @@
         <div>
           <div class="footer-brand">The Aura Review</div>
           <p class="footer-desc">
-            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
+            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 2].
           </p>
           <div class="social-row">
             <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
@@ -901,26 +885,19 @@
         <div>
           <h4 class="footer-heading">Contact & Inquiries</h4>
           <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial submissions, magazine features, and publication collaborations:
+            For editorial submissions, magazine features, and publication collaborations[cite: 2]:
           </p>
           <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>
-          &copy; 2026 The Aura Review. All rights reserved.
-        </div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="privacy.html" class="footer-link">Privacy Policy</a>
-          <a href="terms.html" class="footer-link">Terms & Conditions</a>
-          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
-        </div>
+        <div>&copy; 2026 The Aura Review. All rights reserved.</div>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT (STPAGEFLIP ENGINE & FULL ZOOM/DRAGGING INTACT) -->
+  <!-- SCRIPT -->
   <script>
     let pageFlip;
     let currentZoom = 1;
@@ -957,7 +934,6 @@
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
-
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 30) header.classList.add('scrolled');
@@ -979,7 +955,6 @@
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
-      /* StPageFlip Initialization */
       pageFlip = new St.PageFlip(flipbookContainer, {
         width: 380,
         height: 520,
@@ -1001,7 +976,6 @@
         pageDisplay.innerText = page === 1 ? '1' : `${page}-${page + 1}`;
       });
 
-      /* Render Suggested Issues */
       const suggestedGrid = document.getElementById('suggestedGrid');
       suggestedGrid.innerHTML = SUGGESTED_DATABASE.map(item => `
         <div class="suggestion-card" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -1015,7 +989,6 @@
         </div>
       `).join('');
 
-      /* Click Ripple */
       document.addEventListener('click', (e) => {
         if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) return;
         const ripple = document.createElement('span');
@@ -1027,7 +1000,6 @@
       });
     });
 
-    /* Panning & Zoom Engine */
     function updateTransform() {
       flipbookContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
       zoomRange.value = currentZoom;
