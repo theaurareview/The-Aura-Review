@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Company Digital Edition Reader | The Aura Review</title>
-  <meta name="description" content="Read interactive digital company magazine editions, high-resolution PDF flipbooks with 360° drag and zoom, comprehensive corporate analysis, and executive profiles on The Aura Review.">
+  <meta name="description" content="Read interactive digital company magazine editions, high-resolution PDF flipbooks with 360° drag and zoom, comprehensive corporate analysis, and executive profiles on The Aura Review[cite: 1].">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- StPageFlip Engine (Untouched) -->
+  <!-- StPageFlip Engine -->
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
   <style>
@@ -219,9 +219,7 @@
     .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
     .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* ==========================================================================
-       FLIPBOOK READER STAGE & EXACT TOOLBAR (UNTOUCHED ENGINE & LOGIC)
-       ========================================================================== */
+    /* FLIPBOOK READER STAGE & EXACT TOOLBAR */
     .company-flipbook-reader-section {
       padding-top: 110px;
       padding-bottom: 4rem;
@@ -250,9 +248,7 @@
       transition: color 0.2s;
     }
 
-    .back-btn-pill:hover {
-      color: #FFFFFF;
-    }
+    .back-btn-pill:hover { color: #FFFFFF; }
 
     .reader-toolbar-container {
       display: flex;
@@ -311,11 +307,7 @@
       text-align: center;
     }
 
-    .total-pages-label {
-      font-size: 0.85rem;
-      color: #D1D1D6;
-      font-weight: 600;
-    }
+    .total-pages-label { font-size: 0.85rem; color: #D1D1D6; font-weight: 600; }
 
     .download-pdf-btn {
       background: var(--maroon-primary);
@@ -334,9 +326,7 @@
       transition: background 0.3s;
     }
 
-    .download-pdf-btn:hover {
-      background: var(--maroon-light);
-    }
+    .download-pdf-btn:hover { background: var(--maroon-light); }
 
     .flipbook-stage-wrapper {
       position: relative;
@@ -422,282 +412,70 @@
       display: none; z-index: 999999;
     }
 
-    /* ==========================================================================
-       DIGITAL EDITION INTRO & PILLARS
-       ========================================================================== */
+    /* DIGITAL EDITION INTRO & PILLARS */
     .edition-intro-section {
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-light);
       padding: 4.5rem 0;
     }
 
-    .edition-intro-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .edition-intro-wrap { max-width: 900px; margin: 0 auto; }
+    .pillars-check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem 2rem; margin-top: 2rem; }
+    .check-item { display: flex; align-items: center; gap: 0.8rem; font-size: 1rem; font-weight: 600; color: var(--maroon-deep); }
+    .check-item i { color: var(--maroon-accent); font-size: 1.2rem; }
 
-    .pillars-check-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem 2rem;
-      margin-top: 2rem;
-    }
+    /* CORPORATE ARTICLE SECTION */
+    .article-body-section { padding: 5.5rem 0; background: #FFFFFF; }
+    .article-wrap { max-width: 900px; margin: 0 auto; }
+    .article-headline { font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1.15; color: var(--maroon-deep); text-align: center; margin-bottom: 1rem; }
+    .article-sublead { font-size: 1.15rem; line-height: 1.75; color: var(--text-muted); text-align: center; margin-bottom: 2.5rem; }
+    .article-portrait-box { width: 100%; height: 480px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 1px solid var(--maroon-border); }
+    .article-portrait-box img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
-    .check-item {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--maroon-deep);
-    }
-
-    .check-item i {
-      color: var(--maroon-accent);
-      font-size: 1.2rem;
-    }
-
-    /* ==========================================================================
-       CORPORATE ARTICLE SECTION
-       ========================================================================== */
-    .article-body-section {
-      padding: 5.5rem 0;
-      background: #FFFFFF;
-    }
-
-    .article-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .article-headline {
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      line-height: 1.15;
-      color: var(--maroon-deep);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .article-sublead {
-      font-size: 1.15rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .article-portrait-box {
-      width: 100%;
-      height: 480px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 2rem;
-      border: 1px solid var(--maroon-border);
-    }
-
-    .article-portrait-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .social-share-strip {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 4rem;
-      flex-wrap: wrap;
-    }
-
+    .social-share-strip { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 4rem; flex-wrap: wrap; }
     .share-pill {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-light);
-      padding: 0.5rem 1.2rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--maroon-primary);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: pointer;
-      transition: var(--transition-smooth);
+      background: var(--bg-secondary); border: 1px solid var(--border-light);
+      padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+      color: var(--maroon-primary); display: flex; align-items: center; gap: 0.4rem; cursor: pointer; transition: var(--transition-smooth);
     }
+    .share-pill:hover { background: var(--maroon-primary); color: #FFFFFF; border-color: var(--maroon-primary); transform: translateY(-2px); }
 
-    .share-pill:hover {
-      background: var(--maroon-primary);
-      color: #FFFFFF;
-      border-color: var(--maroon-primary);
-      transform: translateY(-2px);
-    }
-
-    /* Executive Highlight Quote Box */
     .executive-quote-card {
-      background: var(--bg-tinted);
-      border-left: 4px solid var(--maroon-primary);
-      border-radius: 0 8px 8px 0;
-      padding: 2.2rem 2.4rem;
-      margin: 3rem 0;
-      box-shadow: var(--shadow-sm);
+      background: var(--bg-tinted); border-left: 4px solid var(--maroon-primary);
+      border-radius: 0 8px 8px 0; padding: 2.2rem 2.4rem; margin: 3rem 0; box-shadow: var(--shadow-sm);
     }
+    .quote-text { font-family: var(--font-serif); font-size: 1.55rem; font-style: italic; color: var(--maroon-deep); line-height: 1.45; margin-bottom: 1rem; }
+    .quote-author { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--maroon-accent); }
+    .editorial-content-block h2 { font-size: 1.9rem; margin: 2.8rem 0 1rem 0; color: var(--maroon-deep); }
 
-    .quote-text {
-      font-family: var(--font-serif);
-      font-size: 1.55rem;
-      font-style: italic;
-      color: var(--maroon-deep);
-      line-height: 1.45;
-      margin-bottom: 1rem;
-    }
-
-    .quote-author {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--maroon-accent);
-    }
-
-    .editorial-content-block h2 {
-      font-size: 1.9rem;
-      margin: 2.8rem 0 1rem 0;
-      color: var(--maroon-deep);
-    }
-
-    /* ==========================================================================
-       SUGGESTIONS SECTION
-       ========================================================================== */
-    .suggestions-section {
-      padding: 5.5rem 0 6.5rem 0;
-      background-color: var(--bg-secondary);
-      border-top: 1px solid var(--border-light);
-    }
-
-    .suggestions-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2.2rem 1.8rem;
-      margin-top: 2.5rem;
-    }
-
-    .suggestion-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition-smooth);
-    }
-
-    .suggestion-poster {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-      position: relative;
-      background-color: #1a1a1a;
-    }
-
-    .suggestion-poster img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .suggestion-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--maroon-accent);
-    }
-
-    .suggestion-card:hover .suggestion-poster img {
-      transform: scale(1.04);
-    }
-
-    .suggestion-body {
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-
-    .suggestion-title {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      line-height: 1.35;
-      color: var(--maroon-deep);
-      font-weight: 600;
-      margin-bottom: 1rem;
-      min-height: 3.2rem;
-    }
+    /* SUGGESTIONS SECTION */
+    .suggestions-section { padding: 5.5rem 0 6.5rem 0; background-color: var(--bg-secondary); border-top: 1px solid var(--border-light); }
+    .suggestions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem 1.8rem; margin-top: 2.5rem; }
+    .suggestion-card { background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .suggestion-poster { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; position: relative; background-color: #1a1a1a; }
+    .suggestion-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .suggestion-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--maroon-accent); }
+    .suggestion-card:hover .suggestion-poster img { transform: scale(1.04); }
+    .suggestion-body { padding: 1.4rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .suggestion-title { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.35; color: var(--maroon-deep); font-weight: 600; margin-bottom: 1rem; min-height: 3.2rem; }
 
     /* FOOTER */
-    .footer {
-      background-color: var(--maroon-deep);
-      color: #E2D3D5;
-      padding: 5rem 0 2rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 3.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .footer-brand {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      color: #FFFFFF;
-      letter-spacing: 0.15em;
-      margin-bottom: 1rem;
-    }
-
+    .footer { background-color: var(--maroon-deep); color: #E2D3D5; padding: 5rem 0 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
+    .footer-brand { font-family: var(--font-serif); font-size: 2rem; color: #FFFFFF; letter-spacing: 0.15em; margin-bottom: 1rem; }
     .footer-desc { color: #BBA5A8; font-size: 0.95rem; line-height: 1.7; }
     .footer-heading { color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
     .footer-link { color: #BBA5A8; font-size: 0.9rem; transition: var(--transition-smooth); }
     .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: #9A8084; }
 
-    .social-row { display: flex; gap: 1rem; margin-top: 1.2rem; }
-    .social-icon-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      display: flex; align-items: center; justify-content: center;
-      color: #FFFFFF; transition: var(--transition-smooth);
-    }
-    .social-icon-btn:hover { background: var(--maroon-accent); transform: translateY(-3px); }
-
-    .footer-bottom {
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: #9A8084;
-    }
-
-    @media (max-width: 1200px) {
-      .suggestions-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
+    @media (max-width: 1200px) { .suggestions-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
       .flipbook-stage-wrapper { height: 480px; }
       .pillars-check-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 768px) {
       .nav-menu { display: none; }
       .mobile-toggle { display: block; }
@@ -737,9 +515,7 @@
   <!-- Mobile Drawer -->
   <div class="menu-backdrop" id="menuBackdrop"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">
-      <i class="ri-close-line"></i>
-    </button>
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
     <ul class="mobile-nav-list">
       <li><a href="index.html" class="mobile-nav-link">Home</a></li>
       <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
@@ -753,73 +529,36 @@
   </div>
 
   <main>
-    <!-- ==========================================================================
-         UPAR: 3D PDF FLIPBOOK READER WITH FULL ZOOM, 360° DRAG & EXACT TOOLBAR
-         ========================================================================== -->
     <section class="company-flipbook-reader-section">
       <div class="container">
         
         <div class="back-nav-bar">
-          <a href="companies.html" class="back-btn-pill">
-            <i class="fa-solid fa-arrow-left"></i> Back to Companies Archive
-          </a>
+          <a href="companies.html" class="back-btn-pill"><i class="fa-solid fa-arrow-left"></i> Back to Companies Archive</a>
         </div>
 
-        <!-- EXACT TOOLBAR -->
         <div class="reader-toolbar-container">
           <div class="reader-toolbar-box">
-            <button class="toolbar-icon-btn" title="Table of Contents" onclick="toggleTOC()">
-              <i class="fa-solid fa-list"></i>
-            </button>
-            <button class="toolbar-icon-btn" title="Share Issue" onclick="shareIssue()">
-              <i class="fa-solid fa-share-nodes"></i>
-            </button>
+            <button class="toolbar-icon-btn" title="Table of Contents" onclick="toggleTOC()"><i class="fa-solid fa-list"></i></button>
+            <button class="toolbar-icon-btn" title="Share Issue" onclick="shareIssue()"><i class="fa-solid fa-share-nodes"></i></button>
             
-            <!-- Zoom Controls -->
-            <button class="toolbar-icon-btn" title="Zoom Out" onclick="adjustZoom(-0.2)">
-              <i class="fa-solid fa-magnifying-glass-minus"></i>
-            </button>
+            <button class="toolbar-icon-btn" title="Zoom Out" onclick="adjustZoom(-0.2)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
             <input type="range" class="zoom-slider-control" id="zoomRange" min="1" max="2.5" step="0.1" value="1" oninput="setZoom(this.value)">
-            <button class="toolbar-icon-btn" title="Zoom In" onclick="adjustZoom(0.2)">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </button>
+            <button class="toolbar-icon-btn" title="Zoom In" onclick="adjustZoom(0.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
 
-            <!-- Page Step Prev -->
-            <button class="toolbar-icon-btn" onclick="companyPageFlip.flipPrev()" title="Previous Page">
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
-
-            <!-- Dynamic Page Display -->
+            <button class="toolbar-icon-btn" onclick="companyPageFlip.flipPrev()" title="Previous Page"><i class="fa-solid fa-chevron-left"></i></button>
             <div class="page-indicator-box" id="pageDisplay">1</div>
             <span class="total-pages-label">/ 24</span>
+            <button class="toolbar-icon-btn" onclick="companyPageFlip.flipNext()" title="Next Page"><i class="fa-solid fa-chevron-right"></i></button>
 
-            <!-- Page Step Next -->
-            <button class="toolbar-icon-btn" onclick="companyPageFlip.flipNext()" title="Next Page">
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-            <!-- Reset Zoom -->
-            <button class="toolbar-icon-btn" title="Reset Zoom / View" onclick="resetZoom()">
-              <i class="fa-solid fa-rotate-left"></i>
-            </button>
-
-            <!-- Download PDF Option -->
-            <button class="download-pdf-btn" onclick="downloadCompanyPDF()">
-              <i class="fa-solid fa-download"></i> PDF
-            </button>
+            <button class="toolbar-icon-btn" title="Reset Zoom" onclick="resetZoom()"><i class="fa-solid fa-rotate-left"></i></button>
+            <button class="download-pdf-btn" onclick="downloadCompanyPDF()"><i class="fa-solid fa-download"></i> PDF</button>
           </div>
         </div>
 
-        <!-- Interactive Flipbook Canvas Stage with 360° Drag Support -->
         <div class="flipbook-stage-wrapper" id="stageContainer">
-          <div class="flip-nav-arrow arrow-prev" onclick="companyPageFlip.flipPrev()">
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
-          <div class="flip-nav-arrow arrow-next" onclick="companyPageFlip.flipNext()">
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
+          <div class="flip-nav-arrow arrow-prev" onclick="companyPageFlip.flipPrev()"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="flip-nav-arrow arrow-next" onclick="companyPageFlip.flipNext()"><i class="fa-solid fa-chevron-right"></i></div>
 
-          <!-- StPageFlip Engine Render Area -->
           <div id="companyFlipbookContainer">
             <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80');"></div>
             <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80');"></div>
@@ -829,7 +568,6 @@
             <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80');"></div>
           </div>
 
-          <!-- Table of Contents Modal -->
           <div class="toc-modal-view" id="tocModal">
             <i class="fa-solid fa-xmark toc-close-btn" onclick="toggleTOC()"></i>
             <h2 class="font-serif toc-title">Table of Contents</h2>
@@ -847,18 +585,14 @@
       </div>
     </section>
 
-    <!-- Toast Notification -->
     <div class="toast-msg" id="toastMsg">Digital Edition Link Copied!</div>
 
-    <!-- ==========================================================================
-       05 — DIGITAL EDITION INTRO
-       ========================================================================== -->
     <section class="edition-intro-section">
       <div class="container edition-intro-wrap">
         <span class="section-tag">Editorial Overview</span>
         <h2 style="font-size: 2.3rem; color: var(--maroon-deep); margin-bottom: 1rem;">Inside This Company Edition</h2>
         <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.8;">
-          Go beyond the company logo and discover the story behind the organization. Each digital company edition is curated by The Aura Review to explore the verified decisions, technological breakthroughs, and executive governance driving transformation.
+          Go beyond the company logo and discover the story behind the organization. Each digital company edition is curated by The Aura Review to explore verified decisions and technological breakthroughs.
         </p>
 
         <div class="pillars-check-grid">
@@ -866,151 +600,76 @@
           <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Founder & CEO Story</div>
           <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Business Model Architecture</div>
           <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Core Products & Infrastructure</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Technological Innovation</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Industry Positioning & Growth</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Company Culture & Governance</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Future Strategic Ambitions</div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-       CORPORATE ARTICLE SECTION
-       ========================================================================== -->
     <section class="article-body-section">
       <div class="container article-wrap">
-        
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span class="section-tag" id="companyArticleTag">Special Corporate Release &bull; 2026 Edition</span>
-          <h1 class="article-headline" id="companyArticleHeadline">The Most Innovative Technology Companies to Watch in 2026</h1>
-          <p class="article-sublead">
-            Featured Enterprise: Synapse Global — Architecting Resilient Enterprise Intelligence across tier-one financial institutions.
-          </p>
+          <span class="section-tag">Special Corporate Release &bull; 2026 Edition</span>
+          <h1 class="article-headline">The Most Innovative Technology Companies to Watch in 2026</h1>
+          <p class="article-sublead">Featured Enterprise: Synapse Global — Architecting Resilient Enterprise Intelligence.</p>
         </div>
 
         <div class="article-portrait-box">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Corporate Headquarters" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="HQ" loading="lazy">
         </div>
 
         <div class="social-share-strip">
           <a href="#" class="share-pill"><i class="ri-linkedin-fill"></i> LinkedIn</a>
-          <a href="#" class="share-pill"><i class="ri-twitter-x-line"></i> Twitter</a>
-          <a href="#" class="share-pill"><i class="ri-global-line"></i> Company Site</a>
           <a href="#" class="share-pill" onclick="shareIssue()"><i class="ri-links-line"></i> Copy Link</a>
         </div>
 
         <div class="editorial-content-block">
           <h2>Architecting Resilient Enterprise Intelligence</h2>
-          <p>
-            In an economic landscape reshaped by high-frequency cognitive automation, enterprise architecture cannot afford opacity. Multinational banking conglomerates and healthcare networks require verifiable, explainable machine intelligence workflows capable of operating without latency.
-          </p>
+          <p>In an economic landscape reshaped by high-frequency cognitive automation, enterprise architecture cannot afford opacity.</p>
 
           <div class="executive-quote-card">
-            <div class="quote-text">
-              "A software architecture is only as durable as its auditability. Transparency is not an optional constraint—it is the foundational prerequisite of institutional trust."
-            </div>
+            <div class="quote-text">"A software architecture is only as durable as its auditability."</div>
             <div class="quote-author">Elena Vance &bull; CEO, Synapse Global</div>
           </div>
-
-          <h2>Decentralized Infrastructure & Zero-Latency Execution</h2>
-          <p>
-            Since its founding in 2018, Synapse Global has pursued a disciplined, infrastructure-first philosophy. Rather than building generic generative wrappers, the engineering teams designed proprietary distributed compute fabrics that prevent single-point bottlenecks while guaranteeing 100% regulatory traceability.
-          </p>
-          <p>
-            This methodology has allowed tier-one institutions to eliminate legacy technical debt, streamline international compliance reporting, and reduce annual operational friction by tens of millions of dollars.
-          </p>
-
-          <h2>The Road to 2026 & Multi-Continental Scale</h2>
-          <p>
-            With active enterprise deployments expanding across North America, the United Kingdom, and the Asia-Pacific corridor, Synapse Global represents a standard-setting benchmark for how modern corporate technology organizations build for tomorrow.
-          </p>
         </div>
-
       </div>
     </section>
 
-    <!-- ==========================================================================
-       SUGGESTIONS SECTION
-       ========================================================================== -->
     <section class="suggestions-section">
       <div class="container">
         <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
           <span class="section-tag">Related Releases</span>
           <h2 style="font-size: 2.4rem; color: var(--maroon-deep);">Explore More Company Editions</h2>
         </div>
-
-        <div class="suggestions-grid" id="suggestedCompaniesGrid">
-          <!-- Dynamically populated suggested company cards -->
-        </div>
+        <div class="suggestions-grid" id="suggestedCompaniesGrid"></div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <div class="footer-brand">The Aura Review</div>
-          <p class="footer-desc">
-            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
-          </p>
-          <div class="social-row">
-            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
-            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
-            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
-          </div>
+          <p class="footer-desc">A premium global business and leadership magazine shaping tomorrow.</p>
         </div>
-
         <div>
           <h4 class="footer-heading">Navigation</h4>
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="magazine.html" class="footer-link">Magazine</a></li>
-            <li><a href="leaders.html" class="footer-link">Leaders</a></li>
             <li><a href="companies.html" class="footer-link">Companies</a></li>
-            <li><a href="news.html" class="footer-link">News</a></li>
-            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
-            <li><a href="faq.html" class="footer-link">FAQ</a></li>
-            <li><a href="about.html" class="footer-link">About</a></li>
           </ul>
         </div>
-
         <div>
-          <h4 class="footer-heading">Editorial Sectors</h4>
-          <ul class="footer-links">
-            <li><a href="magazine.html" class="footer-link">Technology & Software</a></li>
-            <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
-            <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
-            <li><a href="magazine.html" class="footer-link">Real Estate & Construction</a></li>
-            <li><a href="magazine.html" class="footer-link">Sustainability & Energy</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Contact & Inquiries</h4>
-          <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial nominations, corporate features, and digital publication collaborations:
-          </p>
-          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
+          <h4 class="footer-heading">Contact</h4>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <div>
-          &copy; 2026 The Aura Review. All rights reserved.
-        </div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="privacy.html" class="footer-link">Privacy Policy</a>
-          <a href="terms.html" class="footer-link">Terms & Conditions</a>
-          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
-        </div>
+        <div>&copy; 2026 The Aura Review. All rights reserved.</div>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
   <script>
     let companyPageFlip;
     let currentZoom = 1;
@@ -1024,30 +683,13 @@
     const pageDisplay = document.getElementById('pageDisplay');
 
     const SUGGESTED_COMPANIES = [
-      {
-        id: "comp-2",
-        title: "The Most Visionary Healthcare Companies to Watch in 2026",
-        coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: "comp-3",
-        title: "The Most Promising Real Estate Companies to Watch in 2026",
-        coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: "comp-4",
-        title: "The Most Innovative Financial Services Companies to Watch in 2026",
-        coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: "comp-5",
-        title: "The Most Sustainable Industrial Leaders in 2026",
-        coverImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80"
-      }
+      { id: "comp-2", title: "The Most Visionary Healthcare Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" },
+      { id: "comp-3", title: "The Most Promising Real Estate Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
+      { id: "comp-4", title: "The Most Innovative Financial Services Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
+      { id: "comp-5", title: "The Most Sustainable Industrial Leaders in 2026", coverImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" }
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
-
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 30) header.classList.add('scrolled');
@@ -1069,19 +711,9 @@
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
-      /* StPageFlip Initialization */
       companyPageFlip = new St.PageFlip(flipbookContainer, {
-        width: 380,
-        height: 520,
-        size: 'fixed',
-        minWidth: 300,
-        maxWidth: 500,
-        minHeight: 400,
-        maxHeight: 700,
-        maxShadowOpacity: 0.55,
-        showCover: true,
-        mobileScrollSupport: false,
-        useMouseEvents: false
+        width: 380, height: 520, size: 'fixed', minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
+        maxShadowOpacity: 0.55, showCover: true, mobileScrollSupport: false, useMouseEvents: false
       });
 
       companyPageFlip.loadFromHTML(document.querySelectorAll('.company-flip-page'));
@@ -1091,33 +723,18 @@
         pageDisplay.innerText = page === 1 ? '1' : `${page}-${page + 1}`;
       });
 
-      /* Render Suggested Companies */
       const suggestedGrid = document.getElementById('suggestedCompaniesGrid');
       suggestedGrid.innerHTML = SUGGESTED_COMPANIES.map(item => `
         <div class="suggestion-card" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-          <div class="suggestion-poster">
-            <img src="${item.coverImage}" alt="${item.title}" loading="lazy">
-          </div>
+          <div class="suggestion-poster"><img src="${item.coverImage}" alt="${item.title}" loading="lazy"></div>
           <div class="suggestion-body">
             <div class="suggestion-title">${item.title}</div>
             <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Digital Edition &rarr;</span>
           </div>
         </div>
       `).join('');
-
-      /* Click Ripple */
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) return;
-        const ripple = document.createElement('span');
-        ripple.classList.add('click-ripple');
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 650);
-      });
     });
 
-    /* Panning & Zoom Engine */
     function updateTransform() {
       flipbookContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
       zoomRange.value = currentZoom;
@@ -1134,10 +751,7 @@
     function adjustZoom(delta) { currentZoom = Math.min(Math.max(1, currentZoom + delta), 2.5); updateTransform(); }
     function resetZoom() { currentZoom = 1; translateX = 0; translateY = 0; updateTransform(); }
 
-    stageContainer.addEventListener('wheel', (e) => { 
-      e.preventDefault(); 
-      adjustZoom(-e.deltaY * 0.0015); 
-    }, { passive: false });
+    stageContainer.addEventListener('wheel', (e) => { e.preventDefault(); adjustZoom(-e.deltaY * 0.0015); }, { passive: false });
 
     stageContainer.addEventListener('mousedown', (e) => {
       if (currentZoom <= 1 || e.target.closest('.flip-nav-arrow') || e.target.closest('.reader-toolbar-box') || e.target.closest('.toc-modal-view')) return;
@@ -1155,12 +769,7 @@
       updateTransform();
     });
 
-    window.addEventListener('mouseup', () => { 
-      if (isDragging) { 
-        isDragging = false; 
-        updateTransform(); 
-      } 
-    });
+    window.addEventListener('mouseup', () => { if (isDragging) { isDragging = false; updateTransform(); } });
 
     function toggleTOC() { document.getElementById('tocModal').classList.toggle('active'); }
     function jumpToPage(index) { if (companyPageFlip) { companyPageFlip.flip(index); toggleTOC(); } }
