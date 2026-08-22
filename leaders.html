@@ -661,7 +661,7 @@
 
     .toast-msg { position: fixed; bottom: 2rem; right: 2rem; background: var(--maroon-deep); color: #FFFFFF; padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); display: none; z-index: 9999999; }
 
-    /* Footer */
+    /* FOOTER */
     .footer { background-color: var(--maroon-deep); color: #E2D3D5; padding: 4.5rem 0 2rem 0; border-top: 1px solid var(--maroon-deep); }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 3.5rem; }
     .footer-brand { font-family: var(--font-serif); font-size: 2rem; color: #FFFFFF; letter-spacing: 0.15em; margin-bottom: 1rem; }
@@ -734,35 +734,49 @@
   <!-- MAIN LEADERS ARCHIVE VIEW -->
   <div id="leadersArchiveView">
     
+    <!-- HERO -->
     <section class="leaders-hero-section">
       <div class="container">
         <span class="section-tag">Global Executive Directory</span>
         <h1 class="section-heading">Meet the Leaders Shaping the Future of Business</h1>
         <p style="max-width: 750px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;">
-          Explore visionary CEOs, founders, entrepreneurs, executives, innovators, and industry experts featured by The Aura Review across modern industries and global markets[cite: 10].
+          Explore visionary CEOs, founders, entrepreneurs, executives, innovators, and industry experts featured by The Aura Review across 24 modern industries and global markets[cite: 7].
         </p>
+        <div class="leaders-hero-actions">
+          <a href="#featuredLeadersGrid" class="btn btn-maroon">Explore Leaders</a>
+          <a href="about.html" class="btn btn-outline">Submit Your Story</a>
+        </div>
       </div>
     </section>
 
-    <!-- FEATURED LEADER -->
+    <!-- FEATURED LEADER OF THE MONTH -->
     <section class="featured-leader-section">
       <div class="container">
         <div class="featured-leader-card">
           <div class="featured-leader-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80" alt="Dr. Aris Thorne">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80" alt="Dr. Aris Thorne" loading="lazy">
           </div>
           <div class="featured-leader-body">
             <span class="section-tag">Featured Leader of the Month</span>
             <h2 style="font-size: 2.5rem; color: var(--maroon-deep); line-height: 1.1; margin-bottom: 0.3rem;">Dr. Aris Thorne</h2>
-            <div style="font-size: 1rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.2rem;">Founder & Chief Executive Officer, GeneMatrix Health</div>
-            <p style="margin-bottom: 1.8rem; font-size: 0.98rem;">A visionary healthcare executive transforming precision cellular oncology therapies and clinical distribution models globally.</p>
-            <button class="btn btn-maroon" onclick="loadLeaderProfile('dr-aris-thorne')" style="align-self: flex-start;">Read Full Profile &rarr;</button>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.2rem;">
+              Founder & Chief Executive Officer, GeneMatrix Health
+            </div>
+            <div style="font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.2rem;">
+              Healthcare &bull; Biotechnology &bull; Boston, USA
+            </div>
+            <p style="margin-bottom: 1.8rem; font-size: 0.98rem;">
+              A visionary healthcare executive transforming precision cellular oncology therapies and clinical distribution models globally, cutting drug discovery timelines by forty percent.
+            </p>
+            <button class="btn btn-maroon" onclick="loadLeaderProfile('dr-aris-thorne')" style="align-self: flex-start;">
+              Read Full Profile &rarr;
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SEARCH & FILTER BAR -->
+    <!-- SEARCH & EXPANDED 24 INDUSTRIES & MULTI-COUNTRY FILTERS -->
     <section class="search-filter-section" id="filterSection">
       <div class="container">
         <div class="search-input-wrap">
@@ -771,45 +785,90 @@
         </div>
 
         <div class="filter-selects-grid">
+          <!-- 24 Expanded Industries Select -->
           <select class="filter-select" id="filterIndustry">
-            <option value="all">Industry: All Sectors</option>
+            <option value="all">Industry: All 24 Sectors</option>
             <option value="Technology & Software">Technology & Software</option>
+            <option value="Artificial Intelligence">Artificial Intelligence & Automation</option>
             <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+            <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
             <option value="Finance & Banking">Finance & Banking</option>
+            <option value="Private Equity & VC">Private Equity & Venture Capital</option>
             <option value="Real Estate & Development">Real Estate & Development</option>
             <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
+            <option value="Aviation & Aerospace">Aviation & Aerospace</option>
+            <option value="Space Exploration">Space Exploration & Satellites</option>
+            <option value="Automotive & EV">Automotive & EV Mobility</option>
+            <option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
+            <option value="Manufacturing & Robotics">Manufacturing & Robotics</option>
+            <option value="Cybersecurity & Defense">Cybersecurity & Defense</option>
+            <option value="Consulting & Advisory">Consulting & Professional Services</option>
+            <option value="Education & EdTech">Education & EdTech</option>
+            <option value="Retail & E-Commerce">Retail & E-Commerce</option>
+            <option value="Media & Entertainment">Media & Entertainment</option>
+            <option value="Hospitality & Luxury Travel">Hospitality & Luxury Travel</option>
+            <option value="Agritech & Sustainable Food">Agritech & Sustainable Food</option>
+            <option value="Telecommunications & 6G">Telecommunications & 6G</option>
+            <option value="Next-Gen Materials">Next-Gen Materials & Polymers</option>
+            <option value="Critical Minerals & Metals">Critical Minerals & Metals</option>
+            <option value="Marketing & PR">Marketing & Strategic PR</option>
           </select>
+
           <select class="filter-select" id="filterType">
             <option value="all">Leadership Type: All</option>
             <option value="CEO">Chief Executive Officer (CEO)</option>
-            <option value="Founder">Founder</option>
+            <option value="Founder">Founder / Co-Founder</option>
             <option value="Managing Partner">Managing Partner</option>
+            <option value="CTO">Chief Technology Officer (CTO)</option>
+            <option value="CSO">Chief Strategy Officer (CSO)</option>
+            <option value="Managing Director">Managing Director</option>
+            <option value="Innovator">Innovator & Strategist</option>
           </select>
+
+          <!-- Expanded Global Countries Select -->
           <select class="filter-select" id="filterLocation">
-            <option value="all">Country: All Markets</option>
+            <option value="all">Country: All Global Markets</option>
             <option value="United States">United States</option>
             <option value="United Kingdom">United Kingdom</option>
             <option value="India">India</option>
+            <option value="Germany">Germany</option>
+            <option value="United Arab Emirates">United Arab Emirates (UAE)</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Canada">Canada</option>
+            <option value="Japan">Japan</option>
+            <option value="Australia">Australia</option>
+            <option value="France">France</option>
+            <option value="Switzerland">Switzerland</option>
             <option value="Sweden">Sweden</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
           </select>
+
           <select class="filter-select" id="filterYear">
             <option value="all">Year: All Editions</option>
             <option value="2026">2026 Edition</option>
+            <option value="2025">2025 Edition</option>
           </select>
         </div>
 
+        <!-- 15 Leadership Categories Scroll -->
         <div class="category-pills-scroll" id="catPillsBar">
           <button class="cat-pill-btn active" data-category="all">All Categories</button>
           <button class="cat-pill-btn" data-category="CEOs & Executives">CEOs & Executives</button>
           <button class="cat-pill-btn" data-category="Founders & Entrepreneurs">Founders & Entrepreneurs</button>
+          <button class="cat-pill-btn" data-category="Women Leaders">Women Leaders</button>
           <button class="cat-pill-btn" data-category="Technology Leaders">Technology Leaders</button>
           <button class="cat-pill-btn" data-category="Healthcare Leaders">Healthcare Leaders</button>
           <button class="cat-pill-btn" data-category="Finance Leaders">Finance Leaders</button>
+          <button class="cat-pill-btn" data-category="Real Estate Leaders">Real Estate Leaders</button>
+          <button class="cat-pill-btn" data-category="Clean Energy Leaders">Clean Energy Leaders</button>
+          <button class="cat-pill-btn" data-category="Space & Defense Leaders">Space & Defense Leaders</button>
+          <button class="cat-pill-btn" data-category="Consulting Leaders">Consulting Leaders</button>
+          <button class="cat-pill-btn" data-category="Emerging Leaders">Emerging Leaders</button>
         </div>
       </div>
     </section>
 
-    <!-- GRID -->
+    <!-- ALL LEADERS GRID WITH ENGAGEMENT -->
     <section class="section-spacing" id="featuredLeadersGrid">
       <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.8rem;">
@@ -820,79 +879,143 @@
           <span id="resultsCount" style="font-size: 0.88rem; font-weight: 600; color: var(--text-light);">Showing All Profiles</span>
         </div>
 
-        <div class="all-leaders-grid" id="leadersContainer"></div>
+        <div class="all-leaders-grid" id="leadersContainer">
+          <!-- Dynamically Injected Leader Cards -->
+        </div>
       </div>
     </section>
+
   </div>
 
-  <!-- SINGLE LEADER PROFILE VIEW -->
+  <!-- SEPARATE INDIVIDUAL LEADER PROFILE PAGE VIEW -->
   <div class="profile-view-wrapper" id="singleProfileView">
     <div class="container">
-      <button class="btn-link" onclick="closeLeaderProfile()" style="margin-bottom: 2rem;">&larr; Back to All Leaders</button>
+      <button class="btn-link" onclick="closeLeaderProfile()" style="margin-bottom: 2rem;">
+        &larr; Back to All Leaders
+      </button>
 
       <div class="profile-hero-grid">
-        <div class="profile-hero-img"><img id="pImg" src="" alt="Leader"></div>
+        <div class="profile-hero-img">
+          <img id="pImg" src="" alt="Leader Professional Portrait">
+        </div>
         <div>
           <span class="section-tag" id="pCategory">Executive Profile</span>
-          <h1 style="font-size: 3rem; line-height: 1.1; color: var(--maroon-deep); margin-bottom: 0.4rem;" id="pName">Name</h1>
-          <div style="font-size: 1.15rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.2rem;" id="pRole">Role</div>
-          <div style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.4rem;" id="pMeta">Meta</div>
-          <a href="leaders read digital.html" class="btn btn-maroon"><i class="ri-book-open-line"></i> Read Digital Edition</a>
+          <h1 style="font-size: 3rem; line-height: 1.1; color: var(--maroon-deep); margin-bottom: 0.4rem;" id="pName">Leader Name</h1>
+          <div style="font-size: 1.15rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.2rem;" id="pRole">Founder & CEO, Company</div>
+          <div style="font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.4rem;" id="pMeta">
+            Technology &bull; New York, USA
+          </div>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#" class="btn btn-maroon" id="pLinkedIn" target="_blank"><i class="ri-linkedin-fill"></i> LinkedIn Profile</a>
+            <a href="magazine.html" class="btn btn-outline"><i class="ri-book-open-line"></i> Read Magazine Issue</a>
+          </div>
         </div>
       </div>
 
+      <!-- About -->
       <div style="max-width: 880px; margin-bottom: 3.5rem;">
         <span class="section-tag">Editorial Biography</span>
         <h2 style="font-size: 2.1rem; margin-bottom: 1rem;">About the Leader</h2>
         <div id="pBio" style="font-size: 1.05rem; line-height: 1.85; color: var(--text-muted);"></div>
       </div>
+
+      <!-- Timeline -->
+      <div style="max-width: 880px; margin-bottom: 3.5rem;">
+        <span class="section-tag">Milestones</span>
+        <h2 style="font-size: 2.1rem; margin-bottom: 1rem;">Leadership Journey</h2>
+        <div class="timeline-list" id="pTimeline"></div>
+      </div>
+
+      <!-- Philosophy -->
+      <div style="max-width: 880px;">
+        <span class="section-tag">Perspective</span>
+        <div class="editorial-quote-box" id="pQuote"></div>
+      </div>
+
+      <!-- Achievements -->
+      <div style="max-width: 880px; margin-bottom: 3.5rem;">
+        <span class="section-tag">Verified Track Record</span>
+        <h2 style="font-size: 2.1rem; margin-bottom: 1rem;">Key Achievements & Areas of Expertise</h2>
+        <div id="pAchievements" style="display: flex; flex-direction: column; gap: 0.8rem;"></div>
+      </div>
+
+      <!-- Q&A -->
+      <div style="max-width: 880px; margin-bottom: 4rem;">
+        <span class="section-tag">Executive Q&A</span>
+        <h2 style="font-size: 2.1rem; margin-bottom: 1.5rem;">Leader's Perspective</h2>
+        <div id="pQA"></div>
+      </div>
     </div>
   </div>
 
-  <!-- MEMBER REGISTRATION MODAL -->
+  <!-- ONE-TIME MEMBER REGISTRATION MODAL WITH LINKEDIN -->
   <div class="member-modal-overlay" id="memberModal" aria-hidden="true">
     <div class="member-modal-box">
       <button class="member-close-btn" id="memberCloseBtn"><i class="ri-close-line"></i></button>
-      <span style="color: var(--maroon-accent); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Reader Registration</span>
+      <span style="color: var(--maroon-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;">Reader Registration</span>
       <h2 style="font-size: 1.8rem; color: var(--maroon-deep); margin: 0.4rem 0 0.6rem 0;">Join The Aura Review</h2>
-      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.8rem;">Enter your details to unlock verified likes and comments.</p>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.8rem;">
+        Enter your details once to unlock verified like privileges, executive discussions, and digital issues permanently.
+      </p>
 
       <form id="memberRegistrationForm">
         <div class="member-form-group">
           <label for="memberName">Full Name</label>
           <input type="text" id="memberName" class="member-input" placeholder="e.g. Akash Naikwade" required>
         </div>
+
         <div class="member-form-group">
           <label for="memberRole">Designation / Role</label>
           <input type="text" id="memberRole" class="member-input" placeholder="e.g. Founder & CEO" required>
         </div>
+
         <div class="member-form-group">
           <label for="memberLinkedin">LinkedIn Profile URL</label>
           <input type="url" id="memberLinkedin" class="member-input" placeholder="https://linkedin.com/in/username" required>
         </div>
-        <button type="submit" class="btn btn-maroon" style="width: 100%; margin-top: 1rem;">Continue as Member &rarr;</button>
+
+        <button type="submit" class="btn-maroon" style="width: 100%; margin-top: 1rem;">
+          Continue as Member <i class="ri-arrow-right-line"></i>
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- COMMENTS MODAL -->
+  <!-- SPLIT EXECUTIVE DISCUSSION MODAL (PREVIEW LEFT + COMMENTS RIGHT) -->
   <div class="comments-modal-overlay" id="commentsModalOverlay">
     <div class="comments-modal-box">
-      <button class="comments-modal-close" id="closeCommentsModalBtn"><i class="ri-close-line"></i></button>
+      <button class="comments-modal-close" id="closeCommentsModalBtn" aria-label="Close Discussion Modal"><i class="ri-close-line"></i></button>
+
+      <!-- Left Side Context -->
       <div class="comments-mag-preview-col">
         <div>
-          <div class="mag-preview-poster-frame"><img id="cmPreviewImg" src="" alt="Portrait"></div>
-          <span class="section-tag" id="cmPreviewTag">Healthcare</span>
-          <h3 style="font-family: var(--font-serif); font-size: 1.45rem; color: var(--maroon-deep);" id="cmPreviewTitle">Name</h3>
+          <div class="mag-preview-poster-frame">
+            <img id="cmPreviewImg" src="" alt="Leader Portrait">
+          </div>
+          <span class="mag-preview-tag" id="cmPreviewTag">Healthcare &bull; 2026</span>
+          <h3 class="mag-preview-title" id="cmPreviewTitle">Leader Name</h3>
+          <div class="mag-preview-leader" id="cmPreviewLeader">Designation, Company</div>
         </div>
-        <a href="leaders read digital.html" class="btn btn-maroon" style="width: 100%; font-size: 0.78rem;">Read Digital Issue &rarr;</a>
+
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+          <button class="btn-maroon" id="cmFullProfileBtn" style="width: 100%; font-size: 0.78rem; padding: 0.75rem 1rem;">
+            View Full Editorial Profile <i class="ri-arrow-right-line"></i>
+          </button>
+        </div>
       </div>
+
+      <!-- Right Side Comments -->
       <div class="comments-feed-col">
-        <h3 style="font-size: 1.3rem; color: var(--maroon-deep); margin-bottom: 1rem;">Executive Discussion</h3>
+        <div class="comments-feed-header">
+          <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700; display: block; margin-bottom: 0.2rem;">Executive Forum</span>
+          <h3 style="font-size: 1.4rem; color: var(--maroon-deep);">Executive Discussion</h3>
+        </div>
+
         <div class="comments-list-box" id="commentsListBox"></div>
-        <form id="addCommentForm" style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem;">
-          <textarea id="commentTextInput" placeholder="Write your perspective..." required style="width: 100%; height: 75px; padding: 0.7rem; border: 1px solid var(--maroon-border); border-radius: 4px; outline: none;"></textarea>
-          <button type="submit" class="btn btn-maroon" style="width: 100%;">Post Comment</button>
+
+        <form id="addCommentForm" style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem;">
+          <textarea id="commentTextInput" placeholder="Write your professional perspective on this leader..." required style="width: 100%; height: 75px; padding: 0.8rem; border: 1px solid var(--maroon-border); border-radius: 4px; font-family: var(--font-sans); outline: none;"></textarea>
+          <button type="submit" class="btn-maroon" style="width: 100%;">Post Comment</button>
         </form>
       </div>
     </div>
@@ -900,13 +1023,23 @@
 
   <div class="toast-msg" id="toastMsg">Action confirmed</div>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <div class="footer-brand">The Aura Review</div>
-          <p class="footer-desc">A premium global business and leadership publication shaping tomorrow.</p>
+          <p style="color: #BBA5A8; font-size: 0.95rem; line-height: 1.7;">
+            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 7].
+          </p>
+          <div class="social-row">
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+          </div>
         </div>
+
         <div>
           <h4 class="footer-heading">Navigation</h4>
           <ul class="footer-links">
@@ -914,19 +1047,45 @@
             <li><a href="magazine.html" class="footer-link">Magazine</a></li>
             <li><a href="leaders.html" class="footer-link">Leaders</a></li>
             <li><a href="companies.html" class="footer-link">Companies</a></li>
+            <li><a href="news.html" class="footer-link">News</a></li>
+            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
+            <li><a href="faq.html" class="footer-link">FAQ</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
           </ul>
         </div>
+
         <div>
-          <h4 class="footer-heading">Contact</h4>
-          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
+          <h4 class="footer-heading">Selected Industries</h4>
+          <ul class="footer-links">
+            <li><a href="magazine.html" class="footer-link">Artificial Intelligence & Tech</a></li>
+            <li><a href="magazine.html" class="footer-link">Healthcare & Biotechnology</a></li>
+            <li><a href="magazine.html" class="footer-link">Finance & Private Equity</a></li>
+            <li><a href="magazine.html" class="footer-link">Clean Energy & Grid Systems</a></li>
+            <li><a href="magazine.html" class="footer-link">Space & Advanced Aerospace</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact & Inquiries</h4>
+          <p style="color: #BBA5A8; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">
+            For editorial submissions, leader nominations, and publication collaborations:
+          </p>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
       </div>
+
       <div class="footer-bottom">
         <div>&copy; 2026 The Aura Review. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms & Conditions</a>
+          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- JAVASCRIPT: DATA LAYER & EVENT CONTROLLERS -->
   <script>
     const LEADERS_DATA = [
       {
@@ -940,9 +1099,28 @@
         locationDetail: "Boston, USA",
         year: "2026",
         category: "Healthcare Leaders",
+        views: 2410,
+        likes: 612,
+        comments: [
+          { author: "Marcus Sterling", role: "Managing Partner", linkedin: "https://linkedin.com", text: "Transformative clinical delivery models." }
+        ],
         photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
         shortDesc: "Pioneering precision cellular oncology therapies and scalable clinical distribution models globally.",
-        bio: "<p>Dr. Aris Thorne has spent over fifteen years leading translational oncology research and commercial biotechnology initiatives.</p>"
+        quote: "True innovation in healthcare is measured by the tangible accessibility of life-saving therapies.",
+        bio: "<p>Dr. Aris Thorne has spent over fifteen years leading translational oncology research and commercial biotechnology initiatives across North America and Europe. Under her executive guidance, GeneMatrix Health developed proprietary cellular delivery platforms cutting drug discovery timelines by forty percent.</p>",
+        timeline: [
+          { year: "2012", desc: "Completed Fellowship in Cellular Oncology at Johns Hopkins University." },
+          { year: "2016", desc: "Appointed Clinical Research Director at Zurich Genomics Institute." },
+          { year: "2020", desc: "Founded GeneMatrix Health." },
+          { year: "2026", desc: "Spearheading global Phase III clinical trials across 14 research hospitals." }
+        ],
+        achievements: [
+          "Holder of 6 international biotechnology patents in gene delivery.",
+          "Recipient of the Global Bio-Innovation Leadership Award 2025."
+        ],
+        qa: [
+          { q: "What inspired your mission?", a: "Eliminating the latency between laboratory discovery and regional hospital availability." }
+        ]
       },
       {
         slug: "marcus-sterling",
@@ -955,24 +1133,123 @@
         locationDetail: "London, UK",
         year: "2026",
         category: "Finance Leaders",
+        views: 1980,
+        likes: 495,
+        comments: [
+          { author: "Elena Vance", role: "CEO", linkedin: "https://linkedin.com", text: "Incredible perspective on sovereign balance sheets." }
+        ],
         photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
         shortDesc: "Architecting cross-border institutional private equity and decentralized liquidity frameworks.",
-        bio: "<p>Marcus Sterling is a seasoned private equity strategist and author of 'The Decentralized Balance Sheet'.</p>"
+        quote: "Capital efficiency in 2026 is about sovereign liquidity mobility.",
+        bio: "<p>Marcus Sterling is a seasoned private equity strategist and author of 'The Decentralized Balance Sheet'. He oversees $2.4B in assets under management across emerging corridors in Western Europe and the Middle East.</p>",
+        timeline: [
+          { year: "2014", desc: "Founded Aurelius Capital in London." },
+          { year: "2021", desc: "Expanded operations into Singapore and Abu Dhabi." },
+          { year: "2026", desc: "Deploying cross-border decentralized settlement frameworks." }
+        ],
+        achievements: ["Supervised $2.4B in private equity capital across 12 jurisdictions."],
+        qa: [{ q: "What is your core thesis?", a: "Borderless capital mobility backed by verifiable real-world assets." }]
       },
       {
         slug: "elena-vance",
         name: "Elena Vance",
         designation: "Chief Executive Officer",
         company: "Synapse Global",
-        industry: "Technology & Software",
+        industry: "Artificial Intelligence",
         leadershipType: "CEO",
         location: "United States",
         locationDetail: "New York, USA",
         year: "2026",
         category: "Technology Leaders",
+        views: 2840,
+        likes: 720,
+        comments: [],
         photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
         shortDesc: "Pioneering explainable enterprise AI workflows and distributed compute infrastructures.",
-        bio: "<p>Elena Vance directs distributed computing paradigms delivering explainable multi-modal AI systems.</p>"
+        quote: "Artificial intelligence without transparency is a liability; ethical architecture is the bedrock of trust.",
+        bio: "<p>Elena Vance directs distributed computing paradigms delivering explainable multi-modal AI systems to global financial institutions and multinational healthcare operators.</p>",
+        timeline: [
+          { year: "2017", desc: "Joined Synapse Global as Chief Technology Officer." },
+          { year: "2023", desc: "Appointed Chief Executive Officer." },
+          { year: "2026", desc: "Deploying enterprise explainable AI to 120+ multinational banks." }
+        ],
+        achievements: ["Led Synapse Global through 300% YoY enterprise subscription growth."],
+        qa: [{ q: "What is your leadership advice?", a: "Master the fundamentals of memory and data structures before chasing abstractions." }]
+      },
+      {
+        slug: "julian-drake",
+        name: "Julian Drake",
+        designation: "Chief Strategy Officer",
+        company: "Solis Dynamics",
+        industry: "Clean Energy & Sustainability",
+        leadershipType: "CSO",
+        location: "Sweden",
+        locationDetail: "Stockholm, Sweden",
+        year: "2026",
+        category: "Clean Energy Leaders",
+        views: 1540,
+        likes: 380,
+        comments: [],
+        photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        shortDesc: "Engineering utility-scale green hydrogen storage and resilient microgrid infrastructures.",
+        quote: "Decarbonization is the single largest capital infrastructure opportunity of the century.",
+        bio: "<p>Julian Drake directs strategy for 4.5 GW of clean storage installations across Northern Europe, stabilizing municipal industrial power grids.</p>",
+        timeline: [
+          { year: "2019", desc: "Co-founded green hydrogen storage initiative at Solis Dynamics." },
+          { year: "2026", desc: "Overseeing grid stabilization architectures across APAC and Europe." }
+        ],
+        achievements: ["Integrated over 4.5 GW of zero-emission storage into continental energy grids."],
+        qa: [{ q: "What is the next frontier?", a: "Solid-state non-lithium storage arrays at commercial scale." }]
+      },
+      {
+        slug: "rajesh-menon",
+        name: "Rajesh Menon",
+        designation: "Chief Technology Officer",
+        company: "QuantEdge Analytics",
+        industry: "Technology & Software",
+        leadershipType: "CTO",
+        location: "India",
+        locationDetail: "Bengaluru, India",
+        year: "2026",
+        category: "Technology Leaders",
+        views: 1890,
+        likes: 470,
+        comments: [],
+        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        shortDesc: "Building high-frequency financial modeling algorithms and enterprise quantum data structures.",
+        quote: "Data scale is worthless without structural low-latency interpretability.",
+        bio: "<p>Rajesh Menon is a computational mathematician who has designed algorithmic trading architectures for leading Asian financial institutions.</p>",
+        timeline: [
+          { year: "2020", desc: "Joined QuantEdge Analytics as Head of Engineering." },
+          { year: "2026", desc: "Appointed CTO; deployed proprietary algorithmic engine." }
+        ],
+        achievements: ["Author of 4 international IEEE papers on quantitative computational finance."],
+        qa: [{ q: "What is your main advice for emerging tech founders?", a: "Prioritize auditability over black-box complexity." }]
+      },
+      {
+        slug: "jerome-hairston",
+        name: "Jerome Hairston",
+        designation: "CEO & Managing Broker",
+        company: "Hairston Properties",
+        industry: "Real Estate & Development",
+        leadershipType: "CEO",
+        location: "United States",
+        locationDetail: "Atlanta, USA",
+        year: "2026",
+        category: "Real Estate Leaders",
+        views: 1610,
+        likes: 395,
+        comments: [],
+        photo: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+        shortDesc: "Building disciplined, sustainable commercial metropolitan real estate portfolios.",
+        quote: "Trust is forged through consistency and transparent frameworks.",
+        bio: "<p>Jerome Hairston focuses on commercial metropolitan renewal and LEED-certified sustainable developments across high-growth corridors.</p>",
+        timeline: [
+          { year: "2018", desc: "Founded Hairston Investment Properties." },
+          { year: "2026", desc: "Managing over $450M in commercial metropolitan real estate." }
+        ],
+        achievements: ["Developed over 2.5M sq. ft. of LEED-certified commercial office space."],
+        qa: [{ q: "How do you manage market risk?", a: "Focus strictly on tenant cash-flow fundamentals rather than speculative valuations." }]
       }
     ];
 
@@ -988,6 +1265,28 @@
       initMemberUI();
       applyFilters();
 
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuClose = document.getElementById('menuClose');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+
+      const toggleMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        menuBackdrop.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      mobileToggle.addEventListener('click', () => toggleMenu(true));
+      menuClose.addEventListener('click', () => toggleMenu(false));
+      menuBackdrop.addEventListener('click', () => toggleMenu(false));
+
+      // Filter Listeners
       document.getElementById('leaderSearchInput').addEventListener('input', applyFilters);
       document.getElementById('filterIndustry').addEventListener('change', applyFilters);
       document.getElementById('filterType').addEventListener('change', applyFilters);
@@ -1003,17 +1302,27 @@
         });
       });
 
+      // Member Registration Form Submit
       document.getElementById('memberRegistrationForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('memberName').value.trim();
         const role = document.getElementById('memberRole').value.trim();
         let linkedin = document.getElementById('memberLinkedin').value.trim();
+
+        if (!linkedin.startsWith('http://') && !linkedin.startsWith('https://')) {
+          linkedin = 'https://' + linkedin;
+        }
+
         if (name && role && linkedin) {
           localStorage.setItem(STORAGE_MEMBER, JSON.stringify({ name, role, linkedin }));
           document.getElementById('memberModal').classList.remove('active');
           initMemberUI();
-          showToast(`Welcome ${name}! Access verified.`);
-          if (pendingAction) { pendingAction(); pendingAction = null; }
+          showToast(`Welcome ${name}! Member access verified.`);
+
+          if (pendingAction) {
+            pendingAction();
+            pendingAction = null;
+          }
         }
       });
 
@@ -1025,21 +1334,36 @@
         document.getElementById('commentsModalOverlay').classList.remove('active');
       });
 
+      // Add Comment Form Submit
       document.getElementById('addCommentForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const text = document.getElementById('commentTextInput').value.trim();
         const member = getMember();
         if (!member || !activeCommentLeaderSlug || !text) return;
 
-        let commentsStore = JSON.parse(localStorage.getItem('aura_ldr_comments') || '{}');
-        if (!commentsStore[activeCommentLeaderSlug]) commentsStore[activeCommentLeaderSlug] = [];
-        commentsStore[activeCommentLeaderSlug].push({ author: member.name, role: member.role, text });
-        localStorage.setItem('aura_ldr_comments', JSON.stringify(commentsStore));
+        const leader = LEADERS_DATA.find(l => l.slug === activeCommentLeaderSlug);
+        if (leader) {
+          leader.comments.push({ 
+            author: member.name, 
+            role: member.role || 'Executive Leader', 
+            linkedin: member.linkedin || 'https://linkedin.com',
+            text: text 
+          });
+          document.getElementById('commentTextInput').value = '';
+          renderCommentsList(leader);
+          applyFilters();
+          showToast("Comment published publicly!");
+        }
+      });
 
-        document.getElementById('commentTextInput').value = '';
-        renderCommentsList(activeCommentLeaderSlug);
-        applyFilters();
-        showToast("Comment published!");
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('textarea')) return;
+        const ripple = document.createElement('span');
+        ripple.classList.add('click-ripple');
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 650);
       });
     });
 
@@ -1050,14 +1374,28 @@
 
     function initMemberUI() {
       const member = getMember();
+      const tag = document.getElementById('memberStatusTag');
+      const disp = document.getElementById('memberNameDisplay');
       if (member) {
-        document.getElementById('memberStatusTag').style.display = 'inline-flex';
-        document.getElementById('memberNameDisplay').textContent = member.name.split(' ')[0];
+        tag.style.display = 'inline-flex';
+        disp.textContent = member.name.split(' ')[0];
       }
     }
 
     function requireMemberAccess(callback) {
-      if (getMember()) { callback(); } else { pendingAction = callback; document.getElementById('memberModal').classList.add('active'); }
+      if (getMember()) {
+        callback();
+      } else {
+        pendingAction = callback;
+        document.getElementById('memberModal').classList.add('active');
+      }
+    }
+
+    function getInitials(name) {
+      if (!name) return 'AR';
+      const parts = name.split(' ');
+      if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+      return name.substring(0, 2).toUpperCase();
     }
 
     function applyFilters() {
@@ -1068,12 +1406,18 @@
       const yr = document.getElementById('filterYear').value;
 
       const filtered = LEADERS_DATA.filter(leader => {
-        const matchQ = !query || leader.name.toLowerCase().includes(query) || leader.company.toLowerCase().includes(query) || leader.industry.toLowerCase().includes(query);
+        const matchQ = !query || 
+          leader.name.toLowerCase().includes(query) ||
+          leader.company.toLowerCase().includes(query) ||
+          leader.industry.toLowerCase().includes(query) ||
+          leader.location.toLowerCase().includes(query);
+
         const matchInd = ind === 'all' || leader.industry.includes(ind);
         const matchTyp = typ === 'all' || leader.leadershipType === typ;
         const matchLoc = loc === 'all' || leader.location === loc;
         const matchYr = yr === 'all' || leader.year === yr;
         const matchCat = currentCategoryPill === 'all' || leader.category === currentCategoryPill;
+
         return matchQ && matchInd && matchTyp && matchLoc && matchYr && matchCat;
       });
 
@@ -1085,36 +1429,57 @@
       const container = document.getElementById('leadersContainer');
       const likedLeaders = JSON.parse(localStorage.getItem(STORAGE_LEADER_LIKES) || '[]');
       const viewedLeaders = JSON.parse(localStorage.getItem(STORAGE_LEADER_VIEWS) || '[]');
-      const commentsStore = JSON.parse(localStorage.getItem('aura_ldr_comments') || '{}');
 
       if (!dataList.length) {
-        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">No leaders found.</div>`;
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">No business leaders found matching your current filter criteria.</div>`;
         return;
       }
 
       container.innerHTML = dataList.map(leader => {
         const isLiked = likedLeaders.includes(leader.slug);
         const hasViewed = viewedLeaders.includes(leader.slug);
-        const currentLikes = isLiked ? 1 : 0;
-        const currentViews = hasViewed ? 1 : 0;
-        const commentsCount = (commentsStore[leader.slug] || []).length;
+        const currentLikes = leader.likes + (isLiked ? 1 : 0);
+        const currentViews = leader.views + (hasViewed ? 1 : 0);
 
         return `
           <div class="leader-card-item">
-            <div class="leader-card-photo" onclick="loadLeaderProfile('${leader.slug}')"><img src="${leader.photo}" alt="${leader.name}"></div>
+            <div class="leader-card-photo" onclick="loadLeaderProfile('${leader.slug}')">
+              <img src="${leader.photo}" alt="${leader.name}" loading="lazy">
+            </div>
+
             <div class="leader-card-content">
               <span class="leader-card-meta">${leader.industry} &bull; ${leader.locationDetail}</span>
               <h3 class="leader-card-name" onclick="loadLeaderProfile('${leader.slug}')">${leader.name}</h3>
               <div class="leader-card-designation">${leader.designation}</div>
               <div class="leader-card-company">${leader.company}</div>
               <p class="leader-card-desc">${leader.shortDesc}</p>
-              <div class="leader-card-actions"><button class="btn-link" onclick="loadLeaderProfile('${leader.slug}')">View Profile &rarr;</button></div>
+
+              <div class="leader-card-actions">
+                <button class="btn-link" onclick="loadLeaderProfile('${leader.slug}')">View Profile &rarr;</button>
+              </div>
             </div>
+
+            <!-- ENGAGEMENT BAR -->
             <div class="mag-interaction-bar">
-              <button class="interact-btn ${isLiked ? 'liked' : ''}" onclick="handleLeaderLikeClick('${leader.slug}')"><i class="${isLiked ? 'ri-heart-fill' : 'ri-heart-line'}"></i> <span>${currentLikes}</span></button>
-              <button class="interact-btn" onclick="handleLeaderCommentClick('${leader.slug}')"><i class="ri-chat-3-line"></i> <span>${commentsCount}</span></button>
-              <button class="interact-btn" onclick="handleLeaderShareClick('${leader.slug}')"><i class="ri-share-forward-line"></i> Share</button>
-              <div class="view-stat-pill"><i class="ri-eye-line"></i> <span>${currentViews}</span></div>
+              <button class="interact-btn ${isLiked ? 'liked' : ''}" onclick="handleLeaderLikeClick('${leader.slug}')" title="Like Profile">
+                <i class="${isLiked ? 'ri-heart-fill' : 'ri-heart-line'}"></i>
+                <span>${currentLikes}</span>
+              </button>
+
+              <button class="interact-btn" onclick="handleLeaderCommentClick('${leader.slug}')" title="Executive Comments">
+                <i class="ri-chat-3-line"></i>
+                <span>${leader.comments.length}</span>
+              </button>
+
+              <button class="interact-btn" onclick="handleLeaderShareClick('${leader.slug}')" title="Share Profile">
+                <i class="ri-share-forward-line"></i>
+                <span>Share</span>
+              </button>
+
+              <div class="view-stat-pill" title="Unique Readers">
+                <i class="ri-eye-line"></i>
+                <span>${currentViews}</span>
+              </div>
             </div>
           </div>
         `;
@@ -1142,29 +1507,38 @@
         const leader = LEADERS_DATA.find(l => l.slug === slug);
         if (leader) {
           document.getElementById('cmPreviewImg').src = leader.photo;
-          document.getElementById('cmPreviewTag').textContent = leader.industry;
+          document.getElementById('cmPreviewTag').innerHTML = `${leader.industry} &bull; ${leader.year} Edition`;
           document.getElementById('cmPreviewTitle').textContent = leader.name;
-          renderCommentsList(slug);
+          document.getElementById('cmPreviewLeader').textContent = `${leader.designation}, ${leader.company}`;
+          document.getElementById('cmFullProfileBtn').onclick = () => {
+            document.getElementById('commentsModalOverlay').classList.remove('active');
+            loadLeaderProfile(slug);
+          };
+
+          renderCommentsList(leader);
           document.getElementById('commentsModalOverlay').classList.add('active');
         }
       });
     }
 
-    function renderCommentsList(slug) {
+    function renderCommentsList(leader) {
       const box = document.getElementById('commentsListBox');
-      const commentsStore = JSON.parse(localStorage.getItem('aura_ldr_comments') || '{}');
-      const comments = commentsStore[slug] || [];
-
-      if (!comments.length) {
-        box.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem;">No comments yet. Be the first!</div>`;
+      if (!leader.comments.length) {
+        box.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem;">Be the first executive to share your perspective on this leader!</div>`;
         return;
       }
-      box.innerHTML = comments.map(c => `
+
+      box.innerHTML = leader.comments.map(c => `
         <div class="comment-item">
-          <div class="comment-avatar">${c.author.charAt(0).toUpperCase()}</div>
+          <div class="comment-avatar">${getInitials(c.author)}</div>
           <div class="comment-body">
-            <div class="comment-header-row"><div class="comment-author">${c.author}</div></div>
-            <div style="font-size: 0.74rem; color: var(--text-light); margin-bottom: 0.3rem;">${c.role}</div>
+            <div class="comment-header-row">
+              <div class="comment-author">${c.author}</div>
+              <a href="${c.linkedin}" target="_blank" rel="noopener noreferrer" class="linkedin-link-btn" title="View LinkedIn Profile">
+                <i class="ri-linkedin-box-fill"></i>
+              </a>
+            </div>
+            <div class="comment-role">${c.role || 'Executive Member'}</div>
             <div class="comment-text">${c.text}</div>
           </div>
         </div>
@@ -1172,8 +1546,13 @@
     }
 
     function handleLeaderShareClick(slug) {
-      const url = window.location.origin + '/leaders.html?leader=' + slug;
-      navigator.clipboard.writeText(url).then(() => { showToast("Profile link copied to clipboard!"); });
+      const url = window.location.origin + '/leaders.html#profile-' + slug;
+      if (navigator.share) {
+        navigator.share({ title: 'The Aura Review - Executive Profile', url }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(url);
+        showToast("Profile link copied to clipboard!");
+      }
     }
 
     function loadLeaderProfile(slug) {
@@ -1188,10 +1567,33 @@
         if (!leader) return;
 
         document.getElementById('pImg').src = leader.photo;
-        document.getElementById('pName').textContent = leader.name;
-        document.getElementById('pRole').textContent = `${leader.designation}, ${leader.company}`;
-        document.getElementById('pMeta').textContent = `${leader.industry} • ${leader.locationDetail}`;
+        document.getElementById('pName').innerText = leader.name;
+        document.getElementById('pRole').innerText = `${leader.designation}, ${leader.company}`;
+        document.getElementById('pMeta').innerText = `${leader.industry} • ${leader.locationDetail}`;
+        document.getElementById('pCategory').innerText = `${leader.category} • ${leader.year} Feature`;
         document.getElementById('pBio').innerHTML = leader.bio;
+        document.getElementById('pQuote').innerText = `"${leader.quote}"`;
+
+        document.getElementById('pTimeline').innerHTML = leader.timeline.map(item => `
+          <div class="timeline-node">
+            <div class="timeline-year">${item.year}</div>
+            <div style="font-size: 0.98rem; color: var(--text-muted);">${item.desc}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('pAchievements').innerHTML = leader.achievements.map(ach => `
+          <div style="display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; color: var(--text-main);">
+            <i class="ri-checkbox-circle-fill" style="color: var(--maroon-accent); margin-top: 0.2rem;"></i>
+            <span>${ach}</span>
+          </div>
+        `).join('');
+
+        document.getElementById('pQA').innerHTML = leader.qa.map(item => `
+          <div class="qa-box">
+            <h4>${item.q}</h4>
+            <p style="margin: 0; font-size: 1rem;">${item.a}</p>
+          </div>
+        `).join('');
 
         document.getElementById('leadersArchiveView').style.display = 'none';
         document.getElementById('singleProfileView').classList.add('active');
