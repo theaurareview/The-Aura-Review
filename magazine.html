@@ -390,7 +390,6 @@
       width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;
     }
     
-    /* Perfect auto-adjust cover photo container without cutting */
     .modal-image-col {
       background-color: #121214;
       background-size: contain;
@@ -593,16 +592,15 @@
     let activeMagId = null;
 
     document.addEventListener('DOMContentLoaded', () => {
-      magazineDatabase = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
+      const customMags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
+      magazineDatabase = customMags;
       renderMagazines(currentTabCategory);
 
-      // Pre-fill user info if saved previously
       const savedName = localStorage.getItem('aura_saved_name');
       const savedLinkedin = localStorage.getItem('aura_saved_linkedin');
       if (savedName) document.getElementById('commentAuthor').value = savedName;
       if (savedLinkedin) document.getElementById('commentLinkedin').value = savedLinkedin;
 
-      // Mobile Menu
       const toggle = document.getElementById('mobileToggle');
       const drawer = document.getElementById('mobileMenu');
       const backdrop = document.getElementById('menuBackdrop');
@@ -612,7 +610,6 @@
       if(close) close.addEventListener('click', () => toggleM(false));
       if(backdrop) backdrop.addEventListener('click', () => toggleM(false));
 
-      // Tab Buttons Filter
       const tabBtns = document.querySelectorAll('.pipe-tab-btn');
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -639,7 +636,7 @@
         : magazineDatabase.filter(m => m.category === category);
 
       if (!filtered.length) {
-        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No custom magazines published yet. Use the Admin Panel to publish editions.</p>`;
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No magazines published yet. Use the Admin Panel to publish your editions.</p>`;
         return;
       }
 
@@ -793,7 +790,6 @@
       if (!text) return;
       if (!author) author = "Reader";
 
-      // Save user info in localStorage so they don't have to re-type
       localStorage.setItem('aura_saved_name', author);
       if (linkedin) {
         if (!linkedin.startsWith('http://') && !linkedin.startsWith('https://')) {
@@ -820,7 +816,6 @@
         row.style.display = 'none';
       } else {
         row.style.display = 'flex';
-        // Pre-fill reply author inputs from saved storage
         const savedName = localStorage.getItem('aura_saved_name') || '';
         const savedLinkedin = localStorage.getItem('aura_saved_linkedin') || '';
         const rAuth = document.getElementById(`replyAuthor_${idx}`);
