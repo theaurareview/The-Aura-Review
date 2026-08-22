@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Workspace | The Aura Review</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #FAF7F6;
+      --bg-subtle: #F3ECE9;
+      --bg-tinted: #F7EFEF;
+      --maroon-primary: #4A0E17;
+      --maroon-deep: #2A0409;
+      --maroon-rich: #38070F;
+      --maroon-light: #6A1E29;
+      --maroon-accent: #8E2B38;
+      --maroon-soft: rgba(74, 14, 23, 0.05);
+      --maroon-border: rgba(74, 14, 23, 0.14);
+      --text-main: #2A0409;
+      --text-muted: #5C4649;
+      --text-light: #8E787B;
+      --border-light: rgba(74, 14, 23, 0.09);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --shadow-sm: 0 4px 15px rgba(74, 14, 23, 0.05);
+      --shadow-md: 0 14px 35px rgba(74, 14, 23, 0.08);
+      --shadow-lg: 0 22px 50px rgba(74, 14, 23, 0.15);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-secondary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* AUTHENTICATION OVERLAY */
+    #authOverlay {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, #180205 0%, #3B0810 100%);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999999; padding: 1.5rem;
+    }
+
+    .auth-card {
+      background: #FFFFFF;
+      border: 1px solid var(--maroon-border);
+      border-radius: 10px;
+      padding: 3.5rem 2.5rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .auth-logo {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--maroon-deep);
+      margin-bottom: 0.2rem;
+    }
+
+    /* APP LAYOUT */
+    #adminApp {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 290px;
+      background: var(--maroon-deep);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      top: 0; bottom: 0; left: 0;
+      z-index: 1000;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sidebar-header {
+      padding: 2.2rem 1.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .nav-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.9rem 1.2rem;
+      background: transparent;
+      border: none;
+      color: #E2D3D5;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    .nav-btn.active i {
+      color: #E2B6BC;
+    }
+
+    .main-workspace {
+      margin-left: 290px;
+      flex: 1;
+      padding: 2.8rem 3.5rem;
+      max-width: 1400px;
+    }
+
+    .view-panel {
+      display: none;
+    }
+
+    .view-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .panel-header h2 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      color: var(--maroon-deep);
+      line-height: 1.1;
+    }
+
+    /* FORMS & UI COMPONENTS */
+    .card-panel {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .field-group label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--maroon-deep);
+    }
+
+    .field-input, .field-select, .field-textarea {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid var(--maroon-border);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      color: var(--maroon-deep);
+      background: var(--bg-secondary);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .field-input:focus, .field-select:focus, .field-textarea:focus {
+      background: #FFFFFF;
+      border-color: var(--maroon-primary);
+      box-shadow: 0 0 0 3px var(--maroon-soft);
+    }
+
+    /* MICROSOFT WORD STYLE FULL RICH TEXT TOOLBAR */
+    .word-editor-container {
+      border: 1px solid var(--maroon-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #FFFFFF;
+      margin-top: 0.5rem;
+    }
+
+    .word-toolbar-ribbon {
+      background: #F8F4F3;
+      border-bottom: 1px solid var(--maroon-border);
+      padding: 0.6rem 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .ribbon-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      width: 32px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--maroon-deep);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .ribbon-btn:hover {
+      background: var(--maroon-soft);
+      border-color: var(--maroon-primary);
+    }
+
+    .ribbon-select {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      padding: 0.35rem 0.6rem;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--maroon-deep);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .ribbon-divider {
+      width: 1px;
+      height: 22px;
+      background: var(--maroon-border);
+      margin: 0 0.3rem;
+    }
+
+    .word-canvas-sheet {
+      min-height: 380px;
+      max-height: 600px;
+      overflow-y: auto;
+      padding: 2.2rem 2.5rem;
+      outline: none;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-main);
+      background: #FFFFFF;
+    }
+
+    .word-canvas-sheet:focus {
+      background: #FCFAFA;
+    }
+
+    .word-canvas-sheet blockquote {
+      border-left: 3px solid var(--maroon-accent);
+      padding: 1rem 1.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--maroon-deep);
+      background: var(--bg-secondary);
+      margin: 1.5rem 0;
+    }
+
+    /* UPLOAD / DROP ZONES */
+    .file-drop-card {
+      background: var(--bg-secondary);
+      border: 2px dashed var(--maroon-border);
+      border-radius: 6px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .file-drop-card:hover {
+      border-color: var(--maroon-primary);
+      background: var(--maroon-soft);
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 2.2rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      background: var(--maroon-primary);
+      color: #FFFFFF;
+      transition: var(--transition);
+    }
+
+    .btn-action:hover {
+      background: var(--maroon-deep);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    /* INVENTORY TABLES */
+    .data-table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .admin-table th {
+      padding: 1rem;
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      border-bottom: 2px solid var(--maroon-border);
+    }
+
+    .admin-table td {
+      padding: 1.1rem 1rem;
+      font-size: 0.92rem;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: middle;
+    }
+
+    .table-thumb-box {
+      width: 50px;
+      height: 65px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #151515;
+    }
+
+    .table-thumb-box img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .btn-del {
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      color: #DC2626;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-del:hover {
+      background: #DC2626; color: #FFFFFF;
+    }
+
+    .toast-popup {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--maroon-deep); color: #FFFFFF;
+      padding: 1rem 2rem; border-radius: 30px;
+      font-size: 0.88rem; font-weight: 700;
+      box-shadow: var(--shadow-lg);
+      display: none; z-index: 1000000;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar { width: 80px; }
+      .sidebar-brand h1, .sidebar-brand span, .nav-btn span { display: none; }
+      .main-workspace { margin-left: 80px; padding: 2rem; }
+      .form-grid-2, .form-grid-3, .form-grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AUTHENTICATION OVERLAY (Akashop@000) -->
+  <div id="authOverlay">
+    <div class="auth-card">
+      <span style="font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700;">Secure Central Workspace</span>
+      <div class="auth-logo">The Aura Review</div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem;">Enter administrator master password to manage content.</p>
+
+      <form id="adminLoginForm" onsubmit="verifyPassword(event)">
+        <div class="field-group" style="margin-bottom: 1.5rem; text-align: left;">
+          <label for="adminPass">Master Password</label>
+          <input type="password" id="adminPass" class="field-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-action" style="width: 100%;">
+          <i class="ri-shield-keyhole-fill"></i> Unlock Workspace
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN APP -->
+  <div id="adminApp">
+    
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <div class="auth-logo" style="color: #FFFFFF; font-size: 1.5rem;">The Aura Review</div>
+          <span style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #E2B6BC; font-weight: 600;">Control Console</span>
+        </div>
+
+        <ul class="nav-list">
+          <li>
+            <button class="nav-btn active" onclick="switchAdminTab('panel-magazines', this)">
+              <i class="ri-booklet-line"></i> <span>Magazines & Flipbook</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" onclick="switchAdminTab('panel-companies', this)">
+              <i class="ri-building-line"></i> <span>Companies & Editions</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" onclick="switchAdminTab('panel-leaders', this)">
+              <i class="ri-user-star-line"></i> <span>Featured Leaders</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div style="padding: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <button class="nav-btn" onclick="adminSignOut()" style="color: #E2B6BC;">
+          <i class="ri-logout-box-line"></i> <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- WORKSPACE PANELS -->
+    <main class="main-workspace">
+
+      <!-- =========================================================================
+           1. MAGAZINES & FLIPBOOK MANAGER
+           ========================================================================= -->
+      <section id="panel-magazines" class="view-panel active">
+        <div class="panel-header">
+          <div>
+            <span class="section-tag">Digital Publications</span>
+            <h2>Magazine Edition Publisher</h2>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <form id="magazineUploadForm" onsubmit="handleMagazinePublish(event)">
+            
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="magTitle">Magazine Edition Title *</label>
+                <input type="text" id="magTitle" class="field-input" placeholder="e.g. The Most Dynamic Real Estate Entrepreneurs to Watch in 2026" required>
+              </div>
+              <div class="field-group">
+                <label for="magTag">Edition Volume Tag *</label>
+                <input type="text" id="magTag" class="field-input" placeholder="e.g. Real Estate Edition • Vol. XVI" required>
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="field-group">
+                <label for="magCategory">Reader Category *</label>
+                <select id="magCategory" class="field-select">
+                  <option value="all">All Leaders</option>
+                  <option value="women">Women Leaders</option>
+                  <option value="men">Men Leaders</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="magIndustry">Target Industry (24 Sectors) *</label>
+                <select id="magIndustry" class="field-select" required>
+                  <option value="Technology & Software">Technology & Software</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence & Automation</option>
+                  <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                  <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
+                  <option value="Finance & Banking">Finance & Banking</option>
+                  <option value="Private Equity & VC">Private Equity & Venture Capital</option>
+                  <option value="Real Estate & Development">Real Estate & Development</option>
+                  <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
+                  <option value="Aviation & Aerospace">Aviation & Aerospace</option>
+                  <option value="Space Exploration">Space Exploration & Satellites</option>
+                  <option value="Automotive & EV">Automotive & EV Mobility</option>
+                  <option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
+                  <option value="Manufacturing & Robotics">Manufacturing & Robotics</option>
+                  <option value="Cybersecurity & Defense">Cybersecurity & Defense</option>
+                  <option value="Consulting & Advisory">Consulting & Professional Services</option>
+                  <option value="Education & EdTech">Education & EdTech</option>
+                  <option value="Retail & E-Commerce">Retail & E-Commerce</option>
+                  <option value="Media & Entertainment">Media & Entertainment</option>
+                  <option value="Hospitality & Luxury Travel">Hospitality & Luxury Travel</option>
+                  <option value="Agritech & Sustainable Food">Agritech & Sustainable Food</option>
+                  <option value="Telecommunications & 6G">Telecommunications & 6G</option>
+                  <option value="Next-Gen Materials">Next-Gen Materials & Polymers</option>
+                  <option value="Critical Minerals & Metals">Critical Minerals & Metals</option>
+                  <option value="Marketing & PR">Marketing & Strategic PR</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="magCountry">Country / Target Market *</label>
+                <select id="magCountry" class="field-select" required>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="India">India</option>
+                  <option value="Germany">Germany</option>
+                  <option value="United Arab Emirates">United Arab Emirates (UAE)</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Australia">Australia</option>
+                  <option value="France">France</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option value="Sweden">Sweden</option>
+                  <option value="Saudi Arabia">Saudi Arabia</option>
+                  <option value="Global">Global / Multi-Market</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="magLeaderName">Featured Leader Name & Role *</label>
+                <input type="text" id="magLeaderName" class="field-input" placeholder="e.g. Jerome Hairston (CEO & Realtor, Hairston Properties)" required>
+              </div>
+              <div class="field-group">
+                <label for="magHighlights">Key Editorial Bullet Points (Comma Separated)</label>
+                <input type="text" id="magHighlights" class="field-input" placeholder="e.g. 15+ Commercial Profiles, Capital Flow Projections, LEED Frameworks">
+              </div>
+            </div>
+
+            <!-- DIGITAL FLIPBOOK PDF & COVER MEDIA UPLOAD -->
+            <div class="form-grid-2" style="margin: 1.5rem 0;">
+              <div class="field-group">
+                <label>Front Cover Poster Photo *</label>
+                <div class="file-drop-card" onclick="document.getElementById('magCoverFileInput').click()">
+                  <i class="ri-image-add-line" style="font-size: 2.2rem; color: var(--maroon-primary);"></i>
+                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Select Cover Image (JPG / PNG)</p>
+                  <input type="file" id="magCoverFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(event, 'magPreviewImg')">
+                  <img id="magPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px; border:1px solid var(--maroon-border);" alt="Cover Preview">
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label>Flipbook Full PDF Document *</label>
+                <div class="file-drop-card" onclick="document.getElementById('magPdfFileInput').click()">
+                  <i class="ri-file-pdf-line" style="font-size: 2.2rem; color: #DC2626;"></i>
+                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Select Magazine PDF File</p>
+                  <p id="magPdfStatus" style="font-size: 0.8rem; color: var(--maroon-accent); font-weight: 700; margin-top: 0.3rem;">No PDF Selected</p>
+                  <input type="file" id="magPdfFileInput" accept="application/pdf" style="display:none;" onchange="handlePdfSelect(event, 'magPdfStatus')">
+                </div>
+              </div>
+            </div>
+
+            <!-- MICROSOFT WORD RICH TEXT ARTICLE CANVAS -->
+            <div class="field-group" style="margin-top: 2rem;">
+              <label>Comprehensive Editorial Article Body (Word Editor)</label>
+              
+              <div class="word-editor-container">
+                <div class="word-toolbar-ribbon">
+                  <!-- Block Formats -->
+                  <select class="ribbon-select" onchange="runWordCmd('formatBlock', this.value); this.selectedIndex=0;">
+                    <option value="" selected disabled>Format / Heading</option>
+                    <option value="h2">Heading 2 (Section Title)</option>
+                    <option value="h3">Heading 3 (Sub-header)</option>
+                    <option value="h4">Heading 4 (Minor Title)</option>
+                    <option value="p">Paragraph Body</option>
+                  </select>
+
+                  <select class="ribbon-select" onchange="runWordCmd('fontSize', this.value); this.selectedIndex=0;">
+                    <option value="" selected disabled>Font Size</option>
+                    <option value="3">Small (14px)</option>
+                    <option value="4">Normal (16px)</option>
+                    <option value="5">Medium (18px)</option>
+                    <option value="6">Large (24px)</option>
+                  </select>
+
+                  <div class="ribbon-divider"></div>
+
+                  <!-- Styling Buttons -->
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')" title="Bold"><i class="ri-bold"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')" title="Italic"><i class="ri-italic"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('underline')" title="Underline"><i class="ri-underline"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('strikeThrough')" title="Strikethrough"><i class="ri-strikethrough"></i></button>
+
+                  <div class="ribbon-divider"></div>
+
+                  <!-- Alignment & Lists -->
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyLeft')" title="Align Left"><i class="ri-align-left"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyCenter')" title="Align Center"><i class="ri-align-center"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyRight')" title="Align Right"><i class="ri-align-right"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertUnorderedList')" title="Bullet List"><i class="ri-list-unordered"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertOrderedList')" title="Numbered List"><i class="ri-list-ordered"></i></button>
+
+                  <div class="ribbon-divider"></div>
+
+                  <!-- Inserts -->
+                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('magEditorBody')" title="Executive Quote Block"><i class="ri-double-quotes-l"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="addLinkPrompt()" title="Insert Hyperlink"><i class="ri-link"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('removeFormat')" title="Clear Formatting"><i class="ri-format-clear"></i></button>
+                </div>
+
+                <div id="magEditorBody" class="word-canvas-sheet" contenteditable="true">
+                  <h2>The Architecture of Enterprise Resilience</h2>
+                  <p>In an era defined by rapid macroeconomic fluctuations and institutional capital reallocation, executive leadership in commercial real estate demands far more than traditional portfolio oversight...</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button type="submit" class="btn-action">
+                <i class="ri-upload-cloud-fill"></i> Deploy Magazine Issue
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card-panel">
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Published Magazines Archive</h3>
+          <div class="data-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Cover</th>
+                  <th>Edition Title</th>
+                  <th>Industry</th>
+                  <th>Target Country</th>
+                  <th>Flipbook Source</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="magazinesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           2. COMPANIES & DIGITAL EDITIONS MANAGER
+           ========================================================================= -->
+      <section id="panel-companies" class="view-panel">
+        <div class="panel-header">
+          <div>
+            <span class="section-tag">Corporate Ecosystems</span>
+            <h2>Company Profile & Brochure Publisher</h2>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <form id="companyUploadForm" onsubmit="handleCompanyPublish(event)">
+            
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="compName">Company Name *</label>
+                <input type="text" id="compName" class="field-input" placeholder="e.g. Synapse Global" required>
+              </div>
+              <div class="field-group">
+                <label for="compTagline">Corporate Tagline / Value Proposition *</label>
+                <input type="text" id="compTagline" class="field-input" placeholder="e.g. Architecting Resilient Enterprise Intelligence" required>
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="field-group">
+                <label for="compCategoryFilter">Feature Type *</label>
+                <select id="compCategoryFilter" class="field-select">
+                  <option value="featured">Featured Companies</option>
+                  <option value="emerging">Emerging Companies</option>
+                  <option value="leaders">Industry Leaders</option>
+                  <option value="special">Special Corporate Edition</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="compIndustry">Sector (24 Industries) *</label>
+                <select id="compIndustry" class="field-select" required>
+                  <option value="Technology & Software">Technology & Software</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence & Automation</option>
+                  <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                  <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
+                  <option value="Finance & Banking">Finance & Banking</option>
+                  <option value="Private Equity & VC">Private Equity & VC</option>
+                  <option value="Real Estate & Development">Real Estate & Development</option>
+                  <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
+                  <option value="Aviation & Aerospace">Aviation & Aerospace</option>
+                  <option value="Space Exploration">Space Exploration</option>
+                  <option value="Automotive & EV">Automotive & EV Mobility</option>
+                  <option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
+                  <option value="Manufacturing & Robotics">Manufacturing & Robotics</option>
+                  <option value="Cybersecurity & Defense">Cybersecurity & Defense</option>
+                  <option value="Consulting & Advisory">Consulting & Advisory</option>
+                  <option value="Education & EdTech">Education & EdTech</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="compCountry">Headquarters / Country *</label>
+                <select id="compCountry" class="field-select" required>
+                  <option value="United States">United States (New York / SF)</option>
+                  <option value="United Kingdom">United Kingdom (London)</option>
+                  <option value="India">India (Bengaluru / Mumbai)</option>
+                  <option value="Germany">Germany (Berlin / Munich)</option>
+                  <option value="United Arab Emirates">UAE (Dubai / Abu Dhabi)</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="Canada">Canada (Toronto)</option>
+                  <option value="Switzerland">Switzerland (Zurich)</option>
+                  <option value="Sweden">Sweden (Stockholm)</option>
+                  <option value="Japan">Japan (Tokyo)</option>
+                  <option value="Global">Global Enterprise</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="field-group">
+                <label for="compLeaderName">CEO / Founder Name *</label>
+                <input type="text" id="compLeaderName" class="field-input" placeholder="e.g. Elena Vance" required>
+              </div>
+              <div class="field-group">
+                <label for="compLeaderRole">Executive Title *</label>
+                <input type="text" id="compLeaderRole" class="field-input" placeholder="e.g. Chief Executive Officer" required>
+              </div>
+              <div class="field-group">
+                <label for="compFoundedYear">Founded Year</label>
+                <input type="text" id="compFoundedYear" class="field-input" placeholder="e.g. 2018">
+              </div>
+            </div>
+
+            <!-- DIGITAL BROCHURE FLIPBOOK PDF & LOGO MEDIA -->
+            <div class="form-grid-2" style="margin: 1.5rem 0;">
+              <div class="field-group">
+                <label>Company Cover / HQ Photo *</label>
+                <div class="file-drop-card" onclick="document.getElementById('compCoverFileInput').click()">
+                  <i class="ri-building-4-line" style="font-size: 2.2rem; color: var(--maroon-primary);"></i>
+                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Upload HQ / Edition Photo</p>
+                  <input type="file" id="compCoverFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(event, 'compPreviewImg')">
+                  <img id="compPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px;" alt="Company Preview">
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label>Company Digital Edition (PDF Flipbook) *</label>
+                <div class="file-drop-card" onclick="document.getElementById('compPdfFileInput').click()">
+                  <i class="ri-file-pdf-line" style="font-size: 2.2rem; color: #DC2626;"></i>
+                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Select Company Report PDF</p>
+                  <p id="compPdfStatus" style="font-size: 0.8rem; color: var(--maroon-accent); font-weight: 700; margin-top: 0.3rem;">No PDF Selected</p>
+                  <input type="file" id="compPdfFileInput" accept="application/pdf" style="display:none;" onchange="handlePdfSelect(event, 'compPdfStatus')">
+                </div>
+              </div>
+            </div>
+
+            <!-- WORD RICH TEXT FOR COMPANY CASE STUDY -->
+            <div class="field-group" style="margin-top: 2rem;">
+              <label>Corporate Analysis & Case Study (Word Editor)</label>
+              
+              <div class="word-editor-container">
+                <div class="word-toolbar-ribbon">
+                  <select class="ribbon-select" onchange="runWordCmd('formatBlock', this.value); this.selectedIndex=0;">
+                    <option value="" selected disabled>Heading Block</option>
+                    <option value="h2">Heading 2</option>
+                    <option value="h3">Heading 3</option>
+                    <option value="p">Paragraph</option>
+                  </select>
+
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')"><i class="ri-bold"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')"><i class="ri-italic"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('underline')"><i class="ri-underline"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyLeft')"><i class="ri-align-left"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyCenter')"><i class="ri-align-center"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertUnorderedList')"><i class="ri-list-unordered"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('compEditorBody')"><i class="ri-double-quotes-l"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="addLinkPrompt()"><i class="ri-link"></i></button>
+                </div>
+
+                <div id="compEditorBody" class="word-canvas-sheet" contenteditable="true">
+                  <h2>Architecting Resilient Enterprise Intelligence</h2>
+                  <p>In an economic landscape reshaped by high-frequency cognitive automation, enterprise architecture cannot afford opacity...</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button type="submit" class="btn-action">
+                <i class="ri-building-line"></i> Save Company Profile
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card-panel">
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Active Companies Roster</h3>
+          <div class="data-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Company Name</th>
+                  <th>Industry</th>
+                  <th>Location</th>
+                  <th>Flipbook Source</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="companiesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           3. FEATURED LEADERS MANAGER
+           ========================================================================= -->
+      <section id="panel-leaders" class="view-panel">
+        <div class="panel-header">
+          <div>
+            <span class="section-tag">Executive Profiles</span>
+            <h2>Business Leader & Executive Publisher</h2>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <form id="leaderUploadForm" onsubmit="handleLeaderPublish(event)">
+            
+            <div class="form-grid-3">
+              <div class="field-group">
+                <label for="ldrName">Leader Full Name *</label>
+                <input type="text" id="ldrName" class="field-input" placeholder="e.g. Dr. Aris Thorne" required>
+              </div>
+              <div class="field-group">
+                <label for="ldrRole">Executive Designation *</label>
+                <input type="text" id="ldrRole" class="field-input" placeholder="e.g. Founder & CEO" required>
+              </div>
+              <div class="field-group">
+                <label for="ldrCompany">Company / Enterprise *</label>
+                <input type="text" id="ldrCompany" class="field-input" placeholder="e.g. GeneMatrix Health" required>
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="field-group">
+                <label for="ldrIndustry">Sector (24 Industries) *</label>
+                <select id="ldrIndustry" class="field-select" required>
+                  <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                  <option value="Biotechnology & Pharma">Biotechnology & Pharma</option>
+                  <option value="Technology & Software">Technology & Software</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence & Tech</option>
+                  <option value="Finance & Banking">Finance & Banking</option>
+                  <option value="Private Equity & VC">Private Equity & VC</option>
+                  <option value="Real Estate & Development">Real Estate & Development</option>
+                  <option value="Clean Energy & Sustainability">Clean Energy & Sustainability</option>
+                  <option value="Aviation & Aerospace">Aviation & Aerospace</option>
+                  <option value="Space Exploration">Space Exploration</option>
+                  <option value="Automotive & EV">Automotive & EV Mobility</option>
+                  <option value="Consulting & Advisory">Consulting & Advisory</option>
+                  <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="ldrCountry">Country / Base *</label>
+                <select id="ldrCountry" class="field-select" required>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="India">India</option>
+                  <option value="Germany">Germany</option>
+                  <option value="United Arab Emirates">United Arab Emirates</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Sweden">Sweden</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option value="France">France</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="ldrLinkedin">LinkedIn Profile URL</label>
+                <input type="url" id="ldrLinkedin" class="field-input" placeholder="https://linkedin.com/in/username">
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin: 1.5rem 0;">
+              <div class="field-group">
+                <label for="ldrQuote">Executive Philosophy Quote *</label>
+                <input type="text" id="ldrQuote" class="field-input" placeholder='e.g. "True innovation is measured by tangible clinical availability."' required>
+              </div>
+              <div class="field-group">
+                <label>Portrait Headshot Photo *</label>
+                <div class="file-drop-card" onclick="document.getElementById('ldrPhotoFileInput').click()">
+                  <i class="ri-user-add-line" style="font-size: 2.2rem; color: var(--maroon-primary);"></i>
+                  <p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.4rem;">Upload Uncut Headshot</p>
+                  <input type="file" id="ldrPhotoFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(event, 'ldrPreviewImg')">
+                  <img id="ldrPreviewImg" style="max-height: 140px; margin: 0.8rem auto 0 auto; display:none; border-radius:4px;" alt="Leader Preview">
+                </div>
+              </div>
+            </div>
+
+            <!-- WORD RICH TEXT FOR LEADER INTERVIEW -->
+            <div class="field-group" style="margin-top: 1rem;">
+              <label>In-Depth Editorial Biography & Q&A (Word Editor)</label>
+              
+              <div class="word-editor-container">
+                <div class="word-toolbar-ribbon">
+                  <select class="ribbon-select" onchange="runWordCmd('formatBlock', this.value); this.selectedIndex=0;">
+                    <option value="" selected disabled>Heading Block</option>
+                    <option value="h2">Heading 2</option>
+                    <option value="h3">Heading 3</option>
+                    <option value="p">Paragraph</option>
+                  </select>
+
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('bold')"><i class="ri-bold"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('italic')"><i class="ri-italic"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('underline')"><i class="ri-underline"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('justifyLeft')"><i class="ri-align-left"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="runWordCmd('insertUnorderedList')"><i class="ri-list-unordered"></i></button>
+                  <button type="button" class="ribbon-btn" onclick="addQuoteBlock('ldrEditorBody')"><i class="ri-double-quotes-l"></i></button>
+                </div>
+
+                <div id="ldrEditorBody" class="word-canvas-sheet" contenteditable="true">
+                  <h2>Pioneering Precision Cellular Oncology</h2>
+                  <p>Dr. Aris Thorne has spent over fifteen years leading translational oncology research and commercial biotechnology initiatives across North America and Europe...</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button type="submit" class="btn-action">
+                <i class="ri-user-star-fill"></i> Save Executive Profile
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card-panel">
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Active Leaders Roster</h3>
+          <div class="data-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Portrait</th>
+                  <th>Leader Name</th>
+                  <th>Company & Title</th>
+                  <th>Industry</th>
+                  <th>Country</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="leadersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast-popup">Notification</div>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    const MASTER_PASS = "Akashop@000";
+
+    let tempCoverBase64 = "";
+    let tempPdfName = "";
+
+    function verifyPassword(e) {
+      e.preventDefault();
+      const input = document.getElementById('adminPass').value;
+      if (input === MASTER_PASS) {
+        sessionStorage.setItem('AURA_ADMIN_AUTHENTICATED', 'true');
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('adminApp').style.display = 'flex';
+        renderTables();
+        showToast("Authenticated as Super Admin");
+      } else {
+        alert("Incorrect password. Access denied.");
+      }
+    }
+
+    function adminSignOut() {
+      sessionStorage.removeItem('AURA_ADMIN_AUTHENTICATED');
+      location.reload();
+    }
+
+    function switchAdminTab(panelId, btn) {
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(panelId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* WORD COMMAND EXECUTION */
+    function runWordCmd(command, value = null) {
+      document.execCommand(command, false, value);
+    }
+
+    function addQuoteBlock(editorId) {
+      const quoteHtml = `<blockquote>"Insert executive insight here..." — Leadership Team</blockquote><p></p>`;
+      document.getElementById(editorId).focus();
+      document.execCommand('insertHTML', false, quoteHtml);
+    }
+
+    function addLinkPrompt() {
+      const url = prompt("Enter hyperlink URL (e.g. https://company.com):");
+      if (url) runWordCmd('createLink', url);
+    }
+
+    /* FILE HANDLERS */
+    function handleImageFile(e, imgElemId) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          tempCoverBase64 = evt.target.result;
+          const img = document.getElementById(imgElemId);
+          img.src = tempCoverBase64;
+          img.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handlePdfSelect(e, statusElemId) {
+      const file = e.target.files[0];
+      if (file) {
+        tempPdfName = file.name;
+        document.getElementById(statusElemId).innerText = `PDF Loaded: ${file.name} (${(file.size / (1024*1024)).toFixed(2)} MB)`;
+      }
+    }
+
+    /* 1. PUBLISH MAGAZINE */
+    function handleMagazinePublish(e) {
+      e.preventDefault();
+      const title = document.getElementById('magTitle').value.trim();
+      const tag = document.getElementById('magTag').value.trim();
+      const category = document.getElementById('magCategory').value;
+      const industry = document.getElementById('magIndustry').value;
+      const country = document.getElementById('magCountry').value;
+      const leader = document.getElementById('magLeaderName').value.trim();
+      const highlights = document.getElementById('magHighlights').value.split(',').map(s => s.trim()).filter(Boolean);
+      const content = document.getElementById('magEditorBody').innerHTML;
+
+      const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
+      mags.unshift({
+        id: "mag-" + Date.now(),
+        title,
+        editionTag: tag,
+        category,
+        industry,
+        country,
+        featuredLeader: leader,
+        highlights,
+        coverImage: tempCoverBase64 || "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+        pdfSource: tempPdfName || "magazine_flipbook.pdf",
+        articleHtml: content,
+        views: 1,
+        likes: 0,
+        comments: []
+      });
+
+      localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(mags));
+      document.getElementById('magazineUploadForm').reset();
+      document.getElementById('magPreviewImg').style.display = 'none';
+      document.getElementById('magPdfStatus').innerText = 'No PDF Selected';
+      tempCoverBase64 = "";
+      tempPdfName = "";
+
+      renderTables();
+      showToast("Magazine Edition published to live catalog!");
+    }
+
+    /* 2. PUBLISH COMPANY */
+    function handleCompanyPublish(e) {
+      e.preventDefault();
+      const name = document.getElementById('compName').value.trim();
+      const tagline = document.getElementById('compTagline').value.trim();
+      const category = document.getElementById('compCategoryFilter').value;
+      const industry = document.getElementById('compIndustry').value;
+      const location = document.getElementById('compCountry').value;
+      const leaderName = document.getElementById('compLeaderName').value.trim();
+      const leaderRole = document.getElementById('compLeaderRole').value.trim();
+      const founded = document.getElementById('compFoundedYear').value.trim() || "2020";
+      const content = document.getElementById('compEditorBody').innerHTML;
+
+      const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
+      comps.unshift({
+        slug: name.toLowerCase().replace(/\s+/g, '-'),
+        name,
+        tagline,
+        category,
+        industry,
+        location,
+        founded,
+        leader: { name: leaderName, role: leaderRole },
+        coverImage: tempCoverBase64 || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+        pdfSource: tempPdfName || "company_brochure.pdf",
+        bio: content,
+        views: 1,
+        likes: 0,
+        comments: []
+      });
+
+      localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(comps));
+      document.getElementById('companyUploadForm').reset();
+      document.getElementById('compPreviewImg').style.display = 'none';
+      document.getElementById('compPdfStatus').innerText = 'No PDF Selected';
+      tempCoverBase64 = "";
+      tempPdfName = "";
+
+      renderTables();
+      showToast("Company Edition published!");
+    }
+
+    /* 3. PUBLISH LEADER */
+    function handleLeaderPublish(e) {
+      e.preventDefault();
+      const name = document.getElementById('ldrName').value.trim();
+      const role = document.getElementById('ldrRole').value.trim();
+      const company = document.getElementById('ldrCompany').value.trim();
+      const industry = document.getElementById('ldrIndustry').value;
+      const country = document.getElementById('ldrCountry').value;
+      const linkedin = document.getElementById('ldrLinkedin').value.trim();
+      const quote = document.getElementById('ldrQuote').value.trim();
+      const bio = document.getElementById('ldrEditorBody').innerHTML;
+
+      const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
+      leaders.unshift({
+        slug: name.toLowerCase().replace(/\s+/g, '-'),
+        name,
+        designation: role,
+        company,
+        industry,
+        location: country,
+        linkedin,
+        quote,
+        bio,
+        photo: tempCoverBase64 || "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
+        views: 1,
+        likes: 0,
+        comments: []
+      });
+
+      localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(leaders));
+      document.getElementById('leaderUploadForm').reset();
+      document.getElementById('ldrPreviewImg').style.display = 'none';
+      tempCoverBase64 = "";
+
+      renderTables();
+      showToast("Leader Profile deployed to Global Directory!");
+    }
+
+    /* RENDER TABLES */
+    function renderTables() {
+      // 1. Magazines
+      const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
+      const magTbody = document.getElementById('magazinesTableBody');
+      if (!mags.length) {
+        magTbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No custom magazines uploaded yet.</td></tr>`;
+      } else {
+        magTbody.innerHTML = mags.map((m, idx) => `
+          <tr>
+            <td><div class="table-thumb-box"><img src="${m.coverImage}"></div></td>
+            <td><strong>${m.title}</strong><br><small style="color:var(--text-light);">${m.editionTag}</small></td>
+            <td>${m.industry}</td>
+            <td>${m.country}</td>
+            <td><span style="color:#DC2626; font-weight:700;"><i class="ri-file-pdf-fill"></i> ${m.pdfSource}</span></td>
+            <td><button class="btn-del" onclick="deleteMag(${idx})">Delete</button></td>
+          </tr>
+        `).join('');
+      }
+
+      // 2. Companies
+      const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
+      const compTbody = document.getElementById('companiesTableBody');
+      if (!comps.length) {
+        compTbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No companies deployed yet.</td></tr>`;
+      } else {
+        compTbody.innerHTML = comps.map((c, idx) => `
+          <tr>
+            <td><div class="table-thumb-box"><img src="${c.coverImage}"></div></td>
+            <td><strong>${c.name}</strong><br><small style="color:var(--text-light);">${c.leader.name} (${c.leader.role})</small></td>
+            <td>${c.industry}</td>
+            <td>${c.location}</td>
+            <td><span style="color:#DC2626; font-weight:700;"><i class="ri-file-pdf-fill"></i> ${c.pdfSource}</span></td>
+            <td><button class="btn-del" onclick="deleteComp(${idx})">Delete</button></td>
+          </tr>
+        `).join('');
+      }
+
+      // 3. Leaders
+      const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
+      const ldrTbody = document.getElementById('leadersTableBody');
+      if (!leaders.length) {
+        ldrTbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No leaders added yet.</td></tr>`;
+      } else {
+        ldrTbody.innerHTML = leaders.map((l, idx) => `
+          <tr>
+            <td><div class="table-thumb-box"><img src="${l.photo}"></div></td>
+            <td><strong>${l.name}</strong></td>
+            <td>${l.designation}, ${l.company}</td>
+            <td>${l.industry}</td>
+            <td>${l.location}</td>
+            <td><button class="btn-del" onclick="deleteLdr(${idx})">Delete</button></td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    function deleteMag(idx) {
+      if (confirm("Delete this magazine edition permanently?")) {
+        const mags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
+        mags.splice(idx, 1);
+        localStorage.setItem('AURA_CUSTOM_MAGS', JSON.stringify(mags));
+        renderTables();
+        showToast("Magazine removed.");
+      }
+    }
+
+    function deleteComp(idx) {
+      if (confirm("Delete this company feature?")) {
+        const comps = JSON.parse(localStorage.getItem('AURA_CUSTOM_COMPANIES') || '[]');
+        comps.splice(idx, 1);
+        localStorage.setItem('AURA_CUSTOM_COMPANIES', JSON.stringify(comps));
+        renderTables();
+        showToast("Company removed.");
+      }
+    }
+
+    function deleteLdr(idx) {
+      if (confirm("Delete this leader profile?")) {
+        const leaders = JSON.parse(localStorage.getItem('AURA_CUSTOM_LEADERS') || '[]');
+        leaders.splice(idx, 1);
+        localStorage.setItem('AURA_CUSTOM_LEADERS', JSON.stringify(leaders));
+        renderTables();
+        showToast("Leader profile removed.");
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+
+    // Auto-check authenticated session
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('AURA_ADMIN_AUTHENTICATED') === 'true') {
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('adminApp').style.display = 'flex';
+        renderTables();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>About The Aura Review | Global Business & Leadership Publication</title>
+  <meta name="description" content="Learn about The Aura Review, a business and leadership publication exploring visionary leaders, innovative companies, entrepreneurship, business innovation, industry insights, and the stories shaping the future.">
+  <meta name="keywords" content="The Aura Review, business magazine, global business publication, business leadership magazine, leadership publication, business leaders, CEOs, entrepreneurs, founders, innovative companies, business innovation, leadership stories, company profiles, executive profiles, business insights, about The Aura Review">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #FAF7F6;
+      --bg-subtle: #F3ECE9;
+      --bg-tinted: #F7EFEF;
+      --bg-card: #FFFFFF;
+      
+      --maroon-primary: #4A0E17;
+      --maroon-deep: #2A0409;
+      --maroon-rich: #38070F;
+      --maroon-light: #6A1E29;
+      --maroon-accent: #8E2B38;
+      --maroon-soft: rgba(74, 14, 23, 0.05);
+      --maroon-border: rgba(74, 14, 23, 0.14);
+      
+      --text-main: #2A0409;
+      --text-muted: #5C4649;
+      --text-light: #8E787B;
+      --border-light: rgba(74, 14, 23, 0.09);
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --shadow-sm: 0 4px 15px rgba(74, 14, 23, 0.05);
+      --shadow-md: 0 14px 35px rgba(74, 14, 23, 0.08);
+      --shadow-lg: 0 20px 48px rgba(74, 14, 23, 0.14);
+      --shadow-hover: 0 30px 65px rgba(42, 4, 9, 0.22);
+      
+      --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--maroon-primary);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    .click-ripple {
+      position: fixed;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rippleAnim 0.65s ease-out forwards;
+      pointer-events: none;
+      z-index: 999999;
+    }
+
+    @keyframes rippleAnim {
+      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
+      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: 0.015em;
+      color: var(--maroon-deep);
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition-smooth);
+    }
+
+    .container {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-spacing {
+      padding: 5.5rem 0;
+      position: relative;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--maroon-accent);
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-heading {
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.95rem 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-maroon {
+      background-color: var(--maroon-primary);
+      color: #FFFFFF;
+      border-color: var(--maroon-primary);
+      box-shadow: 0 4px 16px rgba(74, 14, 23, 0.2);
+    }
+
+    .btn-maroon:hover {
+      background-color: var(--maroon-deep);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--maroon-primary);
+      border-color: var(--maroon-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--maroon-soft);
+      transform: translateY(-2px);
+      border-color: var(--maroon-deep);
+    }
+
+    .btn-link {
+      padding: 0;
+      background: none;
+      border: none;
+      color: var(--maroon-primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .btn-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background-color: var(--maroon-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s ease;
+    }
+
+    .btn-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+      height: 75px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--maroon-deep);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--maroon-primary);
+      position: relative;
+      padding: 0.4rem 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background-color: var(--maroon-accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.75rem;
+      color: var(--maroon-primary);
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 380px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 2rem;
+      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-menu.open { right: 0; }
+    .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
+    .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+    .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.5);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
+
+    /* HERO */
+    .about-hero {
+      padding-top: 130px;
+      padding-bottom: 5rem;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F6 100%);
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .about-hero-lead {
+      max-width: 840px;
+      margin: 0 auto 2.2rem auto;
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    /* EDITORIAL SPREAD */
+    .editorial-spread-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .spread-image-box {
+      width: 100%;
+      height: 520px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--maroon-border);
+    }
+
+    .spread-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    /* PURPOSE STATEMENT */
+    .purpose-statement-box {
+      background: linear-gradient(135deg, #240207 0%, #4A0E17 100%);
+      color: #FFFFFF;
+      padding: 5.5rem 3.5rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 3rem 0;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .purpose-statement-box h2 {
+      color: #FFFFFF;
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      line-height: 1.3;
+      max-width: 960px;
+      margin: 0 auto 1.5rem auto;
+      font-weight: 300;
+    }
+
+    /* SPLIT VISION & MISSION */
+    .split-vision-mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .vision-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* PHILOSOPHY BANNER */
+    .philosophy-banner {
+      background: var(--bg-subtle);
+      border-left: 4px solid var(--maroon-primary);
+      padding: 3rem 3.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 3rem 0;
+    }
+
+    .philosophy-banner h3 {
+      font-size: 2.1rem;
+      color: var(--maroon-deep);
+      line-height: 1.35;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    /* UNIFORM CARDS GRID */
+    .cards-uniform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .uniform-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .uniform-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--maroon-border);
+    }
+
+    .uniform-card i {
+      font-size: 2rem;
+      color: var(--maroon-accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* VALUES GRID */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .value-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background-color: var(--maroon-primary);
+      transition: height 0.35s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--maroon-border);
+    }
+
+    .value-card:hover::before { height: 100%; }
+
+    /* EDITORIAL JOURNEY */
+    .editorial-journey-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .journey-step-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      padding: 1.8rem;
+    }
+
+    .journey-step-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--maroon-accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      opacity: 0.6;
+    }
+
+    /* DUAL CTA PANELS */
+    .dual-cta-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .huge-cta-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .huge-cta-card:hover {
+      background: #FFFFFF;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--maroon-deep);
+      color: #E2D3D5;
+      padding: 4.5rem 0 2rem 0;
+      border-top: 1px solid var(--maroon-deep);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: #FFFFFF;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc { color: #BBA5A8; font-size: 0.95rem; line-height: 1.7; }
+    .footer-heading { color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .footer-link { color: #BBA5A8; font-size: 0.9rem; transition: var(--transition-smooth); }
+    .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
+
+    .social-row { display: flex; gap: 1rem; margin-top: 1rem; }
+    .social-icon-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: #FFFFFF; transition: var(--transition-smooth);
+    }
+    .social-icon-btn:hover { background: var(--maroon-accent); transform: translateY(-3px); }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: #9A8084;
+    }
+
+    @media (max-width: 1024px) {
+      .editorial-spread-grid, .split-vision-mission, .dual-cta-panels { grid-template-columns: 1fr; }
+      .spread-image-box { height: 420px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .mobile-toggle { display: block; }
+      .purpose-statement-box { padding: 3.5rem 1.8rem; }
+      .philosophy-banner { padding: 2rem 1.5rem; }
+      .huge-cta-card { padding: 2.2rem 1.6rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">The Aura Review</a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="magazine.html" class="nav-link">Magazine</a></li>
+        <li><a href="leaders.html" class="nav-link">Leaders</a></li>
+        <li><a href="companies.html" class="nav-link">Companies</a></li>
+        <li><a href="news.html" class="nav-link">News</a></li>
+        <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+      </ul>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+        <i class="ri-menu-4-line"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">
+      <i class="ri-close-line"></i>
+    </button>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
+      <li><a href="leaders.html" class="mobile-nav-link">Leaders</a></li>
+      <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
+      <li><a href="news.html" class="mobile-nav-link">News</a></li>
+      <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- 01 — FULL-SCREEN CINEMATIC HERO -->
+    <section class="about-hero">
+      <div class="container">
+        <span class="section-tag">About The Aura Review</span>
+        <h1 class="section-heading">Stories of Vision. Leadership. Ambition. Impact.</h1>
+        <p class="about-hero-lead">
+          The Aura Review is a business and leadership publication focused on the people, companies, ideas, and innovations shaping the future of business. We tell stories that go beyond titles, exploring the journeys, calculated decisions, challenges, and philosophies behind global commercial progress.
+        </p>
+        <div style="font-size: 1.1rem; font-weight: 600; color: var(--maroon-deep); margin-bottom: 2rem;">
+          Discover the people behind progress &bull; Explore the companies behind innovation &bull; Follow the future
+        </div>
+        <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+          <a href="magazine.html" class="btn btn-maroon">Explore The Magazine</a>
+          <a href="leaders.html" class="btn btn-outline">Meet Our Leaders</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — WHO WE ARE EDITORIAL SPREAD -->
+    <section class="section-spacing">
+      <div class="container">
+        <div class="editorial-spread-grid">
+          <div>
+            <span class="section-tag">Editorial Foundation</span>
+            <h2 class="section-heading">More Than a Business Publication</h2>
+            <p style="margin-bottom: 1.4rem;">
+              The business world is filled with headlines. New companies launch, markets change, and executives make decisions. But behind every headline is a human story of calculated risk, resilience, and strategic vision.
+            </p>
+            <p style="margin-bottom: 1.4rem;">
+              The Aura Review exists to bring those stories into focus across 24 global industries. Rather than simply documenting what happened, we examine why it happened, how it was architected, and where it leads next.
+            </p>
+          </div>
+          <div class="spread-image-box">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" alt="Corporate Architecture">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — OUR PURPOSE -->
+    <section class="container">
+      <div class="purpose-statement-box">
+        <span class="section-tag" style="color: #E2B6BC;">Why The Aura Review Exists</span>
+        <h2>"Our purpose is to discover, document, and share stories that provide a deeper understanding of modern leadership, business innovation, and organizational transformation."</h2>
+        <p style="color: #E2D3D5; max-width: 780px; margin: 0 auto; font-size: 1.08rem;">
+          In an environment where technology is rapidly evolving, meaningful business narratives show us how leaders navigate uncertainty and build enduring legacies.
+        </p>
+      </div>
+    </section>
+
+    <!-- 04 & 05 — VISION & MISSION SPLIT -->
+    <section class="section-spacing" style="background: var(--bg-secondary); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+          <span class="section-tag">Strategic Direction</span>
+          <h2 class="section-heading">Vision & Mission</h2>
+        </div>
+
+        <div class="split-vision-mission">
+          <div class="vision-card">
+            <span class="section-tag">Our Vision</span>
+            <h3 style="font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">To Be a Trusted Global Destination for Leadership Intelligence</h3>
+            <p style="margin-bottom: 1rem;">We are building a platform where decision-makers continuously discover verified insights across executive leadership, deep innovation, and corporate transformation.</p>
+          </div>
+
+          <div class="vision-card">
+            <span class="section-tag">Our Mission</span>
+            <h3 style="font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 1rem;">Turning Business Achievement Into Meaningful Narratives</h3>
+            <p style="margin-bottom: 1rem;">Cutting through digital noise by delivering structured, fact-checked editorial stories that provide clarity, context, and permanent discoverability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — OUR EDITORIAL PHILOSOPHY -->
+    <section class="section-spacing">
+      <div class="container">
+        <div class="philosophy-banner">
+          <span class="section-tag">Guiding Principles</span>
+          <h3>"People Before Titles. Stories Before Headlines. Substance Before Noise."</h3>
+          <p style="font-size: 1.08rem; color: var(--text-muted);">
+            A title tells you someone's position, but not their journey. A corporate profile explains what an organization sells, but not why it matters. Our editorial methodology focuses on turning points, operational discipline, and lasting societal impact.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 — WHAT WE COVER -->
+    <section class="section-spacing" style="background: var(--bg-secondary); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div style="max-width: 700px; margin-bottom: 2rem;">
+          <span class="section-tag">Sectors & Markets</span>
+          <h2 class="section-heading">A Broader View of Modern Business</h2>
+          <p>The Aura Review covers leadership and corporate progress across 24 foundational pillars of the global economy.</p>
+        </div>
+
+        <div class="cards-uniform-grid">
+          <div class="uniform-card">
+            <i class="ri-cpu-line"></i>
+            <h4 style="font-size: 1.3rem; margin-bottom: 0.4rem;">Technology & AI</h4>
+            <p style="font-size: 0.9rem;">Artificial intelligence, SaaS architectures, cloud compute, and cybersecurity.</p>
+          </div>
+          <div class="uniform-card">
+            <i class="ri-heart-pulse-line"></i>
+            <h4 style="font-size: 1.3rem; margin-bottom: 0.4rem;">Healthcare & Life Sciences</h4>
+            <p style="font-size: 0.9rem;">Biotechnology research, precision cellular oncology, and medical systems.</p>
+          </div>
+          <div class="uniform-card">
+            <i class="ri-funds-line"></i>
+            <h4 style="font-size: 1.3rem; margin-bottom: 0.4rem;">Finance & Private Equity</h4>
+            <p style="font-size: 0.9rem;">FinTech, sovereign liquidity, venture capital, and cross-border settlement.</p>
+          </div>
+          <div class="uniform-card">
+            <i class="ri-building-line"></i>
+            <h4 style="font-size: 1.3rem; margin-bottom: 0.4rem;">Real Estate & Development</h4>
+            <p style="font-size: 0.9rem;">Commercial developments, LEED architecture, and urban masterplanning.</p>
+          </div>
+          <div class="uniform-card">
+            <i class="ri-leaf-line"></i>
+            <h4 style="font-size: 1.3rem; margin-bottom: 0.4rem;">Clean Energy & Grid Tech</h4>
+            <p style="font-size: 0.9rem;">Green hydrogen storage, microgrids, battery technologies, and renewables.</p>
+          </div>
+          <div class="uniform-card">
+            <i class="ri-rocket-line"></i>
+            <h4 style="font-size: 1.3rem; margin-bottom: 0.4rem;">Space & Defense Systems</h4>
+            <p style="font-size: 0.9rem;">Orbital satellite constellations, avionics, and commercial spaceflight.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 — 7 EDITORIAL VALUES -->
+    <section class="section-spacing">
+      <div class="container">
+        <div style="max-width: 700px; margin-bottom: 2rem;">
+          <span class="section-tag">Core Principles</span>
+          <h2 class="section-heading">The 7 Principles Behind The Aura Review</h2>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">01 &bull; Curiosity</h4>
+            <p style="font-size: 0.92rem;">Exploring the thinking, decisions, and strategies behind market developments.</p>
+          </div>
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">02 &bull; Clarity</h4>
+            <p style="font-size: 0.92rem;">Presenting business stories with structured readability and analytical context.</p>
+          </div>
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">03 &bull; Perspective</h4>
+            <p style="font-size: 0.92rem;">Valuing diverse global approaches to corporate governance and innovation.</p>
+          </div>
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">04 &bull; Storytelling</h4>
+            <p style="font-size: 0.92rem;">Connecting verified milestones to broader industry narratives.</p>
+          </div>
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">05 &bull; Professionalism</h4>
+            <p style="font-size: 0.92rem;">Maintaining rigorous editorial, layout, and factual verification standards.</p>
+          </div>
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">06 &bull; Innovation</h4>
+            <p style="font-size: 0.92rem;">Delivering interactive digital reading experiences built for modern devices.</p>
+          </div>
+          <div class="value-card">
+            <h4 style="font-size: 1.25rem; color: var(--maroon-deep); margin-bottom: 0.4rem;">07 &bull; Integrity</h4>
+            <p style="font-size: 0.92rem;">Communicating transparently without exaggerated rankings or arbitrary claims.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 — EDITORIAL JOURNEY -->
+    <section class="section-spacing" style="background: var(--bg-secondary); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div style="max-width: 700px;">
+          <span class="section-tag">Process</span>
+          <h2 class="section-heading">Our Editorial Journey</h2>
+          <p>From initial discovery to international digital distribution, every story follows a disciplined development framework.</p>
+        </div>
+
+        <div class="editorial-journey-timeline">
+          <div class="journey-step-box">
+            <div class="journey-step-num">01</div>
+            <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">Discover</h4>
+            <p style="font-size: 0.88rem;">Identifying the leader, organization, and core narrative thesis.</p>
+          </div>
+          <div class="journey-step-box">
+            <div class="journey-step-num">02</div>
+            <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">Explore</h4>
+            <p style="font-size: 0.88rem;">Collecting verified achievements, data, and executive insights.</p>
+          </div>
+          <div class="journey-step-box">
+            <div class="journey-step-num">03</div>
+            <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">Develop</h4>
+            <p style="font-size: 0.88rem;">Structuring information into a cohesive editorial narrative.</p>
+          </div>
+          <div class="journey-step-box">
+            <div class="journey-step-num">04</div>
+            <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">Design</h4>
+            <p style="font-size: 0.88rem;">Setting content into bespoke digital magazine spreads.</p>
+          </div>
+          <div class="journey-step-box">
+            <div class="journey-step-num">05</div>
+            <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">Publish</h4>
+            <p style="font-size: 0.88rem;">Distributing globally across our searchable archives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUAL CTA PANELS -->
+    <section class="section-spacing">
+      <div class="container">
+        <div class="dual-cta-panels">
+          <div class="huge-cta-card">
+            <div>
+              <span class="section-tag">For Leaders</span>
+              <h3 style="font-size: 2.2rem; color: var(--maroon-deep); line-height: 1.15; margin-bottom: 1rem;">Share Your Leadership Story</h3>
+              <p style="margin-bottom: 1.5rem; font-size: 1rem;">
+                If you are an executive, founder, or industry innovator, your milestones provide valuable perspectives for the global business community.
+              </p>
+            </div>
+            <a href="leaders.html" class="btn btn-maroon" style="align-self: flex-start;">Explore Leaders &rarr;</a>
+          </div>
+
+          <div class="huge-cta-card">
+            <div>
+              <span class="section-tag">For Companies</span>
+              <h3 style="font-size: 2.2rem; color: var(--maroon-deep); line-height: 1.15; margin-bottom: 1rem;">Feature Your Organization</h3>
+              <p style="margin-bottom: 1.5rem; font-size: 1rem;">
+                Communicate your corporate mission, technological breakthroughs, and future ambitions through our dedicated digital company editions.
+              </p>
+            </div>
+            <a href="companies.html" class="btn btn-maroon" style="align-self: flex-start;">Explore Companies &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">The Aura Review</div>
+          <p class="footer-desc">
+            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
+          </p>
+          <div class="social-row">
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="magazine.html" class="footer-link">Magazine</a></li>
+            <li><a href="leaders.html" class="footer-link">Leaders</a></li>
+            <li><a href="companies.html" class="footer-link">Companies</a></li>
+            <li><a href="news.html" class="footer-link">News</a></li>
+            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
+            <li><a href="faq.html" class="footer-link">FAQ</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Editorial Sectors</h4>
+          <ul class="footer-links">
+            <li><a href="magazine.html" class="footer-link">Technology & AI</a></li>
+            <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
+            <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
+            <li><a href="magazine.html" class="footer-link">Real Estate & Development</a></li>
+            <li><a href="magazine.html" class="footer-link">Clean Energy & Sustainability</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact & Inquiries</h4>
+          <p class="footer-desc" style="margin-bottom: 1rem;">
+            For editorial submissions, magazine features, and publication collaborations:
+          </p>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 The Aura Review. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms & Conditions</a>
+          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuClose = document.getElementById('menuClose');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+
+      const toggleMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        menuBackdrop.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      mobileToggle.addEventListener('click', () => toggleMenu(true));
+      menuClose.addEventListener('click', () => toggleMenu(false));
+      menuBackdrop.addEventListener('click', () => toggleMenu(false));
+
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        const ripple = document.createElement('span');
+        ripple.classList.add('click-ripple');
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 650);
+      });
+    });
+  </script>
+</body>
+</html>

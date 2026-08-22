@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Aura Review | Global Business & Leadership Magazine</title>
+  <meta name="description" content="The Aura Review is a global business and leadership magazine featuring visionary CEOs, founders, entrepreneurs, executives, innovative companies, industry insights, and stories shaping the future of business.">
+
+  <!-- Google Fonts: Cormorant Garamond (Serif) & Plus Jakarta Sans (Sans-Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #FAF7F6;
+      --bg-subtle: #F3ECE9;
+      --bg-tinted: #F7EFEF;
+      --bg-card: #FFFFFF;
+      
+      --maroon-primary: #4A0E17;
+      --maroon-deep: #2A0409;
+      --maroon-rich: #38070F;
+      --maroon-light: #6A1E29;
+      --maroon-accent: #8E2B38;
+      --maroon-soft: rgba(74, 14, 23, 0.05);
+      --maroon-border: rgba(74, 14, 23, 0.14);
+      
+      --text-main: #2A0409;
+      --text-muted: #5C4649;
+      --text-light: #8E787B;
+      --border-light: rgba(74, 14, 23, 0.09);
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --shadow-sm: 0 4px 15px rgba(74, 14, 23, 0.05);
+      --shadow-md: 0 14px 35px rgba(74, 14, 23, 0.08);
+      --shadow-lg: 0 22px 50px rgba(74, 14, 23, 0.15);
+      --shadow-hover: 0 30px 65px rgba(42, 4, 9, 0.22);
+      
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--maroon-primary);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    .click-ripple {
+      position: fixed;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rippleAnim 0.65s ease-out forwards;
+      pointer-events: none;
+      z-index: 999999;
+    }
+
+    @keyframes rippleAnim {
+      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
+      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: 0.015em;
+      color: var(--maroon-deep);
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition-smooth);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-spacing {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--maroon-accent);
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      line-height: 1.18;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-lead {
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+      color: var(--text-muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.95rem 1.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-maroon {
+      background-color: var(--maroon-primary);
+      color: #FFFFFF;
+      border-color: var(--maroon-primary);
+      box-shadow: 0 4px 16px rgba(74, 14, 23, 0.2);
+    }
+
+    .btn-maroon:hover {
+      background-color: var(--maroon-deep);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      color: #FFFFFF;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--maroon-primary);
+      border-color: var(--maroon-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--maroon-soft);
+      transform: translateY(-3px);
+      border-color: var(--maroon-deep);
+    }
+
+    .btn-link {
+      padding: 0;
+      background: none;
+      border: none;
+      color: var(--maroon-primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .btn-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background-color: var(--maroon-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s ease;
+    }
+
+    .btn-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* HEADER & NAVIGATION */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+      transition: var(--transition-smooth);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 84px;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--maroon-deep);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--maroon-primary);
+      position: relative;
+      padding: 0.4rem 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background-color: var(--maroon-accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.75rem;
+      color: var(--maroon-primary);
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 380px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 2rem;
+      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-menu.open { right: 0; }
+    .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
+    .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+    .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
+    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
+
+    /* NEWS TICKER */
+    .news-ticker-wrapper {
+      background: var(--maroon-deep);
+      color: #FAF7F6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.82rem;
+      padding: 0.55rem 0;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      z-index: 99;
+      margin-top: 84px;
+    }
+
+    .ticker-badge-tag {
+      background: var(--maroon-accent);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.25rem 0.8rem;
+      white-space: nowrap;
+      margin-right: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .ticker-scroll-content {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      animation: tickerMove 28s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #E6CCD0;
+    }
+
+    .ticker-item strong { color: #FFFFFF; font-weight: 600; }
+
+    @keyframes tickerMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      min-height: 80vh;
+      padding-top: 3rem;
+      padding-bottom: 4.5rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(180deg, #FAF7F6 0%, #FFFFFF 60%, #F5ECE9 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 4.8vw, 4.4rem);
+      line-height: 1.08;
+      margin-bottom: 1.6rem;
+      color: var(--maroon-deep);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-showcase-card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1 / 1.35;
+      margin: 0 auto;
+      border-radius: 20px;
+      background: #141414;
+      box-shadow: 0 25px 60px rgba(42, 4, 9, 0.25);
+      overflow: hidden;
+      border: 1px solid var(--maroon-border);
+    }
+
+    .hero-showcase-slides { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-showcase-slide {
+      position: absolute; inset: 0; opacity: 0; transform: scale(0.98);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 2.2rem;
+      background-size: cover; background-position: center top;
+    }
+    .hero-showcase-slide.active { opacity: 1; transform: scale(1); }
+    .hero-showcase-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(42, 4, 9, 0.15) 0%, rgba(20, 20, 20, 0.4) 40%, rgba(20, 20, 20, 0.95) 100%); z-index: 1; }
+    .hero-showcase-content { position: relative; z-index: 2; color: #FFFFFF; }
+    .hero-showcase-tag { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #E2B6BC; margin-bottom: 0.4rem; display: block; }
+    .hero-showcase-title { font-family: var(--font-serif); font-size: 1.8rem; color: #FFFFFF; line-height: 1.2; margin-bottom: 0.3rem; }
+    .hero-showcase-sub { font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); }
+    .hero-showcase-controls { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3; display: flex; gap: 6px; }
+    .hero-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.35); cursor: pointer; transition: var(--transition-smooth); }
+    .hero-dot.active { width: 24px; border-radius: 4px; background: #FFFFFF; }
+
+    /* ==========================================================================
+       TOP 3 FEATURED MAGAZINES
+       ========================================================================== */
+    .top-magazines-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 5.5rem 0;
+    }
+
+    .top-mag-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.2rem;
+      margin-top: 3rem;
+    }
+
+    .top-mag-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+
+    .top-mag-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--maroon-accent);
+    }
+
+    .top-mag-poster-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #151515;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .top-mag-poster-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .top-mag-card:hover .top-mag-poster-wrap img {
+      transform: scale(1.05);
+    }
+
+    .top-mag-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(42, 4, 9, 0.9);
+      backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+      z-index: 2;
+    }
+
+    .top-mag-content {
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .top-mag-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      line-height: 1.3;
+      color: var(--maroon-deep);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .top-mag-leader {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    /* Interaction Metrics Bar */
+    .mag-interaction-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .interact-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+      padding: 0.3rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .interact-btn:hover {
+      color: var(--maroon-accent);
+      background: var(--maroon-soft);
+    }
+
+    .interact-btn.liked {
+      color: #D32F2F;
+    }
+
+    .interact-btn.liked i {
+      font-weight: 700;
+    }
+
+    .view-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--maroon-accent);
+    }
+
+    /* ==========================================================================
+       LATEST INDUSTRY NEWSROOM
+       ========================================================================== */
+    .news-section {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .news-lead-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-lead-img {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .news-lead-content {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .news-list-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .news-snippet-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      padding: 1.4rem;
+      border-radius: 6px;
+      transition: var(--transition-smooth);
+    }
+
+    .news-snippet-card:hover {
+      border-color: var(--maroon-accent);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       24 COMPREHENSIVE INDUSTRIES GRID
+       ========================================================================== */
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .industry-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      padding: 1.8rem;
+      border-radius: 8px;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .industry-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background-color: var(--maroon-primary);
+      transition: height 0.35s ease;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .industry-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--maroon-border);
+    }
+
+    .industry-card:hover::before {
+      height: 100%;
+    }
+
+    .industry-icon {
+      font-size: 1.9rem;
+      color: var(--maroon-primary);
+      margin-bottom: 1rem;
+    }
+
+    .industry-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      color: var(--maroon-deep);
+    }
+
+    .industry-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       ONE-TIME MEMBER REGISTRATION MODAL
+       ========================================================================== */
+    .member-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .member-modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .member-modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 3rem 2.4rem;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+      position: relative;
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+    }
+
+    .member-modal-overlay.active .member-modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .member-close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .member-form-group {
+      text-align: left;
+      margin-bottom: 1.2rem;
+    }
+
+    .member-form-group label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--maroon-deep);
+      margin-bottom: 0.4rem;
+    }
+
+    .member-input {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid var(--maroon-border);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--maroon-deep);
+      outline: none;
+    }
+
+    .member-input:focus {
+      border-color: var(--maroon-primary);
+    }
+
+    /* Comments Drawer Modal */
+    .comments-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.5);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .comments-drawer-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .comments-drawer {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 440px;
+      height: 100vh;
+      padding: 2.5rem 2rem;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .comments-drawer-overlay.active .comments-drawer {
+      transform: translateX(0);
+    }
+
+    .comments-list-box {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .comment-item {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+    }
+
+    .comment-author {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--maroon-deep);
+      margin-bottom: 0.2rem;
+    }
+
+    .comment-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--maroon-deep);
+      color: #FFFFFF;
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 9999999;
+    }
+
+    .quote-banner {
+      background: linear-gradient(135deg, #240207 0%, #4A0E17 100%);
+      color: #FFFFFF;
+      padding: 6.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer {
+      background-color: var(--maroon-deep);
+      color: #E2D3D5;
+      padding: 5rem 0 2rem 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid, .top-mag-grid, .news-grid, .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .mobile-toggle { display: block; }
+      .news-ticker-wrapper { margin-top: 70px; }
+      .section-spacing { padding: 4.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">The Aura Review</a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="magazine.html" class="nav-link">Magazine</a></li>
+        <li><a href="leaders.html" class="nav-link">Leaders</a></li>
+        <li><a href="companies.html" class="nav-link">Companies</a></li>
+        <li><a href="news.html" class="nav-link">News</a></li>
+        <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span id="memberStatusTag" style="font-size: 0.8rem; font-weight: 700; color: var(--maroon-accent); display: none;">
+          <i class="ri-shield-user-fill"></i> <span id="memberNameDisplay">Member</span>
+        </span>
+        <a href="magazine.html" class="btn btn-maroon" style="padding: 0.65rem 1.4rem; font-size: 0.78rem;">Read Issue</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+        <i class="ri-menu-4-line"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
+      <li><a href="leaders.html" class="mobile-nav-link">Leaders</a></li>
+      <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
+      <li><a href="news.html" class="mobile-nav-link">News</a></li>
+      <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+    </ul>
+  </div>
+
+  <!-- News Ticker -->
+  <div class="news-ticker-wrapper">
+    <div class="container" style="display: flex; align-items: center; width: 100%;">
+      <div class="ticker-badge-tag"><i class="ri-flashlight-fill"></i> Intelligence</div>
+      <div style="overflow: hidden; width: 100%;">
+        <div class="ticker-scroll-content">
+          <div class="ticker-item"><strong>AI Infrastructure:</strong> Global Sovereign Cloud Adoption Accelerates by 42% in Q3</div>
+          <div class="ticker-item"><strong>Fintech & Markets:</strong> Cross-Border Institutional Settlement Systems Gain Momentum</div>
+          <div class="ticker-item"><strong>Clean Energy:</strong> Utility-Scale Solid State Storage Pilots Launch Across Europe</div>
+          <div class="ticker-item"><strong>Leadership:</strong> The Aura Review Announces Annual Visionary CEO Nominees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <span class="section-tag">Global Business &bull; Leadership &bull; Editorial</span>
+          <h1 class="hero-title">Global Business. Visionary Leadership. The Stories Shaping Tomorrow.</h1>
+          <p class="hero-desc">
+            The Aura Review is a premium business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping the future of business.
+          </p>
+          <div class="hero-actions">
+            <a href="#topMagazines" class="btn btn-maroon">Explore Top Magazines</a>
+            <a href="leaders.html" class="btn btn-outline">Meet Featured Leaders</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="hero-showcase-card">
+            <div class="hero-showcase-controls">
+              <div class="hero-dot active" onclick="setHeroSlide(0)"></div>
+              <div class="hero-dot" onclick="setHeroSlide(1)"></div>
+              <div class="hero-dot" onclick="setHeroSlide(2)"></div>
+            </div>
+
+            <div class="hero-showcase-slides">
+              <div class="hero-showcase-slide active" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80');">
+                <div class="hero-showcase-overlay"></div>
+                <div class="hero-showcase-content">
+                  <span class="hero-showcase-tag">Featured Executive</span>
+                  <h3 class="hero-showcase-title">Elena Vance</h3>
+                  <p class="hero-showcase-sub">Pioneering adaptive cloud infrastructures</p>
+                </div>
+              </div>
+              <div class="hero-showcase-slide" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80');">
+                <div class="hero-showcase-overlay"></div>
+                <div class="hero-showcase-content">
+                  <span class="hero-showcase-tag">Visionary Founder</span>
+                  <h3 class="hero-showcase-title">Marcus Sterling</h3>
+                  <p class="hero-showcase-sub">Redefining institutional cross-border liquidity</p>
+                </div>
+              </div>
+              <div class="hero-showcase-slide" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80');">
+                <div class="hero-showcase-overlay"></div>
+                <div class="hero-showcase-content">
+                  <span class="hero-showcase-tag">Healthcare Innovator</span>
+                  <h3 class="hero-showcase-title">Dr. Aris Thorne</h3>
+                  <p class="hero-showcase-sub">Accelerating precision cellular therapies</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP 3 FEATURED MAGAZINES (STATIC CARDS WITH INTERACTION) -->
+    <section class="top-magazines-section" id="topMagazines">
+      <div class="container">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto;">
+          <span class="section-tag">Editorial Spotlight</span>
+          <h2 class="section-heading">Top 3 Digital Magazine Editions</h2>
+          <p>Explore our most celebrated editorial publications. Access the full issue, interact, and engage with verified executive releases.</p>
+        </div>
+
+        <div class="top-mag-grid">
+          <!-- Top Mag 1 -->
+          <div class="top-mag-card">
+            <div class="top-mag-poster-wrap" onclick="openMagazineEdition('mag-top-1')">
+              <span class="top-mag-badge">Real Estate &bull; Vol. XVI</span>
+              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" alt="Real Estate Magazine">
+            </div>
+            <div class="top-mag-content">
+              <div>
+                <h3 class="top-mag-title" onclick="openMagazineEdition('mag-top-1')">The Most Dynamic Real Estate Entrepreneurs to Watch in 2026</h3>
+                <div class="top-mag-leader">Jerome Hairston (CEO, Hairston Investment Properties)</div>
+              </div>
+              <div class="mag-interaction-bar">
+                <button class="interact-btn" id="like-btn-mag-top-1" onclick="handleLikeClick('mag-top-1')">
+                  <i class="ri-heart-line" id="like-icon-mag-top-1"></i>
+                  <span id="like-count-mag-top-1">348</span>
+                </button>
+                <button class="interact-btn" onclick="handleCommentClick('mag-top-1')">
+                  <i class="ri-chat-3-line"></i>
+                  <span id="comment-count-mag-top-1">1</span>
+                </button>
+                <button class="interact-btn" onclick="handleShareClick('mag-top-1')">
+                  <i class="ri-share-forward-line"></i>
+                  <span>Share</span>
+                </button>
+                <div class="view-stat-pill">
+                  <i class="ri-eye-line"></i>
+                  <span id="view-count-mag-top-1">1420</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Mag 2 -->
+          <div class="top-mag-card">
+            <div class="top-mag-poster-wrap" onclick="openMagazineEdition('mag-top-2')">
+              <span class="top-mag-badge">Leadership Special &bull; Vol. XV</span>
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Women Leaders Magazine">
+            </div>
+            <div class="top-mag-content">
+              <div>
+                <h3 class="top-mag-title" onclick="openMagazineEdition('mag-top-2')">The Most Influential Women Leaders Driving Systems Reform in 2026</h3>
+                <div class="top-mag-leader">Dr. Channing L. Collins (Founder, Collins Institute)</div>
+              </div>
+              <div class="mag-interaction-bar">
+                <button class="interact-btn" id="like-btn-mag-top-2" onclick="handleLikeClick('mag-top-2')">
+                  <i class="ri-heart-line" id="like-icon-mag-top-2"></i>
+                  <span id="like-count-mag-top-2">512</span>
+                </button>
+                <button class="interact-btn" onclick="handleCommentClick('mag-top-2')">
+                  <i class="ri-chat-3-line"></i>
+                  <span id="comment-count-mag-top-2">1</span>
+                </button>
+                <button class="interact-btn" onclick="handleShareClick('mag-top-2')">
+                  <i class="ri-share-forward-line"></i>
+                  <span>Share</span>
+                </button>
+                <div class="view-stat-pill">
+                  <i class="ri-eye-line"></i>
+                  <span id="view-count-mag-top-2">2180</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Mag 3 -->
+          <div class="top-mag-card">
+            <div class="top-mag-poster-wrap" onclick="openMagazineEdition('mag-top-3')">
+              <span class="top-mag-badge">FinTech & Banking &bull; Vol. XII</span>
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="FinTech Magazine">
+            </div>
+            <div class="top-mag-content">
+              <div>
+                <h3 class="top-mag-title" onclick="openMagazineEdition('mag-top-3')">The Architecture of Capital & Next-Generation Private Equity</h3>
+                <div class="top-mag-leader">Marcus Sterling (Managing Partner, Aurelius Capital)</div>
+              </div>
+              <div class="mag-interaction-bar">
+                <button class="interact-btn" id="like-btn-mag-top-3" onclick="handleLikeClick('mag-top-3')">
+                  <i class="ri-heart-line" id="like-icon-mag-top-3"></i>
+                  <span id="like-count-mag-top-3">420</span>
+                </button>
+                <button class="interact-btn" onclick="handleCommentClick('mag-top-3')">
+                  <i class="ri-chat-3-line"></i>
+                  <span id="comment-count-mag-top-3">1</span>
+                </button>
+                <button class="interact-btn" onclick="handleShareClick('mag-top-3')">
+                  <i class="ri-share-forward-line"></i>
+                  <span>Share</span>
+                </button>
+                <div class="view-stat-pill">
+                  <i class="ri-eye-line"></i>
+                  <span id="view-count-mag-top-3">1890</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSROOM SECTION -->
+    <section class="section-spacing news-section">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <span class="section-tag">Editorial Newsroom</span>
+            <h2 class="section-heading">Industry Briefings & Business News</h2>
+          </div>
+          <a href="news.html" class="btn btn-outline">Explore All News <i class="ri-arrow-right-line"></i></a>
+        </div>
+
+        <div class="news-grid">
+          <div class="news-lead-card">
+            <div class="news-lead-img" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80');"></div>
+            <div class="news-lead-content">
+              <div>
+                <span class="section-tag" style="font-size: 0.72rem;">Enterprise Tech & AI</span>
+                <h3 style="font-size: 1.6rem; color: var(--maroon-deep); margin: 0.4rem 0 0.8rem 0;">The Shift Toward Sovereign Computing</h3>
+                <p style="font-size: 0.95rem;">As multinational corporations navigate tightening cross-border data directives, new compute architectures are replacing single-cloud dependencies.</p>
+              </div>
+              <div style="margin-top: 1.5rem; border-top: 1px solid var(--border-light); padding-top: 1rem;">
+                <a href="news.html" class="btn-link">Read Full Brief &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="news-list-column">
+            <div class="news-snippet-card">
+              <span class="section-tag" style="font-size: 0.7rem;">Fintech</span>
+              <h4 style="font-size: 1.15rem; color: var(--maroon-deep);">Next-Gen Capital Markets & Real-Time Settlement</h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">How institutional CFOs are reducing counterparty liquidity friction.</p>
+            </div>
+            <div class="news-snippet-card">
+              <span class="section-tag" style="font-size: 0.7rem;">Clean Energy</span>
+              <h4 style="font-size: 1.15rem; color: var(--maroon-deep);">Grid-Scale Solid State Batteries in Scandinavia</h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">Industrial clean tech consortiums deploy scalable storage arrays.</p>
+            </div>
+            <div class="news-snippet-card">
+              <span class="section-tag" style="font-size: 0.7rem;">Governance</span>
+              <h4 style="font-size: 1.15rem; color: var(--maroon-deep);">Executive Succession in the Age of Intelligent Automation</h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">Boardrooms retool CEO selection criteria toward hybrid operational backgrounds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24 INDUSTRIES COVERED -->
+    <section class="section-spacing">
+      <div class="container">
+        <div style="text-align: center; max-width: 780px; margin: 0 auto 3rem auto;">
+          <span class="section-tag">Industries We Cover</span>
+          <h2 class="section-heading">Business Stories Across 24 Modern Economy Sectors</h2>
+          <p>The global business landscape cannot be understood through a single industry. The Aura Review explores leadership and innovation across every cornerstone of the world economy.</p>
+        </div>
+
+        <div class="industry-grid">
+          <div class="industry-card"><i class="ri-cpu-line industry-icon"></i><h3 class="industry-title">Technology & Software</h3><p class="industry-desc">SaaS architectures, cloud platforms, and enterprise solutions.</p></div>
+          <div class="industry-card"><i class="ri-robot-2-line industry-icon"></i><h3 class="industry-title">Artificial Intelligence</h3><p class="industry-desc">Generative AI algorithms and cognitive enterprise automation.</p></div>
+          <div class="industry-card"><i class="ri-heart-pulse-line industry-icon"></i><h3 class="industry-title">Healthcare & Life Sciences</h3><p class="industry-desc">Medical systems, health tech platforms, and clinical therapies.</p></div>
+          <div class="industry-card"><i class="ri-capsule-line industry-icon"></i><h3 class="industry-title">Biotechnology & Pharma</h3><p class="industry-desc">Precision genomics, oncological trials, and therapeutics.</p></div>
+          <div class="industry-card"><i class="ri-funds-line industry-icon"></i><h3 class="industry-title">Finance & Banking</h3><p class="industry-desc">Commercial banking, fintech pipelines, and institutional liquidity.</p></div>
+          <div class="industry-card"><i class="ri-money-dollar-circle-line industry-icon"></i><h3 class="industry-title">Private Equity & VC</h3><p class="industry-desc">Growth capital, cross-border M&A, and market funding.</p></div>
+          <div class="industry-card"><i class="ri-building-line industry-icon"></i><h3 class="industry-title">Real Estate & Construction</h3><p class="industry-desc">Commercial developments and net-zero urban masterplans.</p></div>
+          <div class="industry-card"><i class="ri-leaf-line industry-icon"></i><h3 class="industry-title">Sustainability & Clean Energy</h3><p class="industry-desc">Renewable storage grids, hydrogen, and carbon mitigation.</p></div>
+          <div class="industry-card"><i class="ri-plane-line industry-icon"></i><h3 class="industry-title">Aviation & Aerospace</h3><p class="industry-desc">Commercial flight carriers, private aviation, and avionics.</p></div>
+          <div class="industry-card"><i class="ri-rocket-line industry-icon"></i><h3 class="industry-title">Space Exploration</h3><p class="industry-desc">Satellite constellations, orbital networks, and commercial launches.</p></div>
+          <div class="industry-card"><i class="ri-car-line industry-icon"></i><h3 class="industry-title">Automotive & EV</h3><p class="industry-desc">Electric vehicle systems, solid-state batteries, and mobility.</p></div>
+          <div class="industry-card"><i class="ri-ship-line industry-icon"></i><h3 class="industry-title">Logistics & Supply Chain</h3><p class="industry-desc">Intermodal freight networks, autonomous marine shipping.</p></div>
+          <div class="industry-card"><i class="ri-tools-line industry-icon"></i><h3 class="industry-title">Manufacturing & Robotics</h3><p class="industry-desc">Precision CNC fabrication, additive manufacturing, automation.</p></div>
+          <div class="industry-card"><i class="ri-shield-keyhole-line industry-icon"></i><h3 class="industry-title">Cybersecurity & Defense</h3><p class="industry-desc">Zero-trust network architecture, encryption, threat monitoring.</p></div>
+          <div class="industry-card"><i class="ri-briefcase-line industry-icon"></i><h3 class="industry-title">Consulting & Advisory</h3><p class="industry-desc">Strategic restructuring, governance, and business transformation.</p></div>
+          <div class="industry-card"><i class="ri-book-open-line industry-icon"></i><h3 class="industry-title">Education & EdTech</h3><p class="industry-desc">Adaptive learning engines, global workforce upskilling platforms.</p></div>
+          <div class="industry-card"><i class="ri-shopping-bag-line industry-icon"></i><h3 class="industry-title">Retail & Consumer Goods</h3><p class="industry-desc">Omnichannel commerce systems, direct-to-consumer innovations.</p></div>
+          <div class="industry-card"><i class="ri-film-line industry-icon"></i><h3 class="industry-title">Media & Entertainment</h3><p class="industry-desc">Digital publishing, interactive experiences, broadcast technology.</p></div>
+          <div class="industry-card"><i class="ri-hotel-line industry-icon"></i><h3 class="industry-title">Hospitality & Travel</h3><p class="industry-desc">Luxury resort operations, corporate business travel programs.</p></div>
+          <div class="industry-card"><i class="ri-seedling-line industry-icon"></i><h3 class="industry-title">Agritech & Sustainable Food</h3><p class="industry-desc">Vertical smart farming, biological crop optimization.</p></div>
+          <div class="industry-card"><i class="ri-base-station-line industry-icon"></i><h3 class="industry-title">Telecommunications & 6G</h3><p class="industry-desc">Edge computing nodes, dense fiber networks, next-gen spectrum.</p></div>
+          <div class="industry-card"><i class="ri-bubble-chart-line industry-icon"></i><h3 class="industry-title">Next-Gen Materials</h3><p class="industry-desc">Biodegradable polymers, advanced alloys, and nano-coatings.</p></div>
+          <div class="industry-card"><i class="ri-treasure-map-line industry-icon"></i><h3 class="industry-title">Critical Minerals & Metals</h3><p class="industry-desc">Lithium extraction, sustainable metallurgy, supply security.</p></div>
+          <div class="industry-card"><i class="ri-megaphone-line industry-icon"></i><h3 class="industry-title">Marketing & PR</h3><p class="industry-desc">Corporate brand positioning, strategic communication design.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE BANNER -->
+    <section class="quote-banner">
+      <div class="container">
+        <span style="font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: #E2B6BC; display: block; margin-bottom: 1.5rem;">Leadership Is More Than A Job Title</span>
+        <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.8vw, 3.2rem); max-width: 920px; margin: 0 auto 1.5rem auto; font-weight: 300;">"The most interesting leadership stories are rarely about where someone started. They're about what they built along the way."</h2>
+        <p style="color: #E6CCD0; max-width: 680px; margin: 0 auto;">A CEO title does not automatically make someone a visionary. Leadership is demonstrated through decisions, resilience, and accountability.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- MEMBER REGISTRATION MODAL -->
+  <div class="member-modal-overlay" id="memberModal" aria-hidden="true">
+    <div class="member-modal-box">
+      <button class="member-close-btn" id="memberCloseBtn"><i class="ri-close-line"></i></button>
+      <span class="section-tag">Reader Registration</span>
+      <h2 style="font-size: 1.8rem; color: var(--maroon-deep); margin-bottom: 0.6rem;">Join The Aura Review</h2>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.8rem;">
+        Enter your name and email once to unlock permanent access, verified likes, comments, and full digital reading.
+      </p>
+
+      <form id="memberRegistrationForm">
+        <div class="member-form-group">
+          <label for="memberName">Full Name</label>
+          <input type="text" id="memberName" class="member-input" placeholder="e.g. Akash Naikwade" required>
+        </div>
+
+        <div class="member-form-group">
+          <label for="memberEmail">Email Address</label>
+          <input type="email" id="memberEmail" class="member-input" placeholder="name@company.com" required>
+        </div>
+
+        <button type="submit" class="btn btn-maroon" style="width: 100%; margin-top: 1rem;">
+          Continue as Member <i class="ri-arrow-right-line"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- COMMENTS DRAWER -->
+  <div class="comments-drawer-overlay" id="commentsOverlay">
+    <div class="comments-drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+        <h3 style="font-size: 1.3rem; color: var(--maroon-deep);">Editorial Discussion</h3>
+        <button id="closeCommentsBtn" style="background: none; border: none; font-size: 1.4rem; cursor: pointer;"><i class="ri-close-line"></i></button>
+      </div>
+
+      <div class="comments-list-box" id="commentsListBox">
+        <!-- Injected Comments -->
+      </div>
+
+      <form id="addCommentForm" style="display: flex; flex-direction: column; gap: 0.8rem;">
+        <textarea id="commentTextInput" placeholder="Write your thoughts..." required style="width: 100%; height: 80px; padding: 0.8rem; border: 1px solid var(--maroon-border); border-radius: 4px; font-family: var(--font-sans); outline: none;"></textarea>
+        <button type="submit" class="btn btn-maroon" style="width: 100%;">Post Comment</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-msg" id="toastMsg">Action confirmed</div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-family: var(--font-serif); font-size: 2rem; color: #FFFFFF; letter-spacing: 0.15em; margin-bottom: 1rem;">The Aura Review</div>
+          <p style="color: #BBA5A8; font-size: 0.95rem;">A premium global business and leadership magazine shaping tomorrow.</p>
+        </div>
+        <div>
+          <h4 style="color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;">Navigation</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem;">
+            <li><a href="index.html" style="color: #BBA5A8; font-size: 0.9rem;">Home</a></li>
+            <li><a href="magazine.html" style="color: #BBA5A8; font-size: 0.9rem;">Magazine</a></li>
+            <li><a href="leaders.html" style="color: #BBA5A8; font-size: 0.9rem;">Leaders</a></li>
+            <li><a href="companies.html" style="color: #BBA5A8; font-size: 0.9rem;">Companies</a></li>
+            <li><a href="news.html" style="color: #BBA5A8; font-size: 0.9rem;">News</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;">Sectors</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem;">
+            <li><a href="magazine.html" style="color: #BBA5A8; font-size: 0.9rem;">Technology & AI</a></li>
+            <li><a href="magazine.html" style="color: #BBA5A8; font-size: 0.9rem;">Healthcare & Biotech</a></li>
+            <li><a href="magazine.html" style="color: #BBA5A8; font-size: 0.9rem;">Finance & Banking</a></li>
+            <li><a href="magazine.html" style="color: #BBA5A8; font-size: 0.9rem;">Clean Energy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;">Inquiries</h4>
+          <p style="color: #BBA5A8; font-size: 0.95rem; margin-bottom: 1rem;">For editorial features and partnerships:</p>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
+        </div>
+      </div>
+      <div style="padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.82rem; color: #9A8084;">
+        <div>&copy; 2026 The Aura Review. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const MAG_DATA = {
+      'mag-top-1': {
+        baseLikes: 348,
+        baseViews: 1420,
+        comments: [{ author: "Marcus Sterling", text: "Incredible perspective on sustainable urban commercial portfolios." }]
+      },
+      'mag-top-2': {
+        baseLikes: 512,
+        baseViews: 2180,
+        comments: [{ author: "Elena Vance", text: "A masterclass in organizational governance." }]
+      },
+      'mag-top-3': {
+        baseLikes: 420,
+        baseViews: 1890,
+        comments: [{ author: "Dr. Aris Thorne", text: "Compelling thesis on borderless capital mobility." }]
+      }
+    };
+
+    const STORAGE_MEMBER = 'aura_mag_member';
+    const STORAGE_LIKES = 'aura_user_liked';
+    const STORAGE_VIEWS = 'aura_user_viewed';
+
+    let pendingAction = null;
+    let activeCommentMagId = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      syncUI();
+
+      // Mobile Menu
+      const toggle = document.getElementById('mobileToggle');
+      const drawer = document.getElementById('mobileMenu');
+      const backdrop = document.getElementById('menuBackdrop');
+      const close = document.getElementById('menuClose');
+      const toggleM = (o) => { drawer.classList.toggle('open', o); backdrop.classList.toggle('open', o); };
+      toggle.addEventListener('click', () => toggleM(true));
+      close.addEventListener('click', () => toggleM(false));
+      backdrop.addEventListener('click', () => toggleM(false));
+
+      // Registration
+      document.getElementById('memberRegistrationForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('memberName').value.trim();
+        const email = document.getElementById('memberEmail').value.trim().toLowerCase();
+
+        if (name && email) {
+          localStorage.setItem(STORAGE_MEMBER, JSON.stringify({ name, email }));
+          document.getElementById('memberModal').classList.remove('active');
+          syncUI();
+          showToast(`Welcome ${name}! Permanent access unlocked.`);
+
+          if (pendingAction) {
+            pendingAction();
+            pendingAction = null;
+          }
+        }
+      });
+
+      document.getElementById('memberCloseBtn').addEventListener('click', () => {
+        document.getElementById('memberModal').classList.remove('active');
+      });
+
+      document.getElementById('closeCommentsBtn').addEventListener('click', () => {
+        document.getElementById('commentsOverlay').classList.remove('active');
+      });
+
+      document.getElementById('addCommentForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = document.getElementById('commentTextInput').value.trim();
+        const member = getMember();
+        if (!member || !activeCommentMagId || !text) return;
+
+        MAG_DATA[activeCommentMagId].comments.push({ author: member.name, text });
+        document.getElementById('commentTextInput').value = '';
+        renderCommentsList(activeCommentMagId);
+        document.getElementById(`comment-count-${activeCommentMagId}`).textContent = MAG_DATA[activeCommentMagId].comments.length;
+        showToast("Comment published!");
+      });
+    });
+
+    function getMember() {
+      const data = localStorage.getItem(STORAGE_MEMBER);
+      return data ? JSON.parse(data) : null;
+    }
+
+    function syncUI() {
+      const member = getMember();
+      if (member) {
+        document.getElementById('memberStatusTag').style.display = 'inline-flex';
+        document.getElementById('memberNameDisplay').textContent = member.name.split(' ')[0];
+      }
+
+      const likedMags = JSON.parse(localStorage.getItem(STORAGE_LIKES) || '[]');
+      const viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
+
+      ['mag-top-1', 'mag-top-2', 'mag-top-3'].forEach(id => {
+        const isLiked = likedMags.includes(id);
+        const hasViewed = viewedMags.includes(id);
+
+        const likeBtn = document.getElementById(`like-btn-${id}`);
+        const likeIcon = document.getElementById(`like-icon-${id}`);
+        const likeCount = document.getElementById(`like-count-${id}`);
+        const viewCount = document.getElementById(`view-count-${id}`);
+        const commentCount = document.getElementById(`comment-count-${id}`);
+
+        if (likeBtn && likeIcon && likeCount) {
+          likeBtn.classList.toggle('liked', isLiked);
+          likeIcon.className = isLiked ? 'ri-heart-fill' : 'ri-heart-line';
+          likeCount.textContent = MAG_DATA[id].baseLikes + (isLiked ? 1 : 0);
+        }
+
+        if (viewCount) {
+          viewCount.textContent = MAG_DATA[id].baseViews + (hasViewed ? 1 : 0);
+        }
+
+        if (commentCount) {
+          commentCount.textContent = MAG_DATA[id].comments.length;
+        }
+      });
+    }
+
+    function requireMemberAccess(callback) {
+      if (getMember()) {
+        callback();
+      } else {
+        pendingAction = callback;
+        document.getElementById('memberModal').classList.add('active');
+      }
+    }
+
+    function handleLikeClick(magId) {
+      requireMemberAccess(() => {
+        let likedMags = JSON.parse(localStorage.getItem(STORAGE_LIKES) || '[]');
+        if (likedMags.includes(magId)) {
+          likedMags = likedMags.filter(id => id !== magId);
+          showToast("Like removed");
+        } else {
+          likedMags.push(magId);
+          showToast("Thank you for liking!");
+        }
+        localStorage.setItem(STORAGE_LIKES, JSON.stringify(likedMags));
+        syncUI();
+      });
+    }
+
+    function handleCommentClick(magId) {
+      requireMemberAccess(() => {
+        activeCommentMagId = magId;
+        renderCommentsList(magId);
+        document.getElementById('commentsOverlay').classList.add('active');
+      });
+    }
+
+    function renderCommentsList(magId) {
+      const box = document.getElementById('commentsListBox');
+      const comments = MAG_DATA[magId].comments;
+      if (!comments.length) {
+        box.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem;">Be the first to share your thoughts!</div>`;
+        return;
+      }
+      box.innerHTML = comments.map(c => `
+        <div class="comment-item">
+          <div class="comment-author">${c.author}</div>
+          <div class="comment-text">${c.text}</div>
+        </div>
+      `).join('');
+    }
+
+    function handleShareClick(magId) {
+      const url = window.location.origin + '/magazine.html?id=' + magId;
+      if (navigator.share) {
+        navigator.share({ title: 'The Aura Review Magazine', url }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(url);
+        showToast("Magazine link copied to clipboard!");
+      }
+    }
+
+    function openMagazineEdition(magId) {
+      requireMemberAccess(() => {
+        let viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
+        if (!viewedMags.includes(magId)) {
+          viewedMags.push(magId);
+          localStorage.setItem(STORAGE_VIEWS, JSON.stringify(viewedMags));
+        }
+        window.location.href = 'magazine.html';
+      });
+    }
+
+    function setHeroSlide(idx) {
+      const slides = document.querySelectorAll('.hero-showcase-slide');
+      const dots = document.querySelectorAll('.hero-dot');
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Magazine Editions | The Aura Review</title>
+  <meta name="description" content="Explore digital magazine editions from The Aura Review featuring front cover issues for All Leaders, Women Leaders, and Men Leaders.">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #FAF7F6;
+      --bg-subtle: #F3ECE9;
+      --bg-card: #FFFFFF;
+      
+      --maroon-primary: #4A0E17;
+      --maroon-deep: #2A0409;
+      --maroon-rich: #38070F;
+      --maroon-light: #6A1E29;
+      --maroon-accent: #8E2B38;
+      --maroon-soft: rgba(74, 14, 23, 0.05);
+      --maroon-border: rgba(74, 14, 23, 0.12);
+      
+      --text-main: #2A0409;
+      --text-muted: #5C4649;
+      --text-light: #8E787B;
+      --border-light: rgba(74, 14, 23, 0.09);
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --shadow-sm: 0 4px 15px rgba(74, 14, 23, 0.05);
+      --shadow-md: 0 12px 32px rgba(74, 14, 23, 0.08);
+      --shadow-lg: 0 20px 48px rgba(74, 14, 23, 0.14);
+      --shadow-hover: 0 28px 60px rgba(42, 4, 9, 0.22);
+      
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--maroon-primary);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    .click-ripple {
+      position: fixed;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rippleAnim 0.65s ease-out forwards;
+      pointer-events: none;
+      z-index: 999999;
+    }
+
+    @keyframes rippleAnim {
+      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
+      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: 0.015em;
+      color: var(--maroon-deep);
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition-smooth);
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+      transition: var(--transition-smooth);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 84px;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--maroon-deep);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--maroon-primary);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background-color: var(--maroon-accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.75rem;
+      color: var(--maroon-primary);
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 380px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 2rem;
+      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-menu.open { right: 0; }
+    .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
+    .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+    .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
+    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
+
+    /* MAGAZINE TABS */
+    .mag-tabs-section {
+      padding-top: 130px;
+      padding-bottom: 2.5rem;
+      text-align: center;
+      background: var(--bg-primary);
+    }
+
+    .pipe-options-bar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+    }
+
+    .pipe-tab-btn {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text-light);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0.6rem;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .pipe-tab-btn:hover { color: var(--maroon-accent); }
+    .pipe-tab-btn.active { color: var(--maroon-deep); font-weight: 700; }
+    .pipe-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background-color: var(--maroon-primary);
+    }
+
+    .pipe-divider {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--maroon-border);
+      user-select: none;
+      font-weight: 300;
+    }
+
+    /* MAGAZINE GRID */
+    .magazines-archive-wrap {
+      padding-bottom: 7rem;
+      background: var(--bg-primary);
+    }
+
+    .mag-covers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2.5rem 2rem;
+    }
+
+    .mag-card-wrap {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+    }
+
+    .mag-card-wrap:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--maroon-accent);
+    }
+
+    .mag-cover-poster {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background-color: #121212;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .mag-cover-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mag-card-wrap:hover .mag-cover-poster img {
+      transform: scale(1.04);
+    }
+
+    .mag-edition-pill {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(42, 4, 9, 0.88);
+      backdrop-filter: blur(6px);
+      color: #FFFFFF;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    .mag-content-area {
+      padding: 1.5rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .mag-headline-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      line-height: 1.35;
+      color: var(--maroon-deep);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .mag-headline-title:hover {
+      color: var(--maroon-accent);
+    }
+
+    .mag-leader-meta {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ENGAGEMENT BAR */
+    .mag-interaction-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .interact-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+      padding: 0.3rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .interact-btn:hover {
+      color: var(--maroon-accent);
+      background: var(--maroon-soft);
+    }
+
+    .interact-btn.liked {
+      color: #D32F2F;
+    }
+
+    .interact-btn.liked i {
+      font-weight: 700;
+    }
+
+    .view-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--maroon-accent);
+    }
+
+    /* 1-TIME MEMBER REGISTRATION MODAL */
+    .member-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .member-modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .member-modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 3rem 2.2rem;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+      position: relative;
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+    }
+
+    .member-modal-overlay.active .member-modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .member-close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .member-form-group {
+      text-align: left;
+      margin-bottom: 1.1rem;
+    }
+
+    .member-form-group label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--maroon-deep);
+      margin-bottom: 0.4rem;
+    }
+
+    .member-input {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid var(--maroon-border);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      color: var(--maroon-deep);
+      outline: none;
+    }
+
+    .member-input:focus {
+      border-color: var(--maroon-primary);
+    }
+
+    /* ==========================================================================
+       SPLIT EXECUTIVE DISCUSSION MODAL (LEFT MAGAZINE PREVIEW + RIGHT COMMENTS)
+       ========================================================================== */
+    .comments-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .comments-modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .comments-modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      max-width: 980px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      overflow: hidden;
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .comments-modal-overlay.active .comments-modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .comments-modal-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--maroon-deep);
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition-smooth);
+    }
+
+    .comments-modal-close:hover {
+      background: var(--maroon-primary);
+      color: #FFFFFF;
+      transform: rotate(90deg);
+    }
+
+    /* Left Side: Magazine Issue Context */
+    .comments-mag-preview-col {
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-light);
+      padding: 2.2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .mag-preview-poster-frame {
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto 1.2rem auto;
+      aspect-ratio: 3 / 4;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--maroon-border);
+      box-shadow: var(--shadow-md);
+      background: #141414;
+    }
+
+    .mag-preview-poster-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .mag-preview-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--maroon-accent);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .mag-preview-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      color: var(--maroon-deep);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .mag-preview-leader {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Right Side: Discussions Feed */
+    .comments-feed-col {
+      padding: 2.2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #FFFFFF;
+    }
+
+    .comments-feed-header {
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .comments-list-box {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-right: 0.4rem;
+      min-height: 220px;
+      max-height: 360px;
+    }
+
+    .comment-item {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--maroon-primary);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+
+    .comment-body {
+      flex-grow: 1;
+    }
+
+    .comment-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.15rem;
+    }
+
+    .comment-author {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--maroon-deep);
+    }
+
+    .linkedin-link-btn {
+      color: #0A66C2;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .linkedin-link-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .comment-role {
+      font-size: 0.74rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+
+    .comment-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* DETAILS MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      max-width: 840px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+      transform: translateY(30px) scale(0.95);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+
+    .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--maroon-deep);
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--maroon-primary);
+      color: #FFFFFF;
+      transform: rotate(90deg);
+    }
+
+    .modal-image-col {
+      background-size: cover;
+      background-position: center top;
+      min-height: 380px;
+      position: relative;
+    }
+
+    .modal-image-col::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(74, 14, 23, 0) 50%, rgba(42, 4, 9, 0.85) 100%);
+    }
+
+    .modal-content-col {
+      padding: 2.8rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .btn-maroon {
+      background-color: var(--maroon-primary);
+      color: #FFFFFF;
+      border: 1px solid var(--maroon-primary);
+      padding: 0.95rem 1.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-maroon:hover {
+      background-color: var(--maroon-deep);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--maroon-deep);
+      color: #FFFFFF;
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 9999999;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: var(--maroon-deep);
+      color: #E2D3D5;
+      padding: 5rem 0 2rem 0;
+      border-top: 1px solid var(--maroon-deep);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: #FFFFFF;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-heading {
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .footer-link {
+      color: #BBA5A8;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
+
+    .social-row { display: flex; gap: 1rem; margin-top: 1rem; }
+    .social-icon-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: #FFFFFF; transition: var(--transition-smooth);
+    }
+    .social-icon-btn:hover { background: var(--maroon-accent); transform: translateY(-3px); }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: #9A8084;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .modal-box, .comments-modal-box { grid-template-columns: 1fr; max-height: 85vh; }
+      .modal-image-col { height: 240px; min-height: 240px; }
+      .mag-covers-grid { grid-template-columns: repeat(2, 1fr); }
+      .comments-mag-preview-col { border-right: none; border-bottom: 1px solid var(--border-light); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .mobile-toggle { display: block; }
+      .mag-covers-grid { grid-template-columns: 1fr; }
+      .pipe-options-bar { gap: 0.6rem; }
+      .pipe-tab-btn { font-size: 1.15rem; }
+      .pipe-divider { font-size: 1.3rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">The Aura Review</a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="magazine.html" class="nav-link active">Magazine</a></li>
+        <li><a href="leaders.html" class="nav-link">Leaders</a></li>
+        <li><a href="companies.html" class="nav-link">Companies</a></li>
+        <li><a href="news.html" class="nav-link">News</a></li>
+        <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span id="memberStatusTag" style="font-size: 0.8rem; font-weight: 700; color: var(--maroon-accent); display: none;">
+          <i class="ri-shield-user-fill"></i> <span id="memberNameDisplay">Member</span>
+        </span>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+        <i class="ri-menu-4-line"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
+      <li><a href="leaders.html" class="mobile-nav-link">Leaders</a></li>
+      <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
+      <li><a href="news.html" class="mobile-nav-link">News</a></li>
+      <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- TOP TABS -->
+    <section class="mag-tabs-section">
+      <div class="container">
+        <div class="pipe-options-bar">
+          <button class="pipe-tab-btn active" data-category="all">All Leaders</button>
+          <span class="pipe-divider">|</span>
+          <button class="pipe-tab-btn" data-category="women">Women Leaders</button>
+          <span class="pipe-divider">|</span>
+          <button class="pipe-tab-btn" data-category="men">Men Leaders</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAGAZINE ARCHIVE GRID -->
+    <section class="magazines-archive-wrap">
+      <div class="container">
+        <div class="mag-covers-grid" id="magazinesContainer">
+          <!-- Dynamic Magazine Cards Rendered Here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ONE-TIME MEMBER REGISTRATION MODAL WITH LINKEDIN -->
+  <div class="member-modal-overlay" id="memberModal" aria-hidden="true">
+    <div class="member-modal-box">
+      <button class="member-close-btn" id="memberCloseBtn"><i class="ri-close-line"></i></button>
+      <span style="color: var(--maroon-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;">Reader Registration</span>
+      <h2 style="font-size: 1.8rem; color: var(--maroon-deep); margin: 0.4rem 0 0.6rem 0;">Join The Aura Review</h2>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.8rem;">
+        Enter your details once to unlock verified like privileges, executive discussions, and digital issues permanently.
+      </p>
+
+      <form id="memberRegistrationForm">
+        <div class="member-form-group">
+          <label for="memberName">Full Name</label>
+          <input type="text" id="memberName" class="member-input" placeholder="e.g. Akash Naikwade" required>
+        </div>
+
+        <div class="member-form-group">
+          <label for="memberRole">Designation / Role</label>
+          <input type="text" id="memberRole" class="member-input" placeholder="e.g. Founder & CEO" required>
+        </div>
+
+        <div class="member-form-group">
+          <label for="memberLinkedin">LinkedIn Profile URL</label>
+          <input type="url" id="memberLinkedin" class="member-input" placeholder="https://linkedin.com/in/username" required>
+        </div>
+
+        <button type="submit" class="btn-maroon" style="width: 100%; margin-top: 1rem;">
+          Continue as Member <i class="ri-arrow-right-line"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SPLIT EXECUTIVE DISCUSSION MODAL (PREVIEW + COMMENTS) -->
+  <div class="comments-modal-overlay" id="commentsModalOverlay">
+    <div class="comments-modal-box">
+      <button class="comments-modal-close" id="closeCommentsModalBtn" aria-label="Close Discussion Modal"><i class="ri-close-line"></i></button>
+
+      <!-- Left Side: Magazine Issue Context Preview -->
+      <div class="comments-mag-preview-col">
+        <div>
+          <div class="mag-preview-poster-frame">
+            <img id="cmPreviewImg" src="" alt="Magazine Front Cover">
+          </div>
+          <span class="mag-preview-tag" id="cmPreviewTag">Real Estate &bull; Vol. XVI</span>
+          <h3 class="mag-preview-title" id="cmPreviewTitle">Magazine Edition Title</h3>
+          <div class="mag-preview-leader" id="cmPreviewLeader">Featured: Leader Name</div>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+          <a href="leaders-digital.html" class="btn-maroon" style="width: 100%; font-size: 0.78rem; padding: 0.75rem 1rem;">
+            Read Full Digital Issue <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Side: Discussion Feed -->
+      <div class="comments-feed-col">
+        <div class="comments-feed-header">
+          <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700; display: block; margin-bottom: 0.2rem;">Executive Forum</span>
+          <h3 style="font-size: 1.4rem; color: var(--maroon-deep);">Executive Discussion</h3>
+        </div>
+
+        <div class="comments-list-box" id="commentsListBox">
+          <!-- Injected Comments with Avatars and LinkedIn Links -->
+        </div>
+
+        <form id="addCommentForm" style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem;">
+          <textarea id="commentTextInput" placeholder="Write your professional perspective..." required style="width: 100%; height: 75px; padding: 0.8rem; border: 1px solid var(--maroon-border); border-radius: 4px; font-family: var(--font-sans); outline: none;"></textarea>
+          <button type="submit" class="btn-maroon" style="width: 100%;">Post Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- DYNAMIC DETAILS MODAL -->
+  <div class="modal-overlay" id="magModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="modal-image-col" id="modalImg"></div>
+      <div class="modal-content-col">
+        <div>
+          <span style="font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 600;" id="modalCategory">Editorial Edition</span>
+          <h2 style="font-size: 2.1rem; line-height: 1.2; color: var(--maroon-deep); margin: 0.4rem 0;" id="modalTitle">Edition Title</h2>
+          <div style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.2rem; font-weight: 500;" id="modalSubtitle">Executive Subtitle</div>
+          <p style="font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.6rem;" id="modalBio">Editorial profile description...</p>
+        </div>
+
+        <div id="modalHighlights" style="display: flex; flex-direction: column; gap: 0.6rem; padding-top: 1rem; border-top: 1px solid var(--border-light);"></div>
+
+        <div style="margin-top: 2rem;">
+          <a href="leaders-digital.html" class="btn-maroon" style="width: 100%;">Read Digital Issue <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-msg" id="toastMsg">Action confirmed</div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">The Aura Review</div>
+          <p style="color: #BBA5A8; font-size: 0.95rem; line-height: 1.7;">
+            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
+          </p>
+          <div class="social-row">
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="magazine.html" class="footer-link">Magazine</a></li>
+            <li><a href="leaders.html" class="footer-link">Leaders</a></li>
+            <li><a href="companies.html" class="footer-link">Companies</a></li>
+            <li><a href="news.html" class="footer-link">News</a></li>
+            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
+            <li><a href="faq.html" class="footer-link">FAQ</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Editorial Sectors</h4>
+          <ul class="footer-links">
+            <li><a href="magazine.html" class="footer-link">Technology & Software</a></li>
+            <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
+            <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
+            <li><a href="magazine.html" class="footer-link">Real Estate & Construction</a></li>
+            <li><a href="magazine.html" class="footer-link">Sustainability & Energy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact & Inquiries</h4>
+          <p style="color: #BBA5A8; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">
+            For editorial submissions, magazine features, and publication collaborations:
+          </p>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 The Aura Review. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms & Conditions</a>
+          <a href="editorial-policy.html" class="footer-link">Editorial Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const MAGAZINE_DATABASE = [
+      {
+        id: "mag-1",
+        category: "men",
+        title: "The Most Dynamic Real Estate Entrepreneurs to Watch in 2026",
+        featuredLeader: "Jerome Hairston",
+        role: "CEO & Realtor, Hairston Investment Properties",
+        coverImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+        editionTag: "Real Estate &bull; Vol. XVI",
+        views: 1420,
+        likes: 348,
+        comments: [
+          { author: "Marcus Sterling", role: "Managing Partner", linkedin: "https://linkedin.com", text: "Incredible perspective on sustainable urban commercial portfolios." }
+        ],
+        desc: "Building trust, structure, and a different standard in real estate infrastructure and metropolitan development.",
+        highlights: [
+          "15+ Exclusive Commercial Real Estate Profiles",
+          "Market Capital Flow Projections 2026",
+          "Sustainable Architecture Frameworks"
+        ]
+      },
+      {
+        id: "mag-2",
+        category: "women",
+        title: "The Most Influential Women Leaders Driving Systems Reform & Social Impact, 2026",
+        featuredLeader: "Dr. Channing L. Collins",
+        role: "Founder & Lead Architect, Collins Institute",
+        coverImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        editionTag: "Women Leaders &bull; Vol. XV",
+        views: 2180,
+        likes: 512,
+        comments: [
+          { author: "Elena Vance", role: "Chief Executive Officer", linkedin: "https://linkedin.com", text: "A masterclass in organizational governance and scalable execution." }
+        ],
+        desc: "Redefining power and precision in global organizational governance and institutional child welfare systems.",
+        highlights: [
+          "Keynote Interview: Dr. Channing L. Collins",
+          "Institutional System Reform Blueprint",
+          "Global Social Impact Metrics"
+        ]
+      },
+      {
+        id: "mag-3",
+        category: "women",
+        title: "The Most Influential Mission-Driven Marketing Woman Leader to Watch in 2026",
+        featuredLeader: "Dawn Jordan Jones",
+        role: "Founder & Certified AI Marketing Strategist, 29Eleven Media",
+        coverImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+        editionTag: "Marketing & Strategy &bull; Vol. XIV",
+        views: 1640,
+        likes: 389,
+        comments: [
+          { author: "Sarah Miller", role: "Founder & CEO", linkedin: "https://linkedin.com", text: "Purpose-driven brand architecture executed with deep authenticity." }
+        ],
+        desc: "Where purpose, strategy, and ethical artificial intelligence shape meaningful brand resonance and authentic growth.",
+        highlights: [
+          "AI-Driven Ethical Brand Growth Playbook",
+          "Cross-Border Audience Psychology",
+          "Purpose-Centric Enterprise Case Studies"
+        ]
+      },
+      {
+        id: "mag-4",
+        category: "women",
+        title: "The Most Admired Business Woman Leader of 2026",
+        featuredLeader: "Sarah Miller",
+        role: "Founder & CEO, Etho Sun",
+        coverImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
+        editionTag: "Leadership Excellence &bull; Vol. XIII",
+        views: 1950,
+        likes: 460,
+        comments: [],
+        desc: "Redefining responsibility in personal care through clinical science, uncompromising integrity, and global visionary leadership.",
+        highlights: [
+          "Next-Gen Formulation Breakthroughs",
+          "Scaling Consumer Brands to Global Distribution",
+          "Sustainable Packaging Standards"
+        ]
+      },
+      {
+        id: "mag-5",
+        category: "men",
+        title: "The Architecture of Capital & Next-Generation Private Equity in 2026",
+        featuredLeader: "Marcus Sterling",
+        role: "Managing Partner, Aurelius Capital",
+        coverImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        editionTag: "FinTech & Banking &bull; Vol. XII",
+        views: 1890,
+        likes: 420,
+        comments: [
+          { author: "Dr. Aris Thorne", role: "EVP Healthcare", linkedin: "https://linkedin.com", text: "Compelling thesis on borderless institutional capital mobility." }
+        ],
+        desc: "Deploying sovereign liquidity architectures across high-growth international emerging markets.",
+        highlights: [
+          "Exclusive Analysis with Marcus Sterling",
+          "Institutional Liquidity Forecasts",
+          "Decentralized Capital Frameworks"
+        ]
+      },
+      {
+        id: "mag-6",
+        category: "men",
+        title: "Decarbonizing Heavy Industry & Global Power Grids in 2026",
+        featuredLeader: "Julian Drake",
+        role: "Chief Strategy Officer, Solis Dynamics",
+        coverImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        editionTag: "Clean Infrastructure &bull; Vol. XI",
+        views: 1310,
+        likes: 295,
+        comments: [],
+        desc: "Engineering utility-scale green hydrogen storage and resilient microgrid infrastructures across continental hubs.",
+        highlights: [
+          "4.5 GW Renewable Integration Study",
+          "Industrial Decarbonization Roadmap",
+          "Capital Expenditure Models"
+        ]
+      }
+    ];
+
+    const STORAGE_MEMBER = 'aura_mag_member';
+    const STORAGE_LIKES = 'aura_user_liked';
+    const STORAGE_VIEWS = 'aura_user_viewed';
+
+    let currentTabCategory = 'all';
+    let pendingAction = null;
+    let activeCommentMagId = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initMemberUI();
+      renderMagazines(currentTabCategory);
+
+      // Header scroll blur
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+
+      // Mobile Menu
+      const toggle = document.getElementById('mobileToggle');
+      const drawer = document.getElementById('mobileMenu');
+      const backdrop = document.getElementById('menuBackdrop');
+      const close = document.getElementById('menuClose');
+      const toggleM = (o) => { drawer.classList.toggle('open', o); backdrop.classList.toggle('open', o); };
+      toggle.addEventListener('click', () => toggleM(true));
+      close.addEventListener('click', () => toggleM(false));
+      backdrop.addEventListener('click', () => toggleM(false));
+
+      // Tab Buttons Filter
+      const tabBtns = document.querySelectorAll('.pipe-tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTabCategory = btn.getAttribute('data-category');
+          renderMagazines(currentTabCategory);
+        });
+      });
+
+      // Member Registration Form
+      document.getElementById('memberRegistrationForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('memberName').value.trim();
+        const role = document.getElementById('memberRole').value.trim();
+        let linkedin = document.getElementById('memberLinkedin').value.trim();
+
+        if (!linkedin.startsWith('http://') && !linkedin.startsWith('https://')) {
+          linkedin = 'https://' + linkedin;
+        }
+
+        if (name && role && linkedin) {
+          localStorage.setItem(STORAGE_MEMBER, JSON.stringify({ name, role, linkedin }));
+          document.getElementById('memberModal').classList.remove('active');
+          initMemberUI();
+          showToast(`Welcome ${name}! Member access verified.`);
+
+          if (pendingAction) {
+            pendingAction();
+            pendingAction = null;
+          }
+        }
+      });
+
+      // Close Modals
+      document.getElementById('memberCloseBtn').addEventListener('click', () => {
+        document.getElementById('memberModal').classList.remove('active');
+      });
+
+      document.getElementById('closeCommentsModalBtn').addEventListener('click', () => {
+        document.getElementById('commentsModalOverlay').classList.remove('active');
+      });
+
+      document.getElementById('modalCloseBtn').addEventListener('click', () => {
+        document.getElementById('magModal').classList.remove('active');
+      });
+
+      // Add Comment Form
+      document.getElementById('addCommentForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = document.getElementById('commentTextInput').value.trim();
+        const member = getMember();
+        if (!member || !activeCommentMagId || !text) return;
+
+        const mag = MAGAZINE_DATABASE.find(m => m.id === activeCommentMagId);
+        if (mag) {
+          mag.comments.push({ 
+            author: member.name, 
+            role: member.role || 'Executive Reader', 
+            linkedin: member.linkedin || 'https://linkedin.com',
+            text: text 
+          });
+          document.getElementById('commentTextInput').value = '';
+          renderCommentsList(mag);
+          renderMagazines(currentTabCategory);
+          showToast("Comment published publicly!");
+        }
+      });
+
+      // Click Ripple
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || e.target.closest('textarea')) return;
+        const ripple = document.createElement('span');
+        ripple.classList.add('click-ripple');
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 650);
+      });
+    });
+
+    function getMember() {
+      const data = localStorage.getItem(STORAGE_MEMBER);
+      return data ? JSON.parse(data) : null;
+    }
+
+    function initMemberUI() {
+      const member = getMember();
+      const tag = document.getElementById('memberStatusTag');
+      const disp = document.getElementById('memberNameDisplay');
+      if (member) {
+        tag.style.display = 'inline-flex';
+        disp.textContent = member.name.split(' ')[0];
+      }
+    }
+
+    function requireMemberAccess(callback) {
+      if (getMember()) {
+        callback();
+      } else {
+        pendingAction = callback;
+        document.getElementById('memberModal').classList.add('active');
+      }
+    }
+
+    function getInitials(name) {
+      if (!name) return 'AR';
+      const parts = name.split(' ');
+      if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+      return name.substring(0, 2).toUpperCase();
+    }
+
+    function renderMagazines(category) {
+      const container = document.getElementById('magazinesContainer');
+      const likedMags = JSON.parse(localStorage.getItem(STORAGE_LIKES) || '[]');
+      const viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
+
+      const filtered = category === 'all'
+        ? MAGAZINE_DATABASE
+        : MAGAZINE_DATABASE.filter(m => m.category === category);
+
+      container.innerHTML = filtered.map(mag => {
+        const isLiked = likedMags.includes(mag.id);
+        const hasViewed = viewedMags.includes(mag.id);
+        const currentLikes = mag.likes + (isLiked ? 1 : 0);
+        const currentViews = mag.views + (hasViewed ? 1 : 0);
+
+        return `
+          <div class="mag-card-wrap">
+            <div class="mag-cover-poster" onclick="openMagazineEdition('${mag.id}')">
+              <span class="mag-edition-pill">${mag.editionTag}</span>
+              <img src="${mag.coverImage}" alt="${mag.title}" loading="lazy">
+            </div>
+
+            <div class="mag-content-area">
+              <div>
+                <h3 class="mag-headline-title" onclick="openMagazineEdition('${mag.id}')">${mag.title}</h3>
+                <div class="mag-leader-meta">Featured: <strong>${mag.featuredLeader}</strong> (${mag.role})</div>
+              </div>
+
+              <!-- ENGAGEMENT BAR -->
+              <div class="mag-interaction-bar">
+                <button class="interact-btn ${isLiked ? 'liked' : ''}" onclick="handleLikeClick('${mag.id}')" title="Like Issue">
+                  <i class="${isLiked ? 'ri-heart-fill' : 'ri-heart-line'}"></i>
+                  <span>${currentLikes}</span>
+                </button>
+
+                <button class="interact-btn" onclick="handleCommentClick('${mag.id}')" title="Comments">
+                  <i class="ri-chat-3-line"></i>
+                  <span>${mag.comments.length}</span>
+                </button>
+
+                <button class="interact-btn" onclick="handleShareClick('${mag.id}')" title="Share">
+                  <i class="ri-share-forward-line"></i>
+                  <span>Share</span>
+                </button>
+
+                <div class="view-stat-pill" title="Unique Views">
+                  <i class="ri-eye-line"></i>
+                  <span>${currentViews}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleLikeClick(magId) {
+      requireMemberAccess(() => {
+        let likedMags = JSON.parse(localStorage.getItem(STORAGE_LIKES) || '[]');
+        if (likedMags.includes(magId)) {
+          likedMags = likedMags.filter(id => id !== magId);
+          showToast("Like removed");
+        } else {
+          likedMags.push(magId);
+          showToast("Thank you for liking this edition!");
+        }
+        localStorage.setItem(STORAGE_LIKES, JSON.stringify(likedMags));
+        renderMagazines(currentTabCategory);
+      });
+    }
+
+    function handleCommentClick(magId) {
+      requireMemberAccess(() => {
+        activeCommentMagId = magId;
+        const mag = MAGAZINE_DATABASE.find(m => m.id === magId);
+        if (mag) {
+          // Bind Left Side Magazine Context
+          document.getElementById('cmPreviewImg').src = mag.coverImage;
+          document.getElementById('cmPreviewTag').innerHTML = mag.editionTag;
+          document.getElementById('cmPreviewTitle').textContent = mag.title;
+          document.getElementById('cmPreviewLeader').textContent = `Featured: ${mag.featuredLeader} (${mag.role})`;
+
+          renderCommentsList(mag);
+          document.getElementById('commentsModalOverlay').classList.add('active');
+        }
+      });
+    }
+
+    function renderCommentsList(mag) {
+      const box = document.getElementById('commentsListBox');
+      if (!mag.comments.length) {
+        box.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem;">Be the first executive to share your thoughts on this edition!</div>`;
+        return;
+      }
+
+      box.innerHTML = mag.comments.map(c => `
+        <div class="comment-item">
+          <div class="comment-avatar">${getInitials(c.author)}</div>
+          <div class="comment-body">
+            <div class="comment-header-row">
+              <div class="comment-author">${c.author}</div>
+              <a href="${c.linkedin}" target="_blank" rel="noopener noreferrer" class="linkedin-link-btn" title="View LinkedIn Profile">
+                <i class="ri-linkedin-box-fill"></i>
+              </a>
+            </div>
+            <div class="comment-role">${c.role || 'Executive Member'}</div>
+            <div class="comment-text">${c.text}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleShareClick(magId) {
+      const url = window.location.origin + '/magazine.html?id=' + magId;
+      if (navigator.share) {
+        navigator.share({ title: 'The Aura Review Magazine', url }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(url);
+        showToast("Magazine link copied to clipboard!");
+      }
+    }
+
+    function openMagazineEdition(magId) {
+      requireMemberAccess(() => {
+        let viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
+        if (!viewedMags.includes(magId)) {
+          viewedMags.push(magId);
+          localStorage.setItem(STORAGE_VIEWS, JSON.stringify(viewedMags));
+        }
+
+        const data = MAGAZINE_DATABASE.find(m => m.id === magId);
+        if (!data) return;
+
+        document.getElementById('modalImg').style.backgroundImage = `url('${data.coverImage}')`;
+        document.getElementById('modalCategory').innerHTML = data.editionTag;
+        document.getElementById('modalTitle').textContent = data.title;
+        document.getElementById('modalSubtitle').textContent = `Featured Leader: ${data.featuredLeader} (${data.role})`;
+        document.getElementById('modalBio').textContent = data.desc;
+
+        document.getElementById('modalHighlights').innerHTML = data.highlights.map(h => `
+          <div style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; color: var(--maroon-deep); font-weight: 500;">
+            <i class="ri-checkbox-circle-fill" style="color: var(--maroon-accent);"></i>
+            <span>${h}</span>
+          </div>
+        `).join('');
+
+        document.getElementById('magModal').classList.add('active');
+        renderMagazines(currentTabCategory);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+  </script>
+</body>
+</html>
