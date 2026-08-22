@@ -4,480 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Magazine Editions | The Aura Review</title>
-  <meta name="description" content="Explore digital magazine editions from The Aura Review featuring front cover issues for All Leaders, Women Leaders, and Men Leaders.">
-
-  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Remix Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
   <style>
     :root {
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #FAF7F6;
-      --bg-subtle: #F3ECE9;
-      --bg-card: #FFFFFF;
-      
-      --maroon-primary: #4A0E17;
-      --maroon-deep: #2A0409;
-      --maroon-rich: #38070F;
-      --maroon-light: #6A1E29;
-      --maroon-accent: #8E2B38;
-      --maroon-soft: rgba(74, 14, 23, 0.05);
-      --maroon-border: rgba(74, 14, 23, 0.12);
-      
-      --text-main: #2A0409;
-      --text-muted: #5C4649;
-      --text-light: #8E787B;
-      --border-light: rgba(74, 14, 23, 0.09);
-      
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      
-      --shadow-sm: 0 4px 15px rgba(74, 14, 23, 0.05);
-      --shadow-md: 0 12px 32px rgba(74, 14, 23, 0.08);
-      --shadow-lg: 0 20px 48px rgba(74, 14, 23, 0.14);
-      --shadow-hover: 0 28px 60px rgba(42, 4, 9, 0.22);
-      
-      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --bg-primary: #FFFFFF; --bg-secondary: #FAF7F6; --maroon-primary: #4A0E17;
+      --maroon-deep: #2A0409; --maroon-accent: #8E2B38; --maroon-border: rgba(74, 14, 23, 0.12);
+      --text-main: #2A0409; --text-muted: #5C4649; --text-light: #8E787B; --border-light: rgba(74, 14, 23, 0.09);
+      --font-serif: 'Cormorant Garamond', Georgia, serif; --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --shadow-sm: 0 4px 15px rgba(74, 14, 23, 0.05); --shadow-hover: 0 28px 60px rgba(42, 4, 9, 0.22);
     }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      background-color: var(--bg-primary);
-      color: var(--maroon-primary);
-      font-family: var(--font-sans);
-      font-weight: 400;
-      line-height: 1.65;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-
-    .click-ripple {
-      position: fixed;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      animation: rippleAnim 0.65s ease-out forwards;
-      pointer-events: none;
-      z-index: 999999;
-    }
-
-    @keyframes rippleAnim {
-      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
-      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
-    }
-
-    h1, h2, h3, h4, .font-serif {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      letter-spacing: 0.015em;
-      color: var(--maroon-deep);
-    }
-
-    p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: var(--transition-smooth);
-    }
-
-    .container {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* HEADER */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light);
-      z-index: 1000;
-      transition: var(--transition-smooth);
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 84px;
-    }
-
-    .logo {
-      font-family: var(--font-serif);
-      font-size: 1.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--maroon-deep);
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-link {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--maroon-primary);
-      position: relative;
-      padding: 0.5rem 0;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 1.5px;
-      background-color: var(--maroon-accent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after, .nav-link.active::after {
-      width: 100%;
-    }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.75rem;
-      color: var(--maroon-primary);
-      cursor: pointer;
-    }
-
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 85%;
-      max-width: 380px;
-      height: 100vh;
-      background: #FFFFFF;
-      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
-      z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      padding: 2.5rem 2rem;
-      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .mobile-menu.open { right: 0; }
-    .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
-    .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
-    .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
-    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .menu-backdrop.open { opacity: 1; pointer-events: all; }
-
-    /* MAGAZINE TABS */
-    .mag-tabs-section {
-      padding-top: 130px;
-      padding-bottom: 2.5rem;
-      text-align: center;
-      background: var(--bg-primary);
-    }
-
-    .pipe-options-bar {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.4rem;
-    }
-
-    .pipe-tab-btn {
-      font-family: var(--font-serif);
-      font-size: clamp(1.3rem, 2vw, 1.8rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
-      color: var(--text-light);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.4rem 0.6rem;
-      transition: var(--transition-smooth);
-      position: relative;
-    }
-
-    .pipe-tab-btn:hover { color: var(--maroon-accent); }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: var(--bg-primary); color: var(--maroon-primary); font-family: var(--font-sans); line-height: 1.65; }
+    h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--maroon-deep); }
+    .container { max-width: 1360px; margin: 0 auto; padding: 0 2rem; }
+    .header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); z-index: 1000; height: 84px; display: flex; align-items: center; }
+    .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .logo { font-family: var(--font-serif); font-size: 1.85rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--maroon-deep); text-decoration: none; }
+    .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-link { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--maroon-primary); text-decoration: none; }
+    .nav-link.active { color: var(--maroon-accent); }
+    .mag-tabs-section { padding-top: 130px; padding-bottom: 2.5rem; text-align: center; }
+    .pipe-options-bar { display: inline-flex; align-items: center; gap: 1.4rem; }
+    .pipe-tab-btn { font-family: var(--font-serif); font-size: 1.5rem; text-transform: uppercase; background: none; border: none; cursor: pointer; color: var(--text-light); }
     .pipe-tab-btn.active { color: var(--maroon-deep); font-weight: 700; }
-    .pipe-tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 10%;
-      width: 80%;
-      height: 2px;
-      background-color: var(--maroon-primary);
-    }
-
-    .pipe-divider {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      color: var(--maroon-border);
-      user-select: none;
-      font-weight: 300;
-    }
-
-    /* MAGAZINE GRID */
-    .magazines-archive-wrap {
-      padding-bottom: 7rem;
-      background: var(--bg-primary);
-    }
-
-    .mag-covers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2.5rem 2rem;
-    }
-
-    .mag-card-wrap {
-      background: #FFFFFF;
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition-smooth);
-    }
-
-    .mag-card-wrap:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--maroon-accent);
-    }
-
-    .mag-cover-poster {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      background-color: #121212;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .mag-cover-poster img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .mag-card-wrap:hover .mag-cover-poster img {
-      transform: scale(1.04);
-    }
-
-    .mag-edition-pill {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: rgba(42, 4, 9, 0.88);
-      backdrop-filter: blur(6px);
-      color: #FFFFFF;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.75rem;
-      border-radius: 2px;
-      font-weight: 600;
-    }
-
-    .mag-content-area {
-      padding: 1.5rem 1.4rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-
-    .mag-headline-title {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      line-height: 1.35;
-      color: var(--maroon-deep);
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .mag-headline-title:hover {
-      color: var(--maroon-accent);
-    }
-
-    .mag-leader-meta {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-    }
-
-    /* ENGAGEMENT BAR */
-    .mag-interaction-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .interact-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      transition: var(--transition-smooth);
-      padding: 0.3rem 0.45rem;
-      border-radius: 4px;
-    }
-
-    .interact-btn:hover {
-      color: var(--maroon-accent);
-      background: var(--maroon-soft);
-    }
-
+    .magazines-archive-wrap { padding-bottom: 7rem; }
+    .mag-covers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem 2rem; }
+    .mag-card-wrap { background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+    .mag-card-wrap:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .mag-cover-poster { width: 100%; aspect-ratio: 3 / 4; background: #121212; position: relative; cursor: pointer; overflow: hidden; }
+    .mag-cover-poster img { width: 100%; height: 100%; object-fit: cover; }
+    .mag-edition-pill { position: absolute; top: 1rem; left: 1rem; background: rgba(42, 4, 9, 0.88); color: #FFFFFF; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 0.75rem; border-radius: 2px; }
+    .mag-content-area { padding: 1.5rem 1.4rem; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+    .mag-headline-title { font-family: var(--font-serif); font-size: 1.25rem; color: var(--maroon-deep); font-weight: 600; margin-bottom: 0.4rem; cursor: pointer; }
+    .mag-leader-meta { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .mag-interaction-bar { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-light); }
+    .interact-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
     .interact-btn.liked { color: #D32F2F; }
-    .interact-btn.liked i { font-weight: 700; }
-
-    .view-stat-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--maroon-accent);
-    }
-
-    /* MEMBER REGISTRATION MODAL */
-    .member-modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(42, 4, 9, 0.72);
-      backdrop-filter: blur(14px);
-      z-index: 999999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-
-    .member-modal-overlay.active { opacity: 1; pointer-events: all; }
-
-    .member-modal-box {
-      background: #FFFFFF;
-      border-radius: 8px;
-      max-width: 480px;
-      width: 100%;
-      padding: 3rem 2.2rem;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
-      position: relative;
-      text-align: center;
-    }
-
-    .member-close-btn {
-      position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; cursor: pointer;
-    }
-
-    .member-form-group { text-align: left; margin-bottom: 1.1rem; }
-    .member-form-group label { display: block; font-size: 0.78rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem; }
-    .member-input { width: 100%; padding: 0.85rem 1.2rem; border: 1px solid var(--maroon-border); border-radius: 4px; outline: none; }
-
-    /* DYNAMIC DETAILS MODAL */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.65); backdrop-filter: blur(16px);
-      z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-    }
+    
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.65); backdrop-filter: blur(16px); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: 0.3s; }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal-box {
-      background: #FFFFFF; border-radius: 8px; max-width: 840px; width: 100%; max-height: 90vh;
-      overflow-y: auto; position: relative; display: grid; grid-template-columns: 0.85fr 1.15fr; box-shadow: var(--shadow-lg);
-    }
-    .modal-close-btn {
-      position: absolute; top: 1.2rem; right: 1.2rem; background: #FFFFFF; border: 1px solid var(--border-light);
-      width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;
-    }
+    .modal-box { background: #FFFFFF; border-radius: 8px; max-width: 840px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 0.85fr 1.15fr; box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
+    .modal-close-btn { position: absolute; top: 1.2rem; right: 1.2rem; background: #FFFFFF; border: 1px solid var(--border-light); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
     .modal-image-col { background-size: cover; background-position: center top; min-height: 380px; }
     .modal-content-col { padding: 2.8rem 2.2rem; display: flex; flex-direction: column; justify-content: space-between; }
-
-    .toast-msg {
-      position: fixed; bottom: 2rem; right: 2rem; background: var(--maroon-deep); color: #FFFFFF;
-      padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; display: none; z-index: 9999999;
-    }
-
-    .footer { background-color: var(--maroon-deep); color: #E2D3D5; padding: 5rem 0 2rem 0; border-top: 1px solid var(--maroon-deep); }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
-    .footer-brand { font-family: var(--font-serif); font-size: 2rem; color: #FFFFFF; letter-spacing: 0.15em; margin-bottom: 1rem; }
-    .footer-heading { color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-    .footer-link { color: #BBA5A8; font-size: 0.9rem; transition: var(--transition-smooth); }
-    .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
-    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: #9A8084; }
-
-    @media (max-width: 1024px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .modal-box { grid-template-columns: 1fr; max-height: 85vh; }
-      .modal-image-col { height: 240px; min-height: 240px; }
-    }
-    @media (max-width: 768px) {
-      .nav-menu { display: none; }
-      .mobile-toggle { display: block; }
-      .mag-covers-grid { grid-template-columns: 1fr; }
-    }
+    .btn-maroon { display: inline-block; background: var(--maroon-primary); color: #FFFFFF; padding: 0.8rem 1.5rem; border-radius: 4px; text-align: center; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; text-decoration: none; }
+    .toast-msg { position: fixed; bottom: 2rem; right: 2rem; background: var(--maroon-deep); color: #FFFFFF; padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; display: none; z-index: 9999999; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header" id="header">
+  <header class="header">
     <div class="container header-container">
       <a href="index.html" class="logo">The Aura Review</a>
-
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="magazine.html" class="nav-link active">Magazine</a></li>
@@ -488,94 +70,44 @@
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
       </ul>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
-        <i class="ri-menu-4-line"></i>
-      </button>
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="menu-backdrop" id="menuBackdrop"></div>
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
-    <ul class="mobile-nav-list">
-      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
-      <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
-      <li><a href="leaders.html" class="mobile-nav-link">Leaders</a></li>
-      <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
-      <li><a href="news.html" class="mobile-nav-link">News</a></li>
-      <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
-      <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
-      <li><a href="about.html" class="mobile-nav-link">About</a></li>
-    </ul>
-  </div>
-
   <main>
-    <!-- TOP TABS -->
     <section class="mag-tabs-section">
       <div class="container">
         <div class="pipe-options-bar">
           <button class="pipe-tab-btn active" data-category="all">All Leaders</button>
-          <span class="pipe-divider">|</span>
+          <span>|</span>
           <button class="pipe-tab-btn" data-category="women">Women Leaders</button>
-          <span class="pipe-divider">|</span>
+          <span>|</span>
           <button class="pipe-tab-btn" data-category="men">Men Leaders</button>
         </div>
       </div>
     </section>
 
-    <!-- MAGAZINE ARCHIVE GRID -->
     <section class="magazines-archive-wrap">
       <div class="container">
-        <div class="mag-covers-grid" id="magazinesContainer">
-          <!-- Dynamic Magazine Cards Rendered Here -->
-        </div>
+        <div class="mag-covers-grid" id="magazinesContainer"></div>
       </div>
     </section>
   </main>
 
-  <!-- MEMBER REGISTRATION MODAL -->
-  <div class="member-modal-overlay" id="memberModal" aria-hidden="true">
-    <div class="member-modal-box">
-      <button class="member-close-btn" id="memberCloseBtn"><i class="ri-close-line"></i></button>
-      <span style="color: var(--maroon-accent); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Reader Registration</span>
-      <h2 style="font-size: 1.8rem; color: var(--maroon-deep); margin: 0.4rem 0 0.6rem 0;">Join The Aura Review</h2>
-      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.8rem;">Enter your details once to unlock verified access.</p>
-
-      <form id="memberRegistrationForm">
-        <div class="member-form-group">
-          <label for="memberName">Full Name</label>
-          <input type="text" id="memberName" class="member-input" placeholder="e.g. Akash Naikwade" required>
-        </div>
-        <div class="member-form-group">
-          <label for="memberRole">Designation / Role</label>
-          <input type="text" id="memberRole" class="member-input" placeholder="e.g. Founder & CEO" required>
-        </div>
-        <div class="member-form-group">
-          <label for="memberLinkedin">LinkedIn Profile URL</label>
-          <input type="url" id="memberLinkedin" class="member-input" placeholder="https://linkedin.com/in/username" required>
-        </div>
-        <button type="submit" class="btn btn-maroon" style="width: 100%; margin-top: 1rem;">Continue as Member &rarr;</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- DYNAMIC DETAILS MODAL -->
-  <div class="modal-overlay" id="magModal" aria-hidden="true">
+  <!-- DETAILS MODAL -->
+  <div class="modal-overlay" id="magModal">
     <div class="modal-box">
-      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal"><i class="ri-close-line"></i></button>
+      <button class="modal-close-btn" onclick="document.getElementById('magModal').classList.remove('active')"><i class="ri-close-line"></i></button>
       <div class="modal-image-col" id="modalImg"></div>
       <div class="modal-content-col">
         <div>
           <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--maroon-accent); font-weight: 600;" id="modalCategory">Editorial Edition</span>
-          <h2 style="font-size: 2.1rem; line-height: 1.2; color: var(--maroon-deep); margin: 0.4rem 0;" id="modalTitle">Edition Title</h2>
-          <div style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.2rem; font-weight: 500;" id="modalSubtitle">Executive Subtitle</div>
-          <p style="font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.6rem;" id="modalBio">Editorial profile description...</p>
+          <h2 style="font-size: 2rem; color: var(--maroon-deep); margin: 0.4rem 0;" id="modalTitle">Title</h2>
+          <div style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.2rem; font-weight: 500;" id="modalSubtitle">Subtitle</div>
+          <!-- Clean HTML rendered safely -->
+          <div style="font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.6rem; max-height: 220px; overflow-y: auto;" id="modalBio">Bio</div>
         </div>
-        <div id="modalHighlights" style="display: flex; flex-direction: column; gap: 0.6rem; padding-top: 1rem; border-top: 1px solid var(--border-light);"></div>
         <div style="margin-top: 2rem;">
-          <a href="leaders read digital.html" class="btn btn-maroon" style="width: 100%;">Read Digital Issue <i class="ri-arrow-right-line"></i></a>
+          <a href="leaders read digital.html" class="btn-maroon" style="width: 100%;">Read Digital Issue <i class="ri-arrow-right-line"></i></a>
         </div>
       </div>
     </div>
@@ -583,320 +115,66 @@
 
   <div class="toast-msg" id="toastMsg">Action confirmed</div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">The Aura Review</div>
-          <p class="footer-desc">A premium global business and leadership publication shaping tomorrow.</p>
-        </div>
-        <div>
-          <h4 class="footer-heading">Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="index.html" class="footer-link">Home</a></li>
-            <li><a href="magazine.html" class="footer-link">Magazine</a></li>
-            <li><a href="leaders.html" class="footer-link">Leaders</a></li>
-            <li><a href="companies.html" class="footer-link">Companies</a></li>
-            <li><a href="news.html" class="footer-link">News</a></li>
-            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
-            <li><a href="faq.html" class="footer-link">FAQ</a></li>
-            <li><a href="about.html" class="footer-link">About</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-heading">Editorial Sectors</h4>
-          <ul class="footer-links">
-            <li><a href="magazine.html" class="footer-link">Technology & Software</a></li>
-            <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
-            <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-heading">Contact</h4>
-          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 The Aura Review. All rights reserved.</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- SCRIPT -->
   <script>
-    const INITIAL_MAGAZINES = [
-      {
-        id: "mag-1",
-        category: "men",
-        title: "The Most Dynamic Real Estate Entrepreneurs to Watch in 2026",
-        featuredLeader: "Jerome Hairston",
-        role: "CEO & Realtor, Hairston Investment Properties",
-        coverImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-        editionTag: "Real Estate • Vol. XVI",
-        views: 1420,
-        likes: 348,
-        desc: "Building trust, structure, and a different standard in real estate infrastructure and metropolitan development.",
-        highlights: ["15+ Exclusive Commercial Real Estate Profiles", "Market Capital Flow Projections 2026", "Sustainable Architecture Frameworks"]
-      },
-      {
-        id: "mag-2",
-        category: "women",
-        title: "The Most Influential Women Leaders Driving Systems Reform & Social Impact, 2026",
-        featuredLeader: "Dr. Channing L. Collins",
-        role: "Founder & Lead Architect, Collins Institute",
-        coverImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-        editionTag: "Women Leaders • Vol. XV",
-        views: 2180,
-        likes: 512,
-        desc: "Redefining power and precision in global organizational governance and institutional child welfare systems.",
-        highlights: ["Keynote Interview: Dr. Channing L. Collins", "Institutional System Reform Blueprint", "Global Social Impact Metrics"]
-      },
-      {
-        id: "mag-3",
-        category: "women",
-        title: "The Most Influential Mission-Driven Marketing Woman Leader to Watch in 2026",
-        featuredLeader: "Dawn Jordan Jones",
-        role: "Founder & Certified AI Marketing Strategist, 29Eleven Media",
-        coverImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-        editionTag: "Marketing & Strategy • Vol. XIV",
-        views: 1640,
-        likes: 389,
-        desc: "Where purpose, strategy, and ethical artificial intelligence shape meaningful brand resonance and authentic growth.",
-        highlights: ["AI-Driven Ethical Brand Growth Playbook", "Cross-Border Audience Psychology", "Purpose-Centric Enterprise Case Studies"]
-      }
-    ];
-
-    const STORAGE_MEMBER = 'aura_mag_member';
-    const STORAGE_LIKES = 'aura_user_liked';
-    const STORAGE_VIEWS = 'aura_user_viewed';
-
-    let currentTabCategory = 'all';
-    let pendingAction = null;
     let magazineDatabase = [];
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Load from localStorage (Admin updates) merged with initial
       const customMags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
-      magazineDatabase = [...customMags, ...INITIAL_MAGAZINES];
+      magazineDatabase = customMags;
 
-      initMemberUI();
-      renderMagazines(currentTabCategory);
+      renderMagazines('all');
 
-      // Header scroll blur
-      const header = document.getElementById('header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 30) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      });
-
-      // Mobile Menu
-      const toggle = document.getElementById('mobileToggle');
-      const drawer = document.getElementById('mobileMenu');
-      const backdrop = document.getElementById('menuBackdrop');
-      const close = document.getElementById('menuClose');
-      const toggleM = (o) => { drawer.classList.toggle('open', o); backdrop.classList.toggle('open', o); };
-      toggle.addEventListener('click', () => toggleM(true));
-      close.addEventListener('click', () => toggleM(false));
-      backdrop.addEventListener('click', () => toggleM(false));
-
-      // Tab Buttons Filter
-      const tabBtns = document.querySelectorAll('.pipe-tab-btn');
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tabBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentTabCategory = btn.getAttribute('data-category');
-          renderMagazines(currentTabCategory);
+      document.querySelectorAll('.pipe-tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.pipe-tab-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          renderMagazines(e.target.getAttribute('data-category'));
         });
-      });
-
-      // Member Registration Form
-      document.getElementById('memberRegistrationForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('memberName').value.trim();
-        const role = document.getElementById('memberRole').value.trim();
-        let linkedin = document.getElementById('memberLinkedin').value.trim();
-
-        if (!linkedin.startsWith('http://') && !linkedin.startsWith('https://')) {
-          linkedin = 'https://' + linkedin;
-        }
-
-        if (name && role && linkedin) {
-          localStorage.setItem(STORAGE_MEMBER, JSON.stringify({ name, role, linkedin }));
-          document.getElementById('memberModal').classList.remove('active');
-          initMemberUI();
-          showToast(`Welcome ${name}! Member access verified.`);
-
-          if (pendingAction) {
-            pendingAction();
-            pendingAction = null;
-          }
-        }
-      });
-
-      document.getElementById('memberCloseBtn').addEventListener('click', () => {
-        document.getElementById('memberModal').classList.remove('active');
-      });
-
-      document.getElementById('modalCloseBtn').addEventListener('click', () => {
-        document.getElementById('magModal').classList.remove('active');
-      });
-
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) return;
-        const ripple = document.createElement('span');
-        ripple.classList.add('click-ripple');
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 650);
       });
     });
 
-    function getMember() {
-      const data = localStorage.getItem(STORAGE_MEMBER);
-      return data ? JSON.parse(data) : null;
-    }
-
-    function initMemberUI() {
-      const member = getMember();
-      const tag = document.getElementById('memberStatusTag');
-      const disp = document.getElementById('memberNameDisplay');
-      if (member && tag && disp) {
-        tag.style.display = 'inline-flex';
-        disp.textContent = member.name.split(' ')[0];
-      }
-    }
-
-    function requireMemberAccess(callback) {
-      if (getMember()) {
-        callback();
-      } else {
-        pendingAction = callback;
-        document.getElementById('memberModal').classList.add('active');
-      }
-    }
-
     function renderMagazines(category) {
       const container = document.getElementById('magazinesContainer');
-      const likedMags = JSON.parse(localStorage.getItem(STORAGE_LIKES) || '[]');
-      const viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
+      const filtered = category === 'all' ? magazineDatabase : magazineDatabase.filter(m => m.category === category);
 
-      const filtered = category === 'all'
-        ? magazineDatabase
-        : magazineDatabase.filter(m => m.category === category);
-
-      container.innerHTML = filtered.map(mag => {
-        const isLiked = likedMags.includes(mag.id);
-        const hasViewed = viewedMags.includes(mag.id);
-        const currentLikes = (mag.likes || 120) + (isLiked ? 1 : 0);
-        const currentViews = (mag.views || 950) + (hasViewed ? 1 : 0);
-
-        return `
-          <div class="mag-card-wrap">
-            <div class="mag-cover-poster" onclick="openMagazineEdition('${mag.id}')">
-              <span class="mag-edition-pill">${mag.editionTag || mag.industry || 'Edition'}</span>
-              <img src="${mag.coverImage}" alt="${mag.title}" loading="lazy">
-            </div>
-
-            <div class="mag-content-area">
-              <div>
-                <h3 class="mag-headline-title" onclick="openMagazineEdition('${mag.id}')">${mag.title}</h3>
-                <div class="mag-leader-meta">Featured: <strong>${mag.featuredLeader || mag.title}</strong></div>
-              </div>
-
-              <!-- ENGAGEMENT BAR -->
-              <div class="mag-interaction-bar">
-                <button class="interact-btn ${isLiked ? 'liked' : ''}" onclick="handleLikeClick('${mag.id}')" title="Like Issue">
-                  <i class="${isLiked ? 'ri-heart-fill' : 'ri-heart-line'}"></i>
-                  <span>${currentLikes}</span>
-                </button>
-
-                <button class="interact-btn" onclick="openMagazineEdition('${mag.id}')" title="Read">
-                  <i class="ri-book-open-line"></i>
-                  <span>Read</span>
-                </button>
-
-                <button class="interact-btn" onclick="handleShareClick('${mag.id}')" title="Share">
-                  <i class="ri-share-forward-line"></i>
-                  <span>Share</span>
-                </button>
-
-                <div class="view-stat-pill" title="Unique Views">
-                  <i class="ri-eye-line"></i>
-                  <span>${currentViews}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function handleLikeClick(magId) {
-      requireMemberAccess(() => {
-        let likedMags = JSON.parse(localStorage.getItem(STORAGE_LIKES) || '[]');
-        if (likedMags.includes(magId)) {
-          likedMags = likedMags.filter(id => id !== magId);
-          showToast("Like removed");
-        } else {
-          likedMags.push(magId);
-          showToast("Thank you for liking this edition!");
-        }
-        localStorage.setItem(STORAGE_LIKES, JSON.stringify(likedMags));
-        renderMagazines(currentTabCategory);
-      });
-    }
-
-    function handleShareClick(magId) {
-      const url = window.location.origin + '/magazine.html?id=' + magId;
-      if (navigator.share) {
-        navigator.share({ title: 'The Aura Review Magazine', url }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(url);
-        showToast("Magazine link copied to clipboard!");
+      if (!filtered.length) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:3rem;">No custom magazines published yet. Use the Admin Panel to publish editions.</p>`;
+        return;
       }
-    }
 
-    function openMagazineEdition(magId) {
-      requireMemberAccess(() => {
-        let viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
-        if (!viewedMags.includes(magId)) {
-          viewedMags.push(magId);
-          localStorage.setItem(STORAGE_VIEWS, JSON.stringify(viewedMags));
-        }
-
-        const data = magazineDatabase.find(m => m.id === magId || m.slug === magId);
-        if (!data) {
-          window.location.href = 'leaders read digital.html';
-          return;
-        }
-
-        document.getElementById('modalImg').style.backgroundImage = `url('${data.coverImage}')`;
-        document.getElementById('modalCategory').innerHTML = data.editionTag || data.industry || 'Special Edition';
-        document.getElementById('modalTitle').textContent = data.title;
-        document.getElementById('modalSubtitle').textContent = `Featured: ${data.featuredLeader || data.title}`;
-        document.getElementById('modalBio').textContent = data.desc || data.articleHtml || "Explore complete interactive flipbook issue.";
-
-        const highlights = data.highlights || ["Exclusive Executive Interviews", "Market Capital Flow Projections", "Global Enterprise Analysis"];
-        document.getElementById('modalHighlights').innerHTML = highlights.map(h => `
-          <div style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; color: var(--maroon-deep); font-weight: 500;">
-            <i class="ri-checkbox-circle-fill" style="color: var(--maroon-accent);"></i>
-            <span>${h}</span>
+      container.innerHTML = filtered.map(mag => `
+        <div class="mag-card-wrap">
+          <div class="mag-cover-poster" onclick="openModal('${mag.id}')">
+            <span class="mag-edition-pill">${mag.editionTag || mag.industry || 'Edition'}</span>
+            <img src="${mag.coverImage}" alt="${mag.title}">
           </div>
-        `).join('');
-
-        document.getElementById('magModal').classList.add('active');
-        renderMagazines(currentTabCategory);
-      });
+          <div class="mag-content-area">
+            <div>
+              <h3 class="mag-headline-title" onclick="openModal('${mag.id}')">${mag.title}</h3>
+              <div class="mag-leader-meta">Featured: <strong>${mag.featuredLeader || mag.title}</strong></div>
+            </div>
+            <div class="mag-interaction-bar">
+              <button class="interact-btn"><i class="ri-heart-line"></i> <span>${mag.likes || 12}</span></button>
+              <button class="interact-btn" onclick="openModal('${mag.id}')"><i class="ri-book-open-line"></i> Read</button>
+              <button class="interact-btn"><i class="ri-eye-line"></i> <span>${mag.views || 45}</span></button>
+            </div>
+          </div>
+        </div>
+      `).join('');
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('toastMsg');
-      toast.textContent = msg;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    function openModal(magId) {
+      const mag = magazineDatabase.find(m => m.id === magId);
+      if (!mag) return;
+
+      document.getElementById('modalImg').style.backgroundImage = `url('${mag.coverImage}')`;
+      document.getElementById('modalCategory').textContent = mag.editionTag || mag.industry;
+      document.getElementById('modalTitle').textContent = mag.title;
+      document.getElementById('modalSubtitle').textContent = `Featured: ${mag.featuredLeader}`;
+      
+      // Render clean HTML instead of text tags
+      document.getElementById('modalBio').innerHTML = mag.articleHtml || mag.desc || "Explore complete interactive flipbook issue.";
+      document.getElementById('magModal').classList.add('active');
     }
   </script>
 </body>
