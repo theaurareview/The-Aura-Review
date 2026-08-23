@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Company Digital Edition Reader | The Aura Review</title>
-  <meta name="description" content="Read interactive digital company magazine editions, high-resolution PDF flipbooks with 360° drag and zoom, comprehensive corporate analysis, and executive profiles on The Aura Review[cite: 1].">
+  <meta name="description" content="Read interactive digital company magazine editions, high-resolution PDF flipbooks with 360° drag and zoom, comprehensive corporate analysis, and executive profiles on The Aura Review[cite: 1, 6].">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +17,10 @@
 
   <!-- StPageFlip Engine -->
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
     :root {
@@ -607,13 +611,13 @@
     <section class="article-body-section">
       <div class="container article-wrap">
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span class="section-tag">Special Corporate Release &bull; 2026 Edition</span>
-          <h1 class="article-headline">The Most Innovative Technology Companies to Watch in 2026</h1>
-          <p class="article-sublead">Featured Enterprise: Synapse Global — Architecting Resilient Enterprise Intelligence.</p>
+          <span class="section-tag" id="dynamicTag">Special Corporate Release &bull; 2026 Edition</span>
+          <h1 class="article-headline" id="dynamicCompanyName">The Most Innovative Technology Companies to Watch in 2026</h1>
+          <p class="article-sublead" id="dynamicSublead">Featured Enterprise: Synapse Global — Architecting Resilient Enterprise Intelligence.</p>
         </div>
 
         <div class="article-portrait-box">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="HQ" loading="lazy">
+          <img id="dynamicCoverImg" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="HQ" loading="lazy">
         </div>
 
         <div class="social-share-strip">
@@ -670,7 +674,20 @@
     </div>
   </footer>
 
+  <!-- FIREBASE CLOUD SYNC SCRIPT -->
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
+      authDomain: "the-aura-review.firebaseapp.com",
+      projectId: "the-aura-review",
+      storageBucket: "the-aura-review.appspot.com",
+      messagingSenderId: "66650540249",
+      appId: "1:66650540249:web:7f80cbd1c9302f32cd56c8",
+      measurementId: "G-9MK9DDBJJV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     let companyPageFlip;
     let currentZoom = 1;
     let isDragging = false;
@@ -682,14 +699,7 @@
     const zoomRange = document.getElementById('zoomRange');
     const pageDisplay = document.getElementById('pageDisplay');
 
-    const SUGGESTED_COMPANIES = [
-      { id: "comp-2", title: "The Most Visionary Healthcare Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" },
-      { id: "comp-3", title: "The Most Promising Real Estate Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
-      { id: "comp-4", title: "The Most Innovative Financial Services Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
-      { id: "comp-5", title: "The Most Sustainable Industrial Leaders in 2026", coverImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" }
-    ];
-
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 30) header.classList.add('scrolled');
@@ -711,6 +721,57 @@
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
+      // Fetch Live Company data from Firestore if ID provided
+      const urlParams = new URLSearchParams(window.location.search);
+      const companyId = urlParams.get('id');
+
+      try {
+        let compData = null;
+        if (companyId) {
+          const doc = await db.collection("companies").doc(companyId).get();
+          if (doc.exists) compData = doc.data();
+        }
+
+        if (!compData) {
+          const snap = await db.collection("companies").orderBy("createdAt", "desc").limit(1).get();
+          if (!snap.empty) compData = snap.docs[0].data();
+        }
+
+        if (compData) {
+          document.getElementById('dynamicCompanyName').innerText = compData.name;
+          document.getElementById('dynamicSublead').innerText = `Featured Enterprise: ${compData.name} — ${compData.tagline}`;
+          document.getElementById('dynamicTag').innerText = `${compData.industry} • ${compData.location} • 2026 Edition`;
+          document.getElementById('dynamicCoverImg').src = compData.coverImage;
+        }
+
+        // Fetch Related Companies Grid from Firestore
+        const relSnap = await db.collection("companies").limit(4).get();
+        const suggestedGrid = document.getElementById('suggestedCompaniesGrid');
+        let suggestionsHTML = '';
+        relSnap.forEach(doc => {
+          const c = doc.data();
+          suggestionsHTML += `
+            <div class="suggestion-card" onclick="window.location.href='companies read digital.html?id=${doc.id}'">
+              <div class="suggestion-poster"><img src="${c.coverImage}" alt="${c.name}" loading="lazy"></div>
+              <div class="suggestion-body">
+                <div class="suggestion-title">${c.name} — ${c.tagline}</div>
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Edition &rarr;</span>
+              </div>
+            </div>`;
+        });
+        
+        if (suggestionsHTML) {
+          suggestedGrid.innerHTML = suggestionsHTML;
+        } else {
+          // Fallback to static if no database entries yet
+          renderStaticSuggestions(suggestedGrid);
+        }
+
+      } catch (e) {
+        console.error("Firestore sync error: ", e);
+        renderStaticSuggestions(document.getElementById('suggestedCompaniesGrid'));
+      }
+
       companyPageFlip = new St.PageFlip(flipbookContainer, {
         width: 380, height: 520, size: 'fixed', minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
         maxShadowOpacity: 0.55, showCover: true, mobileScrollSupport: false, useMouseEvents: false
@@ -722,9 +783,16 @@
         const page = e.data + 1;
         pageDisplay.innerText = page === 1 ? '1' : `${page}-${page + 1}`;
       });
+    });
 
-      const suggestedGrid = document.getElementById('suggestedCompaniesGrid');
-      suggestedGrid.innerHTML = SUGGESTED_COMPANIES.map(item => `
+    function renderStaticSuggestions(grid) {
+      const SUGGESTED_COMPANIES = [
+        { id: "comp-2", title: "The Most Visionary Healthcare Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" },
+        { id: "comp-3", title: "The Most Promising Real Estate Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
+        { id: "comp-4", title: "The Most Innovative Financial Services Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
+        { id: "comp-5", title: "The Most Sustainable Industrial Leaders in 2026", coverImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" }
+      ];
+      grid.innerHTML = SUGGESTED_COMPANIES.map(item => `
         <div class="suggestion-card" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
           <div class="suggestion-poster"><img src="${item.coverImage}" alt="${item.title}" loading="lazy"></div>
           <div class="suggestion-body">
@@ -733,7 +801,7 @@
           </div>
         </div>
       `).join('');
-    });
+    }
 
     function updateTransform() {
       flipbookContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
