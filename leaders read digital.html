@@ -309,7 +309,7 @@
     .flipbook-stage-wrapper {
       position: relative;
       width: 100%;
-      height: 600px;
+      height: 650px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -325,11 +325,16 @@
       transition: transform 0.05s linear;
     }
 
-    .flip-page-item {
+    .page {
       background-color: #FFFFFF;
-      background-size: cover;
-      background-position: center top;
-      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .page canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
     }
 
     .flip-nav-arrow {
@@ -372,11 +377,12 @@
       justify-content: center;
       padding: 2rem;
       color: #FFFFFF;
+      overflow-y: auto;
     }
 
     .toc-modal-view.active { display: flex; }
     .toc-title { font-size: 2.2rem; margin-bottom: 1.5rem; }
-    .toc-grid-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; width: 100%; max-width: 680px; }
+    .toc-grid-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; width: 100%; max-width: 680px; }
     .toc-chip { background: rgba(255, 255, 255, 0.1); padding: 0.8rem 1.2rem; border-radius: 6px; cursor: pointer; text-align: left; transition: background 0.2s; }
     .toc-chip:hover { background: #FFFFFF; color: #000000; font-weight: 700; }
     .toc-close-btn { position: absolute; top: 1.5rem; right: 2rem; font-size: 1.8rem; cursor: pointer; }
@@ -698,7 +704,7 @@
             </button>
 
             <!-- Page Step Prev -->
-            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) pageFlip.flipPrev()" title="Previous Page">
+            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipPrev()" title="Previous Page">
               <i class="fa-solid fa-chevron-left"></i>
             </button>
 
@@ -707,7 +713,7 @@
             <span class="total-pages-label" id="totalPagesLabel">/ --</span>
 
             <!-- Page Step Next -->
-            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) pageFlip.flipNext()" title="Next Page">
+            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipNext()" title="Next Page">
               <i class="fa-solid fa-chevron-right"></i>
             </button>
 
@@ -725,16 +731,16 @@
 
         <!-- Interactive Flipbook Canvas Stage with 360° Drag Support -->
         <div class="flipbook-stage-wrapper" id="stageContainer">
-          <div class="flip-nav-arrow arrow-prev" onclick="if(window.pageFlip) pageFlip.flipPrev()">
+          <div class="flip-nav-arrow arrow-prev" onclick="if(window.pageFlip) window.pageFlip.flipPrev()">
             <i class="fa-solid fa-chevron-left"></i>
           </div>
-          <div class="flip-nav-arrow arrow-next" onclick="if(window.pageFlip) pageFlip.flipNext()">
+          <div class="flip-nav-arrow arrow-next" onclick="if(window.pageFlip) window.pageFlip.flipNext()">
             <i class="fa-solid fa-chevron-right"></i>
           </div>
 
           <!-- StPageFlip Engine Render Area -->
           <div id="flipbookContainer">
-            <!-- Dynamically rendered PDF canvas pages will appear here -->
+            <!-- Dynamically rendered pages -->
           </div>
 
           <!-- Table of Contents Modal -->
@@ -765,7 +771,7 @@
           </p>
         </div>
 
-        <!-- Leader Portrait Photo (Separate from Cover) -->
+        <!-- Leader Portrait Photo -->
         <div class="article-portrait-box">
           <img id="articleLeaderPhoto" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80" alt="Leader Portrait" loading="lazy">
         </div>
@@ -829,7 +835,7 @@
         <div>
           <div class="footer-brand">The Aura Review</div>
           <p class="footer-desc">
-            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
+            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 23].
           </p>
           <div class="social-row">
             <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
@@ -867,7 +873,7 @@
         <div>
           <h4 class="footer-heading">Contact & Inquiries</h4>
           <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial submissions, magazine features, and publication collaborations:
+            For editorial submissions, magazine features, and publication collaborations[cite: 23]:
           </p>
           <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
@@ -879,7 +885,7 @@
     </div>
   </footer>
 
-  <!-- FIREBASE & 3D FLIPBOOK & PDF.JS RENDERER SCRIPT -->
+  <!-- FIREBASE & PDF.JS FLIPBOOK RENDERER -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
@@ -893,7 +899,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    let pageFlip = null;
+    window.pageFlip = null;
     let currentZoom = 1;
     let isDragging = false;
     let startX = 0, startY = 0;
@@ -905,7 +911,7 @@
     const pageDisplay = document.getElementById('pageDisplay');
     const totalPagesLabel = document.getElementById('totalPagesLabel');
 
-    let activePdfName = "magazine.pdf";
+    let activePdfSource = "magazine.pdf";
 
     document.addEventListener('DOMContentLoaded', async () => {
       const header = document.getElementById('header');
@@ -948,23 +954,31 @@
           document.getElementById('articleCategoryTag').innerText = `${magData.industry} • ${magData.editionTag || 'Edition'}`;
           document.getElementById('articleMainTitle').innerText = magData.title;
           document.getElementById('articleSubLead').innerText = `Featured Leader: ${magData.featuredLeader}`;
-          
-          // Use separate portrait image if available, fallback to cover
           document.getElementById('articleLeaderPhoto').src = magData.portraitImage || magData.coverImage;
-
           if (magData.articleHtml) {
             document.getElementById('articleContentArea').innerHTML = magData.articleHtml;
           }
           if (magData.pdfSource) {
-            activePdfName = magData.pdfSource;
+            activePdfSource = magData.pdfSource;
           }
 
-          // RENDER PDF PAGES USING PDF.JS (IF STORED OR FALLBACK)
-          // Since browser local file paths from admin cannot be fetched cross-origin without storage, 
-          // we render high-res canvas pages from sample/uploaded base64 or PDF.js worker
-          await renderDynamicFlipbookPages(magData);
+          // If a PDF url or file source is stored, render via PDF.js canvas loop
+          if (magData.pdfUrl && magData.pdfUrl.startsWith('http')) {
+            await renderPdfBook(magData.pdfUrl);
+          } else {
+            // Render multi-page high quality canvas flipbook from stored pages or fallback
+            renderCustomCanvasBook(magData.pages || [
+              magData.coverImage,
+              magData.portraitImage || magData.coverImage,
+              "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+              "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80"
+            ]);
+          }
         } else {
-          renderDefaultFlipbook();
+          renderCustomCanvasBook([
+            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+          ]);
         }
 
         // Fetch Suggested Issues
@@ -988,81 +1002,124 @@
         suggestedGrid.innerHTML = sugHtml || '<p style="text-align:center;">No other editions found.</p>';
 
       } catch (e) {
-        console.error("Firestore reader sync error: ", e);
-        renderDefaultFlipbook();
+        console.error("Reader load error:", e);
+        renderCustomCanvasBook([
+          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+        ]);
       }
     });
 
-    async function renderDynamicFlipbookPages(magData) {
-      flipbookContainer.innerHTML = '<div style="color:#fff; padding:3rem; text-align:center;">Rendering Magazine Pages...</div>';
-      
-      let pageImages = [];
-      if (magData.pages && Array.isArray(magData.pages) && magData.pages.length > 0) {
-        pageImages = magData.pages;
-      } else {
-        // High fidelity multi-page progressive showcase based on cover and portrait
-        pageImages = [
-          magData.coverImage,
-          magData.portraitImage || magData.coverImage,
-          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80"
-        ];
+    async function renderPdfBook(pdfUrl) {
+      flipbookContainer.innerHTML = '<div style="color:white; text-align:center; padding:4rem;">Loading PDF Pages...</div>';
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+        
+        flipbookContainer.innerHTML = '';
+        const tocList = document.getElementById('tocGridList');
+        tocList.innerHTML = '';
+
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale: 1.5 });
+          
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          const context = canvas.getContext('2d');
+          await page.render({ canvasContext: context, viewport: viewport }).promise;
+          
+          const pageDiv = document.createElement('div');
+          pageDiv.className = 'page';
+          if (i === 1) pageDiv.setAttribute('data-density', 'hard');
+          pageDiv.appendChild(canvas);
+          flipbookContainer.appendChild(pageDiv);
+
+          const chip = document.createElement('div');
+          chip.className = 'toc-chip';
+          chip.setAttribute('onclick', `jumpToPage(${i - 1})`);
+          chip.innerText = i === 1 ? 'Cover Page' : `Page ${i}`;
+          tocList.appendChild(chip);
+        }
+
+        totalPagesLabel.innerText = `/ ${pdf.numPages}`;
+        initPageFlip(pdf.numPages);
+      } catch (err) {
+        console.error("PDF.js error:", err);
+        renderCustomCanvasBook([
+          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+        ]);
       }
+    }
 
-      flipbookContainer.innerHTML = pageImages.map((imgUrl, i) => `
-        <div class="flip-page-item" style="background-image: url('${imgUrl}');"></div>
-      `).join('');
-
-      totalPagesLabel.innerText = `/ ${pageImages.length}`;
-
+    function renderCustomCanvasBook(imageUrls) {
+      flipbookContainer.innerHTML = '';
       const tocList = document.getElementById('tocGridList');
-      tocList.innerHTML = pageImages.map((_, idx) => `
-        <div class="toc-chip" onclick="jumpToPage(${idx})">Page ${idx + 1}</div>
-      `).join('');
+      tocList.innerHTML = '';
 
-      initStPageFlip(pageImages.length);
+      imageUrls.forEach((url, i) => {
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'page';
+        if (i === 0) pageDiv.setAttribute('data-density', 'hard');
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 1100;
+        const ctx = canvas.getContext('2d');
+        
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = url;
+
+        pageDiv.appendChild(canvas);
+        flipbookContainer.appendChild(pageDiv);
+
+        const chip = document.createElement('div');
+        chip.className = 'toc-chip';
+        chip.setAttribute('onclick', `jumpToPage(${i})`);
+        chip.innerText = i === 0 ? 'Cover Page' : `Page ${i + 1}`;
+        tocList.appendChild(chip);
+      });
+
+      totalPagesLabel.innerText = `/ ${imageUrls.length}`;
+      initPageFlip(imageUrls.length);
     }
 
-    function renderDefaultFlipbook() {
-      const defaultImgs = [
-        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
-      ];
-      flipbookContainer.innerHTML = defaultImgs.map(imgUrl => `
-        <div class="flip-page-item" style="background-image: url('${imgUrl}');"></div>
-      `).join('');
-      totalPagesLabel.innerText = `/ ${defaultImgs.length}`;
-      initStPageFlip(defaultImgs.length);
-    }
-
-    function initStPageFlip(totalPages) {
-      if (pageFlip) {
-        pageFlip.destroy();
+    function initPageFlip(numPages) {
+      if (window.pageFlip) {
+        window.pageFlip.destroy();
+        window.pageFlip = null;
       }
 
       const isMobile = window.innerWidth < 768;
-      pageFlip = new St.PageFlip(flipbookContainer, {
-        width: isMobile ? 300 : 380,
-        height: isMobile ? 420 : 520,
+      const w = isMobile ? window.innerWidth * 0.9 : 500;
+      const h = isMobile ? window.innerHeight * 0.55 : 680;
+
+      window.pageFlip = new St.PageFlip(flipbookContainer, {
+        width: w,
+        height: h,
         size: 'fixed',
         minWidth: 260,
-        maxWidth: 500,
+        maxWidth: 600,
         minHeight: 350,
-        maxHeight: 700,
+        maxHeight: 800,
         maxShadowOpacity: 0.55,
         showCover: true,
         mobileScrollSupport: false,
-        useMouseEvents: true
+        useMouseEvents: true,
+        flippingTime: 1000
       });
 
-      pageFlip.loadFromHTML(document.querySelectorAll('.flip-page-item'));
+      window.pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-      pageFlip.on('flip', (e) => {
+      window.pageFlip.on('flip', (e) => {
         const page = e.data + 1;
-        pageDisplay.innerText = page === 1 ? '1' : `${page}-${Math.min(page + 1, totalPages)}`;
+        pageDisplay.innerText = page === 1 ? '1' : `${page}-${Math.min(page + 1, numPages)}`;
       });
     }
 
@@ -1111,7 +1168,12 @@
     });
 
     function toggleTOC() { document.getElementById('tocModal').classList.toggle('active'); }
-    function jumpToPage(index) { if (pageFlip) { pageFlip.flip(index); toggleTOSC ? toggleTOSC() : toggleTOC(); } }
+    function jumpToPage(index) { 
+      if (window.pageFlip) { 
+        window.pageFlip.flip(index); 
+        toggleTOC(); 
+      } 
+    }
 
     function shareIssue() {
       if (navigator.share) {
@@ -1125,8 +1187,9 @@
     }
 
     function downloadPDF() {
-      alert(`Downloading digital edition file (${activePdfName})...`);
+      alert(`Downloading digital edition file (${activePdfSource || activePdfName})...`);
     }
   </script>
 </body>
 </html>
+```[cite: 23]
