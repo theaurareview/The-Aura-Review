@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>FAQ | The Aura Review – Magazine, Leaders, Companies & Editorial Features</title>
-  <meta name="description" content="Find answers about The Aura Review, digital magazine editions, leadership profiles, company features, editorial processes, submissions, publishing, pricing, content rights and more[cite: 8].">
+  <meta name="description" content="Find answers about The Aura Review, digital magazine editions, leadership profiles, company features, editorial processes, submissions, pricing, content rights and more[cite: 10].">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +14,10 @@
   <!-- Remix Icons & Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
     :root {
@@ -68,21 +72,6 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       position: relative;
-    }
-
-    .click-ripple {
-      position: fixed;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      animation: rippleAnim 0.65s ease-out forwards;
-      pointer-events: none;
-      z-index: 999999;
-    }
-
-    @keyframes rippleAnim {
-      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
-      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
     }
 
     h1, h2, h3, h4, .font-serif {
@@ -155,18 +144,6 @@
       background-color: var(--maroon-deep);
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: var(--maroon-primary);
-      border-color: var(--maroon-primary);
-    }
-
-    .btn-outline:hover {
-      background-color: var(--maroon-soft);
-      transform: translateY(-2px);
-      border-color: var(--maroon-deep);
     }
 
     .btn-link {
@@ -570,7 +547,7 @@
   <!-- Mobile Drawer -->
   <div class="menu-backdrop" id="menuBackdrop"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
       <i class="ri-close-line"></i>
     </button>
     <ul class="mobile-nav-list">
@@ -592,7 +569,7 @@
         <span class="section-tag">Knowledge & Transparency</span>
         <h1 class="section-heading">Frequently Asked Questions</h1>
         <p style="max-width: 780px; margin: 0 auto; font-size: 1.05rem;">
-          Everything you need to know about The Aura Review[cite: 8], our editorial features, digital magazine editions[cite: 8], leadership profiles, company stories[cite: 8], and editorial process[cite: 8].
+          Everything you need to know about The Aura Review[cite: 10], our editorial features, digital magazine editions[cite: 10], leadership profiles, company stories[cite: 10], and editorial process[cite: 10].
         </p>
 
         <!-- Live Instant Search Bar -->
@@ -792,7 +769,20 @@
     </div>
   </footer>
 
+  <!-- FIREBASE & FAQ SCRIPT -->
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
+      authDomain: "the-aura-review.firebaseapp.com",
+      projectId: "the-aura-review",
+      storageBucket: "the-aura-review.appspot.com",
+      messagingSenderId: "66650540249",
+      appId: "1:66650540249:web:7f80cbd1c9302f32cd56c8",
+      measurementId: "G-9MK9DDBJJV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     document.addEventListener('DOMContentLoaded', () => {
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
@@ -802,7 +792,7 @@
 
       const mobileToggle = document.getElementById('mobileToggle');
       const mobileMenu = document.getElementById('mobileMenu');
-      const menuClose = document.getElementById('menuClose');
+      const menuClose = document.getElementById('mobileMenuClose');
       const menuBackdrop = document.getElementById('menuBackdrop');
 
       const toggleMenu = (open) => {
