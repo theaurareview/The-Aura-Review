@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Newsroom & Industry Briefings | The Aura Review</title>
-  <meta name="description" content="Stay informed with real-time editorial analysis, global market intelligence, corporate milestones, executive appointments, and technological breakthroughs across 24 global industries[cite: 8].">
+  <meta name="description" content="Stay informed with real-time editorial analysis, global market intelligence, corporate milestones, executive appointments, and technological breakthroughs across 24 global industries.">
   <meta name="keywords" content="business news, leadership news, enterprise tech news, fintech briefings, clean energy news, global business intelligence, executive moves">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
@@ -14,6 +14,10 @@
 
   <!-- Remix Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
     :root {
@@ -68,21 +72,6 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       position: relative;
-    }
-
-    .click-ripple {
-      position: fixed;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      animation: rippleAnim 0.65s ease-out forwards;
-      pointer-events: none;
-      z-index: 999999;
-    }
-
-    @keyframes rippleAnim {
-      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
-      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
     }
 
     h1, h2, h3, h4, .font-serif {
@@ -734,7 +723,7 @@
   <!-- Mobile Drawer -->
   <div class="menu-backdrop" id="menuBackdrop"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
     <ul class="mobile-nav-list">
       <li><a href="index.html" class="mobile-nav-link">Home</a></li>
       <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
@@ -766,7 +755,7 @@
         </div>
         <h1 class="section-heading" style="margin-bottom: 0.6rem;">Industry Briefings & Business Intelligence</h1>
         <p style="max-width: 820px; font-size: 1.05rem;">
-          Verified analysis, technological milestones, venture capital shifts, executive appointments, and macro market perspectives curated by our international editorial desk.
+          Verified analysis, technological milestones, venture capital shifts, executive appointments, and macro market perspectives curated by our international editorial desk[cite: 20].
         </p>
       </div>
     </section>
@@ -890,8 +879,21 @@
     </div>
   </footer>
 
+  <!-- FIREBASE & NEWSROOM SCRIPT -->
   <script>
-    const NEWS_DATABASE = [
+    const firebaseConfig = {
+      apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
+      authDomain: "the-aura-review.firebaseapp.com",
+      projectId: "the-aura-review",
+      storageBucket: "the-aura-review.appspot.com",
+      messagingSenderId: "66650540249",
+      appId: "1:66650540249:web:7f80cbd1c9302f32cd56c8",
+      measurementId: "G-9MK9DDBJJV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const INITIAL_NEWS = [
       {
         id: "news-lead-1",
         isLead: true,
@@ -905,7 +907,7 @@
         views: 3420,
         likes: 815,
         comments: [
-          { author: "Elena Vance", role: "CEO, Synapse Global", linkedin: "https://linkedin.com", text: "Decentralized execution fabrics are mandatory for compliance." }
+          { author: "Elena Vance", role: "CEO, Synapse Global", text: "Decentralized execution fabrics are mandatory for compliance." }
         ]
       },
       {
@@ -942,14 +944,14 @@
     const STORAGE_NEWS_LIKES = 'aura_news_liked';
     const STORAGE_NEWS_VIEWS = 'aura_news_viewed';
 
+    let loadedNews = [];
     let currentCategoryPill = 'all';
     let pendingAction = null;
     let activeCommentNewsId = null;
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       initMemberUI();
-      renderLiveTicker();
-      renderNewsroom();
+      await fetchCloudNews();
 
       document.getElementById('newsSearchInput').addEventListener('input', renderNewsroom);
 
@@ -1002,6 +1004,28 @@
       });
     });
 
+    async function fetchCloudNews() {
+      try {
+        const snapshot = await db.collection("news").orderBy("createdAt", "desc").get();
+        loadedNews = [];
+        snapshot.forEach(doc => {
+          loadedNews.push({ id: doc.id, ...doc.data() });
+        });
+
+        if (!loadedNews.length) {
+          loadedNews = [...INITIAL_NEWS];
+        }
+
+        renderLiveTicker();
+        renderNewsroom();
+      } catch (err) {
+        console.error("Cloud news fetch error: ", err);
+        loadedNews = [...INITIAL_NEWS];
+        renderLiveTicker();
+        renderNewsroom();
+      }
+    }
+
     function getMember() {
       const data = localStorage.getItem(STORAGE_MEMBER);
       return data ? JSON.parse(data) : null;
@@ -1021,7 +1045,7 @@
 
     function renderLiveTicker() {
       const container = document.getElementById('tickerLiveStream');
-      container.innerHTML = NEWS_DATABASE.map(item => `
+      container.innerHTML = loadedNews.map(item => `
         <div class="ticker-item"><strong>${item.category}:</strong> ${item.headline}</div>
       `).join('');
     }
@@ -1032,25 +1056,27 @@
       const viewedNews = JSON.parse(localStorage.getItem(STORAGE_NEWS_VIEWS) || '[]');
       const commentsStore = JSON.parse(localStorage.getItem('aura_news_comments') || '{}');
 
-      const filtered = NEWS_DATABASE.filter(item => {
-        const matchQ = !query || item.headline.toLowerCase().includes(query) || item.category.toLowerCase().includes(query);
+      const filtered = loadedNews.filter(item => {
+        const matchQ = !query || item.headline.toLowerCase().includes(query) || (item.category && item.category.toLowerCase().includes(query));
         const matchCat = currentCategoryPill === 'all' || item.category === currentCategoryPill;
         return matchQ && matchCat;
       });
 
-      const leadItem = filtered.find(i => i.isLead) || filtered[0] || NEWS_DATABASE[0];
+      const leadItem = filtered.find(i => i.isLead) || filtered[0] || loadedNews[0];
+      if (!leadItem) return;
+
       const isLeadLiked = likedNews.includes(leadItem.id);
       const hasLeadViewed = viewedNews.includes(leadItem.id);
-      const leadCommentsCount = (commentsStore[leadItem.id] || []).length + leadItem.comments.length;
+      const leadCommentsCount = (commentsStore[leadItem.id] || []).length + (leadItem.comments ? leadItem.comments.length : 0);
 
       document.getElementById('leadStoryContainer').innerHTML = `
         <div>
           <div class="lead-img-holder" onclick="openNewsArticle('${leadItem.id}')"><img src="${leadItem.image}" alt="${leadItem.headline}"></div>
           <div class="lead-news-content">
-            <span class="section-tag" style="font-size: 0.74rem;">${leadItem.tag} &bull; ${leadItem.category}</span>
+            <span class="section-tag" style="font-size: 0.74rem;">${leadItem.tag || 'Update'} &bull; ${leadItem.category}</span>
             <h2 style="font-size: 2.1rem; line-height: 1.2; color: var(--maroon-deep); margin: 0.4rem 0 1rem 0; cursor: pointer;" onclick="openNewsArticle('${leadItem.id}')">${leadItem.headline}</h2>
             <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">${leadItem.excerpt}</p>
-            <div style="font-size: 0.85rem; color: var(--text-light); font-weight: 600;"><i class="ri-time-line"></i> ${leadItem.timeAgo} &bull; ${leadItem.readTime}</div>
+            <div style="font-size: 0.85rem; color: var(--text-light); font-weight: 600;"><i class="ri-time-line"></i> ${leadItem.timeAgo || 'Recent'} &bull; ${leadItem.readTime || '5 min read'}</div>
           </div>
         </div>
         <div class="mag-interaction-bar">
@@ -1061,7 +1087,7 @@
         </div>
       `;
 
-      const sideItems = NEWS_DATABASE.filter(i => i.id !== leadItem.id).slice(0, 4);
+      const sideItems = loadedNews.filter(i => i.id !== leadItem.id).slice(0, 4);
       document.getElementById('sideBriefingsContainer').innerHTML = `
         <div style="border-bottom: 2px solid var(--maroon-primary); padding-bottom: 0.6rem; margin-bottom: 0.5rem;">
           <h3 style="font-size: 1.3rem; color: var(--maroon-deep); text-transform: uppercase;">Trending Briefings</h3>
@@ -1070,7 +1096,7 @@
           <div class="side-brief-item" onclick="openNewsArticle('${item.id}')">
             <span class="section-tag" style="font-size: 0.7rem; margin-bottom: 0.2rem;">${item.category}</span>
             <h4 style="font-size: 1.12rem; color: var(--maroon-deep); line-height: 1.35; margin-bottom: 0.4rem;">${item.headline}</h4>
-            <span style="font-size: 0.78rem; color: var(--text-light);"><i class="ri-time-line"></i> ${item.timeAgo} &bull; ${item.readTime}</span>
+            <span style="font-size: 0.78rem; color: var(--text-light);"><i class="ri-time-line"></i> ${item.timeAgo || 'Recent'} &bull; ${item.readTime || '4 min read'}</span>
           </div>
         `).join('')}
       `;
@@ -1087,7 +1113,7 @@
       gridContainer.innerHTML = gridItems.map(item => {
         const isLiked = likedNews.includes(item.id);
         const hasViewed = viewedNews.includes(item.id);
-        const commentsCount = (commentsStore[item.id] || []).length + item.comments.length;
+        const commentsCount = (commentsStore[item.id] || []).length + (item.comments ? item.comments.length : 0);
 
         return `
           <div class="news-card-box">
@@ -1097,7 +1123,7 @@
                 <span class="section-tag" style="font-size: 0.72rem;">${item.category}</span>
                 <h3 class="news-card-headline" onclick="openNewsArticle('${item.id}')">${item.headline}</h3>
                 <p class="news-card-excerpt">${item.excerpt}</p>
-                <div style="font-size: 0.78rem; color: var(--text-light); font-weight: 600; margin-top: auto;"><i class="ri-time-line"></i> ${item.timeAgo} &bull; ${item.readTime}</div>
+                <div style="font-size: 0.78rem; color: var(--text-light); font-weight: 600; margin-top: auto;"><i class="ri-time-line"></i> ${item.timeAgo || 'Recent'} &bull; ${item.readTime || '4 min read'}</div>
               </div>
             </div>
             <div class="mag-interaction-bar">
@@ -1129,7 +1155,7 @@
     function handleNewsCommentClick(id) {
       requireMemberAccess(() => {
         activeCommentNewsId = id;
-        const article = NEWS_DATABASE.find(n => n.id === id);
+        const article = loadedNews.find(n => n.id === id);
         if (article) {
           document.getElementById('cmPreviewImg').src = article.image;
           document.getElementById('cmPreviewTag').textContent = article.category;
@@ -1142,10 +1168,11 @@
 
     function renderCommentsList(id) {
       const box = document.getElementById('commentsListBox');
-      const article = NEWS_DATABASE.find(n => n.id === id);
+      const article = loadedNews.find(n => n.id === id);
       const commentsStore = JSON.parse(localStorage.getItem('aura_news_comments') || '{}');
       const customComments = commentsStore[id] || [];
-      const allComments = [...article.comments, ...customComments];
+      const baseComments = article.comments || [];
+      const allComments = [...baseComments, ...customComments];
 
       if (!allComments.length) {
         box.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem;">No comments yet. Be the first!</div>`;
@@ -1164,7 +1191,7 @@
     }
 
     function handleNewsShareClick(id) {
-      const url = window.location.origin + '/news.html?news=' + id;
+      const url = window.location.origin + '/news.html?id=' + id;
       navigator.clipboard.writeText(url).then(() => { showToast("Link copied to clipboard!"); });
     }
 
