@@ -14,6 +14,10 @@
   <!-- Remix Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <style>
     :root {
       --bg-primary: #FFFFFF;
@@ -676,29 +680,13 @@
               <div class="hero-dot" onclick="setHeroSlide(2)"></div>
             </div>
 
-            <div class="hero-showcase-slides">
+            <div class="hero-showcase-slides" id="heroShowcaseSlidesContainer">
               <div class="hero-showcase-slide active" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80');">
                 <div class="hero-showcase-overlay"></div>
                 <div class="hero-showcase-content">
                   <span class="hero-showcase-tag">Featured Executive</span>
                   <h3 class="hero-showcase-title">Elena Vance</h3>
                   <p class="hero-showcase-sub">Pioneering adaptive cloud infrastructures</p>
-                </div>
-              </div>
-              <div class="hero-showcase-slide" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80');">
-                <div class="hero-showcase-overlay"></div>
-                <div class="hero-showcase-content">
-                  <span class="hero-showcase-tag">Visionary Founder</span>
-                  <h3 class="hero-showcase-title">Marcus Sterling</h3>
-                  <p class="hero-showcase-sub">Redefining institutional cross-border liquidity</p>
-                </div>
-              </div>
-              <div class="hero-showcase-slide" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80');">
-                <div class="hero-showcase-overlay"></div>
-                <div class="hero-showcase-content">
-                  <span class="hero-showcase-tag">Healthcare Innovator</span>
-                  <h3 class="hero-showcase-title">Dr. Aris Thorne</h3>
-                  <p class="hero-showcase-sub">Accelerating precision cellular therapies</p>
                 </div>
               </div>
             </div>
@@ -716,102 +704,24 @@
           <p>Explore our most celebrated editorial publications. Access the full issue, interact, and engage with verified executive releases.</p>
         </div>
 
-        <div class="top-mag-grid">
-          <!-- Top Mag 1 -->
-          <div class="top-mag-card">
-            <div class="top-mag-poster-wrap" onclick="openMagazineEdition('mag-top-1')">
-              <span class="top-mag-badge">Real Estate &bull; Vol. XVI</span>
-              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" alt="Real Estate Magazine">
-            </div>
-            <div class="top-mag-content">
-              <div>
-                <h3 class="top-mag-title" onclick="openMagazineEdition('mag-top-1')">The Most Dynamic Real Estate Entrepreneurs to Watch in 2026</h3>
-                <div class="top-mag-leader">Jerome Hairston (CEO, Hairston Investment Properties)</div>
-              </div>
-              <div class="mag-interaction-bar">
-                <button class="interact-btn" id="like-btn-mag-top-1" onclick="handleLikeClick('mag-top-1')">
-                  <i class="ri-heart-line" id="like-icon-mag-top-1"></i>
-                  <span id="like-count-mag-top-1">0</span>
-                </button>
-                <button class="interact-btn" onclick="handleCommentClick('mag-top-1')">
-                  <i class="ri-chat-3-line"></i>
-                  <span id="comment-count-mag-top-1">0</span>
-                </button>
-                <button class="interact-btn" onclick="handleShareClick('mag-top-1')">
-                  <i class="ri-share-forward-line"></i>
-                  <span>Share</span>
-                </button>
-                <div class="view-stat-pill">
-                  <i class="ri-eye-line"></i>
-                  <span id="view-count-mag-top-1">0</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="top-mag-grid" id="topMagazinesGrid">
+          <!-- Dynamically populated from Cloud Firestore -->
+        </div>
+      </div>
+    </section>
 
-          <!-- Top Mag 2 -->
-          <div class="top-mag-card">
-            <div class="top-mag-poster-wrap" onclick="openMagazineEdition('mag-top-2')">
-              <span class="top-mag-badge">Leadership Special &bull; Vol. XV</span>
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Women Leaders Magazine">
-            </div>
-            <div class="top-mag-content">
-              <div>
-                <h3 class="top-mag-title" onclick="openMagazineEdition('mag-top-2')">The Most Influential Women Leaders Driving Systems Reform in 2026</h3>
-                <div class="top-mag-leader">Dr. Channing L. Collins (Founder, Collins Institute)</div>
-              </div>
-              <div class="mag-interaction-bar">
-                <button class="interact-btn" id="like-btn-mag-top-2" onclick="handleLikeClick('mag-top-2')">
-                  <i class="ri-heart-line" id="like-icon-mag-top-2"></i>
-                  <span id="like-count-mag-top-2">0</span>
-                </button>
-                <button class="interact-btn" onclick="handleCommentClick('mag-top-2')">
-                  <i class="ri-chat-3-line"></i>
-                  <span id="comment-count-mag-top-2">0</span>
-                </button>
-                <button class="interact-btn" onclick="handleShareClick('mag-top-2')">
-                  <i class="ri-share-forward-line"></i>
-                  <span>Share</span>
-                </button>
-                <div class="view-stat-pill">
-                  <i class="ri-eye-line"></i>
-                  <span id="view-count-mag-top-2">0</span>
-                </div>
-              </div>
-            </div>
+    <!-- LATEST COMPANY EDITION -->
+    <section class="section-spacing" style="background: #FFFFFF; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div>
+            <span class="section-tag">Corporate Ecosystems</span>
+            <h2 class="section-heading">Latest Company Edition</h2>
           </div>
-
-          <!-- Top Mag 3 -->
-          <div class="top-mag-card">
-            <div class="top-mag-poster-wrap" onclick="openMagazineEdition('mag-top-3')">
-              <span class="top-mag-badge">FinTech & Banking &bull; Vol. XII</span>
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="FinTech Magazine">
-            </div>
-            <div class="top-mag-content">
-              <div>
-                <h3 class="top-mag-title" onclick="openMagazineEdition('mag-top-3')">The Architecture of Capital & Next-Generation Private Equity</h3>
-                <div class="top-mag-leader">Marcus Sterling (Managing Partner, Aurelius Capital)</div>
-              </div>
-              <div class="mag-interaction-bar">
-                <button class="interact-btn" id="like-btn-mag-top-3" onclick="handleLikeClick('mag-top-3')">
-                  <i class="ri-heart-line" id="like-icon-mag-top-3"></i>
-                  <span id="like-count-mag-top-3">0</span>
-                </button>
-                <button class="interact-btn" onclick="handleCommentClick('mag-top-3')">
-                  <i class="ri-chat-3-line"></i>
-                  <span id="comment-count-mag-top-3">0</span>
-                </button>
-                <button class="interact-btn" onclick="handleShareClick('mag-top-3')">
-                  <i class="ri-share-forward-line"></i>
-                  <span>Share</span>
-                </button>
-                <div class="view-stat-pill">
-                  <i class="ri-eye-line"></i>
-                  <span id="view-count-mag-top-3">0</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="companies.html" class="btn btn-outline">Explore All Companies <i class="ri-arrow-right-line"></i></a>
+        </div>
+        <div id="latestCompanyContainer">
+          <!-- Dynamically populated from Cloud Firestore -->
         </div>
       </div>
     </section>
@@ -997,6 +907,18 @@
 
   <!-- SCRIPT -->
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
+      authDomain: "the-aura-review.firebaseapp.com",
+      projectId: "the-aura-review",
+      storageBucket: "the-aura-review.appspot.com",
+      messagingSenderId: "66650540249",
+      appId: "1:66650540249:web:7f80cbd1c9302f32cd56c8",
+      measurementId: "G-9MK9DDBJJV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     const STORAGE_MEMBER = 'aura_mag_member';
     const STORAGE_LIKES = 'aura_user_liked';
     const STORAGE_VIEWS = 'aura_user_viewed';
@@ -1004,8 +926,9 @@
     let pendingAction = null;
     let activeCommentMagId = null;
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       syncUI();
+      await fetchHomeData();
 
       const toggle = document.getElementById('mobileToggle');
       const drawer = document.getElementById('mobileMenu');
@@ -1061,6 +984,99 @@
       });
     });
 
+    async function fetchHomeData() {
+      try {
+        const magSnap = await db.collection("magazines").orderBy("createdAt", "desc").limit(3).get();
+        const topMagGrid = document.getElementById('topMagazinesGrid');
+        let magsHtml = '';
+        
+        magSnap.forEach(doc => {
+          const m = doc.data();
+          const id = doc.id;
+          magsHtml += `
+            <div class="top-mag-card">
+              <div class="top-mag-poster-wrap" onclick="openMagazineEdition('${id}')">
+                <span class="top-mag-badge">${m.industry} &bull; ${m.editionTag || 'Edition'}</span>
+                <img src="${m.coverImage}" alt="${m.title}">
+              </div>
+              <div class="top-mag-content">
+                <div>
+                  <h3 class="top-mag-title" onclick="openMagazineEdition('${id}')">${m.title}</h3>
+                  <div class="top-mag-leader">${m.featuredLeader}</div>
+                </div>
+                <div class="mag-interaction-bar">
+                  <button class="interact-btn" id="like-btn-${id}" onclick="handleLikeClick('${id}')">
+                    <i class="ri-heart-line" id="like-icon-${id}"></i>
+                    <span id="like-count-${id}">0</span>
+                  </button>
+                  <button class="interact-btn" onclick="handleCommentClick('${id}')">
+                    <i class="ri-chat-3-line"></i>
+                    <span id="comment-count-${id}">0</span>
+                  </button>
+                  <button class="interact-btn" onclick="handleShareClick('${id}')">
+                    <i class="ri-share-forward-line"></i>
+                    <span>Share</span>
+                  </button>
+                  <div class="view-stat-pill">
+                    <i class="ri-eye-line"></i>
+                    <span id="view-count-${id}">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        });
+        topMagGrid.innerHTML = magsHtml || '<p style="text-align:center; grid-column:1/-1;">No magazine editions published yet. Use Admin Panel.</p>';
+
+        const compSnap = await db.collection("companies").orderBy("createdAt", "desc").limit(1).get();
+        const latestCompContainer = document.getElementById('latestCompanyContainer');
+        if (!compSnap.empty) {
+          const c = compSnap.docs[0].data();
+          const compId = compSnap.docs[0].id;
+          latestCompContainer.innerHTML = `
+            <div class="featured-company-card">
+              <div class="featured-company-photo-wrap" style="flex: 0 0 40%; max-width: 460px; min-height: 400px;">
+                <span class="featured-company-badge">Latest Company &bull; 2026</span>
+                <img src="${c.coverImage}" alt="${c.name}">
+              </div>
+              <div class="featured-company-body" style="padding: 3rem;">
+                <span class="section-tag">${c.industry}</span>
+                <h2 style="font-size: 2.3rem; color: var(--maroon-deep); line-height: 1.1; margin-bottom: 0.4rem;">${c.name}</h2>
+                <div style="font-size: 1rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.6rem;">"${c.tagline}"</div>
+                <p style="margin-bottom: 1.5rem; font-size: 0.98rem;">Explore the digital edition and corporate analysis for ${c.name} headquartered in ${c.location}.</p>
+                <a href="companies read digital.html?id=${compId}" class="btn btn-maroon" style="align-self: flex-start;">Read Company Digital Edition &rarr;</a>
+              </div>
+            </div>`;
+        } else {
+          latestCompContainer.innerHTML = '<p style="text-align:center;">No company editions published yet.</p>';
+        }
+
+        const ldrSnap = await db.collection("leaders").orderBy("createdAt", "desc").limit(3).get();
+        const slidesContainer = document.getElementById('heroShowcaseSlidesContainer');
+        let slidesHtml = '';
+        let i = 0;
+        ldrSnap.forEach(doc => {
+          const l = doc.data();
+          const activeClass = i === 0 ? 'active' : '';
+          slidesHtml += `
+            <div class="hero-showcase-slide ${activeClass}" style="background-image: url('${l.photo}');">
+              <div class="hero-showcase-overlay"></div>
+              <div class="hero-showcase-content">
+                <span class="hero-showcase-tag">Featured Leader (${l.industry})</span>
+                <h3 class="hero-showcase-title">${l.name}</h3>
+                <p class="hero-showcase-sub">${l.designation}, ${l.company}</p>
+              </div>
+            </div>`;
+          i++;
+        });
+
+        if (slidesHtml) slidesContainer.innerHTML = slidesHtml;
+
+        syncUI();
+      } catch (e) {
+        console.error("Home data sync error: ", e);
+      }
+    }
+
     function getMember() {
       const data = localStorage.getItem(STORAGE_MEMBER);
       return data ? JSON.parse(data) : null;
@@ -1079,29 +1095,8 @@
       const viewedMags = JSON.parse(localStorage.getItem(STORAGE_VIEWS) || '[]');
       const commentsStore = JSON.parse(localStorage.getItem('aura_comments') || '{}');
 
-      ['mag-top-1', 'mag-top-2', 'mag-top-3'].forEach(id => {
-        const isLiked = likedMags.includes(id);
-        const hasViewed = viewedMags.includes(id);
-
-        const likeBtn = document.getElementById(`like-btn-${id}`);
-        const likeIcon = document.getElementById(`like-icon-${id}`);
-        const likeCount = document.getElementById(`like-count-${id}`);
-        const viewCount = document.getElementById(`view-count-${id}`);
-        const commentCount = document.getElementById(`comment-count-${id}`);
-
-        if (likeBtn && likeIcon && likeCount) {
-          likeBtn.classList.toggle('liked', isLiked);
-          likeIcon.className = isLiked ? 'ri-heart-fill' : 'ri-heart-line';
-          likeCount.textContent = isLiked ? 1 : 0;
-        }
-
-        if (viewCount) {
-          viewCount.textContent = hasViewed ? 1 : 0;
-        }
-
-        if (commentCount) {
-          commentCount.textContent = (commentsStore[id] || []).length;
-        }
+      document.querySelectorAll('.top-mag-card').forEach(card => {
+        // dynamic interaction sync if needed
       });
     }
 
@@ -1168,7 +1163,7 @@
           viewedMags.push(magId);
           localStorage.setItem(STORAGE_VIEWS, JSON.stringify(viewedMags));
         }
-        window.location.href = 'magazine.html';
+        window.location.href = `magazine.html?id=${magId}`;
       });
     }
 
