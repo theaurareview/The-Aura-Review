@@ -77,21 +77,6 @@
       position: relative;
     }
 
-    .click-ripple {
-      position: fixed;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      animation: rippleAnim 0.65s ease-out forwards;
-      pointer-events: none;
-      z-index: 999999;
-    }
-
-    @keyframes rippleAnim {
-      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
-      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
-    }
-
     h1, h2, h3, h4, .font-serif {
       font-family: var(--font-serif);
       font-weight: 400;
@@ -655,7 +640,7 @@
 
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="magazine.html" class="nav-link active">Magazine</a></li>
+        <li><a href="magazine.html" class="nav-link">Magazine</a></li>
         <li><a href="leaders.html" class="nav-link">Leaders</a></li>
         <li><a href="companies.html" class="nav-link">Companies</a></li>
         <li><a href="news.html" class="nav-link">News</a></li>
@@ -716,7 +701,7 @@
 
             <!-- Dynamic Page Display -->
             <div class="page-indicator-box" id="pageDisplay">1</div>
-            <span class="total-pages-label">/ 23</span>
+            <span class="total-pages-label" id="totalPagesLabel">/ 23</span>
 
             <!-- Page Step Next -->
             <button class="toolbar-icon-btn" onclick="pageFlip.flipNext()" title="Next Page">
@@ -746,25 +731,15 @@
 
           <!-- StPageFlip Engine Render Area -->
           <div id="flipbookContainer">
-            <div class="flip-page-item" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="flip-page-item" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="flip-page-item" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="flip-page-item" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="flip-page-item" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="flip-page-item" style="background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80');"></div>
+            <!-- Dynamic pages will be inserted here -->
           </div>
 
           <!-- Table of Contents Modal -->
           <div class="toc-modal-view" id="tocModal">
             <i class="fa-solid fa-xmark toc-close-btn" onclick="toggleTOC()"></i>
             <h2 class="font-serif toc-title">Table of Contents</h2>
-            <div class="toc-grid-list">
+            <div class="toc-grid-list" id="tocGridList">
               <div class="toc-chip" onclick="jumpToPage(0)">Cover Page</div>
-              <div class="toc-chip" onclick="jumpToPage(1)">Editorial Note</div>
-              <div class="toc-chip" onclick="jumpToPage(2)">Executive Feature</div>
-              <div class="toc-chip" onclick="jumpToPage(3)">Market Strategy Analysis</div>
-              <div class="toc-chip" onclick="jumpToPage(4)">Sustainable Growth</div>
-              <div class="toc-chip" onclick="jumpToPage(5)">Back Cover</div>
             </div>
           </div>
         </div>
@@ -787,9 +762,9 @@
           </p>
         </div>
 
-        <!-- Leader Portrait Photo -->
+        <!-- Leader Portrait Photo (Separate from Cover) -->
         <div class="article-portrait-box">
-          <img id="articleLeaderPhoto" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80" alt="Featured Leader Portrait" loading="lazy">
+          <img id="articleLeaderPhoto" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80" alt="Leader Portrait" loading="lazy">
         </div>
 
         <!-- Social Channels Strip -->
@@ -851,7 +826,7 @@
         <div>
           <div class="footer-brand">The Aura Review</div>
           <p class="footer-desc">
-            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 15].
+            A premium global business and leadership magazine dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 16].
           </p>
           <div class="social-row">
             <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
@@ -889,7 +864,7 @@
         <div>
           <h4 class="footer-heading">Contact & Inquiries</h4>
           <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial submissions, magazine features, and publication collaborations[cite: 15]:
+            For editorial submissions, magazine features, and publication collaborations[cite: 16]:
           </p>
           <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
@@ -925,6 +900,9 @@
     const stageContainer = document.getElementById('stageContainer');
     const zoomRange = document.getElementById('zoomRange');
     const pageDisplay = document.getElementById('pageDisplay');
+    const totalPagesLabel = document.getElementById('totalPagesLabel');
+
+    let activePdfSource = "magazine.pdf";
 
     document.addEventListener('DOMContentLoaded', async () => {
       const header = document.getElementById('header');
@@ -948,7 +926,6 @@
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
-      // Fetch Live Magazine from Firestore based on URL ID
       const urlParams = new URLSearchParams(window.location.search);
       const magId = urlParams.get('id');
 
@@ -964,17 +941,76 @@
           if (!snap.empty) magData = snap.docs[0].data();
         }
 
+        let pagesArray = [];
+
         if (magData) {
           document.getElementById('articleCategoryTag').innerText = `${magData.industry} • ${magData.editionTag || 'Edition'}`;
           document.getElementById('articleMainTitle').innerText = magData.title;
           document.getElementById('articleSubLead').innerText = `Featured Leader: ${magData.featuredLeader}`;
-          document.getElementById('articleLeaderPhoto').src = magData.coverImage;
+          
+          // Use separate portrait image if available, fallback to cover
+          document.getElementById('articleLeaderPhoto').src = magData.portraitImage || magData.coverImage;
+
           if (magData.articleHtml) {
             document.getElementById('articleContentArea').innerHTML = magData.articleHtml;
           }
+          if (magData.pdfSource) {
+            activePdfSource = magData.pdfSource;
+          }
+
+          if (magData.pages && Array.isArray(magData.pages) && magData.pages.length > 0) {
+            pagesArray = magData.pages;
+          } else if (magData.coverImage) {
+            pagesArray = [
+              magData.coverImage,
+              magData.portraitImage || magData.coverImage,
+              "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+              "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
+              "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+              "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80"
+            ];
+          }
         }
 
-        // Fetch Suggested Issues
+        if (!pagesArray.length) {
+          pagesArray = [
+            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+          ];
+        }
+
+        flipbookContainer.innerHTML = pagesArray.map(imgUrl => `
+          <div class="flip-page-item" style="background-image: url('${imgUrl}');"></div>
+        `).join('');
+
+        totalPagesLabel.innerText = `/ ${pagesArray.length}`;
+
+        const tocList = document.getElementById('tocGridList');
+        tocList.innerHTML = pagesArray.map((_, idx) => `
+          <div class="toc-chip" onclick="jumpToPage(${idx})">Page ${idx + 1}</div>
+        `).join('');
+
+        pageFlip = new St.PageFlip(flipbookContainer, {
+          width: 380,
+          height: 520,
+          size: 'fixed',
+          minWidth: 300,
+          maxWidth: 500,
+          minHeight: 400,
+          maxHeight: 700,
+          maxShadowOpacity: 0.55,
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: false
+        });
+
+        pageFlip.loadFromHTML(document.querySelectorAll('.flip-page-item'));
+
+        pageFlip.on('flip', (e) => {
+          const page = e.data + 1;
+          pageDisplay.innerText = page === 1 ? '1' : `${page}-${Math.min(page + 1, pagesArray.length)}`;
+        });
+
         const sugSnap = await db.collection("magazines").limit(4).get();
         const suggestedGrid = document.getElementById('suggestedGrid');
         let sugHtml = '';
@@ -996,27 +1032,6 @@
       } catch (e) {
         console.error("Firestore reader sync error: ", e);
       }
-
-      pageFlip = new St.PageFlip(flipbookContainer, {
-        width: 380,
-        height: 520,
-        size: 'fixed',
-        minWidth: 300,
-        maxWidth: 500,
-        minHeight: 400,
-        maxHeight: 700,
-        maxShadowOpacity: 0.55,
-        showCover: true,
-        mobileScrollSupport: false,
-        useMouseEvents: false
-      });
-
-      pageFlip.loadFromHTML(document.querySelectorAll('.flip-page-item'));
-
-      pageFlip.on('flip', (e) => {
-        const page = e.data + 1;
-        pageDisplay.innerText = page === 1 ? '1' : `${page}-${page + 1}`;
-      });
     });
 
     function updateTransform() {
@@ -1078,7 +1093,7 @@
     }
 
     function downloadPDF() {
-      alert("Downloading high-resolution digital edition PDF...");
+      alert(`Downloading high-resolution digital edition (${activePdfSource})...`);
     }
   </script>
 </body>
