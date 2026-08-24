@@ -14,6 +14,10 @@
   <!-- Remix Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <style>
     :root {
       --bg-primary: #FFFFFF;
@@ -470,7 +474,7 @@
   <!-- Mobile Drawer -->
   <div class="menu-backdrop" id="menuBackdrop"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
     <ul class="mobile-nav-list">
       <li><a href="index.html" class="mobile-nav-link">Home</a></li>
       <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
@@ -537,7 +541,7 @@
         </div>
 
         <div>
-          <a href="leaders read digital.html" class="btn-maroon" style="width: 100%;">Read Digital Issue <i class="ri-arrow-right-line"></i></a>
+          <a href="#" id="readDigitalIssueBtn" class="btn-maroon" style="width: 100%;">Read Digital Issue <i class="ri-arrow-right-line"></i></a>
         </div>
       </div>
     </div>
@@ -585,16 +589,26 @@
     </div>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- FIREBASE & MAGAZINE SCRIPT -->
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
+      authDomain: "the-aura-review.firebaseapp.com",
+      projectId: "the-aura-review",
+      storageBucket: "the-aura-review.appspot.com",
+      messagingSenderId: "66650540249",
+      appId: "1:66650540249:web:7f80cbd1c9302f32cd56c8",
+      measurementId: "G-9MK9DDBJJV"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     let currentTabCategory = 'all';
     let magazineDatabase = [];
     let activeMagId = null;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const customMags = JSON.parse(localStorage.getItem('AURA_CUSTOM_MAGS') || '[]');
-      magazineDatabase = customMags;
-      renderMagazines(currentTabCategory);
+    document.addEventListener('DOMContentLoaded', async () => {
+      await fetchCloudMagazines();
 
       const savedName = localStorage.getItem('aura_saved_name');
       const savedLinkedin = localStorage.getItem('aura_saved_linkedin');
@@ -604,7 +618,7 @@
       const toggle = document.getElementById('mobileToggle');
       const drawer = document.getElementById('mobileMenu');
       const backdrop = document.getElementById('menuBackdrop');
-      const close = document.getElementById('menuClose');
+      const close = document.getElementById('mobileMenuClose');
       const toggleM = (o) => { drawer.classList.toggle('open', o); backdrop.classList.toggle('open', o); };
       if(toggle) toggle.addEventListener('click', () => toggleM(true));
       if(close) close.addEventListener('click', () => toggleM(false));
@@ -625,6 +639,34 @@
       });
     });
 
+    async function fetchCloudMagazines() {
+      try {
+        const snapshot = await db.collection("magazines").orderBy("createdAt", "desc").get();
+        magazineDatabase = [];
+        snapshot.forEach(doc => {
+          magazineDatabase.push({ id: doc.id, ...doc.data() });
+        });
+
+        if (!magazineDatabase.length) {
+          magazineDatabase = [
+            {
+              id: "mag-default",
+              category: "all",
+              title: "The Most Dynamic Real Estate Entrepreneurs to Watch in 2026",
+              editionTag: "Real Estate • Vol. XVI",
+              industry: "Real Estate & Construction",
+              featuredLeader: "Jerome Hairston",
+              coverImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
+            }
+          ];
+        }
+
+        renderMagazines(currentTabCategory);
+      } catch (err) {
+        console.error("Cloud fetch error: ", err);
+      }
+    }
+
     function renderMagazines(category) {
       const container = document.getElementById('magazinesContainer');
       const likedMap = JSON.parse(localStorage.getItem('aura_liked_map') || '{}');
@@ -633,10 +675,10 @@
 
       const filtered = category === 'all'
         ? magazineDatabase
-        : magazineDatabase.filter(m => m.category === category);
+        : magazineDatabase.filter(m => m.category === category || (m.category === 'all'));
 
       if (!filtered.length) {
-        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No magazines published yet. Use the Admin Panel to publish your editions.</p>`;
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No magazines published for this category yet. Use the Admin Panel.</p>`;
         return;
       }
 
@@ -719,6 +761,7 @@
       document.getElementById('modalCategory').textContent = data.editionTag || data.industry || 'Special Edition';
       document.getElementById('modalTitle').textContent = data.title;
       document.getElementById('modalSubtitle').textContent = `Featured: ${data.featuredLeader || data.title}`;
+      document.getElementById('readDigitalIssueBtn').href = `leaders read digital.html?id=${magId}`;
 
       renderComments();
       document.getElementById('magModal').classList.add('active');
