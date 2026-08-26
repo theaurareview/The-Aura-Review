@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Digital Edition Reader | The Aura Review</title>
-  <meta name="description" content="Read interactive digital magazine issues, high-res image flipbook, comprehensive executive interviews, and suggested issues on The Aura Review.">
+  <title>Company Digital Edition Reader | The Aura Review</title>
+  <meta name="description" content="Read interactive digital company magazine editions, high-resolution image flipbooks with 360° drag and zoom, comprehensive corporate analysis, and executive profiles on The Aura Review.">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Remix Icons & Font Awesome Icons -->
+  <!-- Remix Icons & Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -55,16 +55,10 @@
     }
 
     *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
       background-color: var(--bg-primary);
@@ -84,366 +78,99 @@
       color: var(--maroon-deep);
     }
 
-    p {
-      color: var(--text-muted);
-      font-size: 1.08rem;
-      line-height: 1.85;
-    }
+    p { color: var(--text-muted); font-size: 1.08rem; line-height: 1.85; }
+    a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: var(--transition-smooth);
-    }
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
+    .section-tag { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 700; display: inline-block; margin-bottom: 0.85rem; }
 
-    .container {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .section-tag {
-      font-size: 0.8rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--maroon-accent);
-      font-weight: 700;
-      display: inline-block;
-      margin-bottom: 0.85rem;
-    }
-
-    /* HEADER (INDEX MATCHED - STACKED ARCHITECTURE & BLURRY GLASS) */
+    /* HEADER */
     .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      border-bottom: 1px solid rgba(74, 14, 23, 0.08);
-      z-index: 1000;
-      transition: var(--transition-smooth);
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(74, 14, 23, 0.08); z-index: 1000; transition: var(--transition-smooth);
     }
-
-    .header-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 0.9rem;
-      padding-bottom: 0.75rem;
-      position: relative;
-    }
-
-    .header-top-row {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
+    .header-container { display: flex; flex-direction: column; align-items: center; padding-top: 0.9rem; padding-bottom: 0.75rem; position: relative; }
+    .header-top-row { width: 100%; display: flex; justify-content: space-between; align-items: center; }
     .logo {
-      font-family: var(--font-serif);
-      font-size: clamp(1.1rem, 3.8vw, 1.95rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--maroon-deep);
-      white-space: nowrap;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: opacity 0.3s ease;
+      font-family: var(--font-serif); font-size: clamp(1.1rem, 3.8vw, 1.95rem); letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; color: var(--maroon-deep); white-space: nowrap; position: absolute; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease;
     }
-
     .logo:hover { opacity: 0.8; }
-
-    .header-left-spacer {
-      visibility: hidden;
-      display: flex;
-      align-items: center;
-    }
-
-    .header-right-group {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+    .header-left-spacer { visibility: hidden; display: flex; align-items: center; }
+    .header-right-group { display: flex; align-items: center; gap: 0.8rem; }
 
     .nav-menu {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.8rem;
-      list-style: none;
-      margin-top: 0.75rem;
-      padding-top: 0.7rem;
-      border-top: 1px solid rgba(74, 14, 23, 0.08);
-      width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 1.8rem; list-style: none;
+      margin-top: 0.75rem; padding-top: 0.7rem; border-top: 1px solid rgba(74, 14, 23, 0.08); width: 100%;
     }
+    .nav-link { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--maroon-primary); position: relative; padding: 0.2rem 0; white-space: nowrap; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 1.5px; background-color: var(--maroon-accent); transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-    .nav-link {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--maroon-primary);
-      position: relative;
-      padding: 0.2rem 0;
-      white-space: nowrap;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0%;
-      height: 1.5px;
-      background-color: var(--maroon-accent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after, .nav-link.active::after {
-      width: 100%;
-    }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      color: var(--maroon-primary);
-      cursor: pointer;
-      padding: 0.3rem;
-      border-radius: 4px;
-      transition: background 0.3s ease;
-    }
-
-    .mobile-toggle:active { background: var(--maroon-soft); }
-
-    .menu-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(42, 4, 9, 0.5);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--maroon-primary); cursor: pointer; padding: 0.3rem; border-radius: 4px; }
+    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(16px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
     .menu-backdrop.open { opacity: 1; pointer-events: all; }
-
     .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 85%;
-      max-width: 380px;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      box-shadow: -20px 0 50px rgba(74, 14, 23, 0.25);
-      z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      padding: 2.5rem 2rem;
-      transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: fixed; top: 0; right: -100%; width: 85%; max-width: 380px; height: 100vh;
+      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(30px); box-shadow: -20px 0 50px rgba(74, 14, 23, 0.25);
+      z-index: 1001; display: flex; flex-direction: column; padding: 2.5rem 2rem; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     .mobile-menu.open { right: 0; }
     .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
     .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
     .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
 
-    /* FLIPBOOK READER STAGE & TOOLBAR (INSIGHTS SUCCESS STYLE) */
-    .flipbook-reader-section {
-      padding-top: 145px;
-      padding-bottom: 3.5rem;
+    /* FLIPBOOK READER STAGE & TOOLBAR */
+    .company-flipbook-reader-section {
+      padding-top: 145px; padding-bottom: 3.5rem;
       background: linear-gradient(180deg, #1b1b1e 0%, #2c080e 100%);
-      color: #FFFFFF;
-      position: relative;
-      user-select: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #FFFFFF; position: relative; user-select: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .reader-toolbar-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1.8rem;
-    }
+    .back-nav-bar { display: flex; justify-content: flex-start; margin-bottom: 1.2rem; }
+    .back-btn-pill { color: #D1D1D6; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .back-btn-pill:hover { color: #FFFFFF; }
 
+    .reader-toolbar-container { display: flex; justify-content: center; align-items: center; margin-bottom: 1.8rem; }
     .reader-toolbar-box {
-      background: rgba(45, 45, 50, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 6px;
-      padding: 0.5rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      z-index: 100;
+      background: rgba(45, 45, 50, 0.92); backdrop-filter: blur(16px); border-radius: 6px;
+      padding: 0.5rem 1.2rem; display: flex; align-items: center; gap: 1.1rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.14); z-index: 100;
     }
-
-    .toolbar-icon-btn {
-      background: transparent;
-      border: none;
-      color: #D1D1D6;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 0.2s, transform 0.1s;
-    }
-
+    .toolbar-icon-btn { background: transparent; border: none; color: #D1D1D6; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: color 0.2s, transform 0.1s; }
     .toolbar-icon-btn:hover { color: #FFFFFF; transform: scale(1.15); }
+    .zoom-slider-control { width: 90px; height: 4px; background: rgba(255, 255, 255, 0.25); border-radius: 2px; outline: none; cursor: pointer; accent-color: #FFFFFF; }
+    .page-indicator-box { background: #3A3A3F; color: #FFFFFF; font-size: 0.82rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 4px; min-width: 38px; text-align: center; }
+    .total-pages-label { font-size: 0.82rem; color: #D1D1D6; font-weight: 600; }
 
-    .zoom-slider-control {
-      width: 90px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.25);
-      border-radius: 2px;
-      outline: none;
-      cursor: pointer;
-      accent-color: #FFFFFF;
-    }
-
-    .page-indicator-box {
-      background: #3A3A3F;
-      color: #FFFFFF;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.2rem 0.65rem;
-      border-radius: 4px;
-      min-width: 38px;
-      text-align: center;
-    }
-
-    .total-pages-label {
-      font-size: 0.82rem;
-      color: #D1D1D6;
-      font-weight: 600;
-    }
-
-    /* ZERO-GAP RESPONSIVE STAGE CONTAINER */
+    /* ZERO-GAP FLIPBOOK STAGE */
     .flipbook-stage-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      height: 600px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      touch-action: pan-y;
-      background: #111;
+      position: relative; width: 100%; max-width: 1040px; margin: 0 auto; height: 560px;
+      display: flex; justify-content: center; align-items: center; overflow: hidden; touch-action: pan-y; background: #111;
     }
-
-    #flipbookContainer {
-      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85);
-      transform-origin: center center;
-      will-change: transform;
-      transition: transform 0.08s ease-out;
-    }
-
-    .page {
-      background-color: #111;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    /* OBJECT-FIT FILL TO REMOVE ALL GAPS & MARGINS COMPLETELY */
-    .page img {
-      width: 100%;
-      height: 100%;
-      object-fit: fill; 
-      display: block;
-      pointer-events: auto;
-    }
+    #companyFlipbookContainer { box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85); transform-origin: center center; will-change: transform; transition: transform 0.08s ease-out; }
+    .company-flip-page { background-color: #111; overflow: hidden; cursor: pointer; }
+    .company-flip-page img { width: 100%; height: 100%; object-fit: fill; background: #111; display: block; pointer-events: auto; }
 
     .flip-nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      color: #FFFFFF;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      cursor: pointer;
-      z-index: 10;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      transition: var(--transition-smooth);
+      position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+      color: #FFFFFF; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; cursor: pointer; z-index: 10; border: 1px solid rgba(255, 255, 255, 0.25); transition: var(--transition-smooth);
     }
-
     .flip-nav-arrow:hover { background: var(--maroon-accent); transform: translateY(-50%) scale(1.1); }
-    .arrow-prev { left: 1rem; }
-    .arrow-next { right: 1rem; }
+    .arrow-prev { left: 1rem; } .arrow-next { right: 1rem; }
 
-    /* THUMBNAIL BOTTOM STRIP (INSIGHTS SUCCESS STYLE) */
-    .thumb-strip-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 1.8rem;
-      overflow-x: auto;
-      padding: 0.5rem 1rem;
-    }
-
-    .thumb-chip {
-      width: 52px;
-      height: 68px;
-      border-radius: 4px;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      opacity: 0.55;
-      transition: var(--transition-smooth);
-      flex-shrink: 0;
-    }
-
-    .thumb-chip.active, .thumb-chip:hover {
-      opacity: 1;
-      border-color: #FFFFFF;
-      transform: translateY(-3px);
-    }
-
-    .thumb-chip img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    /* THUMBNAILS */
+    .thumb-strip-wrapper { display: flex; justify-content: center; align-items: center; gap: 0.6rem; margin-top: 1.8rem; overflow-x: auto; padding: 0.5rem 1rem; }
+    .thumb-chip { width: 48px; height: 62px; border-radius: 4px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.2); cursor: pointer; opacity: 0.55; transition: var(--transition-smooth); flex-shrink: 0; }
+    .thumb-chip.active, .thumb-chip:hover { opacity: 1; border-color: #FFFFFF; transform: translateY(-3px); }
+    .thumb-chip img { width: 100%; height: 100%; object-fit: cover; }
 
     .toc-modal-view {
-      display: none;
-      position: absolute;
-      inset: 0;
-      background: rgba(18, 18, 20, 0.94);
-      backdrop-filter: blur(16px);
-      z-index: 200;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      color: #FFFFFF;
-      overflow-y: auto;
+      display: none; position: absolute; inset: 0; background: rgba(18, 18, 20, 0.94); backdrop-filter: blur(16px);
+      z-index: 200; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: #FFFFFF; overflow-y: auto;
     }
-
     .toc-modal-view.active { display: flex; }
     .toc-title { font-size: 2.2rem; margin-bottom: 1.5rem; }
     .toc-grid-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; width: 100%; max-width: 680px; }
@@ -452,12 +179,8 @@
     .toc-close-btn { position: absolute; top: 1.5rem; right: 2rem; font-size: 1.8rem; cursor: pointer; }
 
     .toast-msg {
-      position: fixed; bottom: 2rem; right: 2rem;
-      background: #FFFFFF; color: var(--maroon-deep);
-      padding: 0.8rem 1.6rem; border-radius: 30px;
-      font-size: 0.85rem; font-weight: 700;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      display: none; z-index: 999999;
+      position: fixed; bottom: 2rem; right: 2rem; background: #FFFFFF; color: var(--maroon-deep);
+      padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); display: none; z-index: 999999;
     }
 
     /* AUTOMATED ARTICLE & SUGGESTED SECTIONS */
@@ -465,7 +188,7 @@
     .article-wrap { max-width: 900px; margin: 0 auto; }
     .article-headline { font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1.15; color: var(--maroon-deep); text-align: center; margin-bottom: 1rem; }
     .article-sublead { font-size: 1.15rem; line-height: 1.75; color: var(--text-muted); text-align: center; margin-bottom: 2.5rem; }
-    .article-portrait-box { width: 100%; height: 500px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 1px solid var(--maroon-border); position: relative; }
+    .article-portrait-box { width: 100%; height: 500px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 1px solid var(--maroon-border); }
     .article-portrait-box img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
     .social-share-strip { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 4rem; flex-wrap: wrap; }
@@ -545,7 +268,7 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="magazine.html" class="nav-link">Magazine</a></li>
         <li><a href="leaders.html" class="nav-link">Leaders</a></li>
-        <li><a href="companies.html" class="nav-link">Companies</a></li>
+        <li><a href="companies.html" class="nav-link active">Companies</a></li>
         <li><a href="news.html" class="nav-link">News</a></li>
         <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
         <li><a href="media-kit.html" class="nav-link">Media Kit</a></li>
@@ -574,9 +297,13 @@
 
   <main>
     <!-- FLIPBOOK READER STAGE & TOOLBAR -->
-    <section class="flipbook-reader-section">
+    <section class="company-flipbook-reader-section">
       <div class="container">
         
+        <div class="back-nav-bar">
+          <a href="companies.html" class="back-btn-pill"><i class="fa-solid fa-arrow-left"></i> Back to Companies Archive</a>
+        </div>
+
         <div class="reader-toolbar-container">
           <div class="reader-toolbar-box">
             <button class="toolbar-icon-btn" title="Table of Contents" onclick="toggleTOC()">
@@ -596,7 +323,7 @@
             </button>
 
             <!-- Page Step Prev -->
-            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipPrev()" title="Previous Page">
+            <button class="toolbar-icon-btn" onclick="if(window.companyPageFlip) window.companyPageFlip.flipPrev()" title="Previous Page">
               <i class="fa-solid fa-chevron-left"></i>
             </button>
 
@@ -605,7 +332,7 @@
             <span class="total-pages-label" id="totalPagesLabel">/ 6</span>
 
             <!-- Page Step Next -->
-            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipNext()" title="Next Page">
+            <button class="toolbar-icon-btn" onclick="if(window.companyPageFlip) window.companyPageFlip.flipNext()" title="Next Page">
               <i class="fa-solid fa-chevron-right"></i>
             </button>
 
@@ -618,15 +345,15 @@
 
         <!-- Interactive Flipbook Stage with Zero Gaps & 360° Panning when Zoomed -->
         <div class="flipbook-stage-wrapper" id="stageContainer">
-          <div class="flip-nav-arrow arrow-prev" onclick="if(window.pageFlip) window.pageFlip.flipPrev()">
+          <div class="flip-nav-arrow arrow-prev" onclick="if(window.companyPageFlip) window.companyPageFlip.flipPrev()">
             <i class="fa-solid fa-chevron-left"></i>
           </div>
-          <div class="flip-nav-arrow arrow-next" onclick="if(window.pageFlip) window.pageFlip.flipNext()">
+          <div class="flip-nav-arrow arrow-next" onclick="if(window.companyPageFlip) window.companyPageFlip.flipNext()">
             <i class="fa-solid fa-chevron-right"></i>
           </div>
 
           <!-- StPageFlip Engine Render Area -->
-          <div id="flipbookContainer"></div>
+          <div id="companyFlipbookContainer"></div>
 
           <!-- Table of Contents Modal -->
           <div class="toc-modal-view" id="tocModal">
@@ -650,14 +377,14 @@
       <div class="container article-wrap">
         
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span class="section-tag" id="articleCategoryTag">Leadership Edition &bull; 2026</span>
-          <h1 class="article-headline" id="articleMainTitle">Loading Edition Title...</h1>
-          <p class="article-sublead" id="articleSubLead">Loading Executive Summary...</p>
+          <span class="section-tag" id="articleCategoryTag">Corporate Edition &bull; 2026</span>
+          <h1 class="article-headline" id="articleMainTitle">Loading Company Edition...</h1>
+          <p class="article-sublead" id="articleSubLead">Loading Corporate Profile...</p>
         </div>
 
-        <!-- Leader Portrait Photo -->
+        <!-- Company Portrait / Facility Photo -->
         <div class="article-portrait-box">
-          <img id="articleLeaderPhoto" src="" alt="Leader Portrait" loading="lazy">
+          <img id="articleLeaderPhoto" src="" alt="Company Visual" loading="lazy">
         </div>
 
         <!-- Social Channels Strip -->
@@ -670,18 +397,18 @@
 
         <!-- Full Article Body (Automatically Parsed from Admin Panel) -->
         <div class="editorial-content-block" id="articleContentArea">
-          <p>Loading full executive article profile...</p>
+          <p>Loading full enterprise corporate profile...</p>
         </div>
 
       </div>
     </section>
 
-    <!-- AUTOMATED SUGGESTED ISSUES & ARTICLES -->
+    <!-- AUTOMATED SUGGESTED COMPANIES & EDITIONS -->
     <section class="suggestions-section">
       <div class="container">
         <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
           <span class="section-tag">Curated Releases</span>
-          <h2 style="font-size: 2.4rem; color: var(--maroon-deep);">Explore More Suggested Issues</h2>
+          <h2 style="font-size: 2.4rem; color: var(--maroon-deep);">Explore More Company Editions</h2>
         </div>
 
         <div class="suggestions-grid" id="suggestedGrid"></div>
@@ -746,7 +473,7 @@
     </div>
   </footer>
 
-  <!-- FIREBASE & DYNAMIC FLIPBOOK SCRIPT -->
+  <!-- FIREBASE & DYNAMIC COMPANY FLIPBOOK SCRIPT -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
@@ -760,13 +487,13 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    window.pageFlip = null;
+    window.companyPageFlip = null;
     let currentZoom = 1;
     let isDragging = false;
     let startX = 0, startY = 0;
     let translateX = 0, translateY = 0;
 
-    const flipbookContainer = document.getElementById('flipbookContainer');
+    const flipbookContainer = document.getElementById('companyFlipbookContainer');
     const stageContainer = document.getElementById('stageContainer');
     const zoomRange = document.getElementById('zoomRange');
     const pageDisplay = document.getElementById('pageDisplay');
@@ -775,7 +502,7 @@
     const tocGridList = document.getElementById('tocGridList');
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // Mobile Navigation Drawer Toggle Setup
+      // Mobile Drawer Toggle
       const mobileToggle = document.getElementById('mobileToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       const menuClose = document.getElementById('mobileMenuClose');
@@ -791,99 +518,100 @@
       if (menuClose) menuClose.addEventListener('click', () => toggleMenu(false));
       if (menuBackdrop) menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
-      // Fetch dynamic magazine edition from Firestore based on URL ?id=...
+      // Parse URL parameter (?id=...) for Company Edition
       const urlParams = new URLSearchParams(window.location.search);
-      const magId = urlParams.get('id');
+      const compId = urlParams.get('id');
 
       try {
-        let magData = null;
-        if (magId) {
-          const doc = await db.collection("magazines").doc(magId).get();
-          if (doc.exists) magData = doc.data();
+        let compData = null;
+        if (compId) {
+          const doc = await db.collection("companies").doc(compId).get();
+          if (doc.exists) compData = doc.data();
         }
 
-        if (!magData) {
-          const snap = await db.collection("magazines").orderBy("createdAt", "desc").limit(1).get();
-          if (!snap.empty) magData = snap.docs[0].data();
+        if (!compData) {
+          const snap = await db.collection("companies").orderBy("createdAt", "desc").limit(1).get();
+          if (!snap.empty) compData = snap.docs[0].data();
         }
 
-        if (magData) {
-          // Automated Article & Metadata Rendering
-          document.getElementById('articleCategoryTag').innerText = `${magData.industry || 'Leadership'} • 2026`;
-          document.getElementById('articleMainTitle').innerText = magData.title;
-          document.getElementById('articleSubLead').innerText = `Featured Leader: ${magData.featuredLeader || magData.title}`;
+        if (compData) {
+          document.getElementById('articleCategoryTag').innerText = `${compData.industry || 'Corporate Enterprise'} • 2026`;
+          document.getElementById('articleMainTitle').innerText = compData.editionTitle || compData.title || compData.name;
+          document.getElementById('articleSubLead').innerText = `Featured Enterprise: ${compData.name} — "${compData.tagline || ''}"`;
           
-          const leaderPhotoEl = document.getElementById('articleLeaderPhoto');
-          leaderPhotoEl.src = magData.portraitImage || magData.coverImage;
-          leaderPhotoEl.alt = magData.featuredLeader || magData.title;
+          const portraitEl = document.getElementById('articleLeaderPhoto');
+          portraitEl.src = compData.coverImage;
+          portraitEl.alt = compData.name;
 
-          if (magData.articleHtml) {
-            document.getElementById('articleContentArea').innerHTML = magData.articleHtml;
+          if (compData.articleHtml) {
+            document.getElementById('articleContentArea').innerHTML = compData.articleHtml;
           } else {
             document.getElementById('articleContentArea').innerHTML = `
-              <h2>The Journey of ${magData.featuredLeader || 'Visionary Leadership'}</h2>
-              <p>${magData.title} represents a masterclass in modern executive strategy, operational resilience, and sustainable market dominance.</p>
+              <h2>The Corporate Evolution of ${compData.name}</h2>
+              <p>${compData.bio || compData.tagline || 'Leading innovation across modern enterprise infrastructure.'}</p>
               <div class="executive-quote-card">
-                <div class="quote-text">"Innovation is not about doing things differently; it is about establishing new benchmarks that others aspire to follow."</div>
-                <div class="quote-author">${magData.featuredLeader || 'Executive Leader'} &bull; ${magData.company || 'Industry Leader'}</div>
+                <div class="quote-text">"Excellence is not an isolated achievement; it is a systemic standard embedded into every operational workflow."</div>
+                <div class="quote-author">Executive Leadership &bull; ${compData.name}</div>
               </div>
-              <p>Through disciplined execution and forward-thinking leadership, this edition documents the core frameworks shaping the future of the global economy.</p>
+              <p>Headquartered in ${compData.location || 'Global'}, ${compdataNameSafe(compData.name)} continues to redefine the boundaries of scalability and industry impact.</p>
             `;
           }
 
-          // Dynamic Pages Array uploaded from Admin Panel (supports any number of image pages seamlessly)
-          const pagesArray = magData.pages && magData.pages.length > 0 ? magData.pages : [
-            magData.coverImage, 
-            magData.portraitImage || magData.coverImage
+          // Dynamic Pages Array uploaded from Admin Panel
+          const pagesArray = compData.pages && compData.pages.length > 0 ? compData.pages : [
+            compData.coverImage,
+            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80"
           ];
 
-          renderImageFlipbook(pagesArray);
+          renderCompanyFlipbook(pagesArray);
         } else {
-          // Fallback Sample Pages
-          renderImageFlipbook([
+          renderCompanyFlipbook([
+            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
           ]);
         }
 
-        // Fetch Automated Suggested Issues for Footer Grid
-        const sugSnap = await db.collection("magazines").orderBy("createdAt", "desc").limit(4).get();
+        // Fetch Suggested Companies for Footer
+        const sugSnap = await db.collection("companies").orderBy("createdAt", "desc").limit(4).get();
         const suggestedGrid = document.getElementById('suggestedGrid');
         let sugHtml = '';
         sugSnap.forEach(doc => {
-          if (doc.id === magId) return;
+          if (doc.id === compId) return;
           const s = doc.data();
           sugHtml += `
-            <div class="suggestion-card" onclick="window.location.href='leaders read digital.html?id=${doc.id}'; window.scrollTo({top: 0, behavior: 'smooth'})">
-              <div class="suggestion-poster">
-                <img src="${s.coverImage}" alt="${s.title}" loading="lazy">
-              </div>
+            <div class="suggestion-card" onclick="window.location.href='companies read digital.html?id=${doc.id}'; window.scrollTo({top: 0, behavior: 'smooth'})">
+              <div class="suggestion-poster"><img src="${s.coverImage}" alt="${s.name}" loading="lazy"></div>
               <div class="suggestion-body">
-                <div class="suggestion-title">${s.title}</div>
-                <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Digital Edition &rarr;</span>
+                <div class="suggestion-title">${s.editionTitle || s.name}</div>
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Corporate Edition &rarr;</span>
               </div>
             </div>`;
         });
-        suggestedGrid.innerHTML = sugHtml || '<p style="text-align:center;">No other editions found.</p>';
+        suggestedGrid.innerHTML = sugHtml || '<p style="text-align:center;">No other company editions found.</p>';
 
       } catch (e) {
-        console.error("Reader load error:", e);
+        console.error("Company reader load error:", e);
       }
     });
 
-    function renderImageFlipbook(imageUrls) {
+    function compdataNameSafe(name) { return name || 'The Organization'; }
+
+    function renderCompanyFlipbook(imageUrls) {
       flipbookContainer.innerHTML = '';
       thumbStripContainer.innerHTML = '';
       tocGridList.innerHTML = '';
 
       imageUrls.forEach((url, i) => {
         const pageDiv = document.createElement('div');
-        pageDiv.className = 'page';
+        pageDiv.className = 'company-flip-page';
         if (i === 0) pageDiv.setAttribute('data-density', 'hard');
 
         const img = document.createElement('img');
         img.src = url;
-        img.alt = `Magazine Page ${i + 1}`;
+        img.alt = `Corporate Page ${i + 1}`;
         pageDiv.appendChild(img);
 
         flipbookContainer.appendChild(pageDiv);
@@ -906,21 +634,20 @@
       });
 
       totalPagesLabel.innerText = `/ ${imageUrls.length}`;
-      initPageFlip(imageUrls.length);
+      initCompanyPageFlip(imageUrls.length);
     }
 
-    function initPageFlip(numPages) {
-      if (window.pageFlip) {
-        window.pageFlip.destroy();
-        window.pageFlip = null;
+    function initCompanyPageFlip(numPages) {
+      if (window.companyPageFlip) {
+        window.companyPageFlip.destroy();
+        window.companyPageFlip = null;
       }
 
       const isMobile = window.innerWidth < 768;
-      // Precise proportion scaling with object-fit: fill to ensure zero gaps and full responsiveness on mobile
       const w = isMobile ? window.innerWidth * 0.46 : 380;
       const h = isMobile ? window.innerHeight * 0.44 : 500;
 
-      window.pageFlip = new St.PageFlip(flipbookContainer, {
+      window.companyPageFlip = new St.PageFlip(flipbookContainer, {
         width: w,
         height: h,
         size: 'fixed',
@@ -931,13 +658,13 @@
         maxShadowOpacity: 0.3,
         showCover: true,
         mobileScrollSupport: false,
-        useMouseEvents: true, // Enabled normal mouse click flipping
+        useMouseEvents: true,
         flippingTime: 600
       });
 
-      window.pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+      window.companyPageFlip.loadFromHTML(document.querySelectorAll('.company-flip-page'));
 
-      window.pageFlip.on('flip', (e) => {
+      window.companyPageFlip.on('flip', (e) => {
         const page = e.data + 1;
         pageDisplay.innerText = page;
 
@@ -968,7 +695,6 @@
       adjustZoom(-e.deltaY * 0.0015); 
     }, { passive: false });
 
-    // 360° Drag & Pan Support (Active when zoomed in)
     stageContainer.addEventListener('mousedown', (e) => {
       if (currentZoom <= 1 || e.target.closest('.flip-nav-arrow') || e.target.closest('.reader-toolbar-box') || e.target.closest('.toc-modal-view') || e.target.closest('.thumb-strip-wrapper')) return;
       isDragging = true;
@@ -992,7 +718,6 @@
       } 
     });
 
-    // Touch support for 360 mobile panning when zoomed in
     let touchStartX = 0, touchStartY = 0;
     stageContainer.addEventListener('touchstart', (e) => {
       if (currentZoom > 1 && e.touches.length === 1 && !e.target.closest('.flip-nav-arrow') && !e.target.closest('.reader-toolbar-box')) {
@@ -1014,8 +739,8 @@
 
     function toggleTOC() { document.getElementById('tocModal').classList.toggle('active'); }
     function jumpToPage(index) { 
-      if (window.pageFlip) { 
-        window.pageFlip.flip(index); 
+      if (window.companyPageFlip) { 
+        window.companyPageFlip.flip(index); 
       } 
     }
 
