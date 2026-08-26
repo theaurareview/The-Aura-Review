@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Digital Edition Reader | The Aura Review</title>
-  <meta name="description" content="Read interactive digital magazine issues, high-res PDF flipbook with zoom and drag, comprehensive executive interviews, and suggested issues on The Aura Review.">
+  <meta name="description" content="Read interactive digital magazine issues, high-res image flipbook, comprehensive executive interviews, and suggested issues on The Aura Review.">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,9 +15,7 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- PDF.js & StPageFlip Engine -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+  <!-- StPageFlip Engine -->
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
   <!-- Firebase SDKs (Compat) -->
@@ -99,7 +97,7 @@
     }
 
     .container {
-      max-width: 1320px;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 0 2rem;
     }
@@ -114,57 +112,91 @@
       margin-bottom: 0.85rem;
     }
 
-    /* HEADER */
+    /* HEADER (INDEX MATCHED - STACKED ARCHITECTURE & BLURRY GLASS) */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(74, 14, 23, 0.08);
       z-index: 1000;
       transition: var(--transition-smooth);
     }
 
     .header-container {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 0.9rem;
+      padding-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .header-top-row {
+      width: 100%;
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 84px;
     }
 
     .logo {
       font-family: var(--font-serif);
-      font-size: 1.85rem;
-      letter-spacing: 0.15em;
+      font-size: clamp(1.1rem, 3.8vw, 1.95rem);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 600;
       color: var(--maroon-deep);
+      white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: opacity 0.3s ease;
+    }
+
+    .logo:hover { opacity: 0.8; }
+
+    .header-left-spacer {
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
 
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      justify-content: center;
+      gap: 1.8rem;
       list-style: none;
+      margin-top: 0.75rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid rgba(74, 14, 23, 0.08);
+      width: 100%;
     }
 
     .nav-link {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--maroon-primary);
       position: relative;
-      padding: 0.5rem 0;
+      padding: 0.2rem 0;
+      white-space: nowrap;
     }
 
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -2px;
       left: 0;
       width: 0%;
       height: 1.5px;
@@ -180,10 +212,29 @@
       display: none;
       background: none;
       border: none;
-      font-size: 1.75rem;
+      font-size: 1.6rem;
       color: var(--maroon-primary);
       cursor: pointer;
+      padding: 0.3rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
     }
+
+    .mobile-toggle:active { background: var(--maroon-soft); }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
     .mobile-menu {
       position: fixed;
@@ -192,27 +243,27 @@
       width: 85%;
       max-width: 380px;
       height: 100vh;
-      background: #FFFFFF;
-      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      box-shadow: -20px 0 50px rgba(74, 14, 23, 0.25);
       z-index: 1001;
       display: flex;
       flex-direction: column;
       padding: 2.5rem 2rem;
-      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .mobile-menu.open { right: 0; }
     .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
     .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
     .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
-    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* FLIPBOOK READER STAGE & EXACT TOOLBAR */
+    /* FLIPBOOK READER STAGE & TOOLBAR */
     .flipbook-reader-section {
-      padding-top: 110px;
-      padding-bottom: 4rem;
-      background: linear-gradient(180deg, #141416 0%, #240207 100%);
+      padding-top: 145px;
+      padding-bottom: 3.5rem;
+      background: linear-gradient(180deg, #1b1b1e 0%, #2c080e 100%);
       color: #FFFFFF;
       position: relative;
       user-select: none;
@@ -223,20 +274,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
 
     .reader-toolbar-box {
-      background: rgba(40, 40, 45, 0.95);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-radius: 8px;
-      padding: 0.55rem 1.4rem;
+      background: rgba(45, 45, 50, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      gap: 1.1rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       z-index: 100;
     }
 
@@ -252,13 +303,10 @@
       transition: color 0.2s, transform 0.1s;
     }
 
-    .toolbar-icon-btn:hover {
-      color: #FFFFFF;
-      transform: scale(1.15);
-    }
+    .toolbar-icon-btn:hover { color: #FFFFFF; transform: scale(1.15); }
 
     .zoom-slider-control {
-      width: 110px;
+      width: 90px;
       height: 4px;
       background: rgba(255, 255, 255, 0.25);
       border-radius: 2px;
@@ -268,73 +316,58 @@
     }
 
     .page-indicator-box {
-      background: #444449;
+      background: #3A3A3F;
       color: #FFFFFF;
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      padding: 0.25rem 0.75rem;
+      padding: 0.2rem 0.65rem;
       border-radius: 4px;
       min-width: 38px;
       text-align: center;
     }
 
     .total-pages-label {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #D1D1D6;
       font-weight: 600;
     }
 
-    .download-pdf-btn {
-      background: var(--maroon-primary);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.4rem 0.9rem;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: background 0.3s;
-    }
-
-    .download-pdf-btn:hover {
-      background: var(--maroon-light);
-    }
-
+    /* ZERO-GAP STAGE CONTAINER */
     .flipbook-stage-wrapper {
       position: relative;
       width: 100%;
-      height: 650px;
+      max-width: 1040px;
+      margin: 0 auto;
+      height: 560px;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      touch-action: none;
-      cursor: default;
+      touch-action: pan-y;
+      background: #111;
     }
 
     #flipbookContainer {
-      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85);
       transform-origin: center center;
       will-change: transform;
-      transition: transform 0.05s linear;
+      transition: transform 0.08s ease-out;
     }
 
     .page {
-      background-color: #FFFFFF;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+      background-color: #111;
       overflow: hidden;
+      cursor: pointer;
     }
 
-    .page canvas {
+    /* OBJECT-FIT FILL TO REMOVE ALL GAPS & MARGINS COMPLETELY */
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill; 
       display: block;
-      width: 100% !important;
-      height: 100% !important;
+      pointer-events: auto;
     }
 
     .flip-nav-arrow {
@@ -344,33 +377,64 @@
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(8px);
       color: #FFFFFF;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       cursor: pointer;
       z-index: 10;
       border: 1px solid rgba(255, 255, 255, 0.25);
       transition: var(--transition-smooth);
     }
 
-    .flip-nav-arrow:hover {
-      background: var(--maroon-accent);
-      transform: translateY(-50%) scale(1.1);
+    .flip-nav-arrow:hover { background: var(--maroon-accent); transform: translateY(-50%) scale(1.1); }
+    .arrow-prev { left: 1rem; }
+    .arrow-next { right: 1rem; }
+
+    /* THUMBNAIL BOTTOM STRIP */
+    .thumb-strip-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.8rem;
+      overflow-x: auto;
+      padding: 0.5rem 1rem;
     }
 
-    .arrow-prev { left: 1.5rem; }
-    .arrow-next { right: 1.5rem; }
+    .thumb-chip {
+      width: 48px;
+      height: 62px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      opacity: 0.55;
+      transition: var(--transition-smooth);
+      flex-shrink: 0;
+    }
+
+    .thumb-chip.active, .thumb-chip:hover {
+      opacity: 1;
+      border-color: #FFFFFF;
+      transform: translateY(-3px);
+    }
+
+    .thumb-chip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .toc-modal-view {
       display: none;
       position: absolute;
       inset: 0;
-      background: rgba(18, 18, 20, 0.92);
-      backdrop-filter: blur(14px);
+      background: rgba(18, 18, 20, 0.94);
+      backdrop-filter: blur(16px);
       z-index: 200;
       flex-direction: column;
       align-items: center;
@@ -396,205 +460,41 @@
       display: none; z-index: 999999;
     }
 
-    /* EDITORIAL METADATA & ARTICLE SECTION */
-    .article-body-section {
-      padding: 5.5rem 0;
-      background: #FFFFFF;
-    }
+    /* AUTOMATED ARTICLE & SUGGESTED SECTIONS */
+    .article-body-section { padding: 5.5rem 0; background: #FFFFFF; }
+    .article-wrap { max-width: 900px; margin: 0 auto; }
+    .article-headline { font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1.15; color: var(--maroon-deep); text-align: center; margin-bottom: 1rem; }
+    .article-sublead { font-size: 1.15rem; line-height: 1.75; color: var(--text-muted); text-align: center; margin-bottom: 2.5rem; }
+    .article-portrait-box { width: 100%; height: 500px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 1px solid var(--maroon-border); position: relative; }
+    .article-portrait-box img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
-    .article-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .article-headline {
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      line-height: 1.15;
-      color: var(--maroon-deep);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .article-sublead {
-      font-size: 1.15rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .article-portrait-box {
-      width: 100%;
-      height: 500px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 2rem;
-      border: 1px solid var(--maroon-border);
-      position: relative;
-    }
-
-    .article-portrait-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .social-share-strip {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 4rem;
-      flex-wrap: wrap;
-    }
-
+    .social-share-strip { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 4rem; flex-wrap: wrap; }
     .share-pill {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-light);
-      padding: 0.5rem 1.2rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--maroon-primary);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: pointer;
-      transition: var(--transition-smooth);
+      background: var(--bg-secondary); border: 1px solid var(--border-light); padding: 0.5rem 1.2rem; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; color: var(--maroon-primary); display: flex; align-items: center; gap: 0.4rem; cursor: pointer; transition: var(--transition-smooth);
     }
+    .share-pill:hover { background: var(--maroon-primary); color: #FFFFFF; border-color: var(--maroon-primary); transform: translateY(-2px); }
 
-    .share-pill:hover {
-      background: var(--maroon-primary);
-      color: #FFFFFF;
-      border-color: var(--maroon-primary);
-      transform: translateY(-2px);
-    }
+    .executive-quote-card { background: var(--bg-tinted); border-left: 4px solid var(--maroon-primary); border-radius: 0 8px 8px 0; padding: 2.2rem 2.4rem; margin: 3rem 0; box-shadow: var(--shadow-sm); }
+    .quote-text { font-family: var(--font-serif); font-size: 1.55rem; font-style: italic; color: var(--maroon-deep); line-height: 1.45; margin-bottom: 1rem; }
+    .quote-author { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--maroon-accent); }
+    .editorial-content-block h2 { font-size: 1.9rem; margin: 2.8rem 0 1rem 0; color: var(--maroon-deep); }
+    .editorial-content-block p { margin-bottom: 1.4rem; }
 
-    .executive-quote-card {
-      background: var(--bg-tinted);
-      border-left: 4px solid var(--maroon-primary);
-      border-radius: 0 8px 8px 0;
-      padding: 2.2rem 2.4rem;
-      margin: 3rem 0;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .quote-text {
-      font-family: var(--font-serif);
-      font-size: 1.55rem;
-      font-style: italic;
-      color: var(--maroon-deep);
-      line-height: 1.45;
-      margin-bottom: 1rem;
-    }
-
-    .quote-author {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--maroon-accent);
-    }
-
-    .editorial-content-block h2 {
-      font-size: 1.9rem;
-      margin: 2.8rem 0 1rem 0;
-      color: var(--maroon-deep);
-    }
-
-    /* SUGGESTED ISSUES SECTION */
-    .suggestions-section {
-      padding: 5.5rem 0 6.5rem 0;
-      background-color: var(--bg-secondary);
-      border-top: 1px solid var(--border-light);
-    }
-
-    .suggestions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2.2rem;
-      margin-top: 2.5rem;
-    }
-
-    .suggestion-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition-smooth);
-    }
-
-    .suggestion-poster {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-      position: relative;
-      background-color: #1a1a1a;
-    }
-
-    .suggestion-poster img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .suggestion-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--maroon-accent);
-    }
-
-    .suggestion-card:hover .suggestion-poster img {
-      transform: scale(1.04);
-    }
-
-    .suggestion-body {
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-
-    .suggestion-title {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      line-height: 1.35;
-      color: var(--maroon-deep);
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
+    .suggestions-section { padding: 5.5rem 0 6.5rem 0; background-color: var(--bg-secondary); border-top: 1px solid var(--border-light); }
+    .suggestions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.2rem; margin-top: 2.5rem; }
+    .suggestion-card { background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .suggestion-poster { width: 100%; aspect-ratio: 1 / 1.35; overflow: hidden; position: relative; background-color: #1a1a1a; }
+    .suggestion-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .suggestion-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--maroon-accent); }
+    .suggestion-card:hover .suggestion-poster img { transform: scale(1.04); }
+    .suggestion-body { padding: 1.4rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .suggestion-title { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.35; color: var(--maroon-deep); font-weight: 600; margin-bottom: 1rem; }
 
     /* FOOTER */
-    .footer {
-      background-color: var(--maroon-deep);
-      color: #E2D3D5;
-      padding: 5rem 0 2rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 3.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .footer-brand {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      color: #FFFFFF;
-      letter-spacing: 0.15em;
-      margin-bottom: 1rem;
-    }
-
+    .footer { background-color: var(--maroon-deep); color: #E2D3D5; padding: 5rem 0 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
+    .footer-brand { font-family: var(--font-serif); font-size: 2rem; color: #FFFFFF; letter-spacing: 0.15em; margin-bottom: 1rem; }
     .footer-desc { color: #BBA5A8; font-size: 0.95rem; line-height: 1.7; }
     .footer-heading { color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
@@ -603,24 +503,11 @@
 
     .social-row { display: flex; gap: 1rem; margin-top: 1.2rem; }
     .social-icon-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      display: flex; align-items: center; justify-content: center;
-      color: #FFFFFF; transition: var(--transition-smooth);
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.08);
+      display: flex; align-items: center; justify-content: center; color: #FFFFFF; transition: var(--transition-smooth);
     }
     .social-icon-btn:hover { background: var(--maroon-accent); transform: translateY(-3px); }
-
-    .footer-bottom {
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: #9A8084;
-    }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: #9A8084; }
 
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -630,10 +517,10 @@
     @media (max-width: 768px) {
       .nav-menu { display: none; }
       .mobile-toggle { display: block; }
-      .reader-toolbar-box { gap: 0.75rem; padding: 0.5rem 0.9rem; }
-      .zoom-slider-control { width: 70px; }
-      .flipbook-stage-wrapper { height: 380px; }
-      .article-portrait-box { height: 320px; }
+      .reader-toolbar-box { gap: 0.4rem; padding: 0.35rem 0.6rem; }
+      .zoom-slider-control { width: 45px; }
+      .flipbook-stage-wrapper { height: 320px; }
+      .article-portrait-box { height: 260px; }
       .suggestions-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
@@ -644,22 +531,27 @@
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-container">
-      <a href="index.html" class="logo">The Aura Review</a>
+      <div class="header-top-row">
+        <div class="header-left-spacer"><span>Spacer</span></div>
+        <a href="index.html" class="logo">The Aura Review</a>
+        <div class="header-right-group">
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+            <i class="ri-menu-4-line"></i>
+          </button>
+        </div>
+      </div>
 
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="magazine.html" class="nav-link active">Magazine</a></li>
+        <li><a href="magazine.html" class="nav-link">Magazine</a></li>
         <li><a href="leaders.html" class="nav-link">Leaders</a></li>
         <li><a href="companies.html" class="nav-link">Companies</a></li>
         <li><a href="news.html" class="nav-link">News</a></li>
         <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="media-kit.html" class="nav-link">Media Kit</a></li>
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
       </ul>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
-        <i class="ri-menu-4-line"></i>
-      </button>
     </div>
   </header>
 
@@ -674,14 +566,14 @@
       <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
       <li><a href="news.html" class="mobile-nav-link">News</a></li>
       <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
-      <li><a href="faq.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="media-kit.html" class="mobile-nav-link">Media Kit</a></li>
       <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
       <li><a href="about.html" class="mobile-nav-link">About</a></li>
     </ul>
   </div>
 
   <main>
-    <!-- 3D PDF FLIPBOOK READER & EXACT TOOLBAR -->
+    <!-- FLIPBOOK READER STAGE & TOOLBAR -->
     <section class="flipbook-reader-section">
       <div class="container">
         
@@ -698,7 +590,7 @@
             <button class="toolbar-icon-btn" title="Zoom Out" onclick="adjustZoom(-0.2)">
               <i class="fa-solid fa-magnifying-glass-minus"></i>
             </button>
-            <input type="range" class="zoom-slider-control" id="zoomRange" min="1" max="2.5" step="0.1" value="1" oninput="setZoom(this.value)">
+            <input type="range" class="zoom-slider-control" id="zoomRange" min="1" max="3" step="0.1" value="1" oninput="setZoom(this.value)">
             <button class="toolbar-icon-btn" title="Zoom In" onclick="adjustZoom(0.2)">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
             </button>
@@ -710,7 +602,7 @@
 
             <!-- Dynamic Page Display -->
             <div class="page-indicator-box" id="pageDisplay">1</div>
-            <span class="total-pages-label" id="totalPagesLabel">/ --</span>
+            <span class="total-pages-label" id="totalPagesLabel">/ 6</span>
 
             <!-- Page Step Next -->
             <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipNext()" title="Next Page">
@@ -718,18 +610,13 @@
             </button>
 
             <!-- Reset Zoom -->
-            <button class="toolbar-icon-btn" title="Reset Zoom / View" onclick="resetZoom()">
+            <button class="toolbar-icon-btn" title="Reset Zoom" onclick="resetZoom()">
               <i class="fa-solid fa-rotate-left"></i>
-            </button>
-
-            <!-- Download PDF Option -->
-            <button class="download-pdf-btn" onclick="downloadPDF()">
-              <i class="fa-solid fa-download"></i> PDF
             </button>
           </div>
         </div>
 
-        <!-- Interactive Flipbook Canvas Stage with 360° Drag Support -->
+        <!-- Interactive Flipbook Stage with 360° Panning when Zoomed -->
         <div class="flipbook-stage-wrapper" id="stageContainer">
           <div class="flip-nav-arrow arrow-prev" onclick="if(window.pageFlip) window.pageFlip.flipPrev()">
             <i class="fa-solid fa-chevron-left"></i>
@@ -739,19 +626,18 @@
           </div>
 
           <!-- StPageFlip Engine Render Area -->
-          <div id="flipbookContainer">
-            <!-- Dynamically rendered pages -->
-          </div>
+          <div id="flipbookContainer"></div>
 
           <!-- Table of Contents Modal -->
           <div class="toc-modal-view" id="tocModal">
             <i class="fa-solid fa-xmark toc-close-btn" onclick="toggleTOC()"></i>
             <h2 class="font-serif toc-title">Table of Contents</h2>
-            <div class="toc-grid-list" id="tocGridList">
-              <div class="toc-chip" onclick="jumpToPage(0)">Cover Page</div>
-            </div>
+            <div class="toc-grid-list" id="tocGridList"></div>
           </div>
         </div>
+
+        <!-- Bottom Thumbnail Strip -->
+        <div class="thumb-strip-wrapper" id="thumbStripContainer"></div>
 
       </div>
     </section>
@@ -759,21 +645,19 @@
     <!-- Toast Notification -->
     <div class="toast-msg" id="toastMsg">Issue Link Copied to Clipboard!</div>
 
-    <!-- COMPREHENSIVE EDITORIAL ARTICLE SECTION -->
+    <!-- AUTOMATED EDITORIAL ARTICLE SECTION -->
     <section class="article-body-section">
       <div class="container article-wrap">
         
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span class="section-tag" id="articleCategoryTag">Real Estate Edition &bull; Vol. XVI</span>
-          <h1 class="article-headline" id="articleMainTitle">The Most Dynamic Real Estate Entrepreneurs to Watch in 2026</h1>
-          <p class="article-sublead" id="articleSubLead">
-            Featured Leader: Jerome Hairston (CEO & Realtor, Hairston Investment Properties) — Building trust, structure, and a different standard in real estate infrastructure and metropolitan development.
-          </p>
+          <span class="section-tag" id="articleCategoryTag">Leadership Edition &bull; 2026</span>
+          <h1 class="article-headline" id="articleMainTitle">Loading Edition Title...</h1>
+          <p class="article-sublead" id="articleSubLead">Loading Executive Summary...</p>
         </div>
 
         <!-- Leader Portrait Photo -->
         <div class="article-portrait-box">
-          <img id="articleLeaderPhoto" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80" alt="Leader Portrait" loading="lazy">
+          <img id="articleLeaderPhoto" src="" alt="Leader Portrait" loading="lazy">
         </div>
 
         <!-- Social Channels Strip -->
@@ -784,38 +668,15 @@
           <a href="#" class="share-pill" onclick="shareIssue()"><i class="ri-links-line"></i> Copy Link</a>
         </div>
 
-        <!-- Full Article Body -->
+        <!-- Full Article Body (Automatically Parsed from Admin Panel) -->
         <div class="editorial-content-block" id="articleContentArea">
-          <h2>The Architecture of Enterprise Resilience</h2>
-          <p>
-            In an era defined by rapid macroeconomic fluctuations and institutional capital reallocation, executive leadership in commercial real estate demands far more than traditional portfolio oversight. It requires an innate ability to recognize the structural shifts in how organizations utilize physical space, how urban ecosystems evolve, and how capital can be deployed with long-term accountability.
-          </p>
-
-          <div class="executive-quote-card">
-            <div class="quote-text">
-              "A title does not create trust. Trust is forged through consistency, transparent frameworks, and the courage to make calculated decisions when market conditions are uncertain."
-            </div>
-            <div class="quote-author">Jerome Hairston &bull; CEO, Hairston Investment Properties</div>
-          </div>
-
-          <h2>Strategic Transformation & Sustainable Growth</h2>
-          <p>
-            Over the past decade, Hairston Investment Properties has established a reputation for disciplined risk mitigation and precision execution. Rather than pursuing hyper-leveraged acquisitions, the leadership team prioritized fundamental asset health, tenant value creation, and modernized technological integration.
-          </p>
-          <p>
-            By bridging the divide between sustainable architectural engineering and institutional private equity, the firm has positioned itself at the forefront of metropolitan commercial renewal across multiple global regions.
-          </p>
-
-          <h2>Looking Ahead to 2026 and Beyond</h2>
-          <p>
-            As international commerce continues to transform, the lessons documented in this edition serve as a testament to what happens when purpose-driven vision intersects with operational discipline. The future of business is not built on temporary trends—it is anchored in the enduring legacies of leaders willing to build for tomorrow.
-          </p>
+          <p>Loading full executive article profile...</p>
         </div>
 
       </div>
     </section>
 
-    <!-- SUGGESTED ISSUES & ARTICLES -->
+    <!-- AUTOMATED SUGGESTED ISSUES & ARTICLES -->
     <section class="suggestions-section">
       <div class="container">
         <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
@@ -835,7 +696,7 @@
         <div>
           <div class="footer-brand">The Aura Review</div>
           <p class="footer-desc">
-            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 23].
+            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow.
           </p>
           <div class="social-row">
             <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
@@ -873,7 +734,7 @@
         <div>
           <h4 class="footer-heading">Contact & Inquiries</h4>
           <p class="footer-desc" style="margin-bottom: 1rem;">
-            For editorial submissions, magazine features, and publication collaborations[cite: 23]:
+            For editorial submissions, magazine features, and publication collaborations:
           </p>
           <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
@@ -885,7 +746,7 @@
     </div>
   </footer>
 
-  <!-- FIREBASE & PDF.JS FLIPBOOK RENDERER -->
+  <!-- FIREBASE & DYNAMIC FLIPBOOK SCRIPT -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
@@ -910,16 +771,11 @@
     const zoomRange = document.getElementById('zoomRange');
     const pageDisplay = document.getElementById('pageDisplay');
     const totalPagesLabel = document.getElementById('totalPagesLabel');
-
-    let activePdfSource = "magazine.pdf";
+    const thumbStripContainer = document.getElementById('thumbStripContainer');
+    const tocGridList = document.getElementById('tocGridList');
 
     document.addEventListener('DOMContentLoaded', async () => {
-      const header = document.getElementById('header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 30) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      });
-
+      // Mobile Navigation Drawer Toggle Setup
       const mobileToggle = document.getElementById('mobileToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       const menuClose = document.getElementById('mobileMenuClose');
@@ -935,6 +791,7 @@
       menuClose.addEventListener('click', () => toggleMenu(false));
       menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
+      // Fetch dynamic magazine edition from Firestore based on URL ?id=...
       const urlParams = new URLSearchParams(window.location.search);
       const magId = urlParams.get('id');
 
@@ -951,38 +808,46 @@
         }
 
         if (magData) {
-          document.getElementById('articleCategoryTag').innerText = `${magData.industry} • ${magData.editionTag || 'Edition'}`;
+          // Automated Article & Metadata Rendering
+          document.getElementById('articleCategoryTag').innerText = `${magData.industry || 'Leadership'} • 2026`;
           document.getElementById('articleMainTitle').innerText = magData.title;
-          document.getElementById('articleSubLead').innerText = `Featured Leader: ${magData.featuredLeader}`;
-          document.getElementById('articleLeaderPhoto').src = magData.portraitImage || magData.coverImage;
+          document.getElementById('articleSubLead').innerText = `Featured Leader: ${magData.featuredLeader || magData.title}`;
+          
+          const leaderPhotoEl = document.getElementById('articleLeaderPhoto');
+          leaderPhotoEl.src = magData.portraitImage || magData.coverImage;
+          leaderPhotoEl.alt = magData.featuredLeader || magData.title;
+
           if (magData.articleHtml) {
             document.getElementById('articleContentArea').innerHTML = magData.articleHtml;
-          }
-          if (magData.pdfSource) {
-            activePdfSource = magData.pdfSource;
+          } else {
+            document.getElementById('articleContentArea').innerHTML = `
+              <h2>The Journey of ${magData.featuredLeader || 'Visionary Leadership'}</h2>
+              <p>${magData.title} represents a masterclass in modern executive strategy, operational resilience, and sustainable market dominance.</p>
+              <div class="executive-quote-card">
+                <div class="quote-text">"Innovation is not about doing things differently; it is about establishing new benchmarks that others aspire to follow."</div>
+                <div class="quote-author">${magData.featuredLeader || 'Executive Leader'} &bull; ${magData.company || 'Industry Leader'}</div>
+              </div>
+              <p>Through disciplined execution and forward-thinking leadership, this edition documents the core frameworks shaping the future of the global economy.</p>
+            `;
           }
 
-          // If a PDF url or file source is stored, render via PDF.js canvas loop
-          if (magData.pdfUrl && magData.pdfUrl.startsWith('http')) {
-            await renderPdfBook(magData.pdfUrl);
-          } else {
-            // Render multi-page high quality canvas flipbook from stored pages or fallback
-            renderCustomCanvasBook(magData.pages || [
-              magData.coverImage,
-              magData.portraitImage || magData.coverImage,
-              "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-              "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80"
-            ]);
-          }
+          // Dynamic Pages Array uploaded from Admin Panel (supports any number of pages)
+          const pagesArray = magData.pages && magData.pages.length > 0 ? magData.pages : [
+            magData.coverImage, 
+            magData.portraitImage || magData.coverImage
+          ];
+
+          renderImageFlipbook(pagesArray);
         } else {
-          renderCustomCanvasBook([
+          // Fallback Sample Pages
+          renderImageFlipbook([
             "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
           ]);
         }
 
-        // Fetch Suggested Issues
-        const sugSnap = await db.collection("magazines").limit(4).get();
+        // Fetch Automated Suggested Issues for Footer Grid
+        const sugSnap = await db.collection("magazines").orderBy("createdAt", "desc").limit(4).get();
         const suggestedGrid = document.getElementById('suggestedGrid');
         let sugHtml = '';
         sugSnap.forEach(doc => {
@@ -1003,87 +868,41 @@
 
       } catch (e) {
         console.error("Reader load error:", e);
-        renderCustomCanvasBook([
-          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
-        ]);
       }
     });
 
-    async function renderPdfBook(pdfUrl) {
-      flipbookContainer.innerHTML = '<div style="color:white; text-align:center; padding:4rem;">Loading PDF Pages...</div>';
-      try {
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
-        const pdf = await loadingTask.promise;
-        
-        flipbookContainer.innerHTML = '';
-        const tocList = document.getElementById('tocGridList');
-        tocList.innerHTML = '';
-
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const viewport = page.getViewport({ scale: 1.5 });
-          
-          const canvas = document.createElement('canvas');
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          const context = canvas.getContext('2d');
-          await page.render({ canvasContext: context, viewport: viewport }).promise;
-          
-          const pageDiv = document.createElement('div');
-          pageDiv.className = 'page';
-          if (i === 1) pageDiv.setAttribute('data-density', 'hard');
-          pageDiv.appendChild(canvas);
-          flipbookContainer.appendChild(pageDiv);
-
-          const chip = document.createElement('div');
-          chip.className = 'toc-chip';
-          chip.setAttribute('onclick', `jumpToPage(${i - 1})`);
-          chip.innerText = i === 1 ? 'Cover Page' : `Page ${i}`;
-          tocList.appendChild(chip);
-        }
-
-        totalPagesLabel.innerText = `/ ${pdf.numPages}`;
-        initPageFlip(pdf.numPages);
-      } catch (err) {
-        console.error("PDF.js error:", err);
-        renderCustomCanvasBook([
-          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
-        ]);
-      }
-    }
-
-    function renderCustomCanvasBook(imageUrls) {
+    function renderImageFlipbook(imageUrls) {
       flipbookContainer.innerHTML = '';
-      const tocList = document.getElementById('tocGridList');
-      tocList.innerHTML = '';
+      thumbStripContainer.innerHTML = '';
+      tocGridList.innerHTML = '';
 
       imageUrls.forEach((url, i) => {
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
         if (i === 0) pageDiv.setAttribute('data-density', 'hard');
-        
-        const canvas = document.createElement('canvas');
-        canvas.width = 800;
-        canvas.height = 1100;
-        const ctx = canvas.getContext('2d');
-        
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => {
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        };
-        img.src = url;
 
-        pageDiv.appendChild(canvas);
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Magazine Page ${i + 1}`;
+        pageDiv.appendChild(img);
+
         flipbookContainer.appendChild(pageDiv);
 
+        // Thumbnail Chip
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-chip ${i === 0 ? 'active' : ''}`;
+        thumb.setAttribute('onclick', `jumpToPage(${i})`);
+        const thumbImg = document.createElement('img');
+        thumbImg.src = url;
+        thumb.appendChild(thumbImg);
+        thumbStripContainer.appendChild(thumb);
+
+        // TOC Chip
         const chip = document.createElement('div');
         chip.className = 'toc-chip';
-        chip.setAttribute('onclick', `jumpToPage(${i})`);
-        chip.innerText = i === 0 ? 'Cover Page' : `Page ${i + 1}`;
-        tocList.appendChild(chip);
+        chip.setAttribute('onclick', `jumpToPage(${i}); toggleTOC();`);
+        chip.innerText = i === 0 ? 'Cover Page' : (i === imageUrls.length - 1 ? 'Back Cover' : `Page ${i + 1}`);
+        tocGridList.appendChild(chip);
       });
 
       totalPagesLabel.innerText = `/ ${imageUrls.length}`;
@@ -1097,29 +916,34 @@
       }
 
       const isMobile = window.innerWidth < 768;
-      const w = isMobile ? window.innerWidth * 0.9 : 500;
-      const h = isMobile ? window.innerHeight * 0.55 : 680;
+      // Precise proportion scaling with object-fit: fill to ensure zero gaps and full responsiveness on mobile
+      const w = isMobile ? window.innerWidth * 0.46 : 380;
+      const h = isMobile ? window.innerHeight * 0.44 : 500;
 
       window.pageFlip = new St.PageFlip(flipbookContainer, {
         width: w,
         height: h,
         size: 'fixed',
-        minWidth: 260,
-        maxWidth: 600,
-        minHeight: 350,
-        maxHeight: 800,
-        maxShadowOpacity: 0.55,
+        minWidth: 160,
+        maxWidth: 440,
+        minHeight: 240,
+        maxHeight: 600,
+        maxShadowOpacity: 0.3,
         showCover: true,
         mobileScrollSupport: false,
-        useMouseEvents: true,
-        flippingTime: 1000
+        useMouseEvents: true, // Enabled normal mouse click flipping on desktop
+        flippingTime: 600
       });
 
       window.pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
       window.pageFlip.on('flip', (e) => {
         const page = e.data + 1;
-        pageDisplay.innerText = page === 1 ? '1' : `${page}-${Math.min(page + 1, numPages)}`;
+        pageDisplay.innerText = page;
+
+        document.querySelectorAll('.thumb-chip').forEach((t, idx) => {
+          t.classList.toggle('active', idx === e.data);
+        });
       });
     }
 
@@ -1136,7 +960,7 @@
     }
 
     function setZoom(val) { currentZoom = parseFloat(val); updateTransform(); }
-    function adjustZoom(delta) { currentZoom = Math.min(Math.max(1, currentZoom + delta), 2.5); updateTransform(); }
+    function adjustZoom(delta) { currentZoom = Math.min(Math.max(1, currentZoom + delta), 3.0); updateTransform(); }
     function resetZoom() { currentZoom = 1; translateX = 0; translateY = 0; updateTransform(); }
 
     stageContainer.addEventListener('wheel', (e) => { 
@@ -1144,8 +968,9 @@
       adjustZoom(-e.deltaY * 0.0015); 
     }, { passive: false });
 
+    // 360° Drag & Pan Support (Active when zoomed in)
     stageContainer.addEventListener('mousedown', (e) => {
-      if (currentZoom <= 1 || e.target.closest('.flip-nav-arrow') || e.target.closest('.reader-toolbar-box') || e.target.closest('.toc-modal-view')) return;
+      if (currentZoom <= 1 || e.target.closest('.flip-nav-arrow') || e.target.closest('.reader-toolbar-box') || e.target.closest('.toc-modal-view') || e.target.closest('.thumb-strip-wrapper')) return;
       isDragging = true;
       startX = e.clientX - translateX;
       startY = e.clientY - translateY;
@@ -1153,7 +978,7 @@
     });
 
     window.addEventListener('mousemove', (e) => {
-      if (!isDragging || currentZoom <= 1) return;
+      if (!isDragging) return;
       e.preventDefault();
       translateX = e.clientX - startX;
       translateY = e.clientY - startY;
@@ -1167,11 +992,30 @@
       } 
     });
 
+    // Touch support for 360 mobile panning when zoomed in
+    let touchStartX = 0, touchStartY = 0;
+    stageContainer.addEventListener('touchstart', (e) => {
+      if (currentZoom > 1 && e.touches.length === 1 && !e.target.closest('.flip-nav-arrow') && !e.target.closest('.reader-toolbar-box')) {
+        isDragging = true;
+        touchStartX = e.touches[0].clientX - translateX;
+        touchStartY = e.touches[0].clientY - translateY;
+      }
+    });
+
+    stageContainer.addEventListener('touchmove', (e) => {
+      if (isDragging && currentZoom > 1 && e.touches.length === 1) {
+        translateX = e.touches[0].clientX - touchStartX;
+        translateY = e.touches[0].clientY - touchStartY;
+        updateTransform();
+      }
+    });
+
+    stageContainer.addEventListener('touchend', () => { isDragging = false; });
+
     function toggleTOC() { document.getElementById('tocModal').classList.toggle('active'); }
     function jumpToPage(index) { 
       if (window.pageFlip) { 
         window.pageFlip.flip(index); 
-        toggleTOC(); 
       } 
     }
 
@@ -1185,11 +1029,6 @@
         setTimeout(() => { toast.style.display = 'none'; }, 2500);
       }
     }
-
-    function downloadPDF() {
-      alert(`Downloading digital edition file (${activePdfSource || activePdfName})...`);
-    }
   </script>
 </body>
 </html>
-```[cite: 23]
