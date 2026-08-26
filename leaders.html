@@ -94,7 +94,7 @@
     }
 
     .container {
-      max-width: 1360px;
+      max-width: 1480px;
       margin: 0 auto;
       padding: 0 2rem;
     }
@@ -151,18 +151,6 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .btn-outline {
-      background-color: transparent;
-      color: var(--maroon-primary);
-      border-color: var(--maroon-primary);
-    }
-
-    .btn-outline:hover {
-      background-color: var(--maroon-soft);
-      transform: translateY(-2px);
-      border-color: var(--maroon-deep);
-    }
-
     .btn-link {
       padding: 0;
       background: none;
@@ -179,77 +167,91 @@
       position: relative;
     }
 
-    .btn-link::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 1.5px;
-      background-color: var(--maroon-accent);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.35s ease;
-    }
-
-    .btn-link:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    /* Header */
+    /* HEADER & NAVIGATION (INDEX MATCHED - STACKED ARCHITECTURE & BLURRY GLASS) */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(74, 14, 23, 0.08);
       z-index: 1000;
-      height: 75px;
-      display: flex;
-      align-items: center;
+      transition: var(--transition-smooth);
     }
 
     .header-container {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 0.9rem;
+      padding-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .header-top-row {
+      width: 100%;
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
     }
 
     .logo {
       font-family: var(--font-serif);
-      font-size: 1.85rem;
-      letter-spacing: 0.15em;
+      font-size: clamp(1.1rem, 3.8vw, 1.95rem);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 600;
       color: var(--maroon-deep);
+      white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: opacity 0.3s ease;
+    }
+
+    .logo:hover { opacity: 0.8; }
+
+    .header-left-spacer {
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
 
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      justify-content: center;
+      gap: 1.8rem;
       list-style: none;
+      margin-top: 0.75rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid rgba(74, 14, 23, 0.08);
+      width: 100%;
     }
 
     .nav-link {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--maroon-primary);
       position: relative;
-      padding: 0.4rem 0;
+      padding: 0.2rem 0;
+      white-space: nowrap;
     }
 
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -2px;
       left: 0;
       width: 0%;
       height: 1.5px;
@@ -265,10 +267,29 @@
       display: none;
       background: none;
       border: none;
-      font-size: 1.75rem;
+      font-size: 1.6rem;
       color: var(--maroon-primary);
       cursor: pointer;
+      padding: 0.3rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
     }
+
+    .mobile-toggle:active { background: var(--maroon-soft); }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
     .mobile-menu {
       position: fixed;
@@ -277,81 +298,29 @@
       width: 85%;
       max-width: 380px;
       height: 100vh;
-      background: #FFFFFF;
-      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      box-shadow: -20px 0 50px rgba(74, 14, 23, 0.25);
       z-index: 1001;
       display: flex;
       flex-direction: column;
       padding: 2.5rem 2rem;
-      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .mobile-menu.open { right: 0; }
     .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
     .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
     .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
-    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
     /* HERO */
     .leaders-hero-section {
-      padding-top: 105px;
+      padding-top: 155px;
       padding-bottom: 2.5rem;
       background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F6 100%);
       text-align: center;
       border-bottom: 1px solid var(--border-light);
-    }
-
-    /* FEATURED LEADER OF THE MONTH */
-    .featured-leader-section {
-      padding: 3rem 0;
-      background: #FFFFFF;
-    }
-
-    .featured-leader-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--maroon-border);
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      align-items: stretch;
-      box-shadow: var(--shadow-md);
-      transition: var(--transition-smooth);
-    }
-
-    .featured-leader-card:hover {
-      box-shadow: var(--shadow-hover);
-      border-color: var(--maroon-accent);
-    }
-
-    .featured-leader-photo-wrap {
-      flex: 0 0 38%;
-      max-width: 440px;
-      min-height: 460px;
-      background-color: var(--bg-subtle);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .featured-leader-photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .featured-leader-card:hover .featured-leader-photo-wrap img {
-      transform: scale(1.03);
-    }
-
-    .featured-leader-body {
-      flex: 1;
-      padding: 3.5rem 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     /* SEARCH & FILTER BAR */
@@ -443,18 +412,19 @@
       border-color: var(--maroon-primary);
     }
 
-    /* ALL LEADERS GRID WITH INTEGRATED ENGAGEMENT */
+    /* ALL LEADERS GRID (4 COLUMNS ON DESKTOP - EXACT MATCH TO MAGAZINE & COMPANIES) */
     .all-leaders-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+      gap: 2rem 1.25rem;
       margin-top: 1.5rem;
+      align-items: stretch;
     }
 
     .leader-card-item {
       background: #FFFFFF;
       border: 1px solid var(--border-light);
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
       transition: var(--transition-smooth);
@@ -471,7 +441,7 @@
 
     .leader-card-photo {
       width: 100%;
-      height: 300px;
+      aspect-ratio: 1 / 1.35;
       overflow: hidden;
       background: var(--bg-subtle);
       cursor: pointer;
@@ -491,27 +461,33 @@
     }
 
     .leader-card-content {
-      padding: 1.2rem 1.2rem 0.5rem 1.2rem;
+      padding: 1.1rem 1rem 0.4rem 1rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
     .leader-card-meta {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--maroon-accent);
-      font-weight: 700;
-      margin-bottom: 0.35rem;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
     }
 
     .leader-card-name {
-      font-size: 1.45rem;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
       color: var(--maroon-deep);
-      margin-bottom: 0.25rem;
-      line-height: 1.2;
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+      font-weight: 600;
       cursor: pointer;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .leader-card-name:hover {
@@ -519,23 +495,16 @@
     }
 
     .leader-card-designation {
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-main);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.1rem;
     }
 
     .leader-card-company {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       margin-bottom: 0.8rem;
-    }
-
-    .leader-card-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1.2rem;
     }
 
     .leader-card-actions {
@@ -548,7 +517,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 1.2rem;
+      padding: 0.7rem 1rem;
       border-top: 1px solid var(--border-light);
       background: #FFFFFF;
     }
@@ -559,9 +528,9 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.2rem;
       font-family: var(--font-sans);
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--text-muted);
       transition: var(--transition-smooth);
@@ -579,22 +548,22 @@
     .view-stat-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      font-size: 0.8rem;
+      gap: 0.2rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--maroon-accent);
     }
 
-    /* ONE-TIME MEMBER REGISTRATION MODAL */
+    /* MEMBER REGISTRATION MODAL */
     .member-modal-overlay {
-      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.72); backdrop-filter: blur(14px);
-      z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.55); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .member-modal-overlay.active { opacity: 1; pointer-events: all; }
     .member-modal-box {
-      background: #FFFFFF; border: 1px solid var(--maroon-border); border-radius: 8px; max-width: 480px; width: 100%;
-      padding: 3rem 2.2rem; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); position: relative; text-align: center;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(30px); border: 1px solid var(--maroon-border); border-radius: 12px; max-width: 480px; width: 100%;
+      padding: 3rem 2.2rem; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4); position: relative; text-align: center;
     }
     .member-close-btn { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; }
     .member-form-group { text-align: left; margin-bottom: 1.1rem; }
@@ -603,21 +572,21 @@
 
     /* COMMENTS MODAL */
     .comments-modal-overlay {
-      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.75); backdrop-filter: blur(16px);
-      z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.55); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .comments-modal-overlay.active { opacity: 1; pointer-events: all; }
     .comments-modal-box {
-      background: #FFFFFF; border: 1px solid var(--maroon-border); border-radius: 8px; max-width: 980px; width: 100%; max-height: 90vh;
-      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.5); position: relative; display: grid; grid-template-columns: 0.88fr 1.12fr; overflow: hidden;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(30px); border: 1px solid var(--maroon-border); border-radius: 12px; max-width: 980px; width: 100%; max-height: 90vh;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4); position: relative; display: grid; grid-template-columns: 0.88fr 1.12fr; overflow: hidden;
     }
     .comments-modal-close {
       position: absolute; top: 1.2rem; right: 1.2rem; background: #FFFFFF; border: 1px solid var(--border-light);
       width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;
     }
     .comments-mag-preview-col { background: var(--bg-secondary); border-right: 1px solid var(--border-light); padding: 2.2rem 1.8rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
-    .mag-preview-poster-frame { width: 100%; max-width: 280px; margin: 0 auto 1.2rem auto; height: 340px; border-radius: 6px; overflow: hidden; border: 1px solid var(--maroon-border); box-shadow: var(--shadow-md); background: #141414; }
+    .mag-preview-poster-frame { width: 100%; max-width: 240px; margin: 0 auto 1.2rem auto; aspect-ratio: 1 / 1.35; border-radius: 6px; overflow: hidden; border: 1px solid var(--maroon-border); box-shadow: var(--shadow-md); background: #141414; }
     .mag-preview-poster-frame img { width: 100%; height: 100%; object-fit: cover; }
     .comments-feed-col { padding: 2.2rem 1.8rem; display: flex; flex-direction: column; justify-content: space-between; max-height: 90vh; overflow-y: auto; background: #FFFFFF; }
     .comments-list-box { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; max-height: 320px; }
@@ -628,10 +597,10 @@
     .comment-author { font-weight: 700; font-size: 0.88rem; color: var(--maroon-deep); }
 
     /* SINGLE LEADER PROFILE VIEW */
-    .profile-view-wrapper { display: none; padding: 105px 0 5rem 0; background: #FFFFFF; }
+    .profile-view-wrapper { display: none; padding: 145px 0 5rem 0; background: #FFFFFF; }
     .profile-view-wrapper.active { display: block; }
-    .profile-hero-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 3.5rem; align-items: center; margin-bottom: 4rem; }
-    .profile-hero-img { width: 100%; height: 480px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--maroon-border); }
+    .profile-hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; align-items: center; margin-bottom: 4rem; }
+    .profile-hero-img { width: 100%; height: 440px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--maroon-border); }
     .profile-hero-img img { width: 100%; height: 100%; object-fit: cover; }
 
     .toast-msg { position: fixed; bottom: 2rem; right: 2rem; background: var(--maroon-deep); color: #FFFFFF; padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); display: none; z-index: 9999999; }
@@ -645,18 +614,20 @@
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
     .footer-link { color: #BBA5A8; font-size: 0.9rem; transition: var(--transition-smooth); }
     .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: #9A8084; }
 
-    @media (max-width: 1200px) { .all-leaders-grid { grid-template-columns: repeat(3, 1fr); } .filter-selects-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 900px) {
+    @media (max-width: 1280px) { .all-leaders-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 1024px) {
       .all-leaders-grid { grid-template-columns: repeat(2, 1fr); }
-      .featured-leader-card, .profile-hero-grid, .comments-modal-box { flex-direction: column; grid-template-columns: 1fr; }
-      .featured-leader-photo-wrap { width: 100%; min-height: 380px; }
+      .profile-hero-grid, .comments-modal-box { flex-direction: column; grid-template-columns: 1fr; }
+      .filter-selects-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 768px) {
       .nav-menu { display: none; }
       .mobile-toggle { display: block; }
-      .all-leaders-grid, .filter-selects-grid { grid-template-columns: 1fr; }
+      .all-leaders-grid { grid-template-columns: 1fr; }
+      .logo { font-size: clamp(1rem, 4.5vw, 1.45rem); white-space: nowrap; }
     }
   </style>
 </head>
@@ -665,7 +636,15 @@
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-container">
-      <a href="index.html" class="logo">The Aura Review</a>
+      <div class="header-top-row">
+        <div class="header-left-spacer"><span>Spacer</span></div>
+        <a href="index.html" class="logo">The Aura Review</a>
+        <div class="header-right-group">
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+            <i class="ri-menu-4-line"></i>
+          </button>
+        </div>
+      </div>
 
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
@@ -674,19 +653,10 @@
         <li><a href="companies.html" class="nav-link">Companies</a></li>
         <li><a href="news.html" class="nav-link">News</a></li>
         <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="media-kit.html" class="nav-link">Media Kit</a></li>
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
       </ul>
-
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <span id="memberStatusTag" style="font-size: 0.8rem; font-weight: 700; color: var(--maroon-accent); display: none;">
-          <i class="ri-shield-user-fill"></i> <span id="memberNameDisplay">Member</span>
-        </span>
-      </div>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
-        <i class="ri-menu-4-line"></i>
-      </button>
     </div>
   </header>
 
@@ -701,6 +671,7 @@
       <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
       <li><a href="news.html" class="mobile-nav-link">News</a></li>
       <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="media-kit.html" class="mobile-nav-link">Media Kit</a></li>
       <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
       <li><a href="about.html" class="mobile-nav-link">About</a></li>
     </ul>
@@ -716,24 +687,6 @@
         <p style="max-width: 750px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;">
           Explore visionary CEOs, founders, entrepreneurs, executives, innovators, and industry experts featured by The Aura Review across modern industries and global markets.
         </p>
-      </div>
-    </section>
-
-    <!-- FEATURED LEADER -->
-    <section class="featured-leader-section">
-      <div class="container">
-        <div class="featured-leader-card">
-          <div class="featured-leader-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80" alt="Dr. Aris Thorne">
-          </div>
-          <div class="featured-leader-body">
-            <span class="section-tag">Featured Leader of the Month</span>
-            <h2 style="font-size: 2.5rem; color: var(--maroon-deep); line-height: 1.1; margin-bottom: 0.3rem;">Dr. Aris Thorne</h2>
-            <div style="font-size: 1rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.2rem;">Founder & Chief Executive Officer, GeneMatrix Health</div>
-            <p style="margin-bottom: 1.8rem; font-size: 0.98rem;">A visionary healthcare executive transforming precision cellular oncology therapies and clinical distribution models globally.</p>
-            <button class="btn btn-maroon" onclick="loadLeaderProfile('dr-aris-thorne')" style="align-self: flex-start;">Read Full Profile &rarr;</button>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -794,10 +747,6 @@
             <option value="Saudi Arabia">Saudi Arabia</option>
             <option value="Global">Global / Multi-Market</option>
           </select>
-          <select class="filter-select" id="filterYear">
-            <option value="all">Year: All Editions</option>
-            <option value="2026">2026 Edition</option>
-          </select>
         </div>
 
         <div class="category-pills-scroll" id="catPillsBar">
@@ -811,7 +760,7 @@
       </div>
     </section>
 
-    <!-- GRID -->
+    <!-- GRID (4 COLUMNS, TRUE COVER ASPECT RATIO, IMAGE-BASED) -->
     <section class="section-spacing" id="featuredLeadersGrid">
       <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.8rem;">
@@ -839,7 +788,7 @@
           <h1 style="font-size: 3rem; line-height: 1.1; color: var(--maroon-deep); margin-bottom: 0.4rem;" id="pName">Name</h1>
           <div style="font-size: 1.15rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.2rem;" id="pRole">Role</div>
           <div style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.4rem;" id="pMeta">Meta</div>
-          <a href="leaders read digital.html" class="btn btn-maroon"><i class="ri-book-open-line"></i> Read Digital Edition</a>
+          <a href="leaders read digital.html" id="pReadDigitalBtn" class="btn btn-maroon"><i class="ri-book-open-line"></i> Read Digital Edition</a>
         </div>
       </div>
 
@@ -887,7 +836,7 @@
           <span class="section-tag" id="cmPreviewTag">Healthcare</span>
           <h3 style="font-family: var(--font-serif); font-size: 1.45rem; color: var(--maroon-deep);" id="cmPreviewTitle">Name</h3>
         </div>
-        <a href="leaders read digital.html" class="btn btn-maroon" style="width: 100%; font-size: 0.78rem;">Read Digital Issue &rarr;</a>
+        <a href="leaders read digital.html" id="cmReadLink" class="btn btn-maroon" style="width: 100%; font-size: 0.78rem;">Read Digital Issue &rarr;</a>
       </div>
       <div class="comments-feed-col">
         <h3 style="font-size: 1.3rem; color: var(--maroon-deep); margin-bottom: 1rem;">Executive Discussion</h3>
@@ -955,6 +904,22 @@
     document.addEventListener('DOMContentLoaded', async () => {
       initMemberUI();
       await fetchCloudLeaders();
+
+      // Mobile Drawer Toggle Setup
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuClose = document.getElementById('mobileMenuClose');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+
+      const toggleMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        menuBackdrop.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      if (mobileToggle) mobileToggle.addEventListener('click', () => toggleMenu(true));
+      if (menuClose) menuClose.addEventListener('click', () => toggleMenu(false));
+      if (menuBackdrop) menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
       document.getElementById('leaderSearchInput').addEventListener('input', applyFilters);
       document.getElementById('filterIndustry').addEventListener('change', applyFilters);
@@ -1053,8 +1018,10 @@
     function initMemberUI() {
       const member = getMember();
       if (member) {
-        document.getElementById('memberStatusTag').style.display = 'inline-flex';
-        document.getElementById('memberNameDisplay').textContent = member.name.split(' ')[0];
+        const tag = document.getElementById('memberStatusTag');
+        const disp = document.getElementById('memberNameDisplay');
+        if (tag) tag.style.display = 'inline-flex';
+        if (disp) disp.textContent = member.name.split(' ')[0];
       }
     }
 
@@ -1103,13 +1070,14 @@
 
         return `
           <div class="leader-card-item">
-            <div class="leader-card-photo" onclick="loadLeaderProfile('${leader.id}')"><img src="${leader.photo}" alt="${leader.name}"></div>
+            <div class="leader-card-photo" onclick="loadLeaderProfile('${leader.id}')">
+              <img src="${leader.photo}" alt="${leader.name}" loading="lazy">
+            </div>
             <div class="leader-card-content">
               <span class="leader-card-meta">${leader.industry || 'Executive'} &bull; ${leader.locationDetail || leader.location || 'Global'}</span>
               <h3 class="leader-card-name" onclick="loadLeaderProfile('${leader.id}')">${leader.name}</h3>
               <div class="leader-card-designation">${leader.designation}</div>
               <div class="leader-card-company">${leader.company}</div>
-              <p class="leader-card-desc">${leader.shortDesc || leader.quote || ''}</p>
               <div class="leader-card-actions"><button class="btn-link" onclick="loadLeaderProfile('${leader.id}')">View Profile &rarr;</button></div>
             </div>
             <div class="mag-interaction-bar">
@@ -1146,6 +1114,7 @@
           document.getElementById('cmPreviewImg').src = leader.photo;
           document.getElementById('cmPreviewTag').textContent = leader.industry || 'Executive';
           document.getElementById('cmPreviewTitle').textContent = leader.name;
+          document.getElementById('cmReadLink').href = `leaders read digital.html?id=${id}`;
           renderCommentsList(id);
           document.getElementById('commentsModalOverlay').classList.add('active');
         }
@@ -1194,6 +1163,7 @@
         document.getElementById('pRole').textContent = `${leader.designation}, ${leader.company}`;
         document.getElementById('pMeta').textContent = `${leader.industry || ''} • ${leader.locationDetail || leader.location || ''}`;
         document.getElementById('pBio').innerHTML = leader.bio || `<p>${leader.quote || ''}</p>`;
+        document.getElementById('pReadDigitalBtn').href = `leaders read digital.html?id=${id}`;
 
         document.getElementById('leadersArchiveView').style.display = 'none';
         document.getElementById('singleProfileView').classList.add('active');
