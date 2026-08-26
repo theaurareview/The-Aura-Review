@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Company Digital Edition Reader | The Aura Review</title>
-  <meta name="description" content="Read interactive digital company magazine editions, high-resolution PDF flipbooks with 360° drag and zoom, comprehensive corporate analysis, and executive profiles on The Aura Review[cite: 1, 6].">
+  <title>Digital Edition Reader | The Aura Review</title>
+  <meta name="description" content="Read interactive digital magazine issues, high-res image flipbook, comprehensive executive interviews, and suggested issues on The Aura Review.">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Remix Icons & Font Awesome -->
+  <!-- Remix Icons & Font Awesome Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -77,21 +77,6 @@
       position: relative;
     }
 
-    .click-ripple {
-      position: fixed;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(142, 43, 56, 0.38) 0%, rgba(74, 14, 23, 0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      animation: rippleAnim 0.65s ease-out forwards;
-      pointer-events: none;
-      z-index: 999999;
-    }
-
-    @keyframes rippleAnim {
-      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
-      100% { width: 250px; height: 250px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
-    }
-
     h1, h2, h3, h4, .font-serif {
       font-family: var(--font-serif);
       font-weight: 400;
@@ -112,7 +97,7 @@
     }
 
     .container {
-      max-width: 1340px;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 0 2rem;
     }
@@ -127,59 +112,91 @@
       margin-bottom: 0.85rem;
     }
 
-    /* HEADER */
+    /* HEADER (INDEX MATCHED - STACKED ARCHITECTURE & BLURRY GLASS) */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(74, 14, 23, 0.08);
       z-index: 1000;
-      height: 75px;
-      display: flex;
-      align-items: center;
+      transition: var(--transition-smooth);
     }
 
     .header-container {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 0.9rem;
+      padding-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .header-top-row {
+      width: 100%;
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
     }
 
     .logo {
       font-family: var(--font-serif);
-      font-size: 1.85rem;
-      letter-spacing: 0.15em;
+      font-size: clamp(1.1rem, 3.8vw, 1.95rem);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 600;
       color: var(--maroon-deep);
+      white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: opacity 0.3s ease;
+    }
+
+    .logo:hover { opacity: 0.8; }
+
+    .header-left-spacer {
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
 
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      justify-content: center;
+      gap: 1.8rem;
       list-style: none;
+      margin-top: 0.75rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid rgba(74, 14, 23, 0.08);
+      width: 100%;
     }
 
     .nav-link {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--maroon-primary);
       position: relative;
-      padding: 0.4rem 0;
+      padding: 0.2rem 0;
+      white-space: nowrap;
     }
 
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -2px;
       left: 0;
       width: 0%;
       height: 1.5px;
@@ -195,10 +212,29 @@
       display: none;
       background: none;
       border: none;
-      font-size: 1.75rem;
+      font-size: 1.6rem;
       color: var(--maroon-primary);
       cursor: pointer;
+      padding: 0.3rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
     }
+
+    .mobile-toggle:active { background: var(--maroon-soft); }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 4, 9, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
     .mobile-menu {
       position: fixed;
@@ -207,71 +243,51 @@
       width: 85%;
       max-width: 380px;
       height: 100vh;
-      background: #FFFFFF;
-      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      box-shadow: -20px 0 50px rgba(74, 14, 23, 0.25);
       z-index: 1001;
       display: flex;
       flex-direction: column;
       padding: 2.5rem 2rem;
-      transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .mobile-menu.open { right: 0; }
     .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
     .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
     .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
-    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* FLIPBOOK READER STAGE & EXACT TOOLBAR */
-    .company-flipbook-reader-section {
-      padding-top: 110px;
-      padding-bottom: 4rem;
-      background: linear-gradient(180deg, #141416 0%, #240207 100%);
+    /* FLIPBOOK READER STAGE & TOOLBAR (INSIGHTS SUCCESS STYLE) */
+    .flipbook-reader-section {
+      padding-top: 145px;
+      padding-bottom: 3.5rem;
+      background: linear-gradient(180deg, #1b1b1e 0%, #2c080e 100%);
       color: #FFFFFF;
       position: relative;
       user-select: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .back-nav-bar {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 1.2rem;
-    }
-
-    .back-btn-pill {
-      color: #D1D1D6;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s;
-    }
-
-    .back-btn-pill:hover { color: #FFFFFF; }
-
     .reader-toolbar-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
 
     .reader-toolbar-box {
-      background: rgba(40, 40, 45, 0.95);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-radius: 8px;
-      padding: 0.55rem 1.4rem;
+      background: rgba(45, 45, 50, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      gap: 1.1rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       z-index: 100;
     }
 
@@ -290,7 +306,7 @@
     .toolbar-icon-btn:hover { color: #FFFFFF; transform: scale(1.15); }
 
     .zoom-slider-control {
-      width: 110px;
+      width: 90px;
       height: 4px;
       background: rgba(255, 255, 255, 0.25);
       border-radius: 2px;
@@ -300,62 +316,58 @@
     }
 
     .page-indicator-box {
-      background: #444449;
+      background: #3A3A3F;
       color: #FFFFFF;
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      padding: 0.25rem 0.75rem;
+      padding: 0.2rem 0.65rem;
       border-radius: 4px;
       min-width: 38px;
       text-align: center;
     }
 
-    .total-pages-label { font-size: 0.85rem; color: #D1D1D6; font-weight: 600; }
-
-    .download-pdf-btn {
-      background: var(--maroon-primary);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.4rem 0.9rem;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: background 0.3s;
+    .total-pages-label {
+      font-size: 0.82rem;
+      color: #D1D1D6;
+      font-weight: 600;
     }
 
-    .download-pdf-btn:hover { background: var(--maroon-light); }
-
+    /* ZERO-GAP RESPONSIVE STAGE CONTAINER */
     .flipbook-stage-wrapper {
       position: relative;
       width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
       height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      touch-action: none;
-      cursor: default;
+      touch-action: pan-y;
+      background: #111;
     }
 
-    #companyFlipbookContainer {
-      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.75);
+    #flipbookContainer {
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85);
       transform-origin: center center;
       will-change: transform;
-      transition: transform 0.05s linear;
+      transition: transform 0.08s ease-out;
     }
 
-    .company-flip-page {
-      background-color: #FFFFFF;
-      background-size: cover;
-      background-position: center top;
-      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+    .page {
+      background-color: #111;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* OBJECT-FIT FILL TO REMOVE ALL GAPS & MARGINS COMPLETELY */
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill; 
+      display: block;
+      pointer-events: auto;
     }
 
     .flip-nav-arrow {
@@ -365,44 +377,76 @@
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(8px);
       color: #FFFFFF;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       cursor: pointer;
       z-index: 10;
       border: 1px solid rgba(255, 255, 255, 0.25);
       transition: var(--transition-smooth);
     }
 
-    .flip-nav-arrow:hover {
-      background: var(--maroon-accent);
-      transform: translateY(-50%) scale(1.1);
+    .flip-nav-arrow:hover { background: var(--maroon-accent); transform: translateY(-50%) scale(1.1); }
+    .arrow-prev { left: 1rem; }
+    .arrow-next { right: 1rem; }
+
+    /* THUMBNAIL BOTTOM STRIP (INSIGHTS SUCCESS STYLE) */
+    .thumb-strip-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.8rem;
+      overflow-x: auto;
+      padding: 0.5rem 1rem;
     }
 
-    .arrow-prev { left: 1.5rem; }
-    .arrow-next { right: 1.5rem; }
+    .thumb-chip {
+      width: 52px;
+      height: 68px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      opacity: 0.55;
+      transition: var(--transition-smooth);
+      flex-shrink: 0;
+    }
+
+    .thumb-chip.active, .thumb-chip:hover {
+      opacity: 1;
+      border-color: #FFFFFF;
+      transform: translateY(-3px);
+    }
+
+    .thumb-chip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .toc-modal-view {
       display: none;
       position: absolute;
       inset: 0;
-      background: rgba(18, 18, 20, 0.92);
-      backdrop-filter: blur(14px);
+      background: rgba(18, 18, 20, 0.94);
+      backdrop-filter: blur(16px);
       z-index: 200;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem;
       color: #FFFFFF;
+      overflow-y: auto;
     }
 
     .toc-modal-view.active { display: flex; }
     .toc-title { font-size: 2.2rem; margin-bottom: 1.5rem; }
-    .toc-grid-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; width: 100%; max-width: 680px; }
+    .toc-grid-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; width: 100%; max-width: 680px; }
     .toc-chip { background: rgba(255, 255, 255, 0.1); padding: 0.8rem 1.2rem; border-radius: 6px; cursor: pointer; text-align: left; transition: background 0.2s; }
     .toc-chip:hover { background: #FFFFFF; color: #000000; font-weight: 700; }
     .toc-close-btn { position: absolute; top: 1.5rem; right: 2rem; font-size: 1.8rem; cursor: pointer; }
@@ -416,52 +460,36 @@
       display: none; z-index: 999999;
     }
 
-    /* DIGITAL EDITION INTRO & PILLARS */
-    .edition-intro-section {
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-light);
-      padding: 4.5rem 0;
-    }
-
-    .edition-intro-wrap { max-width: 900px; margin: 0 auto; }
-    .pillars-check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem 2rem; margin-top: 2rem; }
-    .check-item { display: flex; align-items: center; gap: 0.8rem; font-size: 1rem; font-weight: 600; color: var(--maroon-deep); }
-    .check-item i { color: var(--maroon-accent); font-size: 1.2rem; }
-
-    /* CORPORATE ARTICLE SECTION */
+    /* AUTOMATED ARTICLE & SUGGESTED SECTIONS */
     .article-body-section { padding: 5.5rem 0; background: #FFFFFF; }
     .article-wrap { max-width: 900px; margin: 0 auto; }
     .article-headline { font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1.15; color: var(--maroon-deep); text-align: center; margin-bottom: 1rem; }
     .article-sublead { font-size: 1.15rem; line-height: 1.75; color: var(--text-muted); text-align: center; margin-bottom: 2.5rem; }
-    .article-portrait-box { width: 100%; height: 480px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 1px solid var(--maroon-border); }
+    .article-portrait-box { width: 100%; height: 500px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 1px solid var(--maroon-border); position: relative; }
     .article-portrait-box img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
     .social-share-strip { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 4rem; flex-wrap: wrap; }
     .share-pill {
-      background: var(--bg-secondary); border: 1px solid var(--border-light);
-      padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
-      color: var(--maroon-primary); display: flex; align-items: center; gap: 0.4rem; cursor: pointer; transition: var(--transition-smooth);
+      background: var(--bg-secondary); border: 1px solid var(--border-light); padding: 0.5rem 1.2rem; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; color: var(--maroon-primary); display: flex; align-items: center; gap: 0.4rem; cursor: pointer; transition: var(--transition-smooth);
     }
     .share-pill:hover { background: var(--maroon-primary); color: #FFFFFF; border-color: var(--maroon-primary); transform: translateY(-2px); }
 
-    .executive-quote-card {
-      background: var(--bg-tinted); border-left: 4px solid var(--maroon-primary);
-      border-radius: 0 8px 8px 0; padding: 2.2rem 2.4rem; margin: 3rem 0; box-shadow: var(--shadow-sm);
-    }
+    .executive-quote-card { background: var(--bg-tinted); border-left: 4px solid var(--maroon-primary); border-radius: 0 8px 8px 0; padding: 2.2rem 2.4rem; margin: 3rem 0; box-shadow: var(--shadow-sm); }
     .quote-text { font-family: var(--font-serif); font-size: 1.55rem; font-style: italic; color: var(--maroon-deep); line-height: 1.45; margin-bottom: 1rem; }
     .quote-author { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--maroon-accent); }
     .editorial-content-block h2 { font-size: 1.9rem; margin: 2.8rem 0 1rem 0; color: var(--maroon-deep); }
+    .editorial-content-block p { margin-bottom: 1.4rem; }
 
-    /* SUGGESTIONS SECTION */
     .suggestions-section { padding: 5.5rem 0 6.5rem 0; background-color: var(--bg-secondary); border-top: 1px solid var(--border-light); }
-    .suggestions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem 1.8rem; margin-top: 2.5rem; }
+    .suggestions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.2rem; margin-top: 2.5rem; }
     .suggestion-card { background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
-    .suggestion-poster { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; position: relative; background-color: #1a1a1a; }
+    .suggestion-poster { width: 100%; aspect-ratio: 1 / 1.35; overflow: hidden; position: relative; background-color: #1a1a1a; }
     .suggestion-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
     .suggestion-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--maroon-accent); }
     .suggestion-card:hover .suggestion-poster img { transform: scale(1.04); }
     .suggestion-body { padding: 1.4rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
-    .suggestion-title { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.35; color: var(--maroon-deep); font-weight: 600; margin-bottom: 1rem; min-height: 3.2rem; }
+    .suggestion-title { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.35; color: var(--maroon-deep); font-weight: 600; margin-bottom: 1rem; }
 
     /* FOOTER */
     .footer { background-color: var(--maroon-deep); color: #E2D3D5; padding: 5rem 0 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
@@ -472,21 +500,27 @@
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
     .footer-link { color: #BBA5A8; font-size: 0.9rem; transition: var(--transition-smooth); }
     .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
+
+    .social-row { display: flex; gap: 1rem; margin-top: 1.2rem; }
+    .social-icon-btn {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.08);
+      display: flex; align-items: center; justify-content: center; color: #FFFFFF; transition: var(--transition-smooth);
+    }
+    .social-icon-btn:hover { background: var(--maroon-accent); transform: translateY(-3px); }
     .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: #9A8084; }
 
-    @media (max-width: 1200px) { .suggestions-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .flipbook-stage-wrapper { height: 480px; }
-      .pillars-check-grid { grid-template-columns: 1fr; }
+      .suggestions-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
     @media (max-width: 768px) {
       .nav-menu { display: none; }
       .mobile-toggle { display: block; }
-      .reader-toolbar-box { gap: 0.75rem; padding: 0.5rem 0.9rem; }
-      .zoom-slider-control { width: 70px; }
-      .flipbook-stage-wrapper { height: 380px; }
-      .article-portrait-box { height: 320px; }
+      .reader-toolbar-box { gap: 0.4rem; padding: 0.35rem 0.6rem; }
+      .zoom-slider-control { width: 45px; }
+      .flipbook-stage-wrapper { height: 340px; }
+      .article-portrait-box { height: 260px; }
       .suggestions-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
@@ -497,29 +531,34 @@
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-container">
-      <a href="index.html" class="logo">The Aura Review</a>
+      <div class="header-top-row">
+        <div class="header-left-spacer"><span>Spacer</span></div>
+        <a href="index.html" class="logo">The Aura Review</a>
+        <div class="header-right-group">
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+            <i class="ri-menu-4-line"></i>
+          </button>
+        </div>
+      </div>
 
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="magazine.html" class="nav-link">Magazine</a></li>
         <li><a href="leaders.html" class="nav-link">Leaders</a></li>
-        <li><a href="companies.html" class="nav-link active">Companies</a></li>
+        <li><a href="companies.html" class="nav-link">Companies</a></li>
         <li><a href="news.html" class="nav-link">News</a></li>
         <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="media-kit.html" class="nav-link">Media Kit</a></li>
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
       </ul>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
-        <i class="ri-menu-4-line"></i>
-      </button>
     </div>
   </header>
 
   <!-- Mobile Drawer -->
   <div class="menu-backdrop" id="menuBackdrop"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu"><i class="ri-close-line"></i></button>
     <ul class="mobile-nav-list">
       <li><a href="index.html" class="mobile-nav-link">Home</a></li>
       <li><a href="magazine.html" class="mobile-nav-link">Magazine</a></li>
@@ -527,154 +566,187 @@
       <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
       <li><a href="news.html" class="mobile-nav-link">News</a></li>
       <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="media-kit.html" class="mobile-nav-link">Media Kit</a></li>
       <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
       <li><a href="about.html" class="mobile-nav-link">About</a></li>
     </ul>
   </div>
 
   <main>
-    <section class="company-flipbook-reader-section">
+    <!-- FLIPBOOK READER STAGE & TOOLBAR -->
+    <section class="flipbook-reader-section">
       <div class="container">
         
-        <div class="back-nav-bar">
-          <a href="companies.html" class="back-btn-pill"><i class="fa-solid fa-arrow-left"></i> Back to Companies Archive</a>
-        </div>
-
         <div class="reader-toolbar-container">
           <div class="reader-toolbar-box">
-            <button class="toolbar-icon-btn" title="Table of Contents" onclick="toggleTOC()"><i class="fa-solid fa-list"></i></button>
-            <button class="toolbar-icon-btn" title="Share Issue" onclick="shareIssue()"><i class="fa-solid fa-share-nodes"></i></button>
+            <button class="toolbar-icon-btn" title="Table of Contents" onclick="toggleTOC()">
+              <i class="fa-solid fa-list"></i>
+            </button>
+            <button class="toolbar-icon-btn" title="Share Issue" onclick="shareIssue()">
+              <i class="fa-solid fa-share-nodes"></i>
+            </button>
             
-            <button class="toolbar-icon-btn" title="Zoom Out" onclick="adjustZoom(-0.2)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
-            <input type="range" class="zoom-slider-control" id="zoomRange" min="1" max="2.5" step="0.1" value="1" oninput="setZoom(this.value)">
-            <button class="toolbar-icon-btn" title="Zoom In" onclick="adjustZoom(0.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <!-- Zoom Controls -->
+            <button class="toolbar-icon-btn" title="Zoom Out" onclick="adjustZoom(-0.2)">
+              <i class="fa-solid fa-magnifying-glass-minus"></i>
+            </button>
+            <input type="range" class="zoom-slider-control" id="zoomRange" min="1" max="3" step="0.1" value="1" oninput="setZoom(this.value)">
+            <button class="toolbar-icon-btn" title="Zoom In" onclick="adjustZoom(0.2)">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </button>
 
-            <button class="toolbar-icon-btn" onclick="companyPageFlip.flipPrev()" title="Previous Page"><i class="fa-solid fa-chevron-left"></i></button>
+            <!-- Page Step Prev -->
+            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipPrev()" title="Previous Page">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <!-- Dynamic Page Display -->
             <div class="page-indicator-box" id="pageDisplay">1</div>
-            <span class="total-pages-label">/ 24</span>
-            <button class="toolbar-icon-btn" onclick="companyPageFlip.flipNext()" title="Next Page"><i class="fa-solid fa-chevron-right"></i></button>
+            <span class="total-pages-label" id="totalPagesLabel">/ 6</span>
 
-            <button class="toolbar-icon-btn" title="Reset Zoom" onclick="resetZoom()"><i class="fa-solid fa-rotate-left"></i></button>
-            <button class="download-pdf-btn" onclick="downloadCompanyPDF()"><i class="fa-solid fa-download"></i> PDF</button>
+            <!-- Page Step Next -->
+            <button class="toolbar-icon-btn" onclick="if(window.pageFlip) window.pageFlip.flipNext()" title="Next Page">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Reset Zoom -->
+            <button class="toolbar-icon-btn" title="Reset Zoom" onclick="resetZoom()">
+              <i class="fa-solid fa-rotate-left"></i>
+            </button>
           </div>
         </div>
 
+        <!-- Interactive Flipbook Stage with Zero Gaps & 360° Panning when Zoomed -->
         <div class="flipbook-stage-wrapper" id="stageContainer">
-          <div class="flip-nav-arrow arrow-prev" onclick="companyPageFlip.flipPrev()"><i class="fa-solid fa-chevron-left"></i></div>
-          <div class="flip-nav-arrow arrow-next" onclick="companyPageFlip.flipNext()"><i class="fa-solid fa-chevron-right"></i></div>
-
-          <div id="companyFlipbookContainer">
-            <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="company-flip-page" style="background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="flip-nav-arrow arrow-prev" onclick="if(window.pageFlip) window.pageFlip.flipPrev()">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+          <div class="flip-nav-arrow arrow-next" onclick="if(window.pageFlip) window.pageFlip.flipNext()">
+            <i class="fa-solid fa-chevron-right"></i>
           </div>
 
+          <!-- StPageFlip Engine Render Area -->
+          <div id="flipbookContainer"></div>
+
+          <!-- Table of Contents Modal -->
           <div class="toc-modal-view" id="tocModal">
             <i class="fa-solid fa-xmark toc-close-btn" onclick="toggleTOC()"></i>
             <h2 class="font-serif toc-title">Table of Contents</h2>
-            <div class="toc-grid-list">
-              <div class="toc-chip" onclick="jumpToPage(0)">Cover Page</div>
-              <div class="toc-chip" onclick="jumpToPage(1)">Executive Vision</div>
-              <div class="toc-chip" onclick="jumpToPage(2)">Corporate Architecture</div>
-              <div class="toc-chip" onclick="jumpToPage(3)">Technology & AI Pipelines</div>
-              <div class="toc-chip" onclick="jumpToPage(4)">Global Market Expansion</div>
-              <div class="toc-chip" onclick="jumpToPage(5)">Back Cover</div>
-            </div>
+            <div class="toc-grid-list" id="tocGridList"></div>
           </div>
         </div>
 
+        <!-- Bottom Thumbnail Strip -->
+        <div class="thumb-strip-wrapper" id="thumbStripContainer"></div>
+
       </div>
     </section>
 
-    <div class="toast-msg" id="toastMsg">Digital Edition Link Copied!</div>
+    <!-- Toast Notification -->
+    <div class="toast-msg" id="toastMsg">Issue Link Copied to Clipboard!</div>
 
-    <section class="edition-intro-section">
-      <div class="container edition-intro-wrap">
-        <span class="section-tag">Editorial Overview</span>
-        <h2 style="font-size: 2.3rem; color: var(--maroon-deep); margin-bottom: 1rem;">Inside This Company Edition</h2>
-        <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.8;">
-          Go beyond the company logo and discover the story behind the organization. Each digital company edition is curated by The Aura Review to explore verified decisions and technological breakthroughs.
-        </p>
-
-        <div class="pillars-check-grid">
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Company History & Vision</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Founder & CEO Story</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Business Model Architecture</div>
-          <div class="check-item"><i class="ri-checkbox-circle-fill"></i> Core Products & Infrastructure</div>
-        </div>
-      </div>
-    </section>
-
+    <!-- AUTOMATED EDITORIAL ARTICLE SECTION -->
     <section class="article-body-section">
       <div class="container article-wrap">
+        
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span class="section-tag" id="dynamicTag">Special Corporate Release &bull; 2026 Edition</span>
-          <h1 class="article-headline" id="dynamicCompanyName">The Most Innovative Technology Companies to Watch in 2026</h1>
-          <p class="article-sublead" id="dynamicSublead">Featured Enterprise: Synapse Global — Architecting Resilient Enterprise Intelligence.</p>
+          <span class="section-tag" id="articleCategoryTag">Leadership Edition &bull; 2026</span>
+          <h1 class="article-headline" id="articleMainTitle">Loading Edition Title...</h1>
+          <p class="article-sublead" id="articleSubLead">Loading Executive Summary...</p>
         </div>
 
+        <!-- Leader Portrait Photo -->
         <div class="article-portrait-box">
-          <img id="dynamicCoverImg" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="HQ" loading="lazy">
+          <img id="articleLeaderPhoto" src="" alt="Leader Portrait" loading="lazy">
         </div>
 
+        <!-- Social Channels Strip -->
         <div class="social-share-strip">
           <a href="#" class="share-pill"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+          <a href="#" class="share-pill"><i class="ri-twitter-x-line"></i> Twitter</a>
+          <a href="#" class="share-pill"><i class="ri-instagram-line"></i> Instagram</a>
           <a href="#" class="share-pill" onclick="shareIssue()"><i class="ri-links-line"></i> Copy Link</a>
         </div>
 
-        <div class="editorial-content-block">
-          <h2>Architecting Resilient Enterprise Intelligence</h2>
-          <p>In an economic landscape reshaped by high-frequency cognitive automation, enterprise architecture cannot afford opacity.</p>
-
-          <div class="executive-quote-card">
-            <div class="quote-text">"A software architecture is only as durable as its auditability."</div>
-            <div class="quote-author">Elena Vance &bull; CEO, Synapse Global</div>
-          </div>
+        <!-- Full Article Body (Automatically Parsed from Admin Panel) -->
+        <div class="editorial-content-block" id="articleContentArea">
+          <p>Loading full executive article profile...</p>
         </div>
+
       </div>
     </section>
 
+    <!-- AUTOMATED SUGGESTED ISSUES & ARTICLES -->
     <section class="suggestions-section">
       <div class="container">
         <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
-          <span class="section-tag">Related Releases</span>
-          <h2 style="font-size: 2.4rem; color: var(--maroon-deep);">Explore More Company Editions</h2>
+          <span class="section-tag">Curated Releases</span>
+          <h2 style="font-size: 2.4rem; color: var(--maroon-deep);">Explore More Suggested Issues</h2>
         </div>
-        <div class="suggestions-grid" id="suggestedCompaniesGrid"></div>
+
+        <div class="suggestions-grid" id="suggestedGrid"></div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <div class="footer-brand">The Aura Review</div>
-          <p class="footer-desc">A premium global business and leadership magazine shaping tomorrow.</p>
+          <p class="footer-desc">
+            A premium global business and leadership publication dedicated to discovering, documenting, and celebrating the people, companies, ideas, and innovations shaping tomorrow[cite: 23].
+          </p>
+          <div class="social-row">
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+          </div>
         </div>
+
         <div>
           <h4 class="footer-heading">Navigation</h4>
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="magazine.html" class="footer-link">Magazine</a></li>
+            <li><a href="leaders.html" class="footer-link">Leaders</a></li>
             <li><a href="companies.html" class="footer-link">Companies</a></li>
+            <li><a href="news.html" class="footer-link">News</a></li>
+            <li><a href="feedbacks.html" class="footer-link">Feedbacks</a></li>
+            <li><a href="faq.html" class="footer-link">FAQ</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
           </ul>
         </div>
+
         <div>
-          <h4 class="footer-heading">Contact</h4>
-          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; text-decoration: underline;">editorial@theaurareview.com</a>
+          <h4 class="footer-heading">Editorial Sectors</h4>
+          <ul class="footer-links">
+            <li><a href="magazine.html" class="footer-link">Technology & Software</a></li>
+            <li><a href="magazine.html" class="footer-link">Healthcare & Life Sciences</a></li>
+            <li><a href="magazine.html" class="footer-link">Finance & Banking</a></li>
+            <li><a href="magazine.html" class="footer-link">Real Estate & Construction</a></li>
+            <li><a href="magazine.html" class="footer-link">Sustainability & Energy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact & Inquiries</h4>
+          <p class="footer-desc" style="margin-bottom: 1rem;">
+            For editorial submissions, magazine features, and publication collaborations[cite: 23]:
+          </p>
+          <a href="mailto:editorial@theaurareview.com" style="color: #FFFFFF; font-weight: 500; text-decoration: underline;">editorial@theaurareview.com</a>
         </div>
       </div>
+
       <div class="footer-bottom">
         <div>&copy; 2026 The Aura Review. All rights reserved.</div>
       </div>
     </div>
   </footer>
 
-  <!-- FIREBASE CLOUD SYNC SCRIPT -->
+  <!-- FIREBASE & DYNAMIC FLIPBOOK SCRIPT -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
@@ -688,27 +760,25 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    let companyPageFlip;
+    window.pageFlip = null;
     let currentZoom = 1;
     let isDragging = false;
     let startX = 0, startY = 0;
     let translateX = 0, translateY = 0;
 
-    const flipbookContainer = document.getElementById('companyFlipbookContainer');
+    const flipbookContainer = document.getElementById('flipbookContainer');
     const stageContainer = document.getElementById('stageContainer');
     const zoomRange = document.getElementById('zoomRange');
     const pageDisplay = document.getElementById('pageDisplay');
+    const totalPagesLabel = document.getElementById('totalPagesLabel');
+    const thumbStripContainer = document.getElementById('thumbStripContainer');
+    const tocGridList = document.getElementById('tocGridList');
 
     document.addEventListener('DOMContentLoaded', async () => {
-      const header = document.getElementById('header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 30) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      });
-
+      // Mobile Navigation Drawer Toggle Setup
       const mobileToggle = document.getElementById('mobileToggle');
       const mobileMenu = document.getElementById('mobileMenu');
-      const menuClose = document.getElementById('menuClose');
+      const menuClose = document.getElementById('mobileMenuClose');
       const menuBackdrop = document.getElementById('menuBackdrop');
 
       const toggleMenu = (open) => {
@@ -717,90 +787,164 @@
         document.body.style.overflow = open ? 'hidden' : '';
       };
 
-      mobileToggle.addEventListener('click', () => toggleMenu(true));
-      menuClose.addEventListener('click', () => toggleMenu(false));
-      menuBackdrop.addEventListener('click', () => toggleMenu(false));
+      if (mobileToggle) mobileToggle.addEventListener('click', () => toggleMenu(true));
+      if (menuClose) menuClose.addEventListener('click', () => toggleMenu(false));
+      if (menuBackdrop) menuBackdrop.addEventListener('click', () => toggleMenu(false));
 
-      // Fetch Live Company data from Firestore if ID provided
+      // Fetch dynamic magazine edition from Firestore based on URL ?id=...
       const urlParams = new URLSearchParams(window.location.search);
-      const companyId = urlParams.get('id');
+      const magId = urlParams.get('id');
 
       try {
-        let compData = null;
-        if (companyId) {
-          const doc = await db.collection("companies").doc(companyId).get();
-          if (doc.exists) compData = doc.data();
+        let magData = null;
+        if (magId) {
+          const doc = await db.collection("magazines").doc(magId).get();
+          if (doc.exists) magData = doc.data();
         }
 
-        if (!compData) {
-          const snap = await db.collection("companies").orderBy("createdAt", "desc").limit(1).get();
-          if (!snap.empty) compData = snap.docs[0].data();
+        if (!magData) {
+          const snap = await db.collection("magazines").orderBy("createdAt", "desc").limit(1).get();
+          if (!snap.empty) magData = snap.docs[0].data();
         }
 
-        if (compData) {
-          document.getElementById('dynamicCompanyName').innerText = compData.name;
-          document.getElementById('dynamicSublead').innerText = `Featured Enterprise: ${compData.name} — ${compData.tagline}`;
-          document.getElementById('dynamicTag').innerText = `${compData.industry} • ${compData.location} • 2026 Edition`;
-          document.getElementById('dynamicCoverImg').src = compData.coverImage;
+        if (magData) {
+          // Automated Article & Metadata Rendering
+          document.getElementById('articleCategoryTag').innerText = `${magData.industry || 'Leadership'} • 2026`;
+          document.getElementById('articleMainTitle').innerText = magData.title;
+          document.getElementById('articleSubLead').innerText = `Featured Leader: ${magData.featuredLeader || magData.title}`;
+          
+          const leaderPhotoEl = document.getElementById('articleLeaderPhoto');
+          leaderPhotoEl.src = magData.portraitImage || magData.coverImage;
+          leaderPhotoEl.alt = magData.featuredLeader || magData.title;
+
+          if (magData.articleHtml) {
+            document.getElementById('articleContentArea').innerHTML = magData.articleHtml;
+          } else {
+            document.getElementById('articleContentArea').innerHTML = `
+              <h2>The Journey of ${magData.featuredLeader || 'Visionary Leadership'}</h2>
+              <p>${magData.title} represents a masterclass in modern executive strategy, operational resilience, and sustainable market dominance.</p>
+              <div class="executive-quote-card">
+                <div class="quote-text">"Innovation is not about doing things differently; it is about establishing new benchmarks that others aspire to follow."</div>
+                <div class="quote-author">${magData.featuredLeader || 'Executive Leader'} &bull; ${magData.company || 'Industry Leader'}</div>
+              </div>
+              <p>Through disciplined execution and forward-thinking leadership, this edition documents the core frameworks shaping the future of the global economy.</p>
+            `;
+          }
+
+          // Dynamic Pages Array uploaded from Admin Panel (supports any number of image pages seamlessly)
+          const pagesArray = magData.pages && magData.pages.length > 0 ? magData.pages : [
+            magData.coverImage, 
+            magData.portraitImage || magData.coverImage
+          ];
+
+          renderImageFlipbook(pagesArray);
+        } else {
+          // Fallback Sample Pages
+          renderImageFlipbook([
+            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+          ]);
         }
 
-        // Fetch Related Companies Grid from Firestore
-        const relSnap = await db.collection("companies").limit(4).get();
-        const suggestedGrid = document.getElementById('suggestedCompaniesGrid');
-        let suggestionsHTML = '';
-        relSnap.forEach(doc => {
-          const c = doc.data();
-          suggestionsHTML += `
-            <div class="suggestion-card" onclick="window.location.href='companies read digital.html?id=${doc.id}'">
-              <div class="suggestion-poster"><img src="${c.coverImage}" alt="${c.name}" loading="lazy"></div>
+        // Fetch Automated Suggested Issues for Footer Grid
+        const sugSnap = await db.collection("magazines").orderBy("createdAt", "desc").limit(4).get();
+        const suggestedGrid = document.getElementById('suggestedGrid');
+        let sugHtml = '';
+        sugSnap.forEach(doc => {
+          if (doc.id === magId) return;
+          const s = doc.data();
+          sugHtml += `
+            <div class="suggestion-card" onclick="window.location.href='leaders read digital.html?id=${doc.id}'; window.scrollTo({top: 0, behavior: 'smooth'})">
+              <div class="suggestion-poster">
+                <img src="${s.coverImage}" alt="${s.title}" loading="lazy">
+              </div>
               <div class="suggestion-body">
-                <div class="suggestion-title">${c.name} — ${c.tagline}</div>
-                <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Edition &rarr;</span>
+                <div class="suggestion-title">${s.title}</div>
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Digital Edition &rarr;</span>
               </div>
             </div>`;
         });
-        
-        if (suggestionsHTML) {
-          suggestedGrid.innerHTML = suggestionsHTML;
-        } else {
-          // Fallback to static if no database entries yet
-          renderStaticSuggestions(suggestedGrid);
-        }
+        suggestedGrid.innerHTML = sugHtml || '<p style="text-align:center;">No other editions found.</p>';
 
       } catch (e) {
-        console.error("Firestore sync error: ", e);
-        renderStaticSuggestions(document.getElementById('suggestedCompaniesGrid'));
+        console.error("Reader load error:", e);
       }
-
-      companyPageFlip = new St.PageFlip(flipbookContainer, {
-        width: 380, height: 520, size: 'fixed', minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
-        maxShadowOpacity: 0.55, showCover: true, mobileScrollSupport: false, useMouseEvents: false
-      });
-
-      companyPageFlip.loadFromHTML(document.querySelectorAll('.company-flip-page'));
-
-      companyPageFlip.on('flip', (e) => {
-        const page = e.data + 1;
-        pageDisplay.innerText = page === 1 ? '1' : `${page}-${page + 1}`;
-      });
     });
 
-    function renderStaticSuggestions(grid) {
-      const SUGGESTED_COMPANIES = [
-        { id: "comp-2", title: "The Most Visionary Healthcare Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" },
-        { id: "comp-3", title: "The Most Promising Real Estate Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
-        { id: "comp-4", title: "The Most Innovative Financial Services Companies to Watch in 2026", coverImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
-        { id: "comp-5", title: "The Most Sustainable Industrial Leaders in 2026", coverImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" }
-      ];
-      grid.innerHTML = SUGGESTED_COMPANIES.map(item => `
-        <div class="suggestion-card" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-          <div class="suggestion-poster"><img src="${item.coverImage}" alt="${item.title}" loading="lazy"></div>
-          <div class="suggestion-body">
-            <div class="suggestion-title">${item.title}</div>
-            <span style="font-size: 0.78rem; font-weight: 700; color: var(--maroon-accent); text-transform: uppercase;">Read Digital Edition &rarr;</span>
-          </div>
-        </div>
-      `).join('');
+    function renderImageFlipbook(imageUrls) {
+      flipbookContainer.innerHTML = '';
+      thumbStripContainer.innerHTML = '';
+      tocGridList.innerHTML = '';
+
+      imageUrls.forEach((url, i) => {
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'page';
+        if (i === 0) pageDiv.setAttribute('data-density', 'hard');
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Magazine Page ${i + 1}`;
+        pageDiv.appendChild(img);
+
+        flipbookContainer.appendChild(pageDiv);
+
+        // Thumbnail Chip
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-chip ${i === 0 ? 'active' : ''}`;
+        thumb.setAttribute('onclick', `jumpToPage(${i})`);
+        const thumbImg = document.createElement('img');
+        thumbImg.src = url;
+        thumb.appendChild(thumbImg);
+        thumbStripContainer.appendChild(thumb);
+
+        // TOC Chip
+        const chip = document.createElement('div');
+        chip.className = 'toc-chip';
+        chip.setAttribute('onclick', `jumpToPage(${i}); toggleTOC();`);
+        chip.innerText = i === 0 ? 'Cover Page' : (i === imageUrls.length - 1 ? 'Back Cover' : `Page ${i + 1}`);
+        tocGridList.appendChild(chip);
+      });
+
+      totalPagesLabel.innerText = `/ ${imageUrls.length}`;
+      initPageFlip(imageUrls.length);
+    }
+
+    function initPageFlip(numPages) {
+      if (window.pageFlip) {
+        window.pageFlip.destroy();
+        window.pageFlip = null;
+      }
+
+      const isMobile = window.innerWidth < 768;
+      // Precise proportion scaling with object-fit: fill to ensure zero gaps and full responsiveness on mobile
+      const w = isMobile ? window.innerWidth * 0.46 : 380;
+      const h = isMobile ? window.innerHeight * 0.44 : 500;
+
+      window.pageFlip = new St.PageFlip(flipbookContainer, {
+        width: w,
+        height: h,
+        size: 'fixed',
+        minWidth: 160,
+        maxWidth: 440,
+        minHeight: 240,
+        maxHeight: 600,
+        maxShadowOpacity: 0.3,
+        showCover: true,
+        mobileScrollSupport: false,
+        useMouseEvents: true, // Enabled normal mouse click flipping
+        flippingTime: 600
+      });
+
+      window.pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+      window.pageFlip.on('flip', (e) => {
+        const page = e.data + 1;
+        pageDisplay.innerText = page;
+
+        document.querySelectorAll('.thumb-chip').forEach((t, idx) => {
+          t.classList.toggle('active', idx === e.data);
+        });
+      });
     }
 
     function updateTransform() {
@@ -816,13 +960,17 @@
     }
 
     function setZoom(val) { currentZoom = parseFloat(val); updateTransform(); }
-    function adjustZoom(delta) { currentZoom = Math.min(Math.max(1, currentZoom + delta), 2.5); updateTransform(); }
+    function adjustZoom(delta) { currentZoom = Math.min(Math.max(1, currentZoom + delta), 3.0); updateTransform(); }
     function resetZoom() { currentZoom = 1; translateX = 0; translateY = 0; updateTransform(); }
 
-    stageContainer.addEventListener('wheel', (e) => { e.preventDefault(); adjustZoom(-e.deltaY * 0.0015); }, { passive: false });
+    stageContainer.addEventListener('wheel', (e) => { 
+      e.preventDefault(); 
+      adjustZoom(-e.deltaY * 0.0015); 
+    }, { passive: false });
 
+    // 360° Drag & Pan Support (Active when zoomed in)
     stageContainer.addEventListener('mousedown', (e) => {
-      if (currentZoom <= 1 || e.target.closest('.flip-nav-arrow') || e.target.closest('.reader-toolbar-box') || e.target.closest('.toc-modal-view')) return;
+      if (currentZoom <= 1 || e.target.closest('.flip-nav-arrow') || e.target.closest('.reader-toolbar-box') || e.target.closest('.toc-modal-view') || e.target.closest('.thumb-strip-wrapper')) return;
       isDragging = true;
       startX = e.clientX - translateX;
       startY = e.clientY - translateY;
@@ -830,17 +978,46 @@
     });
 
     window.addEventListener('mousemove', (e) => {
-      if (!isDragging || currentZoom <= 1) return;
+      if (!isDragging) return;
       e.preventDefault();
       translateX = e.clientX - startX;
       translateY = e.clientY - startY;
       updateTransform();
     });
 
-    window.addEventListener('mouseup', () => { if (isDragging) { isDragging = false; updateTransform(); } });
+    window.addEventListener('mouseup', () => { 
+      if (isDragging) { 
+        isDragging = false; 
+        updateTransform(); 
+      } 
+    });
+
+    // Touch support for 360 mobile panning when zoomed in
+    let touchStartX = 0, touchStartY = 0;
+    stageContainer.addEventListener('touchstart', (e) => {
+      if (currentZoom > 1 && e.touches.length === 1 && !e.target.closest('.flip-nav-arrow') && !e.target.closest('.reader-toolbar-box')) {
+        isDragging = true;
+        touchStartX = e.touches[0].clientX - translateX;
+        touchStartY = e.touches[0].clientY - translateY;
+      }
+    });
+
+    stageContainer.addEventListener('touchmove', (e) => {
+      if (isDragging && currentZoom > 1 && e.touches.length === 1) {
+        translateX = e.touches[0].clientX - touchStartX;
+        translateY = e.touches[0].clientY - touchStartY;
+        updateTransform();
+      }
+    });
+
+    stageContainer.addEventListener('touchend', () => { isDragging = false; });
 
     function toggleTOC() { document.getElementById('tocModal').classList.toggle('active'); }
-    function jumpToPage(index) { if (companyPageFlip) { companyPageFlip.flip(index); toggleTOC(); } }
+    function jumpToPage(index) { 
+      if (window.pageFlip) { 
+        window.pageFlip.flip(index); 
+      } 
+    }
 
     function shareIssue() {
       if (navigator.share) {
@@ -851,10 +1028,6 @@
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 2500);
       }
-    }
-
-    function downloadCompanyPDF() {
-      alert("Downloading verified digital company edition PDF...");
     }
   </script>
 </body>
