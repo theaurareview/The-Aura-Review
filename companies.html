@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Companies | Innovative & Leading Businesses | The Aura Review</title>
-  <meta name="description" content="Explore company profiles, innovative businesses, emerging organizations and industry leaders featured by The Aura Review. Discover digital company editions, leadership stories and business insights[cite: 6].">
+  <meta name="description" content="Explore company profiles, innovative businesses, emerging organizations and industry leaders across 24 economy sectors featured by The Aura Review.">
 
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,7 +77,7 @@
     p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.7; }
     a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
 
-    .container { max-width: 1360px; margin: 0 auto; padding: 0 2rem; }
+    .container { max-width: 1480px; margin: 0 auto; padding: 0 2rem; }
     .section-spacing { padding: 4.5rem 0; position: relative; }
     .section-tag { font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--maroon-accent); font-weight: 600; display: inline-block; margin-bottom: 0.5rem; }
     .section-heading { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.18; margin-bottom: 1rem; }
@@ -89,85 +89,105 @@
     }
     .btn-maroon { background-color: var(--maroon-primary); color: #FFFFFF; border-color: var(--maroon-primary); box-shadow: 0 4px 16px rgba(74, 14, 23, 0.2); }
     .btn-maroon:hover { background-color: var(--maroon-deep); transform: translateY(-2px); box-shadow: var(--shadow-lg); color: #FFFFFF; }
-    .btn-outline { background-color: transparent; color: var(--maroon-primary); border-color: var(--maroon-primary); }
-    .btn-outline:hover { background-color: var(--maroon-soft); transform: translateY(-2px); border-color: var(--maroon-deep); }
     .btn-link { padding: 0; background: none; border: none; color: var(--maroon-primary); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; position: relative; }
 
-    /* Header */
+    /* HEADER & NAVIGATION (INDEX MATCHED - STACKED ARCHITECTURE & BLURRY GLASS) */
     .header {
-      position: fixed; top: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light); z-index: 1000; height: 75px; display: flex; align-items: center;
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(74, 14, 23, 0.08);
+      z-index: 1000;
+      transition: var(--transition-smooth);
     }
-    .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-    .logo { font-family: var(--font-serif); font-size: 1.85rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--maroon-deep); }
-    .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
-    .nav-link { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--maroon-primary); position: relative; padding: 0.4rem 0; }
-    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 1.5px; background-color: var(--maroon-accent); transition: width 0.3s ease; }
+    .header-container {
+      display: flex; flex-direction: column; align-items: center; padding-top: 0.9rem; padding-bottom: 0.75rem; position: relative;
+    }
+    .header-top-row { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+    .logo {
+      font-family: var(--font-serif); font-size: clamp(1.1rem, 3.8vw, 1.95rem); letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; color: var(--maroon-deep); white-space: nowrap; position: absolute; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease;
+    }
+    .logo:hover { opacity: 0.8; }
+    .header-left-spacer { visibility: hidden; display: flex; align-items: center; }
+    .header-right-group { display: flex; align-items: center; gap: 0.8rem; }
+
+    .nav-menu {
+      display: flex; align-items: center; justify-content: center; gap: 1.8rem; list-style: none;
+      margin-top: 0.75rem; padding-top: 0.7rem; border-top: 1px solid rgba(74, 14, 23, 0.08); width: 100%;
+    }
+    .nav-link {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--maroon-primary); position: relative; padding: 0.2rem 0; white-space: nowrap;
+    }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 1.5px; background-color: var(--maroon-accent); transition: width 0.3s ease; }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-    .mobile-toggle { display: none; background: none; border: none; font-size: 1.75rem; color: var(--maroon-primary); cursor: pointer; }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--maroon-primary); cursor: pointer; padding: 0.3rem; border-radius: 4px; transition: background 0.3s ease; }
+    .mobile-toggle:active { background: var(--maroon-soft); }
+
+    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .menu-backdrop.open { opacity: 1; pointer-events: all; }
+
     .mobile-menu {
-      position: fixed; top: 0; right: -100%; width: 85%; max-width: 380px; height: 100vh; background: #FFFFFF;
-      box-shadow: -10px 0 30px rgba(74, 14, 23, 0.15); z-index: 1001; display: flex; flex-direction: column; padding: 2.5rem 2rem; transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      position: fixed; top: 0; right: -100%; width: 85%; max-width: 380px; height: 100vh;
+      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      box-shadow: -20px 0 50px rgba(74, 14, 23, 0.25); z-index: 1001; display: flex; flex-direction: column; padding: 2.5rem 2rem; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-menu.open { right: 0; }
     .mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--maroon-primary); cursor: pointer; margin-bottom: 2rem; }
     .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
     .mobile-nav-link { font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep); }
-    .menu-backdrop { position: fixed; inset: 0; background: rgba(42, 4, 9, 0.5); backdrop-filter: blur(6px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .menu-backdrop.open { opacity: 1; pointer-events: all; }
 
     /* HERO & CARDS */
-    .companies-hero-section { padding-top: 105px; padding-bottom: 2.5rem; background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F6 100%); text-align: center; border-bottom: 1px solid var(--border-light); }
-    .featured-company-section { padding: 3rem 0; background: #FFFFFF; }
-    .featured-company-card { background: var(--bg-secondary); border: 1px solid var(--maroon-border); border-radius: 8px; overflow: hidden; display: flex; align-items: stretch; box-shadow: var(--shadow-md); transition: var(--transition-smooth); }
-    .featured-company-photo-wrap { flex: 0 0 40%; max-width: 460px; min-height: 440px; background-color: var(--bg-subtle); position: relative; overflow: hidden; }
-    .featured-company-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    .featured-company-badge { position: absolute; top: 1.2rem; left: 1.2rem; background: rgba(42, 4, 9, 0.88); backdrop-filter: blur(6px); color: #FFFFFF; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 0.85rem; border-radius: 2px; }
-    .featured-company-body { flex: 1; padding: 3.2rem 3rem; display: flex; flex-direction: column; justify-content: center; }
-
-    .company-tabs-section { padding: 2.5rem 0 1.5rem 0; text-align: center; background: var(--bg-primary); }
-    .pipe-options-bar { display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1.2rem; }
-    .pipe-tab-btn { font-family: var(--font-serif); font-size: clamp(1.2rem, 1.8vw, 1.6rem); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; color: var(--text-light); background: none; border: none; cursor: pointer; padding: 0.3rem 0.5rem; transition: var(--transition-smooth); position: relative; }
-    .pipe-tab-btn:hover { color: var(--maroon-accent); }
-    .pipe-tab-btn.active { color: var(--maroon-deep); font-weight: 700; }
-    .pipe-tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 10%; width: 80%; height: 2px; background-color: var(--maroon-primary); }
-    .pipe-divider { font-family: var(--font-serif); font-size: 1.4rem; color: var(--maroon-border); user-select: none; font-weight: 300; }
-
-    .company-archive-wrap { padding-bottom: 5rem; background: var(--bg-primary); }
-    .company-covers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem 1.8rem; margin-top: 1.5rem; align-items: stretch; }
-    .company-cover-card { display: flex; flex-direction: column; justify-content: space-between; height: 100%; background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
-    .company-cover-card:hover { transform: translateY(-6px); box-shadow: 0 20px 45px rgba(42, 4, 9, 0.22); border-color: var(--maroon-accent); }
-    .company-cover-poster { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background-color: #151515; position: relative; cursor: pointer; }
+    .companies-hero-section { padding-top: 155px; padding-bottom: 2.5rem; background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F6 100%); text-align: center; border-bottom: 1px solid var(--border-light); }
+    
+    /* EXACT 4 COLUMNS ON DESKTOP */
+    .company-archive-wrap { padding-bottom: 6rem; background: var(--bg-primary); padding-top: 2rem; }
+    .company-covers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem 1.25rem; margin-top: 1.5rem; align-items: stretch; }
+    .company-cover-card { display: flex; flex-direction: column; justify-content: space-between; height: 100%; background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .company-cover-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--maroon-accent); }
+    
+    /* PURE FRONT COVER ASPECT RATIO */
+    .company-cover-poster { width: 100%; aspect-ratio: 1 / 1.35; overflow: hidden; background-color: #121212; position: relative; cursor: pointer; }
     .company-cover-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
     .company-cover-card:hover .company-cover-poster img { transform: scale(1.04); }
-    .company-card-info-wrap { padding: 1.2rem 1.2rem 0.5rem 1.2rem; display: flex; flex-direction: column; flex-grow: 1; }
-    .company-card-headline { font-family: var(--font-serif); font-size: 1.22rem; line-height: 1.35; color: var(--maroon-deep); font-weight: 600; min-height: 3.4rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
-    .company-card-sub { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-top: 0.3rem; margin-bottom: 1rem; }
+    
+    .company-card-info-wrap { padding: 1.1rem 1rem 0.4rem 1rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .company-card-headline { font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.3; color: var(--maroon-deep); font-weight: 600; min-height: 2.7rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+    .company-card-headline:hover { color: var(--maroon-accent); }
+    .company-card-sub { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-top: 0.3rem; margin-bottom: 0.8rem; }
 
-    .company-card-actions { display: flex; gap: 0.5rem; margin-bottom: 0.9rem; }
-    .btn-action-pill { flex: 1; height: 36px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem; transition: var(--transition-smooth); }
+    .company-card-actions { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; }
+    .btn-action-pill { flex: 1; height: 34px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem; transition: var(--transition-smooth); }
     .btn-read-digital { background: var(--maroon-primary); color: #FFFFFF; border: 1px solid var(--maroon-primary); }
     .btn-read-digital:hover { background: var(--maroon-deep); }
     .btn-view-profile { background: var(--bg-secondary); color: var(--maroon-primary); border: 1px solid var(--maroon-border); }
     .btn-view-profile:hover { background: var(--maroon-soft); border-color: var(--maroon-deep); }
 
-    .mag-interaction-bar { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1.2rem; border-top: 1px solid var(--border-light); background: #FFFFFF; }
-    .interact-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; color: var(--text-muted); transition: var(--transition-smooth); padding: 0.2rem 0.3rem; border-radius: 4px; }
+    .mag-interaction-bar { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; border-top: 1px solid var(--border-light); background: #FFFFFF; }
+    .interact-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.2rem; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; color: var(--text-muted); transition: var(--transition-smooth); padding: 0.2rem 0.3rem; border-radius: 4px; }
     .interact-btn:hover { color: var(--maroon-accent); background: var(--maroon-soft); }
     .interact-btn.liked { color: #D32F2F; }
-    .view-stat-pill { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 600; color: var(--maroon-accent); }
+    .view-stat-pill { display: inline-flex; align-items: center; gap: 0.2rem; font-size: 0.72rem; font-weight: 600; color: var(--maroon-accent); }
 
-    /* VERIFIED LINKEDIN COMMENTS STYLING */
+    /* 24 INDUSTRIES FILTER GRID */
+    .industries-filter-section { padding: 3rem 0 2rem 0; background: var(--bg-secondary); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+    .industries-pills-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 1.5rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
+    .industry-filter-chip { background: #FFFFFF; border: 1px solid var(--maroon-border); padding: 0.5rem 1rem; border-radius: 30px; font-size: 0.78rem; font-weight: 600; color: var(--maroon-primary); cursor: pointer; transition: var(--transition-smooth); }
+    .industry-filter-chip:hover, .industry-filter-chip.active { background: var(--maroon-primary); color: #FFFFFF; border-color: var(--maroon-primary); transform: translateY(-2px); }
+
+    /* MODALS */
     .member-modal-overlay, .comments-modal-overlay {
-      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.75); backdrop-filter: blur(14px);
-      z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+      position: fixed; inset: 0; background: rgba(42, 4, 9, 0.55); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .member-modal-overlay.active, .comments-modal-overlay.active { opacity: 1; pointer-events: all; }
     .member-modal-box {
-      background: #FFFFFF; border: 1px solid var(--maroon-border); border-radius: 8px; max-width: 480px; width: 100%;
-      padding: 3rem 2.2rem; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); position: relative; text-align: center;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(30px); border: 1px solid var(--maroon-border); border-radius: 12px; max-width: 480px; width: 100%;
+      padding: 3rem 2.2rem; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4); position: relative; text-align: center;
     }
     .member-close-btn, .comments-modal-close {
       position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; cursor: pointer;
@@ -177,11 +197,11 @@
     .member-input { width: 100%; padding: 0.85rem 1.2rem; border: 1px solid var(--maroon-border); border-radius: 4px; outline: none; }
 
     .comments-modal-box {
-      background: #FFFFFF; border: 1px solid var(--maroon-border); border-radius: 8px; max-width: 980px; width: 100%; max-height: 90vh;
-      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.5); position: relative; display: grid; grid-template-columns: 0.88fr 1.12fr; overflow: hidden;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(30px); border: 1px solid var(--maroon-border); border-radius: 12px; max-width: 980px; width: 100%; max-height: 90vh;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4); position: relative; display: grid; grid-template-columns: 0.88fr 1.12fr; overflow: hidden;
     }
     .comments-mag-preview-col { background: var(--bg-secondary); border-right: 1px solid var(--border-light); padding: 2.2rem 1.8rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
-    .mag-preview-poster-frame { width: 100%; max-width: 280px; margin: 0 auto 1.2rem auto; aspect-ratio: 3 / 4; border-radius: 6px; overflow: hidden; border: 1px solid var(--maroon-border); box-shadow: var(--shadow-md); background: #141414; }
+    .mag-preview-poster-frame { width: 100%; max-width: 240px; margin: 0 auto 1.2rem auto; aspect-ratio: 1 / 1.35; border-radius: 6px; overflow: hidden; border: 1px solid var(--maroon-border); box-shadow: var(--shadow-md); background: #141414; }
     .mag-preview-poster-frame img { width: 100%; height: 100%; object-fit: cover; }
     .comments-feed-col { padding: 2.2rem 1.8rem; display: flex; flex-direction: column; justify-content: space-between; max-height: 90vh; overflow-y: auto; background: #FFFFFF; }
     .comments-list-box { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; max-height: 320px; }
@@ -203,7 +223,7 @@
     .comment-text-body { font-size: 0.92rem; color: var(--text-main); line-height: 1.5; }
 
     /* SINGLE COMPANY PROFILE VIEW */
-    .company-profile-view-wrapper { display: none; padding: 105px 0 5rem 0; background: #FFFFFF; }
+    .company-profile-view-wrapper { display: none; padding: 145px 0 5rem 0; background: #FFFFFF; }
     .company-profile-view-wrapper.active { display: block; }
     .company-profile-hero { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; align-items: center; margin-bottom: 4rem; }
     .company-profile-photo { width: 100%; height: 440px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--maroon-border); }
@@ -211,23 +231,30 @@
     .company-glance-box { background: var(--bg-secondary); border: 1px solid var(--maroon-border); border-radius: 8px; padding: 2.5rem; margin: 3rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
     .glance-item-title { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); font-weight: 700; margin-bottom: 0.3rem; }
     .glance-item-val { font-size: 1.15rem; font-weight: 600; color: var(--maroon-deep); }
-    .difference-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; margin: 2rem 0; }
-    .difference-item { background: var(--bg-secondary); border: 1px solid var(--border-light); padding: 1.8rem; border-radius: 6px; }
 
     /* DIRECTORY */
     .directory-search-box { background: var(--bg-secondary); border: 1px solid var(--maroon-border); border-radius: 8px; padding: 2.5rem; margin-top: 2rem; }
-    .directory-inputs-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    .directory-inputs-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
     .directory-input, .directory-select { width: 100%; padding: 0.85rem 1.2rem; border: 1px solid var(--maroon-border); border-radius: 4px; font-family: var(--font-sans); font-size: 0.9rem; outline: none; background: #FFFFFF; color: var(--maroon-deep); }
+    .difference-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; margin: 2rem 0; }
+    .difference-item { background: #FFFFFF; border: 1px solid var(--border-light); padding: 1.8rem; border-radius: 6px; box-shadow: var(--shadow-sm); }
 
     .toast-msg { position: fixed; bottom: 2rem; right: 2rem; background: var(--maroon-deep); color: #FFFFFF; padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; display: none; z-index: 9999999; }
 
     .footer { background-color: var(--maroon-deep); color: #E2D3D5; padding: 4.5rem 0 2rem 0; border-top: 1px solid var(--maroon-deep); }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 3.5rem; }
+    .footer-brand { font-family: var(--font-serif); font-size: 2rem; color: #FFFFFF; letter-spacing: 0.15em; margin-bottom: 1rem; }
+    .footer-desc { color: #BBA5A8; font-size: 0.95rem; line-height: 1.7; }
+    .footer-heading { color: #FFFFFF; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .footer-link { color: #BBA5A8; font-size: 0.9rem; transition: var(--transition-smooth); }
+    .footer-link:hover { color: #FFFFFF; padding-left: 5px; }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: #9A8084; }
 
-    @media (max-width: 1200px) { .company-covers-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1280px) { .company-covers-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 1024px) {
-      .featured-company-card, .company-profile-hero, .comments-modal-box { flex-direction: column; grid-template-columns: 1fr; }
-      .featured-company-photo-wrap { width: 100%; min-height: 380px; }
+      .company-profile-hero, .comments-modal-box { flex-direction: column; grid-template-columns: 1fr; }
+      .company-covers-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
       .directory-inputs-grid { grid-template-columns: 1fr; }
     }
@@ -235,6 +262,7 @@
       .nav-menu { display: none; }
       .mobile-toggle { display: block; }
       .company-covers-grid { grid-template-columns: 1fr; }
+      .logo { font-size: clamp(1rem, 4.5vw, 1.45rem); white-space: nowrap; }
     }
   </style>
 </head>
@@ -243,7 +271,15 @@
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-container">
-      <a href="index.html" class="logo">The Aura Review</a>
+      <div class="header-top-row">
+        <div class="header-left-spacer"><span>Spacer</span></div>
+        <a href="index.html" class="logo">The Aura Review</a>
+        <div class="header-right-group">
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+            <i class="ri-menu-4-line"></i>
+          </button>
+        </div>
+      </div>
 
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
@@ -252,19 +288,10 @@
         <li><a href="companies.html" class="nav-link active">Companies</a></li>
         <li><a href="news.html" class="nav-link">News</a></li>
         <li><a href="feedbacks.html" class="nav-link">Feedbacks</a></li>
+        <li><a href="media-kit.html" class="nav-link">Media Kit</a></li>
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
       </ul>
-
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <span id="memberStatusTag" style="font-size: 0.8rem; font-weight: 700; color: var(--maroon-accent); display: none;">
-          <i class="ri-shield-user-fill"></i> <span id="memberNameDisplay">Member</span>
-        </span>
-      </div>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
-        <i class="ri-menu-4-line"></i>
-      </button>
     </div>
   </header>
 
@@ -279,6 +306,7 @@
       <li><a href="companies.html" class="mobile-nav-link">Companies</a></li>
       <li><a href="news.html" class="mobile-nav-link">News</a></li>
       <li><a href="feedbacks.html" class="mobile-nav-link">Feedbacks</a></li>
+      <li><a href="media-kit.html" class="mobile-nav-link">Media Kit</a></li>
       <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
       <li><a href="about.html" class="mobile-nav-link">About</a></li>
     </ul>
@@ -293,55 +321,47 @@
         <span class="section-tag">Enterprise Ecosystem</span>
         <h1 class="section-heading">Discover the Companies Shaping the Future of Business</h1>
         <p style="max-width: 760px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;">
-          Explore a curated collection of innovative companies, emerging businesses, established organizations, and industry leaders featured by The Aura Review[cite: 6].
+          Explore a curated collection of innovative companies, emerging businesses, established organizations, and industry leaders featured by The Aura Review.
         </p>
       </div>
     </section>
 
-    <!-- FEATURED COMPANY -->
-    <section class="featured-company-section">
-      <div class="container">
-        <div class="featured-company-card">
-          <div class="featured-company-photo-wrap">
-            <span class="featured-company-badge">Featured Company &bull; 2026</span>
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" alt="Synapse Global HQ">
-          </div>
-          <div class="featured-company-body">
-            <span class="section-tag">Enterprise Technology</span>
-            <h2 style="font-size: 2.5rem; color: var(--maroon-deep); line-height: 1.1; margin-bottom: 0.3rem;">Synapse Global</h2>
-            <div style="font-size: 1rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.3rem;">
-              "Architecting Resilient Enterprise Intelligence"
-            </div>
-            <p style="margin-bottom: 1.5rem; font-size: 0.98rem;">
-              Discover how Synapse Global is transforming the enterprise technology landscape through innovation, strategic leadership, and distributed banking infrastructure.
-            </p>
-            <button class="btn btn-maroon" onclick="openCompanyProfile('synapse-global')" style="align-self: flex-start;">
-              View Company Profile &rarr;
-            </button>
-          </div>
+    <!-- 24 ECONOMY SECTORS FILTER BAR (PRIMARY BROWSING) -->
+    <section class="industries-filter-section" style="padding-top: 2rem;">
+      <div class="container" style="text-align: center;">
+        <span class="section-tag">24 Economy Sectors</span>
+        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--maroon-deep);">Browse Companies by Industry</h3>
+        <div class="industries-pills-wrap" id="industryPillsContainer">
+          <div class="industry-filter-chip active" onclick="filterByIndustry('all', this)">All Industries</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Technology & Software', this)">Technology & Software</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Artificial Intelligence', this)">Artificial Intelligence</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Healthcare & Life Sciences', this)">Healthcare & Life Sciences</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Biotechnology & Pharma', this)">Biotechnology & Pharma</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Finance & Banking', this)">Finance & Banking</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Private Equity & VC', this)">Private Equity & VC</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Real Estate & Construction', this)">Real Estate & Construction</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Sustainability & Clean Energy', this)">Sustainability & Clean Energy</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Aviation & Aerospace', this)">Aviation & Aerospace</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Space Exploration', this)">Space Exploration</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Automotive & EV', this)">Automotive & EV</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Logistics & Supply Chain', this)">Logistics & Supply Chain</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Manufacturing & Robotics', this)">Manufacturing & Robotics</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Cybersecurity & Defense', this)">Cybersecurity & Defense</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Consulting & Advisory', this)">Consulting & Advisory</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Education & EdTech', this)">Education & EdTech</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Retail & Consumer Goods', this)">Retail & Consumer Goods</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Media & Entertainment', this)">Media & Entertainment</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Hospitality & Travel', this)">Hospitality & Travel</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Agritech & Sustainable Food', this)">Agritech & Sustainable Food</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Telecommunications & 6G', this)">Telecommunications & 6G</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Next-Gen Materials', this)">Next-Gen Materials</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Critical Minerals & Metals', this)">Critical Minerals & Metals</div>
+          <div class="industry-filter-chip" onclick="filterByIndustry('Marketing & PR', this)">Marketing & PR</div>
         </div>
       </div>
     </section>
 
-    <!-- TABS -->
-    <section class="company-tabs-section" id="companyEditionsSection">
-      <div class="container">
-        <span class="section-tag">Curated Collections</span>
-        <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--maroon-deep);">Company Editions</h2>
-        
-        <div class="pipe-options-bar">
-          <button class="pipe-tab-btn active" onclick="switchCompanyCategory('all', this)">All Companies</button>
-          <span class="pipe-divider">|</span>
-          <button class="pipe-tab-btn" onclick="switchCompanyCategory('featured', this)">Featured Companies</button>
-          <span class="pipe-divider">|</span>
-          <button class="pipe-tab-btn" onclick="switchCompanyCategory('emerging', this)">Emerging Companies</button>
-          <span class="pipe-divider">|</span>
-          <button class="pipe-tab-btn" onclick="switchCompanyCategory('leaders', this)">Industry Leaders</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ARCHIVE GRID -->
+    <!-- ARCHIVE GRID (4 COLUMNS, TRUE COVER ASPECT RATIO, IMAGE-BASED) -->
     <section class="company-archive-wrap">
       <div class="container">
         <div class="company-covers-grid" id="companyCoversContainer"></div>
@@ -353,22 +373,38 @@
       <div class="container">
         <div style="max-width: 700px;">
           <span class="section-tag">Company Directory</span>
-          <h2 class="section-heading">Explore All Companies</h2>
+          <h2 class="section-heading">Search Enterprise Directory</h2>
         </div>
 
         <div class="directory-search-box">
           <div class="directory-inputs-grid">
             <input type="text" class="directory-input" id="compDirectorySearch" placeholder="Search company name, industry, location...">
             <select class="directory-select" id="compDirectoryIndustry">
-              <option value="all">Industry: All</option>
+              <option value="all">Industry: All 24 Sectors</option>
               <option value="Technology">Technology & Software</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
               <option value="Healthcare">Healthcare & Life Sciences</option>
-              <option value="Real Estate">Real Estate</option>
-              <option value="Finance">Financial Services</option>
-            </select>
-            <select class="directory-select" id="compDirectoryYear">
-              <option value="all">Year: All</option>
-              <option value="2026">2026 Edition</option>
+              <option value="Biotechnology">Biotechnology & Pharma</option>
+              <option value="Finance">Finance & Banking</option>
+              <option value="Private Equity">Private Equity & VC</option>
+              <option value="Real Estate">Real Estate & Construction</option>
+              <option value="Sustainability">Sustainability & Clean Energy</option>
+              <option value="Aviation">Aviation & Aerospace</option>
+              <option value="Space">Space Exploration</option>
+              <option value="Automotive">Automotive & EV</option>
+              <option value="Logistics">Logistics & Supply Chain</option>
+              <option value="Manufacturing">Manufacturing & Robotics</option>
+              <option value="Cybersecurity">Cybersecurity & Defense</option>
+              <option value="Consulting">Consulting & Advisory</option>
+              <option value="Education">Education & EdTech</option>
+              <option value="Retail">Retail & Consumer Goods</option>
+              <option value="Media">Media & Entertainment</option>
+              <option value="Hospitality">Hospitality & Travel</option>
+              <option value="Agritech">Agritech & Sustainable Food</option>
+              <option value="Telecommunications">Telecommunications & 6G</option>
+              <option value="Materials">Next-Gen Materials</option>
+              <option value="Minerals">Critical Minerals & Metals</option>
+              <option value="Marketing">Marketing & PR</option>
             </select>
           </div>
 
@@ -395,7 +431,7 @@
           <div style="font-size: 1.15rem; font-weight: 600; color: var(--maroon-primary); margin-bottom: 0.3rem;" id="cpTagline">"Tagline"</div>
           <div style="font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.5rem;" id="cpMeta"></div>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a href="companies read digital.html" class="btn btn-maroon"><i class="ri-book-open-line"></i> Read Digital Edition</a>
+            <a href="companies read digital.html" id="cpReadDigitalBtn" class="btn btn-maroon"><i class="ri-book-open-line"></i> Read Digital Edition</a>
           </div>
         </div>
       </div>
@@ -451,7 +487,7 @@
           <span class="section-tag" id="cmPreviewTag">Technology</span>
           <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--maroon-deep);" id="cmPreviewTitle">Title</h3>
         </div>
-        <a href="companies read digital.html" class="btn btn-maroon" style="width: 100%; font-size: 0.78rem;">Read Digital Issue &rarr;</a>
+        <a href="companies read digital.html" id="cmReadLink" class="btn btn-maroon" style="width: 100%; font-size: 0.78rem;">Read Digital Issue &rarr;</a>
       </div>
       <div class="comments-feed-col">
         <h3 style="font-size: 1.3rem; color: var(--maroon-deep); margin-bottom: 1rem;">Verified Executive Discussion</h3>
@@ -471,7 +507,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">The Aura Review</div>
-          <p class="footer-desc">A premium global business and leadership magazine shaping tomorrow[cite: 6].</p>
+          <p class="footer-desc">A premium global business and leadership publication shaping tomorrow.</p>
         </div>
         <div>
           <h4 class="footer-heading">Navigation</h4>
@@ -501,7 +537,7 @@
     </div>
   </footer>
 
-  <!-- FIREBASE & VERIFIED LINKEDIN COMMENTS SCRIPT -->
+  <!-- FIREBASE & SCRIPT -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDudVPX_x0M6dfhdwVucM2nIi24Gxnt1aE",
@@ -520,7 +556,7 @@
     const STORAGE_COMP_VIEWS = 'aura_comp_viewed';
 
     let loadedCompanies = [];
-    let currentCompCategory = 'all';
+    let currentIndustryFilter = 'all';
     let pendingAction = null;
     let activeCommentCompId = null;
 
@@ -528,9 +564,24 @@
       initMemberUI();
       await fetchCloudCompanies();
 
+      // Mobile Drawer Toggle Setup
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuClose = document.getElementById('mobileMenuClose');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+
+      const toggleMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        menuBackdrop.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      if (mobileToggle) mobileToggle.addEventListener('click', () => toggleMenu(true));
+      if (menuClose) menuClose.addEventListener('click', () => toggleMenu(false));
+      if (menuBackdrop) menuBackdrop.addEventListener('click', () => toggleMenu(false));
+
       document.getElementById('compDirectorySearch').addEventListener('input', renderDirectoryCards);
       document.getElementById('compDirectoryIndustry').addEventListener('change', renderDirectoryCards);
-      document.getElementById('compDirectoryYear').addEventListener('change', renderDirectoryCards);
 
       document.getElementById('memberRegistrationForm').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -574,7 +625,7 @@
 
         document.getElementById('commentTextInput').value = '';
         renderCommentsList(activeCommentCompId);
-        renderCompanyCards(currentCompCategory);
+        renderCompanyCards();
         showToast("Verified comment published!");
       });
     });
@@ -591,7 +642,6 @@
           loadedCompanies = [
             {
               id: "synapse-global",
-              category: "featured",
               name: "Synapse Global",
               tagline: "Architecting Resilient Enterprise Intelligence",
               editionTitle: "The Most Innovative Technology Companies to Watch in 2026",
@@ -606,7 +656,7 @@
           ];
         }
 
-        renderCompanyCards(currentCompCategory);
+        renderCompanyCards();
         renderDirectoryCards();
       } catch (err) {
         console.error("Cloud fetch error: ", err);
@@ -621,8 +671,10 @@
     function initMemberUI() {
       const member = getMember();
       if (member) {
-        document.getElementById('memberStatusTag').style.display = 'inline-flex';
-        document.getElementById('memberNameDisplay').textContent = member.name.split(' ')[0];
+        const tag = document.getElementById('memberStatusTag');
+        const disp = document.getElementById('memberNameDisplay');
+        if (tag) tag.style.display = 'inline-flex';
+        if (disp) disp.textContent = member.name.split(' ')[0];
       }
     }
 
@@ -630,16 +682,18 @@
       if (getMember()) { callback(); } else { pendingAction = callback; document.getElementById('memberModal').classList.add('active'); }
     }
 
-    function renderCompanyCards(category = 'all') {
+    function renderCompanyCards() {
       const container = document.getElementById('companyCoversContainer');
       const likedComps = JSON.parse(localStorage.getItem(STORAGE_COMP_LIKES) || '[]');
       const viewedComps = JSON.parse(localStorage.getItem(STORAGE_COMP_VIEWS) || '[]');
       const commentsStore = JSON.parse(localStorage.getItem('aura_comp_comments') || '{}');
 
-      const filtered = category === 'all' ? loadedCompanies : loadedCompanies.filter(c => c.category === category);
+      const filtered = loadedCompanies.filter(c => {
+        return currentIndustryFilter === 'all' || (c.industry && c.industry.toLowerCase().includes(currentIndustryFilter.toLowerCase()));
+      });
 
       if (!filtered.length) {
-        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">No company editions published yet. Use Admin Panel.</div>`;
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">No companies published for this sector yet.</div>`;
         return;
       }
 
@@ -649,12 +703,12 @@
         const currentLikes = isLiked ? 1 : 0;
         const currentViews = hasViewed ? 1 : 0;
         const commentsCount = (commentsStore[comp.id] || []).length;
-        const titleText = comp.title || comp.editionTitle || `The Most Innovative Companies to Watch in 2026 — ${comp.name}`;
+        const titleText = comp.title || comp.editionTitle || comp.name;
 
         return `
           <div class="company-cover-card">
             <div class="company-cover-poster" onclick="openCompanyDigitalEdition('${comp.id}')">
-              <img src="${comp.coverImage}" alt="${comp.name}">
+              <img src="${comp.coverImage}" alt="${comp.name}" loading="lazy">
             </div>
             <div class="company-card-info-wrap">
               <div class="company-card-headline" onclick="openCompanyDigitalEdition('${comp.id}')">${titleText}</div>
@@ -675,20 +729,26 @@
       }).join('');
     }
 
+    function filterByIndustry(industryName, chipEl) {
+      document.querySelectorAll('.industry-filter-chip').forEach(c => c.classList.remove('active'));
+      chipEl.classList.add('active');
+      currentIndustryFilter = industryName;
+      renderCompanyCards();
+    }
+
     function renderDirectoryCards() {
       const query = document.getElementById('compDirectorySearch').value.toLowerCase().trim();
       const ind = document.getElementById('compDirectoryIndustry').value;
-      const yr = document.getElementById('compDirectoryYear').value;
 
       const filtered = loadedCompanies.filter(c => {
         const matchQ = !query || c.name.toLowerCase().includes(query) || (c.industry && c.industry.toLowerCase().includes(query));
-        const matchInd = ind === 'all' || (c.industry && c.industry.includes(ind));
+        const matchInd = ind === 'all' || (c.industry && c.industry.toLowerCase().includes(ind.toLowerCase()));
         return matchQ && matchInd;
       });
 
       const dirContainer = document.getElementById('directoryResultsGrid');
       if (!filtered.length) {
-        dirContainer.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">No companies found.</div>`;
+        dirContainer.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">No companies found matching search criteria.</div>`;
         return;
       }
 
@@ -707,13 +767,6 @@
       `).join('');
     }
 
-    function switchCompanyCategory(category, btn) {
-      document.querySelectorAll('.pipe-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCompCategory = category;
-      renderCompanyCards(category);
-    }
-
     function handleCompLikeClick(id) {
       requireMemberAccess(() => {
         let likedComps = JSON.parse(localStorage.getItem(STORAGE_COMP_LIKES) || '[]');
@@ -725,7 +778,7 @@
           showToast("Thank you for liking!");
         }
         localStorage.setItem(STORAGE_COMP_LIKES, JSON.stringify(likedComps));
-        renderCompanyCards(currentCompCategory);
+        renderCompanyCards();
       });
     }
 
@@ -795,6 +848,7 @@
       document.getElementById('cpGlanceFounded').textContent = comp.founded || '2020';
       document.getElementById('cpGlanceLeadership').textContent = comp.leader?.name || 'Executive Team';
       document.getElementById('cpBio').innerHTML = comp.bio ? `<p>${comp.bio}</p>` : `<p>Company narrative profile.</p>`;
+      document.getElementById('cpReadDigitalBtn').href = `companies read digital.html?id=${id}`;
 
       document.getElementById('companiesMainView').style.display = 'none';
       document.getElementById('singleCompanyProfileView').classList.add('active');
